@@ -1,7 +1,11 @@
-*.py[cod]
-
-# C extensions
-*.so
+# Python Compiled files #
+######################
+*.tmp*
+*.py[co]
+.project
+.pydevproject
+.settings/org.eclipse.core.resources.prefs
+vindula/myvindula/storm.zcml
 
 # Packages
 *.egg
@@ -15,8 +19,6 @@ var
 sdist
 develop-eggs
 .installed.cfg
-lib
-lib64
 
 # Installer logs
 pip-log.txt
@@ -24,12 +26,9 @@ pip-log.txt
 # Unit test / coverage reports
 .coverage
 .tox
-nosetests.xml
 
-# Translations
+#Translations
 *.mo
 
-# Mr Developer
+#Mr Developer
 .mr.developer.cfg
-.project
-.pydevproject
