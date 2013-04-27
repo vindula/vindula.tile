@@ -1,22 +1,19 @@
 <?xml version="1.0"?>
-<object name="Layout"
+<object name="TileListagemVertical"
         meta_type="Factory-based Type Information with dynamic views"
         xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 
     <!-- Basic metadata -->
-    <property name="title" i18n:translate="">Layout</property>
-    <property name="description" i18n:translate="">Layout pata o portal</property>
-    <property name="content_icon">++resource++vindula.content.images/file.png</property>
-    <property name="content_meta_type">Layout</property>
+    <property name="title" i18n:translate="">TileListagemVertical</property>
+    <property name="description" i18n:translate="">TileListagemVertical</property>
+    <property name="content_icon">++resource++vindula.tile.images/tile_listagem_vertical.png</property>
+    <property name="content_meta_type">TileListagemVertical</property>
     <property name="product">vindula.tile</property>
-    <property name="factory">addLayout</property>
+    <property name="factory">addTileListagemVertical</property>
     <property name="allow_discussion">False</property>
-    <property name="global_allow">True</property>
+    <property name="global_allow">False</property>
     <property name="filter_content_types">False</property>
-    <property name="allowed_content_types">
-        <element value="TileBanner" />
-        <element value="TileListagemVertical" />
-    </property>
+    <property name="allowed_content_types" />
 
     <property name="immediate_view">base_view</property>
     <property name="default_view">base_view</property>

@@ -8,7 +8,7 @@ from Products.ATContentTypes.content.schemata import finalizeATCTSchema
 from vindula.controlpanel.browser.at.widget import VindulaReferenceSelectionWidget 
 
 from vindula.tile.content.interfaces import ITileBanner
-from vindula.tile.content.tile_shemaBase import BaseTile
+from vindula.tile.content.tile_schemaBase import BaseTile
 
 from Products.Archetypes.atapi import *
 
@@ -26,38 +26,61 @@ TileBanner_schema = schemata.ATContentTypeSchema.copy() + Schema((
 	            label=_(u"Banner "),
 	            description='Selecione os banners.')),
 
+	StringField(
+        name='tipoPaginacao',
+        widget=SelectionWidget(
+            label=_(u"Tipo da paginação dos banners"),
+            description=_(u"Selecione o tipo de paginação dos banners rotativos."),
+            label_msgid='vindula_tile_label_tipoPaginacao',
+            description_msgid='vindula_tile_help_tipoPaginacao',
+            i18n_domain='vindula_tile',
+            format='radio',
+        ),
+        vocabulary=[("number","Número"),("image","Imagem")],
+        default="image",
+        required=True,
+    ),
+
 	BooleanField(
-        name='activeUnidade',
+        name='ativaUnidade',
         default=True,
         widget=BooleanWidget(
             label="Ativar o texto da Unidade no Banner.",
             description='Caso selecionado, ativa o texto para visualização no Banner',
+            label_msgid='vindula_tile_label_ativaUnidade',
+            description_msgid='vindula_tile_help_ativaUnidade',
         ),
     ),
 
     BooleanField(
-        name='activeData',
+        name='ativaData',
         default=True,
         widget=BooleanWidget(
             label="Ativar a Data no Banner.",
             description='Caso selecionado, ativa o data para visualização no Banner',
+            label_msgid='vindula_tile_label_ativaData',
+            description_msgid='vindula_tile_help_ativaData',
         ),
     ),
 
     BooleanField(
-        name='activeAutor',
+        name='ativaAutor',
         default=True,
         widget=BooleanWidget(
             label="Ativar o Autor no Banner.",
             description='Caso selecionado, ativa o nome do autor para visualização no Banner',
+            label_msgid='vindula_tile_label_ativaAutor',
+            description_msgid='vindula_tile_help_ativaAutor',
         ),
     ),
 
     TextField(
-            name='text_banner',
+            name='textoBanner',
             widget=StringWidget(
                 label=_(u"Texto para o Banner"),
                 description=_(u"Texto adicionado na parte inferior do Banner."),
+                label_msgid='vindula_tile_label_textoBanner',
+            	description_msgid='vindula_tile_help_textoBanner',
             ),
         required=False,
     ),
@@ -77,6 +100,7 @@ class TileBanner(base.ATCTContent):
     schema = TileBanner_schema
 
     def get_tile_banners(self):
+    	
         pass
 
 

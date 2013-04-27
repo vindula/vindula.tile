@@ -4,6 +4,7 @@
 
         <type portal_type="Layout"/>
         <type portal_type="TileBanner"/>
+        <type portal_type="TileListagemVertical"/>
 
     </factorytypes>
 </object>

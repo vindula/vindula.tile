@@ -14,14 +14,7 @@ Layout_schema = ATFolder.schema.copy() + Schema((
 
 
 
-
-
-
-
-
 ))
-
-
 
 finalizeATCTSchema(Layout_schema, folderish=True)
 

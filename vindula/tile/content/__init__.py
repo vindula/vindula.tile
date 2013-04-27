@@ -1,3 +1,4 @@
-import tile_banner
-import tile_shemaBase
 import layout
+import tile_banner
+import tile_listagem_vertical
+import tile_schemaBase 

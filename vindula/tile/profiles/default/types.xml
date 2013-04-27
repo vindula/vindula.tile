@@ -9,11 +9,13 @@
 <object name="portal_types" meta_type="Plone Types Tool">
   <!-- -*- extra stuff goes here -*- -->
 
-
     <object name="Layout"
             meta_type="Factory-based Type Information with dynamic views"/>
 
     <object name="TileBanner"
+            meta_type="Factory-based Type Information with dynamic views"/>
+
+    <object name="TileListagemVertical"
             meta_type="Factory-based Type Information with dynamic views"/>
 
 </object>

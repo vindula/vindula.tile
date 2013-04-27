@@ -9,3 +9,6 @@ class ILayout(Interface):
 
 class ITileBanner(Interface):
     """ Interface for BannerTile content type """
+
+class ITileListagemVertical(Interface):
+    """ Interface for TileListagemVertical content type """
