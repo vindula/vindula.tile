@@ -13,5 +13,8 @@
     <object name="Layout"
             meta_type="Factory-based Type Information with dynamic views"/>
 
+    <object name="TileBanner"
+            meta_type="Factory-based Type Information with dynamic views"/>
 
 </object>
+

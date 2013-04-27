@@ -7,3 +7,5 @@ class IBaseTile(Interface):
 class ILayout(Interface):
     """ Interface for Layout content type """
 
+class ITileBanner(Interface):
+    """ Interface for BannerTile content type """
