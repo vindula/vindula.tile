@@ -12,7 +12,7 @@ from App.Common import package_home
 from Products.CMFCore import utils as cmfutils
 
 try: # New CMF
-    from Products.CMFCore import permissions as CMFCorePermissions 
+    from Products.CMFCore import permissions as CMFCorePermissions
 except: # Old CMF
     from Products.CMFCore import CMFCorePermissions
 
