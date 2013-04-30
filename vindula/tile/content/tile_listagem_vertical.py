@@ -2,17 +2,16 @@
 from AccessControl import ClassSecurityInfo
 from zope.interface import implements
 from Products.Archetypes.atapi import *
-from Products.ATContentTypes.content import schemata, base
+
 from Products.ATContentTypes.content.schemata import finalizeATCTSchema
 
+from vindula.tile.content.tile_schemaBase import BaseTile
 from vindula.tile.content.interfaces import ITileListagemVertical
-
-from Products.Archetypes.atapi import *
 
 from vindula.tile import MessageFactory as _
 from vindula.tile.config import *
 
-TileListagemVertical_schema = schemata.ATContentTypeSchema.copy() + Schema((
+TileListagemVertical_schema = BaseTile.schema.copy() + Schema((
 
 	TextField(
             name='tituloTileListagemVertical',
@@ -55,7 +54,7 @@ TileListagemVertical_schema = schemata.ATContentTypeSchema.copy() + Schema((
 
 finalizeATCTSchema(TileListagemVertical_schema, folderish=False)
 
-class TileListagemVertical(base.ATCTContent):
+class TileListagemVertical(BaseTile):
     """ Reserve Content for TileListagemVertical"""
     security = ClassSecurityInfo()
 

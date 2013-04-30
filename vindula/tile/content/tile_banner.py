@@ -2,20 +2,17 @@
 from AccessControl import ClassSecurityInfo
 from zope.interface import implements
 from Products.Archetypes.atapi import *
-from Products.ATContentTypes.content import schemata, base
 from Products.ATContentTypes.content.schemata import finalizeATCTSchema
 
-from vindula.controlpanel.browser.at.widget import VindulaReferenceSelectionWidget 
+from vindula.controlpanel.browser.at.widget import VindulaReferenceSelectionWidget
 
 from vindula.tile.content.interfaces import ITileBanner
 from vindula.tile.content.tile_schemaBase import BaseTile
 
-from Products.Archetypes.atapi import *
-
 from vindula.tile import MessageFactory as _
 from vindula.tile.config import *
 
-TileBanner_schema = schemata.ATContentTypeSchema.copy() + Schema((
+TileBanner_schema = BaseTile.schema.copy() + Schema((
 
 	ReferenceField('imageBanner',
 	        multiValued=0,
@@ -90,7 +87,7 @@ TileBanner_schema = schemata.ATContentTypeSchema.copy() + Schema((
 
 finalizeATCTSchema(TileBanner_schema, folderish=False)
 
-class TileBanner(base.ATCTContent):
+class TileBanner(BaseTile):
     """ Reserve Content for TileBanner"""
     security = ClassSecurityInfo()
 
@@ -100,7 +97,7 @@ class TileBanner(base.ATCTContent):
     schema = TileBanner_schema
 
     def get_tile_banners(self):
-    	
+
         pass
 
 

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from zope.interface import Interface, Attribute
+from zope.interface import Interface
 
 class IBaseTile(Interface):
     """ Interface for BaseTile content type """

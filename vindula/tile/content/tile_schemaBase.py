@@ -3,7 +3,6 @@ from AccessControl import ClassSecurityInfo
 from zope.interface import implements
 from Products.Archetypes.atapi import *
 from Products.ATContentTypes.content import schemata, base
-from Products.ATContentTypes.content.schemata import finalizeATCTSchema
 
 
 from vindula.tile.content.interfaces import IBaseTile
@@ -11,8 +10,6 @@ from vindula.tile import MessageFactory as _
 from vindula.tile.config import *
 
 BaseTile_schema = schemata.ATContentTypeSchema.copy() + Schema((
-
-
 
 
 
@@ -55,7 +52,7 @@ BaseTile_schema = schemata.ATContentTypeSchema.copy() + Schema((
 
 
 
-finalizeATCTSchema(BaseTile_schema, folderish=False)
+schemata.finalizeATCTSchema(BaseTile_schema, folderish=False)
 
 class BaseTile(base.ATCTContent):
     """ Reserve Content for BaseTile"""
