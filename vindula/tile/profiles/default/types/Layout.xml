@@ -20,6 +20,7 @@
         <element value="TileMacroList" />
         <element value="TileFeatured" />
         <element value="TileAccordionContent" />
+        <element value="TileMoreAccess" />
     </property>
 
     <property name="immediate_view">base_view</property>

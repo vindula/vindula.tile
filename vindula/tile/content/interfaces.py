@@ -27,3 +27,7 @@ class ITileAccordionContent(Interface):
 
 class ITileAccordionItem(Interface):
     """ Interface for TileAccordionItem content type """
+
+class ITileMoreAccess(Interface):
+    """ Interface for TileMoreAccess content type """
+
