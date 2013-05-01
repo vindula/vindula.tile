@@ -29,6 +29,7 @@ setup(name='vindula.tile',
           'plone.app.dexterity',
           'plone.namedfile [blobs]',
           # -*- Extra requirements: -*-
+          'Products.DataGridField',
       ],
       entry_points="""
       # -*- Entry points: -*-

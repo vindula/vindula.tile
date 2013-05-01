@@ -12,8 +12,6 @@ class BaseView(grok.View):
     grok.require('zope2.View')
     grok.baseclass()
 
-    # grok.name('macro-single-comment')
-
 
     def __init__(self,context,request):
         super(BaseView,self).__init__(context,request)

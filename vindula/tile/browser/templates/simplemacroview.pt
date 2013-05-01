@@ -1,0 +1,28 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="vindula.tile">
+
+    <body>
+        <metal:main fill-slot="content-core">
+            <metal:macro define-macro="page"
+                         tal:define="view_macro nocall:context/@@simplemacro-view;
+                                     macro view_macro/getMacro">
+
+                <h2 tal:content="context/Title"></h2>
+                <hr />
+                <div>
+                    <metal:block tal:condition="macro"
+                                  metal:use-macro="python:path(macro)"/>
+                </div>
+            </metal:macro>
+        </metal:main>
+    </body>
+</html>
+
+
+
+

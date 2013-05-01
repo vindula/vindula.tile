@@ -51,7 +51,4 @@ class TileSimpleMacro(BaseTile):
     schema = TileSimpleMacro_schema
 
 
-
-
-
 registerType(TileSimpleMacro, PROJECTNAME)
