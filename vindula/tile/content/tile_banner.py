@@ -15,13 +15,14 @@ from vindula.tile.config import *
 TileBanner_schema = BaseTile.schema.copy() + Schema((
 
 	ReferenceField('imageBanner',
-	        multiValued=0,
+	        multiValued=1,
 	        allowed_types=('Banner'),
 	        label=_(u"Banner"),
 	        relationship='Banner',
 	        widget=VindulaReferenceSelectionWidget(
-	            label=_(u"Banner "),
-	            description='Selecione os banners.')),
+	            label=_(u"Banners"),
+	            description='Selecione os banners.'),
+                review_state = ('published', 'external')),
 
 	StringField(
         name='tipoPaginacao',
@@ -71,17 +72,6 @@ TileBanner_schema = BaseTile.schema.copy() + Schema((
         ),
     ),
 
-    TextField(
-            name='textoBanner',
-            widget=StringWidget(
-                label=_(u"Texto para o Banner"),
-                description=_(u"Texto adicionado na parte inferior do Banner."),
-                label_msgid='vindula_tile_label_textoBanner',
-            	description_msgid='vindula_tile_help_textoBanner',
-            ),
-        required=False,
-    ),
-
 ))
 
 
@@ -95,10 +85,5 @@ class TileBanner(BaseTile):
     portal_type = 'TileBanner'
     _at_rename_after_creation = True
     schema = TileBanner_schema
-
-    def get_tile_banners(self):
-
-        pass
-
 
 registerType(TileBanner, PROJECTNAME)
