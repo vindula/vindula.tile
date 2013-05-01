@@ -16,3 +16,9 @@ class ITileListagemVertical(Interface):
 class ITileSimpleMacro(Interface):
     """ Interface for TileSimpleMacro content type """
 
+class ITileMacroList(Interface):
+    """ Interface for TileMacroList content type """
+
+class ITileFeatured(Interface):
+    """ Interface for TileFeatured content type """
+

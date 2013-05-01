@@ -16,6 +16,9 @@
     <property name="allowed_content_types">
         <element value="TileBanner" />
         <element value="TileListagemVertical" />
+        <element value="TileSimpleMacro" />
+        <element value="TileMacroList" />
+        <element value="TileFeatured" />
     </property>
 
     <property name="immediate_view">base_view</property>

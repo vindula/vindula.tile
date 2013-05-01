@@ -1,0 +1,112 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="vindula.tile">
+
+    <body>
+        <metal:main fill-slot="content-core">
+            <metal:macro define-macro="page"
+                         tal:define="view_macro nocall:context/@@featured-view;
+                                     path_macro  string:context/@@featured-view/macros/${view_macro/getLayout}">
+
+                <metal:block tal:condition="path_macro"
+                             metal:use-macro="python:path(path_macro)"/>
+
+            </metal:macro>
+        </metal:main>
+    </body>
+</html>
+<metal:macro define-macro="alerta_normal"
+             tal:define="view_macro nocall:context/@@featured-view;
+                         items context/getItens;
+                         bullets_false string: bullets:false;;">
+
+    <h2 tal:content="context/Title">ANUNCIO</h2>
+
+    <ul data-orbit tal:attributes="data-options python: len(items)==1 and bullets_false"
+                   id="tile-featured">
+      <tal:rep tal:repeat="item items">
+        <li>
+          <div tal:define="text item/Description">
+            <p tal:content="python: view_macro.limitTextSize(text)" >
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta,
+              inventore incidunt ullam eligendi laborum aliquid illum et non sunt praesentium!
+            </p>
+
+            <a tal:attributes="href item/absolute_url"
+               tal:condition="python: view_macro.cont_text(text)"
+               href="">Leia Mais</a>
+
+          </div>
+        </li>
+
+      </tal:rep>
+    </ul>
+
+</metal:macro>
+<metal:macro define-macro="alerta_importante"
+             tal:define="view_macro nocall:context/@@featured-view;
+                         items context/getItens;
+                         bullets_false string: bullets:false;;">
+
+    <h2 tal:content="context/Title">ANUNCIO</h2>
+
+    <ul data-orbit tal:attributes="data-options python: len(items)==1 and bullets_false"
+                   id="tile-featured">
+      <tal:rep tal:repeat="item items">
+        <li>
+          <div tal:define="text item/Description">
+            <p tal:content="python: view_macro.limitTextSize(text)" >
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta,
+              inventore incidunt ullam eligendi laborum aliquid illum et non sunt praesentium!
+            </p>
+
+            <a tal:attributes="href item/absolute_url"
+               tal:condition="python: view_macro.cont_text(text)"
+               href="">Leia Mais</a>
+
+          </div>
+        </li>
+
+      </tal:rep>
+    </ul>">
+
+</metal:macro>
+<metal:macro define-macro="destaque"
+             tal:define="view_macro nocall:context/@@featured-view;
+                                     items context/getItens;
+                                     bullets_false string: bullets:false;;">
+
+                <h2 tal:content="context/Title">ANUNCIO</h2>
+
+                <ul data-orbit tal:attributes="data-options python: len(items)==1 and bullets_false"
+                               id="tile-featured">
+                  <tal:rep tal:repeat="item items">
+                    <li>
+                      <div>
+                        <a tal:attributes="href item/absolute_url"
+                           tal:condition="item/getImageRelac">
+                            <img tal:attributes="src python: item.getImageRelac().absolute_url()+'/image_mini';
+                                                 alt item/Title;
+                                                 title item/Title;">
+                        </a>
+                        <a tal:attributes="href item/absolute_url"
+                           tal:content="item/Title" href="">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta,
+                            inventore incidunt ullam eligendi laborum aliquid illum et non sunt praesentium!
+                        </a>
+                        <tal:def tal:define="context nocall: item">
+                            <div metal:use-macro="context/macro-share-content/macros/view" />
+                        </tal:def>
+                      </div>
+                    </li>
+
+                  </tal:rep>
+                </ul>
+
+</metal:macro>
+
+

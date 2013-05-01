@@ -1,0 +1,36 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="vindula.tile">
+
+    <body>
+        <metal:main fill-slot="content-core">
+            <metal:macro define-macro="page"
+                         tal:define="view_macro nocall:context/@@macrolist-view;
+                                     macros view_macro/getMacros">
+
+                <div class="section-container tabs" data-section="tabs">
+                    <tal:rep repeat="item macros">
+
+                      <section>
+                        <p class="title" data-section-title>
+                          <a href="#" tal:content="item/title">Section 1</a>
+                        </p>
+
+                        <div class="content" data-section-content
+                              tal:define="path_macro item/macro">
+
+                            <metal:block tal:condition="path_macro"
+                                         metal:use-macro="python:path(path_macro)"/>
+                        </div>
+                      </section>
+                    </tal:rep>
+                </div>
+
+            </metal:macro>
+        </metal:main>
+    </body>
+</html>
