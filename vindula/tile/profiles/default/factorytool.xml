@@ -8,6 +8,8 @@
         <type portal_type="TileSimpleMacro"/>
         <type portal_type="TileMacroList"/>
         <type portal_type="TileFeatured"/>
+        <type portal_type="TileAccordionContent"/>
+        <type portal_type="TileAccordionItem"/>
 
     </factorytypes>
 </object>
