@@ -3,6 +3,7 @@ from five import grok
 from zope.interface import Interface
 
 from Products.CMFCore.utils import getToolByName
+from zope.app.component.hooks import getSite
 
 grok.templatedir('templates')
 
