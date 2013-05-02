@@ -40,7 +40,7 @@ TileListagemVertical_schema = BaseTile.schema.copy() + Schema((
          required=False,
      ),
 
-    ReferenceField('VindulaFolder',
+    ReferenceField('path',
             multiValued=0,
             allowed_types=('VindulaFolder','Folder'),
             label=_(u"Pastas"),
@@ -76,16 +76,19 @@ TileListagemVertical_schema = BaseTile.schema.copy() + Schema((
      ),
 
     StringField(
-        name='listMacros',
+        name='listTemplate',
         widget=SelectionWidget(
-            label=_(u"Lista de Macros"),
-            description=_(u"Selecione qual macro(template) deseja utilizar."),
-            label_msgid='vindula_tile_label_listMacros',
-            description_msgid='vindula_tile_help_listMacros',
+            label=_(u"Lista de Templates"),
+            description=_(u"Selecione qual template deseja utilizar."),
+            label_msgid='vindula_tile_label_listTemplate',
+            description_msgid='vindula_tile_help_listTemplate',
             i18n_domain='vindula_tile',
             format = 'select',
          ),
-         vocabulary='voc_list_macros',
+         vocabulary=[("listagem_com_imagem",_(u"Listagem com imagem")),
+                    ("listagem_com_icones", _(u"Listagem com ícones e sem imagem")),
+                    ("listagem_sem_icones", _(u"Destaque sem ícones e sem imagem"))],
+         default='listagem_com_imagem',
          required=True,
      ),
 
@@ -109,11 +112,5 @@ class TileListagemVertical(BaseTile):
     def voc_list_workflow(self):
         #TODO: Implementar método que retorna todos os workflows
         return ['published','internal','external']
-
-    def voc_list_macros(self):
-        return ['Listagem com imagem','Listagem sem imagem com ícones','Listagem sem imagem sem ícones']
-
-    def query_catalog(self,type,path,depth):
-        pass
-
+    
 registerType(TileListagemVertical, PROJECTNAME)

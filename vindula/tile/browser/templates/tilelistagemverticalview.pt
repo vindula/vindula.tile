@@ -1,0 +1,66 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="vindula.tile">
+
+    <body>
+        <metal:main fill-slot="content-core">
+            <metal:macro define-macro="page"
+                         tal:define="view nocall:context/@@tilelistagemvertical-view;
+                                     item view/getItens;">
+            </metal:macro>
+        </metal:main>
+    </body>
+</html>
+<metal:macro define-macro="listagem_com_imagem"
+             tal:define="view nocall:context/@@tilelistagemvertical-view;">
+
+    <h2>Notícias</h2>
+
+    <select>
+        <option value="data">Data</option>
+        <option value="mais_acessados">Mais acessados</option>
+    </select>
+    <div>
+       <img src=""  width="150" height="150"/>
+    </div> 
+    <div>
+      <p><b>Local:</b>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+      <p> Barra social </p>
+    </div>
+    <div>
+      <p><b>Data:</b>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+      <p> Barra social </p>
+    </div>
+    <div>
+      <p><b>Site:</b>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+      <p> Barra social </p>
+    </div>
+    <a><span> + Notícias NOMEUNIDADE </span></a>
+
+
+</metal:macro>
+
+<metal:macro define-macro="listagem_com_icones"
+             tal:define="view nocall:context/@@tilelistagemvertical-view;">
+
+    <h2>Links Úteis</h2>
+    <div>
+      <img src="" />Icon <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span>
+    </div>
+    
+</metal:macro>
+
+<metal:macro define-macro="listagem_sem_icones"
+             tal:define="view nocall:context/@@tilelistagemvertical-view;">
+
+    <h2>Serviços</h2>
+    <div>
+      <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span>
+    </div>
+    
+</metal:macro>
+
