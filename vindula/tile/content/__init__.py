@@ -1,6 +1,7 @@
 import layout
 import tile_banner
 import tile_listagem_vertical
+import tile_listagem_horizontal
 import tile_schemaBase
 import tile_macrolist
 import tile_simplemacro
