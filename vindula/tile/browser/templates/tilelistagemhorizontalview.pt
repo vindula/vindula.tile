@@ -1,0 +1,39 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="context/main_template/macros/master"
+      lang="en"
+      i18n:domain="vindula.tile">
+<body>
+
+<metal:main fill-slot="content-core">
+    <metal:macro define-macro="page" 
+                 tal:define="view nocall:context/@@tilelistagemhorizontal-view;
+                             itens view/getItens;">
+        <div id="container">
+            <div class="title">
+                <h2 tal:content="context/title|nothing"> Premiações </h2>
+            </div>
+
+            <div class="paginator">
+                <span>Paginador</span>
+            </div>
+
+            <div class="image">
+                <img tal:attributes="src item/image|nothing" src="" />
+            </div>
+
+            <div class="info">    
+                <span>Nome</span> / <span>Unidade</span> <span>Autor</span>
+                <h1> Massa lorem lacina erat, eu interdum lorem lacina erat </h1>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown print</p>
+            </div>
+            <div class="social">
+                <iframe> Barra rede social </iframe>
+            </div>
+        </div>
+    </metal:macro>
+</metal:main>
+</body>
+</html>
