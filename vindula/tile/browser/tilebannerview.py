@@ -18,6 +18,7 @@ class TileBannerView(BaseView):
         if banners != None or banners != '':
             for banner in banners:
                 D = {}
+                D['title'] = banner.title
                 D['text'] = banner.description
                 D['image'] = banner.absolute_url() + '/imagem_banner_preview'
                 D['url'] = banner.getLink()
