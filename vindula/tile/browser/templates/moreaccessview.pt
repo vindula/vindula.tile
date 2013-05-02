@@ -1,0 +1,93 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="vindula.tile">
+
+    <body>
+        <metal:main fill-slot="content-core">
+            <metal:macro define-macro="page"
+                         tal:define="view_macro nocall:context/@@moreaccess-view;
+                                     path_macro  string:context/@@moreaccess-view/macros/${view_macro/getLayout}">
+
+                <metal:block tal:condition="path_macro"
+                             metal:use-macro="python:path(path_macro)"/>
+
+            </metal:macro>
+        </metal:main>
+    </body>
+</html>
+<metal:macro define-macro="padrao"
+             tal:define="view_macro nocall:context/@@moreaccess-view;">
+
+    <h3 tal:content="context/Title">Serviços mais acessados</h3>
+
+    <ul>
+      <tal:rep repeat="item view_macro/getItens">
+        <li tal:define="obj item/content/getObject">
+          <a href="" tal:attributes="href obj/absolute_url;
+                                     alt obj/Title;
+                                     title obj/Title;">
+
+            <img src="" alt="" tal:attributes="alt obj/Title;
+                                               title obj/Title;">
+            <spam tal:content="obj/Title">Lorem ipsum.</spam>
+
+          </a>
+        </li>
+      </tal:rep>
+    </ul>
+
+</metal:macro>
+<metal:macro define-macro="unidade"
+             tal:define="view_macro nocall:context/@@moreaccess-view;">
+
+      <h3 tal:content="context/Title">Unidade mais acessados</h3>
+
+    <ul>
+      <tal:rep repeat="item view_macro/getItens">
+        <li tal:define="obj item/content/getObject">
+
+            <img tal:condition="obj/getImage|nothing"
+                 tal:attributes="src python: obj.getImage().absolute_url()+'/image_mini';
+                                 alt obj/Title;
+                                 title obj/Title;">
+
+            <a href="" tal:attributes="href obj/absolute_url;
+                                       alt obj/Title;
+                                       title obj/Title;"
+                       tal:content="obj/Title">Lorem ipsum.</a>
+
+            <span tal:content="obj/Title">Lorem ipsum.</span>
+            <span tal:content="obj/manager|nothing">Gestor</span>
+
+        </li>
+      </tal:rep>
+    </ul>
+
+</metal:macro>
+<metal:macro define-macro="lista_ver"
+             tal:define="view_macro nocall:context/@@moreaccess-view;">
+
+    <h3 tal:content="context/Title">Serviços</h3>
+
+    <h4>Mais Acessados:</h4>
+    <ul>
+      <tal:rep repeat="item view_macro/getItens">
+        <li tal:define="obj item/content/getObject">
+          <a href="" tal:attributes="href obj/absolute_url;
+                                     alt obj/Title;
+                                     title obj/Title;">
+
+            <img src="" alt="" tal:attributes="alt obj/Title;
+                                               title obj/Title;">
+
+            <span tal:content="obj/Title">Lorem ipsum.</span>
+
+          </a>
+        </li>
+      </tal:rep>
+    </ul>
+</metal:macro>

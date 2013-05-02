@@ -22,3 +22,12 @@ class ITileMacroList(Interface):
 class ITileFeatured(Interface):
     """ Interface for TileFeatured content type """
 
+class ITileAccordionContent(Interface):
+    """ Interface for TileAccordionContent content type """
+
+class ITileAccordionItem(Interface):
+    """ Interface for TileAccordionItem content type """
+
+class ITileMoreAccess(Interface):
+    """ Interface for TileMoreAccess content type """
+

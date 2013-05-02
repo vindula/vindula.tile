@@ -7,10 +7,6 @@ grok.templatedir('templates')
 class FeaturedView(BaseView):
     grok.name('featured-view')
 
-    def getLayout(self):
-        context = self.context
-        return context.getLayout()
-
     def limitTextSize(self, text, size=100):
         if len(text) > size:
             i = size

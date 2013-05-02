@@ -3,7 +3,6 @@ from five import grok
 from zope.interface import Interface
 
 from Products.CMFCore.utils import getToolByName
-from zope.app.component.hooks import getSite
 
 grok.templatedir('templates')
 
@@ -18,3 +17,6 @@ class BaseView(grok.View):
         self.portal_catalog = getToolByName(context, 'portal_catalog')
         
 
+    def getLayout(self):
+        context = self.context
+        return context.getLayout()

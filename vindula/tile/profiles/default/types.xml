@@ -27,6 +27,14 @@
     <object name="TileFeatured"
             meta_type="Factory-based Type Information with dynamic views"/>
 
+    <object name="TileAccordionContent"
+            meta_type="Factory-based Type Information with dynamic views"/>
+
+    <object name="TileAccordionItem"
+            meta_type="Factory-based Type Information with dynamic views"/>
+
+    <object name="TileMoreAccess"
+            meta_type="Factory-based Type Information with dynamic views"/>
 
 </object>
 
