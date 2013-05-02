@@ -9,3 +9,4 @@ import tile_featured
 import tile_accordioncontent
 import tile_accordionitem
 import tile_moreaccess
+import tile_label

@@ -22,6 +22,7 @@
         <element value="TileFeatured" />
         <element value="TileAccordionContent" />
         <element value="TileMoreAccess" />
+        <element value="TileLabel" />
     </property>
 
     <property name="immediate_view">base_view</property>

@@ -14,7 +14,7 @@ class ITileListagemVertical(Interface):
     """ Interface for TileListagemVertical content type """
 
 class ITileListagemHorizontal(Interface):
-    """ Interface for TileListagemVertical content type """
+    """ Interface for TileListagemHorizontal content type """
 
 class ITileSimpleMacro(Interface):
     """ Interface for TileSimpleMacro content type """
@@ -33,4 +33,7 @@ class ITileAccordionItem(Interface):
 
 class ITileMoreAccess(Interface):
     """ Interface for TileMoreAccess content type """
+
+class ITileLabel(Interface):
+    """ Interface for TileLabel content type """
 
