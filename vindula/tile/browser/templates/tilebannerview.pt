@@ -10,69 +10,27 @@
 <metal:main fill-slot="content-core">
     <metal:macro define-macro="page"
                  tal:define="view_banner nocall:context/@@tilebanner-view;
-                             banners view_banner/getTileBanner">
-    
-        <!--div tal:repeat="banner banners">
-            <a tal:attributes="href banner/url">
-                <img tal:attributes="src banner/image"  width="300" />
-            </a>
-            <span tal:content="banner/text" />
-            <span>Unidade:</span><span tal:content="banner/unidade"></span><br />
-            <span>Data:</span><span tal:content="banner/date"></span><br />
-            <span>Autor:</span><span tal:content="banner/autor"></span><br />
-        </div-->
-
-  <div id="banner_homepage">
-      <link rel="stylesheet" type="text/css" href="/++resource++vindula.themedefault/css/banner_homepage.css">
-      <!-- start: BANNER -->
-      <div id="banner_home">
-          <!-- start: Conteudo do banner -->
-          <div id="box_banner">
-            <div id="cont_banner">
-              <div tal:repeat="banner banners" class="zindex-min">
-                <tal:cond condition="not: banner/url">
-                  <img tal:attributes="src banner/image; alt banner/title;">  
-                </tal:cond>
-                <tal:cond condition="banner/url">
-                  <a tal:attributes="href banner/url; target banner/target"><img tal:attributes="src banner/image; alt banner/title;"></a>
-                </tal:cond>
-              </div>
-            </div>
-            
-            <!-- start: Paginacao -->
-            <input id="cycle-timeout-banner" type="hidden" tal:attributes="value context/getTime_transition_banner">
-            <div class="paginacao paginacao-banner pag_homepage" tal:condition="python: len(context.getRef_banner()) > 1">
-              <div id="cycle-prev-banner" class="circle float-left c-pointer">
-                <img class="left" src="/++theme++vindula.themedefault/images/buttons/seta_left.png" title="Anterior"/>
-              </div>
-              <tal:cond condition="python: context.getType_navigation() == 'image'">
-                <div id="cycle-nav-banner"></div>
-              </tal:cond>
-              <tal:cond condition="python: context.getType_navigation() == 'number'">
-                <div class="pag_number">
-                  <p class="cycle-nav-banner" id="cycle-nav-banner"></p>
-                  <p tal:content="python: '/' + str(len(context.getRef_banner()))"></p>
+                             banners view_banner/getTileBanner;
+                             bullets_false string: bullets:false;">
+                    
+    <div class="columns large-12">
+                <div class="has-space">
+                    <ul data-orbit id="tile-banner" tal:attributes="data-options python: len(banners)==1 and bullets_false"> 
+                        <li tal:repeat="banner banners">
+                            <a href="" tal:attributes="href    banner/url;
+                                                       target  banner/target">
+                              <img  tal:attributes="src banner/image" src="++theme++vindula.themedefault/images/demos/demo1.jpg" />
+                            </a>
+                            <div class="orbit-caption" tal:content="banner/text">
+                                Lorem ipsum dolor sit amet
+                            </div>
+                            <div>
+                                <span tal:content="string: ${banner/unit} / ${banner/date} / ${banner/author}"></span>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-              </tal:cond>
-              <div id="cycle-next-banner" class="circle float-left c-pointer">
-                <img class="right" src="/++theme++vindula.themedefault/images/buttons/seta_right.png" title="Pr&oacute;ximo"/>
-              </div>
             </div>
-            <!-- end: Paginacao -->
-            
-          </div>
-          <!-- end: Conteudo do banner -->
-      </div>
-      <!-- end: BANNER -->
-    
-    <!--tal:cond tal:condition="python: context.getBanner_html() and context.getActive_banner_html()">
-      <div tal:replace="structure context/getBanner_html">
-      </div>
-      
-    </tal:cond-->
-
-</div>
-
     </metal:macro>
 </metal:main>
 </body>

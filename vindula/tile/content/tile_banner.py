@@ -22,15 +22,32 @@ TileBanner_schema = BaseTile.schema.copy() + Schema((
 	        widget=VindulaReferenceSelectionWidget(
 	            label=_(u"Banners"),
 	            description='Selecione os banners.'),
-                review_state = ('published', 'external')),
+                review_state = ('published','internal','external'),
+            required=True,
+                ),
+
+    IntegerField(
+        name='timeTransitionBanner',
+        widget=IntegerWidget(
+            label=_(u"Velocidade da rotação do banner"),
+            description=_(u"Tempo em milissegundos que a imagem do banner leva para rotacionar, \
+                          insira apenas números inteiros."),
+
+            label_msgid='vindula_tile_label_timeTransitionBanner',
+            description_msgid='vindula_tile_help_timeTransitionBanner',
+            i18n_domain='vindula_tile',
+        ),
+        default=8000,
+        required=True,
+    ),
 
 	StringField(
-        name='tipoPaginacao',
+        name='typeNavigation',
         widget=SelectionWidget(
             label=_(u"Tipo da paginação dos banners"),
-            description=_(u"Selecione o tipo de paginação dos banners rotativos."),
-            label_msgid='vindula_tile_label_tipoPaginacao',
-            description_msgid='vindula_tile_help_tipoPaginacao',
+            description=_(u"Selecione o tipo de navegação dos banners rotativos."),
+            label_msgid='vindula_tile_label_typeNavigation',
+            description_msgid='vindula_tile_help_typeNavigation',
             i18n_domain='vindula_tile',
             format='radio',
         ),
@@ -40,35 +57,35 @@ TileBanner_schema = BaseTile.schema.copy() + Schema((
     ),
 
 	BooleanField(
-        name='ativaUnidade',
+        name='activeUnit',
         default=True,
         widget=BooleanWidget(
             label="Ativar o texto da Unidade no Banner.",
             description='Caso selecionado, ativa o texto para visualização no Banner',
-            label_msgid='vindula_tile_label_ativaUnidade',
-            description_msgid='vindula_tile_help_ativaUnidade',
+            label_msgid='vindula_tile_label_activeUnit',
+            description_msgid='vindula_tile_help_activeUnit',
         ),
     ),
 
     BooleanField(
-        name='ativaData',
+        name='activeDate',
         default=True,
         widget=BooleanWidget(
             label="Ativar a Data no Banner.",
             description='Caso selecionado, ativa o data para visualização no Banner',
-            label_msgid='vindula_tile_label_ativaData',
-            description_msgid='vindula_tile_help_ativaData',
+            label_msgid='vindula_tile_label_activeDate',
+            description_msgid='vindula_tile_help_activeDate',
         ),
     ),
 
     BooleanField(
-        name='ativaAutor',
+        name='activeAuthor',
         default=True,
         widget=BooleanWidget(
             label="Ativar o Autor no Banner.",
             description='Caso selecionado, ativa o nome do autor para visualização no Banner',
-            label_msgid='vindula_tile_label_ativaAutor',
-            description_msgid='vindula_tile_help_ativaAutor',
+            label_msgid='vindula_tile_label_activeAuthor',
+            description_msgid='vindula_tile_help_activeAuthor',
         ),
     ),
 

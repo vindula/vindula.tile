@@ -18,17 +18,18 @@ class TileBannerView(BaseView):
         if banners != None or banners != '':
             for banner in banners:
                 D = {}
-                D['title'] = banner.title
-                D['text'] = banner.description
+                D['title'] = banner.Title()
+                D['text'] = banner.Description()
                 D['image'] = banner.absolute_url() + '/imagem_banner_preview'
+                D['target'] = banner.getTarget()
                 D['url'] = banner.getLink()
                 if obj.ativaData == True:
                     D['date'] = banner.creation_date.strftime('%d/%m/%Y')
                 if obj.ativaAutor == True:
-                    D['autor'] = banner.getOwner().getUserName()
+                    D['author'] = banner.getOwner().getUserName()
                 #TODO: Criar método para buscar o nome da Unidade
                 if obj.ativaUnidade == True:
-                    D['unidade']= 'Nome da Unidade'
+                    D['unit']= 'Nome da Unidade'
                 L.append(D)
         return L
         
