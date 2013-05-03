@@ -15,13 +15,26 @@ from vindula.tile.config import *
 
 TileListagemHorizontal_schema = BaseTile.schema.copy() + Schema((
 
+    ReferenceField('highlights',
+            multiValued=1,
+            allowed_types=('VindulaNews'),
+            label=_(u"Destaques"),
+            relationship='VindulaNews',
+            widget=VindulaReferenceSelectionWidget(
+                label=_(u"Destaques"),
+                description='Selecione os destaques rotativos.'),
+                review_state = ('published', 'internal','external'),
+            required=True,
+                ),
+
+
     StringField(
-        name='typePagination',
+        name='typeNavigation',
         widget=SelectionWidget(
-            label=_(u"Tipo da paginação do(s) destaque(s)"),
-            description=_(u"Selecione o tipo de paginação para o(s) destaque(s)."),
-            label_msgid='vindula_tile_label_typePagination',
-            description_msgid='vindula_tile_help_typePagination',
+            label=_(u"Tipo da navegação do(s) destaque(s)"),
+            description=_(u"Selecione o tipo de navegação para o(s) destaque(s)."),
+            label_msgid='vindula_tile_label_typeNavigation',
+            description_msgid='vindula_tile_help_typeNavigation',
             i18n_domain='vindula_tile',
             format='radio',
         ),
@@ -30,39 +43,7 @@ TileListagemHorizontal_schema = BaseTile.schema.copy() + Schema((
         required=True,
     ),
 
-    BooleanField(
-        name='activeUnit',
-        default=True,
-        widget=BooleanWidget(
-            label="Nome da Unidade no(s) destaque(s).",
-            description='Caso selecionado, ativa o nome da Unidade no(s) destaque(s)',
-            label_msgid='vindula_tile_label_activeUnit',
-            description_msgid='vindula_tile_help_activeUnit',
-        ),
-    ),
-
-    BooleanField(
-        name='activeDate',
-        default=True,
-        widget=BooleanWidget(
-            label="Data no(s) destaque(s).",
-            description='Caso selecionado, ativa a data no(s) destaque(s)',
-            label_msgid='vindula_tile_label_activeDate',
-            description_msgid='vindula_tile_help_activeDate',
-        ),
-    ),
-
-    BooleanField(
-        name='activeAuthor',
-        default=True,
-        widget=BooleanWidget(
-            label="Nome do Autor no(s) destaque(s).",
-            description='Caso selecionado, ativa o nome do autor no(s) destaque(s)',
-            label_msgid='vindula_tile_label_activeAuthor',
-            description_msgid='vindula_tile_help_activeAuthor',
-        ),
-    ),
-
+    
     BooleanField(
         name='activeSocial',
         default=True,
@@ -75,7 +56,7 @@ TileListagemHorizontal_schema = BaseTile.schema.copy() + Schema((
     ),
 
     StringField(
-        name='listTemplate',
+        name='listTemplates',
         widget=SelectionWidget(
             label=_(u"Lista de Templates"),
             description=_(u"Selecione qual template deseja utilizar."),
@@ -85,7 +66,7 @@ TileListagemHorizontal_schema = BaseTile.schema.copy() + Schema((
             format = 'select',
          ),
          vocabulary=[("destaque_unico",_(u"Listagem com um único Destaque")),
-                    ("destaque_duplo", _(u"Listagem com dois Destaques"))],
+                    ("destaque_multipla", _(u"Listagem Múltipla"))],
          default='destaque_unico',
          required=True,
      ),
