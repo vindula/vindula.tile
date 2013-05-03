@@ -23,12 +23,12 @@ class TileBannerView(BaseView):
                 D['image'] = banner.absolute_url() + '/imagem_banner_preview'
                 D['target'] = banner.getTarget()
                 D['url'] = banner.getLink()
-                if obj.ativaData == True:
+                if obj.activeDate == True:
                     D['date'] = banner.creation_date.strftime('%d/%m/%Y')
-                if obj.ativaAutor == True:
+                if obj.activeAuthor == True:
                     D['author'] = banner.getOwner().getUserName()
                 #TODO: Criar método para buscar o nome da Unidade
-                if obj.ativaUnidade == True:
+                if obj.activeUnit == True:
                     D['unit']= 'Nome da Unidade'
                 L.append(D)
         return L
