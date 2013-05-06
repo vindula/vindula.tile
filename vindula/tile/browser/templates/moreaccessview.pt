@@ -21,25 +21,50 @@
 </html>
 <metal:macro define-macro="padrao"
              tal:define="view_macro nocall:context/@@moreaccess-view;">
-
-    <h3 tal:content="context/Title">Serviços mais acessados</h3>
-
-    <ul>
-      <tal:rep repeat="item view_macro/getItens">
-        <li tal:define="obj item/content/getObject">
-          <a href="" tal:attributes="href obj/absolute_url;
-                                     alt obj/Title;
-                                     title obj/Title;">
-
-            <img src="" alt="" tal:attributes="alt obj/Title;
+    <div id="tite-more-access">
+        <div class="columns large-12">
+            <div class="row box-title">
+                <div class="columns small-10">
+                    <h4>
+                        <span tal:replace="context/Title"></span>
+                        <hr/>
+                    </h4>
+                </div>
+                <div class="columns small-2">
+                    <a href="#" class="right more">
+                        <h1 class="subheader vindula-icon-plus-sign"></h1>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="columns large-12">
+            <h6 class="subheader">
+                Mais Acessadas:
+            </h6>
+        </div>
+        
+        <div class="columns large-12">
+          <tal:rep repeat="item view_macro/getItens">
+            <div class="row" tal:define="obj item/content/getObject">
+                
+                <div class="columns small-2">
+                    <img src="" alt="" tal:attributes="alt obj/Title;
+                                                       title obj/Title;">
+                </div>   
+                
+                <div class="columns small-10">                          
+                    <a href="" tal:attributes="href obj/absolute_url;
+                                               alt obj/Title;
                                                title obj/Title;">
-            <spam tal:content="obj/Title">Lorem ipsum.</spam>
-
-          </a>
-        </li>
-      </tal:rep>
-    </ul>
-
+                        <span tal:content="obj/Title">Lorem ipsum.</span>
+                    </a>
+                </div>
+            </div>
+          </tal:rep>
+        </div>
+    </div>
+    
 </metal:macro>
 <metal:macro define-macro="unidade"
              tal:define="view_macro nocall:context/@@moreaccess-view;">
