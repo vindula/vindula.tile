@@ -8,8 +8,8 @@ from five import grok
 
 grok.templatedir('templates')
 
-class TileListagemHorizontalView(BaseView):
-    grok.name('tilelistagemhorizontal-view')
+class ListagemHorizontalView(BaseView):
+    grok.name('listagemhorizontal-view')
 
     def getItens(self):
         context = self.context
@@ -42,7 +42,6 @@ class TileListagemHorizontalView(BaseView):
                     D['author'] = ''
                 L.append(D)
         return L
-        
 
 
-        
+

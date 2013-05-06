@@ -8,8 +8,8 @@ from five import grok
 
 grok.templatedir('templates')
 
-class TileBannerView(BaseView):
-    grok.name('tilebanner-view')
+class BannerView(BaseView):
+    grok.name('banner-view')
 
     def getTileBanner(self):
         L = []
@@ -32,8 +32,7 @@ class TileBannerView(BaseView):
                     D['unit']= 'Nome da Unidade'
                 L.append(D)
         return L
-        
 
 
-        
-        
+
+

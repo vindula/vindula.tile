@@ -1,0 +1,164 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="vindula.tile">
+
+    <body>
+        <metal:main fill-slot="content-core">
+            <metal:macro define-macro="page"
+                         tal:define="view nocall:context/@@listagemvertical-view;
+                                     path_macro string:context/@@listagemvertical-view/macros/${view/getLayout}">
+
+                <metal:block tal:condition="path_macro"
+                             metal:use-macro="python:path(path_macro)"/>
+            </metal:macro>
+        </metal:main>
+    </body>
+</html>
+
+<metal:macro define-macro="listagem_com_icones"
+             tal:define="view nocall:context/@@listagemvertical-view;">
+
+    <h2 tal:content="context/Title">Notícias</h2>
+
+    <select id="sort_on"  tal:condition="context/getActiveSort|python:True">
+        <option value="data">Data</option>
+        <option value="mais_acessados">Mais acessados</option>
+    </select>
+
+
+    <div class="content_itens">
+      <p tal:repeat="item view/getItens">
+        <tal:def tal:define="obj item/getObject">
+         <img width="16" height="16" alt=""
+              tal:condition="obj/getIcon"
+              tal:attributes="src obj/getIcon;"  />
+         <a
+          tal:attributes="href obj/absolute_url"
+            tal:content="obj/Title">Lorem ipsum dolor sit amet </a>
+        </tal:def>
+      </p>
+
+    </div>
+
+
+</metal:macro>
+
+<metal:macro define-macro="listagem_sem_icones"
+             tal:define="view nocall:context/@@listagemvertical-view;">
+
+    <h2 tal:content="context/Title">Notícias</h2>
+
+    <select id="sort_on"  tal:condition="context/getActiveSort|python:True">
+        <option value="data">Data</option>
+        <option value="mais_acessados">Mais acessados</option>
+    </select>
+
+    <div class="content_itens">
+      <p tal:repeat="item view/getItens">
+         <a tal:define="obj item/getObject"
+            tal:attributes="href obj/absolute_url"
+            tal:content="obj/Title">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a>
+      </p>
+
+    </div>
+
+</metal:macro>
+
+<metal:macro define-macro="listagem_com_imagem"
+             tal:define="view nocall:context/@@listagemvertical-view;">
+
+    <h2 tal:content="context/Title">Notícias</h2>
+
+    <select id="sort_on"  tal:condition="context/getActiveSort|python:True">
+        <option value="data">Data</option>
+        <option value="mais_acessados">Mais acessados</option>
+    </select>
+
+    <div class="content_itens">
+      <tal:rep repeat="item view/getItens">
+        <div tal:define="obj item/getObject">
+          <img src="" tal:attributes="src python: view.getImagem(obj)"
+               width="150" height="150"/>
+          <a tal:attributes="href obj/absolute_url"
+            tal:content="obj/Title">Lorem ipsum dolor sit amet </a>
+
+          <div tal:define="context nocall: obj"
+               metal:use-macro="context/macro-comboStandard-content/macros/view" />
+        </div>
+
+      </tal:rep>
+    </div>
+
+</metal:macro>
+<metal:macro define-macro="listagem_evento"
+             tal:define="view nocall:context/@@listagemvertical-view;">
+
+    <h2 tal:content="context/Title">Notícias</h2>
+
+    <select id="sort_on"  tal:condition="context/getActiveSort|python:True">
+        <option value="data">Data</option>
+        <option value="mais_acessados">Mais acessados</option>
+    </select>
+
+    <div class="content_itens">
+      <tal:rep repeat="item view/getItens">
+        <div tal:define="obj item/getObject">
+          <img src="" width="150" height="150"/>
+
+          <a tal:attributes="href obj/absolute_url"
+            tal:content="obj/Title">Lorem ipsum dolor sit amet </a>
+
+          <p><b>Local:</b>
+             <span tal:content="obj/getLocation">Lorem ipsum dolor </span>
+           </p>
+          <p>
+            <b>Data:</b>
+            <span tal:content="obj/startDate|nothing">Lorem ipsum dolor </span>
+          </p>
+          <p>
+            <b>Site:</b>
+            <span tal:content="obj/eventUrl|nothing">Lorem ipsum dolor </span>
+          </p>
+
+          <div tal:define="context nocall: obj"
+               metal:use-macro="context/macro-comboStandard-content/macros/view" />
+        </div>
+
+      </tal:rep>
+    </div>
+
+</metal:macro>
+<metal:macro define-macro="listagem_agenda"
+             tal:define="view nocall:context/@@listagemvertical-view;">
+
+    <h2 tal:content="context/Title">Notícias</h2>
+
+    <select id="sort_on"  tal:condition="context/getActiveSort|python:True">
+        <option value="data">Data</option>
+        <option value="mais_acessados">Mais acessados</option>
+    </select>
+
+    <div class="content_itens">
+      <tal:rep repeat="item view/getItens">
+        <div tal:define="obj item/getObject">
+
+          <a tal:attributes="href obj/absolute_url"
+            tal:content="obj/Title">Lorem ipsum dolor sit amet </a>
+
+          <p>
+            <b>Data:</b>
+            <span tal:content="obj/startDate|nothing">Lorem ipsum dolor </span>
+          </p>
+
+          <div tal:define="context nocall: obj"
+               metal:use-macro="context/macro-comboStandard-content/macros/view" />
+        </div>
+
+      </tal:rep>
+    </div>
+
+</metal:macro>

@@ -15,15 +15,15 @@
     <property name="filter_content_types">False</property>
     <property name="allowed_content_types" />
 
-    <property name="immediate_view">tilelabel-view</property>
-    <property name="default_view">tilelabel-view</property>
-    <property name="default_view_fallback">tilelabel-view</property>
+    <property name="immediate_view">label-view</property>
+    <property name="default_view">label-view</property>
+    <property name="default_view_fallback">label-view</property>
 
     <property name="view_methods">
-        <element value="tilelabel-view"/>
+        <element value="label-view"/>
     </property>
 
-    <alias from="(Default)" to="tilelabel-view"/>
+    <alias from="(Default)" to="label-view"/>
     <alias from="index.html" to="(dynamic view)"/>
     <alias from="view" to="(selected layout)"/>
     <alias from="edit" to="base_edit"/>

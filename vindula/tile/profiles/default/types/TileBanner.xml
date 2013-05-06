@@ -15,14 +15,14 @@
     <property name="filter_content_types">False</property>
     <property name="allowed_content_types" />
 
-    <property name="immediate_view">tilebanner-view</property>
-    <property name="default_view">tilebanner-view</property>
+    <property name="immediate_view">banner-view</property>
+    <property name="default_view">banner-view</property>
 
     <property name="default_view_fallback">False</property>
 
-    <alias from="(Default)" to="tilebanner-view"/>
+    <alias from="(Default)" to="banner-view"/>
     <property name="view_methods">
-        <element value="tilebanner-view"/>
+        <element value="banner-view"/>
     </property>
 
     <alias from="index.html" to="(dynamic view)"/>

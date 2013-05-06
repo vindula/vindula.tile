@@ -9,13 +9,13 @@
 
 <metal:main fill-slot="content-core">
     <metal:macro define-macro="page"
-                 tal:define="view_banner nocall:context/@@tilebanner-view;
+                 tal:define="view_banner nocall:context/@@banner-view;
                              banners view_banner/getTileBanner;
                              bullets_false string: bullets:false;">
-                    
+
     <div class="columns large-12">
                 <div class="has-space">
-                    <ul data-orbit id="tile-banner" tal:attributes="data-options python: len(banners)==1 and bullets_false"> 
+                    <ul data-orbit id="tile-banner" tal:attributes="data-options python: len(banners)==1 and bullets_false">
                         <li tal:repeat="banner banners">
                             <a href="" tal:attributes="href    banner/url|nothing;
                                                        target  banner/target|nothing">
@@ -34,4 +34,4 @@
     </metal:macro>
 </metal:main>
 </body>
-</html> 
+</html>

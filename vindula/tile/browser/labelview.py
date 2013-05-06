@@ -8,5 +8,5 @@ from five import grok
 
 grok.templatedir('templates')
 
-class TileLabelView(BaseView):
-    grok.name('tilelabel-view')
+class LabelView(BaseView):
+    grok.name('label-view')

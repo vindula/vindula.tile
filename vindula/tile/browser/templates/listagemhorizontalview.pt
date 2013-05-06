@@ -7,8 +7,8 @@
       i18n:domain="vindula.tile">
 <body>
 <metal:main fill-slot="content-core">
-    <metal:macro define-macro="page" 
-                 tal:define="view nocall:context/@@tilelistagemhorizontal-view;
+    <metal:macro define-macro="page"
+                 tal:define="view nocall:context/@@listagemhorizontal-view;
                              itens view/getItens;
                              bullets_false string: bullets:false;">
         <div class="columns large-12" tal:condition="python: context.getListTemplates() == 'destaque_unico'">
@@ -33,7 +33,7 @@
                                     <h5><a tal:attributes="href item/url|nothing"
                                            tal:content="item/title|nothing"
                                            href="#">Nova diretoria da Opas visita Bio</a></h5>
-                                    <p tal:content="item/description|nothing">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ornare placerat leo, 
+                                    <p tal:content="item/description|nothing">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ornare placerat leo,
                                     non scelerisque sem mollis ut.</p>
                                 </div>
                                 </div>
@@ -50,16 +50,16 @@
                         <h5><a tal:attributes="href item/url|nothing"
                                tal:content="item/title|nothing"
                                href="#">Nova diretoria da Opas visita Bio</a></h5>
-                            <p tal:content="item/description|nothing">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ornare placerat leo, 
+                            <p tal:content="item/description|nothing">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ornare placerat leo,
                             non scelerisque sem mollis ut.</p>
                     </div>
-                    
+
                     <div class="columns large-12">
                         <div class="more-news">
                             <a href="#">
                                 <h1 class="subheader vindula-icon-plus-sign left"></h1>
                                 <p class="left">Notícias</p>
-                            </a>        
+                            </a>
                         </div>
                     </div>
                 </div>

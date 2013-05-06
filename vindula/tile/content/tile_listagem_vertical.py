@@ -15,6 +15,36 @@ from vindula.tile.config import *
 
 TileListagemVertical_schema = BaseTile.schema.copy() + Schema((
 
+    StringField(
+        name='layout',
+        widget=SelectionWidget(
+            label=_(u"Lista de Templates"),
+            description=_(u"Selecione qual template deseja utilizar."),
+            label_msgid='vindula_tile_label_layout',
+            description_msgid='vindula_tile_help_layout',
+            i18n_domain='vindula_tile',
+            format = 'select',
+         ),
+         vocabulary=[("listagem_com_imagem",_(u"Listagem com imagem")),
+                    ("listagem_com_icones", _(u"Listagem com ícones e sem imagem")),
+                    ("listagem_sem_icones", _(u"Destaque sem ícones e sem imagem")),
+                    ("listagem_evento", _(u"Lista de Eventos")),
+                    ("listagem_agenda", _(u"Lista da Agenda")),
+                     ],
+         default='listagem_com_imagem',
+         required=True,
+     ),
+
+
+    IntegerField(
+        name='numb_items',
+        widget = IntegerWidget(
+            label = 'Quantidade',
+            description='Quantidade maxima de items.',
+        ),
+        default=5,
+    ),
+
     BooleanField(
         name='activeSort',
         default=False,
@@ -24,8 +54,9 @@ TileListagemVertical_schema = BaseTile.schema.copy() + Schema((
             label_msgid='vindula_tile_label_activeSort',
             description_msgid='vindula_tile_help_activeSort',
             i18n_domain='vindula_tile',
-          )),
-    
+          )
+    ),
+
     StringField(
         name='listTypes',
         widget=SelectionWidget(
@@ -47,50 +78,25 @@ TileListagemVertical_schema = BaseTile.schema.copy() + Schema((
             relationship='VindulaFolder',
             widget=VindulaReferenceSelectionWidget(
                 label=_(u"Pastas"),
-                description='Selecione a Pasta que deseja buscar os itens.'),
-                review_state = ('published', 'internal','external')),
+                description='Selecione a Pasta que deseja buscar os itens.'
+            ),
+            review_state = ('published', 'internal','external')
+        ),
+
+    # StringField(
+    #     name='typesWorkflow',
+    #     widget=SelectionWidget(
+    #         label=_(u"Lista de Workflow"),
+    #         description=_(u"Selecione por quais workflow deseja efetuar a busca."),
+    #         label_msgid='vindula_tile_label_typesWorkflow',
+    #         description_msgid='vindula_tile_help_typesWorkflow',
+    #         i18n_domain='vindula_tile',
+    #      ),
+    #      vocabulary='voc_list_workflow',
+    #      required=False,
+    #  ),
 
 
-    BooleanField(
-        name='activeRecursion',
-        default=False,
-        widget=BooleanWidget(
-            label=_(u"Ativa Recursividade"),
-            description=_(u"Ativa a recursividade para buscar dentro das demais pastas."),
-            label_msgid='vindula_tile_label_activeRecursion',
-            description_msgid='vindula_tile_help_activeRecursion',
-            i18n_domain='vindula_tile',
-          )),
-    
-    StringField(
-        name='typesWorkflow',
-        widget=SelectionWidget(
-            label=_(u"Lista de Workflow"),
-            description=_(u"Selecione por quais workflow deseja efetuar a busca."),
-            label_msgid='vindula_tile_label_typesWorkflow',
-            description_msgid='vindula_tile_help_typesWorkflow',
-            i18n_domain='vindula_tile',
-         ),
-         vocabulary='voc_list_workflow',
-         required=False,
-     ),
-
-    StringField(
-        name='listTemplate',
-        widget=SelectionWidget(
-            label=_(u"Lista de Templates"),
-            description=_(u"Selecione qual template deseja utilizar."),
-            label_msgid='vindula_tile_label_listTemplate',
-            description_msgid='vindula_tile_help_listTemplate',
-            i18n_domain='vindula_tile',
-            format = 'select',
-         ),
-         vocabulary=[("listagem_com_imagem",_(u"Listagem com imagem")),
-                    ("listagem_com_icones", _(u"Listagem com ícones e sem imagem")),
-                    ("listagem_sem_icones", _(u"Destaque sem ícones e sem imagem"))],
-         default='listagem_com_imagem',
-         required=True,
-     ),
 
 ))
 
@@ -112,5 +118,5 @@ class TileListagemVertical(BaseTile):
     def voc_list_workflow(self):
         #TODO: Implementar método que retorna todos os workflows
         return ['published','internal','external']
-    
+
 registerType(TileListagemVertical, PROJECTNAME)

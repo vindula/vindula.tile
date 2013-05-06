@@ -15,15 +15,15 @@
     <property name="filter_content_types">False</property>
     <property name="allowed_content_types" />
 
-    <property name="immediate_view">tilelistagemhorizontal-view</property>
-    <property name="default_view">tilelistagemhorizontal-view</property>
+    <property name="immediate_view">listagemhorizontal-view</property>
+    <property name="default_view">listagemhorizontal-view</property>
 
     <property name="default_view_fallback">False</property>
 
-    <alias from="(Default)" to="tilelistagemhorizontal-view"/>
+    <alias from="(Default)" to="listagemhorizontal-view"/>
 
     <property name="view_methods">
-        <element value="tilelistagemhorizontal-view"/>
+        <element value="listagemhorizontal-view"/>
     </property>
 
     <alias from="index.html" to="(dynamic view)"/>
