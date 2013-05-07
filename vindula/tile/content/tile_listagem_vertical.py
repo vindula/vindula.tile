@@ -16,7 +16,7 @@ from vindula.tile.config import *
 TileListagemVertical_schema = BaseTile.schema.copy() + Schema((
 
     StringField(
-        name='layout',
+        name='kind',
         widget=SelectionWidget(
             label=_(u"Lista de Templates"),
             description=_(u"Selecione qual template deseja utilizar."),

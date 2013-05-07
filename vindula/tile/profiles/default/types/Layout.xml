@@ -25,13 +25,13 @@
         <element value="TileLabel" />
     </property>
 
-    <property name="immediate_view">base_view</property>
-    <property name="default_view">base_view</property>
+    <property name="immediate_view">layout-view</property>
+    <property name="default_view">layout-view</property>
 
     <property name="default_view_fallback">False</property>
 
     <property name="view_methods">
-        <element value="base_view"/>
+        <element value="layout-view"/>
     </property>
 
     <alias from="index.html" to="(dynamic view)"/>

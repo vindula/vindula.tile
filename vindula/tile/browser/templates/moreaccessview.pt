@@ -10,7 +10,7 @@
         <metal:main fill-slot="content-core">
             <metal:macro define-macro="page"
                          tal:define="view_macro nocall:context/@@moreaccess-view;
-                                     path_macro  string:context/@@moreaccess-view/macros/${view_macro/getLayout}">
+                                     path_macro  string:context/@@moreaccess-view/macros/${view_macro/getKind}">
 
                 <metal:block tal:condition="path_macro"
                              metal:use-macro="python:path(path_macro)"/>
@@ -37,23 +37,23 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="columns large-12">
             <h6 class="subheader">
                 Mais Acessadas:
             </h6>
         </div>
-        
+
         <div class="columns large-12">
           <tal:rep repeat="item view_macro/getItens">
             <div class="row" tal:define="obj item/content/getObject">
-                
+
                 <div class="columns small-2">
                     <img src="" alt="" tal:attributes="alt obj/Title;
                                                        title obj/Title;">
-                </div>   
-                
-                <div class="columns small-10">                          
+                </div>
+
+                <div class="columns small-10">
                     <a href="" tal:attributes="href obj/absolute_url;
                                                alt obj/Title;
                                                title obj/Title;">
@@ -64,7 +64,7 @@
           </tal:rep>
         </div>
     </div>
-    
+
 </metal:macro>
 <metal:macro define-macro="unidade"
              tal:define="view_macro nocall:context/@@moreaccess-view;">

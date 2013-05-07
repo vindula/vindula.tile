@@ -40,7 +40,7 @@ TileMoreAccess_schema = BaseTile.schema.copy() + Schema((
     ),
 
     StringField(
-        name='layout',
+        name='kind',
         widget=SelectionWidget(
             label=_(u"Selecione o layout"),
             description=_(u"Selecione o layout desejado para esta areas."),

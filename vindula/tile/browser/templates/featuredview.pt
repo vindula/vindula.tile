@@ -10,7 +10,7 @@
         <metal:main fill-slot="content-core">
             <metal:macro define-macro="page"
                          tal:define="view_macro nocall:context/@@featured-view;
-                                     path_macro  string:context/@@featured-view/macros/${view_macro/getLayout}">
+                                     path_macro  string:context/@@featured-view/macros/${view_macro/getKind}">
 
                 <metal:block tal:condition="path_macro"
                              metal:use-macro="python:path(path_macro)"/>
