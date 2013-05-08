@@ -41,4 +41,4 @@ class ListagemVerticalView(BaseView):
         for field in fields:
             if hasattr(obj, field):
                 item = getattr(obj,field)
-                return item.absolute_url() + '/image_mini'
+                return item().absolute_url() + '/image_mini'
