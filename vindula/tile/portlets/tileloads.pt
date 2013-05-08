@@ -1,0 +1,15 @@
+<tal:def define="view  view/data|nothing;
+                 tiles view/getTiles|python:[]">
+
+    <tal:rep repeat="tile tiles">
+        <div id="macro-tile" tal:define="path_macro python:view.getMacro(tile);
+                                           context nocall:tile">
+
+            <metal:block tal:condition="path_macro"
+                         metal:use-macro="python:path(path_macro)" />
+
+        </div>
+
+        <div class="visualClear"></div>
+    </tal:rep>
+</tal:def>

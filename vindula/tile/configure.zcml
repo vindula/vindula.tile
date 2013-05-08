@@ -10,6 +10,7 @@
   <five:registerPackage package="." initialize=".initialize" />
 
   <include package=".controlpanel" />
+  <include package=".portlets" />
 
   <!-- Include configuration for dependencies listed in setup.py -->
   <includeDependencies package="." />

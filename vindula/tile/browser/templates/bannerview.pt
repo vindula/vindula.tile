@@ -21,11 +21,24 @@
                                                        target  banner/target|nothing">
                               <img  tal:attributes="src banner/image" src="++theme++vindula.themedefault/images/demos/demo1.jpg" />
                             </a>
-                            <div class="orbit-caption" tal:content="banner/text|nothing">
-                                Lorem ipsum dolor sit amet
+                            <div class="orbit-caption">
+                                <span tal:content="banner/text|nothing">
+                                  Lorem ipsum dolor sit amet
+                                </span>
+                                <br />
+
+                                <span tal:condition="context/getActiveUnit|nothing"
+                                      tal:content="string: ${banner/unit|nothing} /"> ASCON /</span>
+
+                                <span tal:condition="context/getActiveDate|nothing"
+                                      tal:content="string: ${banner/date|nothing} /"> DATA </span>
+
+                                <span tal:condition="context/getActiveAuthor|nothing"
+                                      tal:content="string: ${banner/author|nothing}"> ADMIN </span>
+
                             </div>
                             <div>
-                                <span tal:content="string: ${banner/unit|nothing} / ${banner/date|nothing} / ${banner/author|nothing}"></span>
+
                             </div>
                         </li>
                     </ul>
