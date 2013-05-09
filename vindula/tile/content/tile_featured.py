@@ -59,5 +59,7 @@ class TileFeatured(BaseTile):
     _at_rename_after_creation = True
     schema = TileFeatured_schema
 
+    #tamanho do tile
+    columns = 6
 
 registerType(TileFeatured, PROJECTNAME)

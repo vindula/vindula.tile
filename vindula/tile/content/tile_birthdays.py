@@ -111,4 +111,7 @@ class TileBirthdays(BaseTile):
     _at_rename_after_creation = True
     schema = TileBirthdays_schema
 
+    #tamanho do tile
+    columns = 6
+
 registerType(TileBirthdays, PROJECTNAME)

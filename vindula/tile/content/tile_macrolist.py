@@ -49,4 +49,7 @@ class TileMacroList(BaseTile):
     _at_rename_after_creation = True
     schema = TileMacroList_schema
 
+    #tamanho do tile
+    columns = 12
+
 registerType(TileMacroList, PROJECTNAME)
