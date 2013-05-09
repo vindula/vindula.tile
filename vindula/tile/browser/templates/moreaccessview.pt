@@ -49,8 +49,11 @@
             <div class="row" tal:define="obj item/content/getObject">
 
                 <div class="columns small-2">
-                    <img src="" alt="" tal:attributes="alt obj/Title;
-                                                       title obj/Title;">
+
+                    <img tal:condition="obj/getImageRelac|nothing"
+                         tal:attributes="src python: obj.getImageRelac().absolute_url()+'/image_mini';
+                                         alt obj/Title; title obj/Title;">
+
                 </div>
 
                 <div class="columns small-10">

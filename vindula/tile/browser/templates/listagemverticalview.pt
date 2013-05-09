@@ -11,9 +11,11 @@
             <metal:macro define-macro="page"
                          tal:define="view nocall:context/@@listagemvertical-view;
                                      path_macro string:context/@@listagemvertical-view/macros/${view/getKind}">
+                <div class="row">
 
-                <metal:block tal:condition="path_macro"
-                             metal:use-macro="python:path(path_macro)"/>
+                  <metal:block tal:condition="path_macro"
+                               metal:use-macro="python:path(path_macro)"/>
+                </div>
             </metal:macro>
         </metal:main>
     </body>
@@ -71,65 +73,103 @@
 <metal:macro define-macro="listagem_com_imagem"
              tal:define="view nocall:context/@@listagemvertical-view;">
 
-    <h2 tal:content="context/Title">Notícias</h2>
+              <div class="columns large-12">
+                  <h4>
+                      <tal:cont tal:content="context/Title">Mais Populares</tal:cont>
+                      <hr/>
+                  </h4>
+              </div>
 
-    <select id="sort_on"  tal:condition="context/getActiveSort|python:True">
-        <option value="data">Data</option>
-        <option value="mais_acessados">Mais acessados</option>
-    </select>
+              <!-- select id="sort_on"  tal:condition="context/getActiveSort|python:True">
+                  <option value="data">Data</option>
+                  <option value="mais_acessados">Mais acessados</option>
+              </select -->
+              <tal:rep repeat="item view/getItens">
 
-    <div class="content_itens">
-      <tal:rep repeat="item view/getItens">
-        <div tal:define="obj item/getObject">
-          <img src="" tal:attributes="src python: view.getImagem(obj)"
-               width="150" height="150"/>
-          <a tal:attributes="href obj/absolute_url"
-            tal:content="obj/Title">Lorem ipsum dolor sit amet </a>
+                <div class="columns large-12" tal:define="obj item/getObject">
+                    <div class="row">
+                        <div class="columns small-4">
+                            <img src="++theme++vindula.themedefault/images/demos/demo1-th.png"
+                                 tal:attributes="src python: view.getImagem(obj)" />
+                        </div>
+                        <div class="columns small-8">
+                            <small>LORORO /
+                                  <tal:cont content="python: obj.creation_date.strftime('%d/%m/%Y %H:%M')"> 27/03/2013 14:30 </tal:cont> </small>
+                            <strong><a href="#" tal:attributes="href obj/absolute_url"
+                                                tal:content="obj/Title">Nova diretoria da Opas visita Bio</a></strong>
+                        </div>
+                        <div class="columns small-12">
+                            <!--p class="discrete">Compartilhamento</p-->
+                            <div tal:define="context nocall: obj"
+                                 metal:use-macro="context/macro-share-content/macros/view" />
+                        </div>
+                    </div>
+                </div>
 
-          <div tal:define="context nocall: obj"
-               metal:use-macro="context/macro-comboStandard-content/macros/view" />
-        </div>
-
-      </tal:rep>
-    </div>
+              </tal:rep>
 
 </metal:macro>
 <metal:macro define-macro="listagem_evento"
              tal:define="view nocall:context/@@listagemvertical-view;">
 
-    <h2 tal:content="context/Title">Notícias</h2>
 
-    <select id="sort_on"  tal:condition="context/getActiveSort|python:True">
-        <option value="data">Data</option>
-        <option value="mais_acessados">Mais acessados</option>
-    </select>
+  <div class="columns large-12">
+      <h4>
+          <tal:cont tal:content="context/Title">Proximos eventos</tal:cont>
+          <hr/>
+      </h4>
+  </div>
+  <div class="columns large-12">
+      <div class="row">
 
-    <div class="content_itens">
-      <tal:rep repeat="item view/getItens">
-        <div tal:define="obj item/getObject">
-          <img src="" width="150" height="150"/>
+        <tal:rep repeat="item view/getItens">
+          <div class="event" tal:define="obj item/getObject">
+            <div class="columns small-3">
+                <div class="box-date">
+                    <h2 tal:condition="obj/startDate|nothing"
+                        tal:content="python: obj.startDate.strftime('%d')">21</h2>
+                    <h6 tal:condition="obj/startDate|nothing"
+                        tal:content="python: obj.startDate.aMonth()">MAR</h6>
+                </div>
+            </div>
+            <div class="columns small-9 box-title">
+                <strong><a href="#" tal:attributes="href obj/absolute_url"
+                                    tal:content="obj/Title">Nova diretoria da Opas visita Bio</a></strong>
+            </div>
+            <div class="columns small-12 box-description">
+                <p class="discrete">
+                    <strong>Local: </strong><span tal:content="obj/getLocation">campus FioCruz Mata Atlantica</span>
+                </p>
+                <p class="discrete">
+                    <strong>Horário: </strong><span tal:condition="obj/startDate|nothing"
+                                                    tal:content="python: obj.startDate.strftime('%H:%M')">13:00 pm</span>
+                </p>
+            </div>
+            <div class="columns small-12">
+                <!--p class="discrete">Compartilhamento</p-->
+                <div tal:define="context nocall: obj"
+                     metal:use-macro="context/macro-share-content/macros/view" />
+            </div>
+          </div>
+        </tal:rep>
 
-          <a tal:attributes="href obj/absolute_url"
-            tal:content="obj/Title">Lorem ipsum dolor sit amet </a>
-
-          <p><b>Local:</b>
-             <span tal:content="obj/getLocation">Lorem ipsum dolor </span>
-           </p>
-          <p>
-            <b>Data:</b>
-            <span tal:content="obj/startDate|nothing">Lorem ipsum dolor </span>
-          </p>
-          <p>
-            <b>Site:</b>
-            <span tal:content="obj/eventUrl|nothing">Lorem ipsum dolor </span>
-          </p>
-
-          <div tal:define="context nocall: obj"
-               metal:use-macro="context/macro-comboStandard-content/macros/view" />
+        <div class="columns large-12">
+            <div class="more-news">
+                <a href="#">
+                    <h1 class="subheader vindula-icon-plus-sign left"></h1>
+                    <p class="left">Eventos</p>
+                </a>
+            </div>
         </div>
 
-      </tal:rep>
+      </div>
     </div>
+
+    <!--select id="sort_on"  tal:condition="context/getActiveSort|python:True">
+        <option value="data">Data</option>
+        <option value="mais_acessados">Mais acessados</option>
+    </select-->
+
 
 </metal:macro>
 <metal:macro define-macro="listagem_agenda"
@@ -155,7 +195,7 @@
           </p>
 
           <div tal:define="context nocall: obj"
-               metal:use-macro="context/macro-comboStandard-content/macros/view" />
+               metal:use-macro="context/macro-share-content/macros/view" />
         </div>
 
       </tal:rep>
