@@ -1,0 +1,70 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="context/main_template/macros/master"
+      lang="en"
+      i18n:domain="vindula.tile">
+<body>
+
+<metal:main fill-slot="content-core">
+    <metal:macro define-macro="page"
+                 tal:define="view_birthdays nocall:context/@@birthdays-view;
+                             ">
+
+    <div class="row" id="tile-birthday">
+        <div class="columns large-12">
+            <h4>
+                <tal:cont tal:content="context/Title">Aniversariantes da semana</tal:cont>
+                <hr/>
+            </h4>
+        </div>
+        <div class="columns large-12">
+            <ul data-orbit id="birthdays"
+                data-options="bullets:true;">
+                <li tal:define="quant context/numb_items;
+                                results view_birthdays/birthdaysToday;">
+
+                    <tal:results tal:repeat="item python:results[:quant]">
+
+                        <div class="row" tal:define="username item/username">
+                            <div class="columns small-12">
+                                <div class="left box-date" tal:define="data item/date_birth;
+                                                                       data_brithdays python:view_birthdays.parse_data(data)">
+                                    <h2 tal:content="data_brithdays/day">17</h2>
+                                    <h6 tal:content="data_brithdays/month">MAR</h6>
+                                </div>
+                                <div class="left box-image">
+                                    <img src="++theme++vindula.themedefault/images/demos/demo-photo.png"
+                                         tal:attributes="src python:view_birthdays.getURLFotoUser(username);
+                                                    alt item/name|nothing;
+                                                    title item/name|nothing;" />
+
+                                </div>
+                                <div class="left box-data">
+                                    <a href="#" tal:attributes="href python: here.portal_url() + '/myvindulaprefs?user=' + view_birthdays.encodeUser(username)"
+                                        tal:content="item/name">Paulo Sobral</a>
+                                    <p class="discrete" >DITIN</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </tal:results>
+
+
+
+
+
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+
+
+
+    </metal:macro>
+</metal:main>
+</body>
+</html>

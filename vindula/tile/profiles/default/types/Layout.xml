@@ -23,6 +23,7 @@
         <element value="TileAccordionContent" />
         <element value="TileMoreAccess" />
         <element value="TileLabel" />
+        <element value="TileBirthdays" />
     </property>
 
     <property name="immediate_view">layout-view</property>

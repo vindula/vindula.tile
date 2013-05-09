@@ -13,6 +13,8 @@
         <type portal_type="TileAccordionItem"/>
         <type portal_type="TileMoreAccess"/>
         <type portal_type="TileLabel"/>
+        <type portal_type="TileBirthdays"/>
+        <type portal_type="TileLabel"/>
 
     </factorytypes>
 </object>
