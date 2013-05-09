@@ -6,6 +6,8 @@
 .pydevproject
 .settings/org.eclipse.core.resources.prefs
 vindula/myvindula/storm.zcml
+.idea
+.idea/*
 
 # Packages
 *.egg

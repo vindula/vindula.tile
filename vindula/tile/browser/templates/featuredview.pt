@@ -80,32 +80,38 @@
                                      items context/getItens;
                                      bullets_false string: bullets:false;;">
 
-                <h2 tal:content="context/Title">ANUNCIO</h2>
-
-                <ul data-orbit tal:attributes="data-options python: len(items)==1 and bullets_false"
-                               id="tile-featured">
-                  <tal:rep tal:repeat="item items">
-                    <li>
-                      <div>
-                        <a tal:attributes="href item/absolute_url"
-                           tal:condition="item/getImageRelac">
-                            <img tal:attributes="src python: item.getImageRelac().absolute_url()+'/image_mini';
-                                                 alt item/Title;
-                                                 title item/Title;">
-                        </a>
-                        <a tal:attributes="href item/absolute_url"
-                           tal:content="item/Title" href="">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta,
-                            inventore incidunt ullam eligendi laborum aliquid illum et non sunt praesentium!
-                        </a>
-                        <tal:def tal:define="context nocall: item">
-                            <div metal:use-macro="context/macro-share-content/macros/view" />
-                        </tal:def>
-                      </div>
-                    </li>
-
-                  </tal:rep>
-                </ul>
+                <div class="columns small-12" id="tile-featured">
+                    <div class="row">
+                        <div class="columns large-12">
+                            <h4 tal:content="context/Title">ANUNCIO</h4>
+                        </div>
+                        <div class="columns large-12">
+                            <ul data-orbit id="tile-news"
+                                data-options="bullets:true;">
+                                <tal:rep tal:repeat="item items">
+                                    <li>
+                                        <div class="row">
+                                        <div class="columns small-12">
+                                            <img tal:attributes="src python: item.getImageRelac().absolute_url()+'/image_mini';
+                                                     alt item/Title;
+                                                     title item/Title;">
+                                        </div>
+                                        <div class="columns small-12">
+                                            <strong>
+                                                <a tal:attributes="href item/absolute_url"
+                                                    tal:content="item/Title" href="">
+                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta,
+                                                    inventore incidunt ullam eligendi laborum aliquid illum!
+                                                </a>
+                                            </strong>
+                                        </div>
+                                        </div>
+                                    </li>
+                                </tal:rep>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
 
 </metal:macro>
 
