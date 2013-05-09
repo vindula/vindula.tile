@@ -78,4 +78,7 @@ class TileMoreAccess(BaseTile):
         types = self.portal_types.listContentTypes()
         return types
 
+    #tamanho do tile
+    columns = 6
+
 registerType(TileMoreAccess, PROJECTNAME)

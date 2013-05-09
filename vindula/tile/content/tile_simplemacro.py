@@ -50,5 +50,7 @@ class TileSimpleMacro(BaseTile):
     _at_rename_after_creation = True
     schema = TileSimpleMacro_schema
 
+    #tamanho do tile
+    columns = 12
 
 registerType(TileSimpleMacro, PROJECTNAME)

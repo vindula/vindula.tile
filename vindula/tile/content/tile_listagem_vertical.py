@@ -119,4 +119,7 @@ class TileListagemVertical(BaseTile):
         #TODO: Implementar método que retorna todos os workflows
         return ['published','internal','external']
 
+    #tamanho do tile
+    columns = 6
+
 registerType(TileListagemVertical, PROJECTNAME)

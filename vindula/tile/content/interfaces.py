@@ -37,3 +37,8 @@ class ITileMoreAccess(Interface):
 class ITileLabel(Interface):
     """ Interface for TileLabel content type """
 
+class ITileBirthdays(Interface):
+    """ Interface for TileBirthdays content type """
+
+
+
