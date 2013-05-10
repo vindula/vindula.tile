@@ -14,6 +14,14 @@
 
                 <metal:block tal:condition="path_macro"
                              metal:use-macro="python:path(path_macro)"/>
+                             
+
+
+
+
+
+
+
 
             </metal:macro>
         </metal:main>
@@ -22,7 +30,7 @@
 <metal:macro define-macro="padrao"
              tal:define="view_macro nocall:context/@@moreaccess-view;">
     <div id="tite-more-access">
-        <div class="columns large-12">
+        <div class="columns large-12 colunas">
             <div class="row box-title">
                 <div class="columns small-10">
                     <h4>
@@ -30,7 +38,7 @@
                         <hr/>
                     </h4>
                 </div>
-                <div class="columns small-2">
+                <div class="columns small-2 testeclass">
                     <a href="#" class="right more">
                         <h1 class="subheader vindula-icon-plus-sign"></h1>
                     </a>
@@ -46,22 +54,24 @@
 
         <div class="columns large-12">
           <tal:rep repeat="item view_macro/getItens">
-            <div class="row" tal:define="obj item/content/getObject">
+            <div class="row news_access" tal:define="obj item/content/getObject">
 
-                <div class="columns small-2">
+                <div class="columns small-4">
 
                     <img tal:condition="obj/getImageRelac|nothing"
                          tal:attributes="src python: obj.getImageRelac().absolute_url()+'/image_mini';
-                                         alt obj/Title; title obj/Title;">
+                                         alt obj/Title; title obj/Title;" style="width=80px">
 
                 </div>
 
-                <div class="columns small-10">
-                    <a href="" tal:attributes="href obj/absolute_url;
-                                               alt obj/Title;
-                                               title obj/Title;">
-                        <span tal:content="obj/Title">Lorem ipsum.</span>
-                    </a>
+                <div class="columns small-8">
+					<div id="text_tile">
+                	    <a href="" tal:attributes="href obj/absolute_url;
+                    	                           alt obj/Title;
+                        	                       title obj/Title;">
+                        	<span tal:content="obj/Title">Lorem ipsum.</span>
+                   	    </a>
+					</div>
                 </div>
             </div>
           </tal:rep>
