@@ -111,9 +111,9 @@
                   <a href="" tal:attributes="href obj/absolute_url;
                                              alt obj/Title;
                                              title obj/Title;"
-                             tal:content="obj/Title">Lorem ipsum.</a>
+                             tal:content="obj/getSiglaunidade">Lorem ipsum.</a>
 
-                  <span tal:content="obj/Title">Lorem ipsum.</span> <br />
+                  <span tal:content="obj/getSiglaunidade">Lorem ipsum.</span> <br />
                   <span tal:content="obj/manager|nothing">Gestor</span>
                 </div>
             </div>
