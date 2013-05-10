@@ -14,14 +14,6 @@
 
                 <metal:block tal:condition="path_macro"
                              metal:use-macro="python:path(path_macro)"/>
-                             
-
-
-
-
-
-
-
 
             </metal:macro>
         </metal:main>
@@ -59,9 +51,8 @@
                 <div class="columns small-4">
 
                     <img tal:condition="obj/getImageRelac|nothing"
-                         tal:attributes="src python: obj.getImageRelac().absolute_url()+'/image_mini';
+                         tal:attributes="src python: obj.getImageRelac().absolute_url()+'/image_tile';
                                          alt obj/Title; title obj/Title;" style="max-width:50px;max-height: 50px;">
-
                 </div>
 
                 <div class="columns small-8">
@@ -111,7 +102,7 @@
 
                 <div class="columns small-2">
                     <img tal:condition="obj/getImage|nothing"
-                         tal:attributes="src python: obj.getImage().absolute_url()+'/image_mini';
+                         tal:attributes="src python: obj.getImage().absolute_url()+'/image_tile';
                                          alt obj/Title; title obj/Title;">
                 </div>
 
@@ -119,9 +110,9 @@
                   <a href="" tal:attributes="href obj/absolute_url;
                                              alt obj/Title;
                                              title obj/Title;"
-                             tal:content="obj/Title">Lorem ipsum.</a>
+                             tal:content="obj/getSiglaunidade">Lorem ipsum.</a>
 
-                  <span tal:content="obj/Title">Lorem ipsum.</span> <br />
+                  <span tal:content="obj/getSiglaunidade">Lorem ipsum.</span> <br />
                   <span tal:content="obj/manager|nothing">Gestor</span>
                 </div>
             </div>
@@ -163,7 +154,7 @@
 
                 <div class="columns small-2">
                     <img tal:condition="obj/getImage|nothing"
-                         tal:attributes="src python: obj.getImage().absolute_url()+'/image_mini';
+                         tal:attributes="src python: obj.getImage().absolute_url()+'/image_tile';
                                          alt obj/Title; title obj/Title;">
                 </div>
 
