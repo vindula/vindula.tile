@@ -31,5 +31,8 @@ class TileLabel(BaseTile):
     _at_rename_after_creation = True
     schema = TileLabel_schema
 
-    
+    #tamanho do tile
+    columns = 6
+
+
 registerType(TileLabel, PROJECTNAME)

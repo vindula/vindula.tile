@@ -43,7 +43,7 @@ TileListagemHorizontal_schema = BaseTile.schema.copy() + Schema((
         required=True,
     ),
 
-    
+
     BooleanField(
         name='activeSocial',
         default=True,
@@ -84,5 +84,7 @@ class TileListagemHorizontal(BaseTile):
     _at_rename_after_creation = True
     schema = TileListagemHorizontal_schema
 
-    
+    #tamanho do tile
+    columns = 12
+
 registerType(TileListagemHorizontal, PROJECTNAME)

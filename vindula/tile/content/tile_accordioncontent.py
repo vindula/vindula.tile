@@ -60,5 +60,7 @@ class TileAccordionContent(ATFolder):
     _at_rename_after_creation = True
     schema = TileAccordionContent_schema
 
+    #tamanho do tile
+    columns = 6
 
 registerType(TileAccordionContent, PROJECTNAME)

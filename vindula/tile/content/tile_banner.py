@@ -103,4 +103,7 @@ class TileBanner(BaseTile):
     _at_rename_after_creation = True
     schema = TileBanner_schema
 
+    #tamanho do tile
+    columns = 12
+
 registerType(TileBanner, PROJECTNAME)
