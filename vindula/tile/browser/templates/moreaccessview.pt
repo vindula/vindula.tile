@@ -14,14 +14,6 @@
 
                 <metal:block tal:condition="path_macro"
                              metal:use-macro="python:path(path_macro)"/>
-                             
-
-
-
-
-
-
-
 
             </metal:macro>
         </metal:main>
@@ -59,7 +51,7 @@
                 <div class="columns small-4">
 
                     <img tal:condition="obj/getImageRelac|nothing"
-                         tal:attributes="src python: obj.getImageRelac().absolute_url()+'/image_mini';
+                         tal:attributes="src python: obj.getImageRelac().absolute_url()+'/image_tile';
                                          alt obj/Title; title obj/Title;" style="width=80px">
 
                 </div>
@@ -111,7 +103,7 @@
 
                 <div class="columns small-2">
                     <img tal:condition="obj/getImage|nothing"
-                         tal:attributes="src python: obj.getImage().absolute_url()+'/image_mini';
+                         tal:attributes="src python: obj.getImage().absolute_url()+'/image_tile';
                                          alt obj/Title; title obj/Title;">
                 </div>
 
@@ -163,7 +155,7 @@
 
                 <div class="columns small-2">
                     <img tal:condition="obj/getImage|nothing"
-                         tal:attributes="src python: obj.getImage().absolute_url()+'/image_mini';
+                         tal:attributes="src python: obj.getImage().absolute_url()+'/image_tile';
                                          alt obj/Title; title obj/Title;">
                 </div>
 
