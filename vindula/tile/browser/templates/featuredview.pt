@@ -92,7 +92,8 @@
                                     <li>
                                         <div class="row">
                                         <div class="columns small-12">
-                                            <img tal:attributes="src python: item.getImageRelac().absolute_url()+'/image_mini';
+                                            <img tal:condition="item/getImageRelac|nothing"
+                                                  tal:attributes="src python: item.getImageRelac().absolute_url()+'/image_mini';
                                                      alt item/Title;
                                                      title item/Title;">
                                         </div>
