@@ -58,23 +58,26 @@
                       	    <h4 tal:content="context/Title">Notícias</h4>
                         <hr/>
                 </div>
-                <div class="columns small-2">
+                <div class="columns small-2 sub_header">
                     <a href="#" class="right more">
                         <h1 class="subheader vindula-icon-plus-sign"></h1>
                     </a>
                 </div>
-            </div>			
+            </div>
+		</div>
+		<div class="columns large-12">
 			<select id="sort_on"  tal:condition="context/getActiveSort|python:True">
 		        <option value="data">Data</option>
 		        <option value="mais_acessados">Mais acessados</option>
 		    </select>
 		    <div class="content_itens">
-		      <p tal:repeat="item view/getItens">
+			<ul>
+		      <li tal:repeat="item view/getItens">
 		         <a tal:define="obj item/getObject"
 		            tal:attributes="href obj/absolute_url"
 		            tal:content="obj/Title">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a>
-		      </p>
-		
+		      </li>
+			</ul>
 		    </div>
 		</div>
 	</div>
