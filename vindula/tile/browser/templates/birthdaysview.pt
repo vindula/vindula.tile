@@ -21,7 +21,7 @@
         </div>
         <div class="columns large-12">
             <ul id="birthdays"
-                tal:attributes="data-options python: len(itens)==1 and bullets_false;">
+                tal:attributes="data-options python: len(view_birthdays.birthdaysToday())==1 and bullets_false;">
                 <li tal:define="quant context/numb_items;
                                 results view_birthdays/birthdaysToday;">
 
