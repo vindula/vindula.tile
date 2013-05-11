@@ -10,7 +10,7 @@
 <metal:main fill-slot="content-core">
     <metal:macro define-macro="page"
                  tal:define="view_birthdays nocall:context/@@birthdays-view;
-                             ">
+                             bullets_false string: bullets:false;">
 
     <div class="row" id="tile-birthday">
         <div class="columns large-12">
@@ -20,8 +20,8 @@
             </h4>
         </div>
         <div class="columns large-12">
-            <ul data-orbit id="birthdays"
-                data-options="bullets:true;">
+            <ul id="birthdays"
+                tal:attributes="data-options python: len(view_birthdays.birthdaysToday())==1 and bullets_false;">
                 <li tal:define="quant context/numb_items;
                                 results view_birthdays/birthdaysToday;">
 
