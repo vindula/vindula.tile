@@ -51,23 +51,33 @@
 
 <metal:macro define-macro="listagem_sem_icones"
              tal:define="view nocall:context/@@listagemvertical-view;">
-
-    <h2 tal:content="context/Title">Notícias</h2>
-
-    <select id="sort_on"  tal:condition="context/getActiveSort|python:True">
-        <option value="data">Data</option>
-        <option value="mais_acessados">Mais acessados</option>
-    </select>
-
-    <div class="content_itens">
-      <p tal:repeat="item view/getItens">
-         <a tal:define="obj item/getObject"
-            tal:attributes="href obj/absolute_url"
-            tal:content="obj/Title">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a>
-      </p>
-
-    </div>
-
+	<div id="list-no-icon">
+		 <div class="columns large-12">
+			<div class="row box-title">
+                <div class="columns small-10 text">
+                      	    <h4 tal:content="context/Title">Notícias</h4>
+                        <hr/>
+                </div>
+                <div class="columns small-2">
+                    <a href="#" class="right more">
+                        <h1 class="subheader vindula-icon-plus-sign"></h1>
+                    </a>
+                </div>
+            </div>			
+			<select id="sort_on"  tal:condition="context/getActiveSort|python:True">
+		        <option value="data">Data</option>
+		        <option value="mais_acessados">Mais acessados</option>
+		    </select>
+		    <div class="content_itens">
+		      <p tal:repeat="item view/getItens">
+		         <a tal:define="obj item/getObject"
+		            tal:attributes="href obj/absolute_url"
+		            tal:content="obj/Title">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a>
+		      </p>
+		
+		    </div>
+		</div>
+	</div>
 </metal:macro>
 
 <metal:macro define-macro="listagem_com_imagem"
