@@ -56,13 +56,13 @@
                 </div>
 
                 <div class="columns small-8">
-					<div id="text_tile">
+					         <div id="text_tile">
                 	    <a href="" tal:attributes="href obj/absolute_url;
                     	                           alt obj/Title;
                         	                       title obj/Title;">
                         	<span tal:content="obj/Title">Lorem ipsum.</span>
-                   	    </a>
-					</div>
+                   	  </a>
+					         </div>
                 </div>
             </div>
           </tal:rep>
@@ -103,17 +103,17 @@
                 <div class="columns small-4">
                     <img tal:condition="obj/getImage|nothing"
                          tal:attributes="src python: obj.getImage().absolute_url()+'/image_tile';
-                                         alt obj/Title; title obj/Title;"style="width:50px;height: 50px;">
+                                         alt obj/Title; title obj/Title;" style="width:50px;height: 50px;">
                 </div>
 
                 <div class="columns small-8">
                   <a href="" tal:attributes="href obj/absolute_url;
                                              alt obj/Title;
                                              title obj/Title;"
-                             tal:content="obj/getSiglaunidade">Lorem ipsum.</a>
+                             tal:content="obj/getSiglaunidade|obj/Title">Lorem ipsum.</a>
 
-                  <span tal:content="obj/getSiglaunidade">Lorem ipsum.</span> <br />
-                  <span tal:content="obj/manager|nothing">Gestor</span>
+                  <!--span tal:content="obj/getSiglaunidade|nothing">Lorem ipsum.</span> <br />
+                  <span tal:content="obj/manager|nothing">Gestor</span-->
                 </div>
             </div>
           </tal:rep>
