@@ -111,10 +111,9 @@
                             <strong><a href="#" tal:attributes="href obj/absolute_url"
                                                 tal:content="obj/Title">Nova diretoria da Opas visita Bio</a></strong>
                         </div>
-                        <div class="columns small-12">
+                        <div class="columns small-12" tal:define="context nocall: obj">
                             <!--p class="discrete">Compartilhamento</p-->
-                            <div tal:define="context nocall: obj"
-                                 metal:use-macro="context/macro-share-content/macros/view" />
+                            <metal:use use-macro="context/macro-share-content/macros/view" />
                         </div>
                     </div>
                 </div>
@@ -158,10 +157,9 @@
                                                     tal:content="python: obj.startDate.strftime('%H:%M')">13:00 pm</span>
                 </p>
             </div>
-            <div class="columns small-12">
+            <div class="columns small-12" tal:define="context nocall: obj">
                 <!--p class="discrete">Compartilhamento</p-->
-                <div tal:define="context nocall: obj"
-                     metal:use-macro="context/macro-share-content/macros/view" />
+                <div metal:use-macro="context/macro-share-content/macros/view" />
             </div>
           </div>
         </tal:rep>
@@ -207,8 +205,10 @@
             <span tal:content="obj/startDate|nothing">Lorem ipsum dolor </span>
           </p>
 
-          <div tal:define="context nocall: obj"
-               metal:use-macro="context/macro-share-content/macros/view" />
+          <div tal:define="context nocall: obj">
+               <metal:use use-macro="context/macro-share-content/macros/view" />
+          </div>
+
         </div>
 
       </tal:rep>
