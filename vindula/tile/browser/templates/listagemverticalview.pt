@@ -101,7 +101,7 @@
 
                 <div class="columns large-12" tal:define="obj item/getObject">
                     <div class="row">
-                        <div class="columns small-4">
+                        <div class="columns small-4 " id="image_tile">
                             <img src="++theme++vindula.themedefault/images/demos/demo1-th.png"
                                  tal:attributes="src python: view.getImagem(obj)" />
                         </div>
