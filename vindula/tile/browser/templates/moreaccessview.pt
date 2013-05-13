@@ -52,7 +52,7 @@
 
                     <img tal:condition="obj/getImageRelac|nothing"
                          tal:attributes="src python: obj.getImageRelac().absolute_url()+'/image_tile';
-                                         alt obj/Title; title obj/Title;" style="width:50px;height: 50px;">
+                                         alt obj/Title; title obj/Title;" style="width:32px;height: 32px;">
                 </div>
 
                 <div class="columns small-8">
