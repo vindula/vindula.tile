@@ -48,13 +48,13 @@
           <tal:rep repeat="item view_macro/getItens">
             <div class="row news_access" tal:define="obj item/content/getObject">
 
-                <div class="columns small-4">
+                <div class="columns small-3">
 
                     <img tal:attributes="src obj/getImageIcone|nothing;
                                          alt obj/Title; title obj/Title;" style="width:32px;height: 32px;">
                 </div>
 
-                <div class="columns small-8">
+                <div class="columns small-9">
 					         <div id="text_tile">
                 	    <a href="" tal:attributes="href obj/absolute_url;
                     	                           alt obj/Title;
