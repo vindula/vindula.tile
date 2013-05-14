@@ -25,7 +25,7 @@
                          bullets_false string: bullets:false;;">
 
     <h2 tal:content="context/Title">ANUNCIO</h2>
-
+<div id="anuncio-normal">
     <ul data-orbit tal:attributes="data-options python: len(items)==1 and bullets_false"
                    id="tile-featured">
       <tal:rep tal:repeat="item items">
@@ -45,7 +45,7 @@
 
       </tal:rep>
     </ul>
-
+</div>
 </metal:macro>
 <metal:macro define-macro="alerta_importante"
              tal:define="view_macro nocall:context/@@featured-view;
