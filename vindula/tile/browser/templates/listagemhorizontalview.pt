@@ -24,11 +24,11 @@
                             tal:attributes="data-options python: len(itens)==1 and bullets_false;">
                             <li tal:repeat="item itens">
                                 <div class="row">
-                                <div class="columns small-4">
+                                <div class="columns small-3">
                                     <img tal:attributes="src item/image"
                                       src="++theme++vindula.themedefault/images/demos/demo2-th.gif" />
                                 </div>
-                                <div class="columns small-8">
+                                <div class="columns small-9">
                                     <small tal:content="string: ${item/unidade|nothing} / ${item/date|nothing} ${item/hour|nothing}">ASCOM / 27/03/2013 14:30</small>
                                     <h5><a tal:attributes="href item/url|nothing"
                                            tal:content="item/title|nothing"
