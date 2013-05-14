@@ -72,3 +72,10 @@ class LayoutView(BaseView):
         macro = 'context/%s/macros/page' %(obj.getLayout())
 
         return macro
+
+
+class LoadLayoutView(BaseView):
+    grok.name('layout_load-view')
+
+
+

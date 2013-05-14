@@ -10,48 +10,51 @@
 
   </head>
   <body>
-    <metal:main fill-slot="content-core"
-                 tal:define="tiles view/getItensTiles">
+    <metal:main fill-slot="content-core">
 
-      <tal:rep repeat="itens tiles">
-        <div class="row">
-            <tal:cond_12 condition="python: len(itens) == 1 ">
-              <div class="columns large-12" tal:define="item python: itens[0]">
+      <metal:macro define-macro="page"
+                   tal:define="view nocall:context/@@layout-view;
+                               tiles view/getItensTiles">
 
-                      <div id="macro-tile" tal:define="path_macro python:view.getMacro(item);
-                                                      context nocall:item">
+        <tal:rep repeat="itens tiles">
+          <div class="row">
+              <tal:cond_12 condition="python: len(itens) == 1 ">
+                <div class="columns large-12" tal:define="item python: itens[0]">
 
-                            <metal:block tal:condition="path_macro"
-                                        metal:use-macro="python:path(path_macro)" />
-                      </div>
-              </div>
-            </tal:cond_12>
+                        <div id="macro-tile" tal:define="path_macro python:view.getMacro(item);
+                                                        context nocall:item">
 
-            <tal:cond_6 condition="python: len(itens) == 2 ">
-              <div class="columns large-6" id="even">
-                <tal:rep_even tal:repeat="item python: itens[0]">
-                      <div id="macro-tile" tal:define="path_macro python:view.getMacro(item);
-                                                       context nocall:item">
-                            <metal:block tal:condition="path_macro"
-                                        metal:use-macro="python:path(path_macro)" />
-                      </div>
-                </tal:rep_even>
-              </div>
+                              <metal:block tal:condition="path_macro"
+                                          metal:use-macro="python:path(path_macro)" />
+                        </div>
+                </div>
+              </tal:cond_12>
 
-              <div class="columns large-6" id="odd">
-                <tal:rep_odd tal:repeat="item python: itens[1]">
-                      <div id="macro-tile" tal:define="path_macro python:view.getMacro(item);
-                                                       context nocall:item">
-                            <metal:block tal:condition="path_macro"
-                                        metal:use-macro="python:path(path_macro)" />
-                      </div>
-                </tal:rep_odd>
-              </div>
-            </tal:cond_6>
-        </div>
-      </tal:rep>
+              <tal:cond_6 condition="python: len(itens) == 2 ">
+                <div class="columns large-6" id="even">
+                  <tal:rep_even tal:repeat="item python: itens[0]">
+                        <div id="macro-tile" tal:define="path_macro python:view.getMacro(item);
+                                                         context nocall:item">
+                              <metal:block tal:condition="path_macro"
+                                          metal:use-macro="python:path(path_macro)" />
+                        </div>
+                  </tal:rep_even>
+                </div>
 
+                <div class="columns large-6" id="odd">
+                  <tal:rep_odd tal:repeat="item python: itens[1]">
+                        <div id="macro-tile" tal:define="path_macro python:view.getMacro(item);
+                                                         context nocall:item">
+                              <metal:block tal:condition="path_macro"
+                                          metal:use-macro="python:path(path_macro)" />
+                        </div>
+                  </tal:rep_odd>
+                </div>
+              </tal:cond_6>
+          </div>
+        </tal:rep>
 
+      </metal:macro>
     </metal:main>
   </body>
 </html>

@@ -1,42 +1,32 @@
 <?xml version="1.0"?>
-<object name="Layout"
+<object name="LayoutLoad"
         meta_type="Factory-based Type Information with dynamic views"
         xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 
     <!-- Basic metadata -->
-    <property name="title" i18n:translate="">Layout</property>
-    <property name="description" i18n:translate="">Layout pata o portal</property>
+    <property name="title" i18n:translate="">LayoutLoad</property>
+    <property name="description" i18n:translate="">Carrega Layout pata o portal</property>
     <property name="content_icon">++resource++vindula.content.images/file.png</property>
-    <property name="content_meta_type">Layout</property>
+    <property name="content_meta_type">LayoutLoad</property>
     <property name="product">vindula.tile</property>
-    <property name="factory">addLayout</property>
+    <property name="factory">addLayoutLoad</property>
     <property name="allow_discussion">False</property>
     <property name="global_allow">True</property>
-    <property name="filter_content_types">True</property>
+    <property name="filter_content_types">False</property>
     <property name="allowed_content_types">
-        <element value="TileBanner" />
-        <element value="TileListagemVertical" />
-        <element value="TileListagemHorizontal" />
-        <element value="TileSimpleMacro" />
-        <element value="TileMacroList" />
-        <element value="TileFeatured" />
-        <element value="TileAccordionContent" />
-        <element value="TileMoreAccess" />
-        <element value="TileLabel" />
-        <element value="TileBirthdays" />
     </property>
 
-    <property name="immediate_view">layout-view</property>
-    <property name="default_view">layout-view</property>
+    <property name="immediate_view">layoutload-view</property>
+    <property name="default_view">layoutload-view</property>
 
     <property name="default_view_fallback">False</property>
 
     <property name="view_methods">
-        <element value="layout-view"/>
+        <element value="layoutload-view"/>
     </property>
 
 
-    <alias from="(Default)" to="layout-view"/>
+    <alias from="(Default)" to="layoutload-view"/>
     <alias from="index.html" to="(dynamic view)"/>
     <alias from="view" to="(selected layout)"/>
     <alias from="edit" to="base_edit"/>
