@@ -7,7 +7,7 @@
       i18n:domain="vindula.tile">
 <body>
 
-<metal:main fill-slot="content-core">
+<metal:main fill-slot="main">
   <metal:macro define-macro="page-view">
 
     <div tal:define="context python:context.getObj_layout()">
