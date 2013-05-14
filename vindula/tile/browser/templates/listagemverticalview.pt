@@ -103,7 +103,7 @@
                     <div class="row">
                         <div class="columns small-4 " id="image_tile">
                             <img src="++theme++vindula.themedefault/images/demos/demo1-th.png"
-                                 tal:attributes="src python: view.getImagem(obj)" />
+                                 tal:attributes="src obj/getImageIcone|nothing;" />
                         </div>
                         <div class="columns small-8">
                             <small>LORORO /

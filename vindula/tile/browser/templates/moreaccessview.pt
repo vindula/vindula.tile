@@ -50,8 +50,7 @@
 
                 <div class="columns small-4">
 
-                    <img tal:condition="obj/getImageRelac|nothing"
-                         tal:attributes="src python: obj.getImageRelac().absolute_url()+'/image_tile';
+                    <img tal:attributes="src obj/getImageIcone|nothing;
                                          alt obj/Title; title obj/Title;" style="width:32px;height: 32px;">
                 </div>
 
@@ -101,8 +100,7 @@
             <div class="row news_access" tal:define="obj item/content/getObject">
 
                 <div class="columns small-4">
-                    <img tal:condition="obj/getImage|nothing"
-                         tal:attributes="src python: obj.getImage().absolute_url()+'/image_tile';
+                    <img tal:attributes="src obj/getImageIcone|nothing;
                                          alt obj/Title; title obj/Title;" style="width:50px;height: 50px;">
                 </div>
 
@@ -153,8 +151,7 @@
             <div class="row news_access" tal:define="obj item/content/getObject">
 
                 <div class="columns small-4">
-                    <img tal:condition="obj/getImage|nothing"
-                         tal:attributes="src python: obj.getImage().absolute_url()+'/image_tile';
+                    <img tal:attributes="src obj/getImageIcone|nothing;
                                          alt obj/Title; title obj/Title;" style="width:50px;height: 50px;">
                 </div>
 
