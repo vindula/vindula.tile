@@ -20,7 +20,7 @@ class BannerView(BaseView):
                 D = {}
                 D['title'] = banner.Title()
                 D['text'] = banner.Description()
-                D['image'] = banner.absolute_url() + '/imagem_banner_preview'
+                D['image'] = banner.absolute_url() + '/imagem_banner'
                 D['target'] = banner.getTarget()
                 D['url'] = banner.getLink()
                 if obj.activeDate == True:
