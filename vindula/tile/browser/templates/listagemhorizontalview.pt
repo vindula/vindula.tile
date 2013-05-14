@@ -16,7 +16,7 @@
                     <div class="columns large-12">
                         <h4 tal:content="context/Title|nothing">
                             Notícias
-                            <hr/>
+                            <hr>
                         </h4>
                     </div>
                     <div class="columns large-12">
