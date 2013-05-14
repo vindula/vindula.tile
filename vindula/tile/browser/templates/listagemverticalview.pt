@@ -156,6 +156,9 @@
                     <strong>Horário: </strong><span tal:condition="obj/startDate|nothing"
                                                     tal:content="python: obj.startDate.strftime('%H:%M')">13:00 pm</span>
                 </p>
+                <p class="discrete" tal:condition="obj/getEventUrl|nothing">
+                    <strong>Site: </strong><a href="obj/getEventUrl"><span tal:content="obj/getEventUrl">FioCruz</span></a>
+                </p>
             </div>
             <div class="columns small-12" tal:define="context nocall: obj">
                 <!--p class="discrete">Compartilhamento</p-->
