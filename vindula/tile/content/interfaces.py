@@ -41,4 +41,6 @@ class ITileBirthdays(Interface):
     """ Interface for TileBirthdays content type """
 
 
+class ILayoutLoad(Interface):
+    """ Interface for LayoutLoad content type """
 
