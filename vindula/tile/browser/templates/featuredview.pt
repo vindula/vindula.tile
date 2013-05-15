@@ -82,7 +82,7 @@
 
                 <div class="columns small-12" id="tile-featured">
                     <div class="row">
-                        <div class="columns large-12">
+                        <div class="columns large-12 feature_text">
                             <h4 tal:content="context/Title">ANUNCIO</h4>
                         </div>
                         <div class="columns large-12">
@@ -91,7 +91,7 @@
                                 <tal:rep tal:repeat="item items">
                                     <li>
                                         <div class="row">
-                                        <div class="columns small-12">
+                                        <div class="columns small-12 feature_image">
                                             <img tal:condition="item/getImageRelac|nothing"
                                                   tal:attributes="src python: item.getImageRelac().absolute_url()+'/image_mini';
                                                      alt item/Title;
