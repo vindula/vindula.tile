@@ -169,10 +169,18 @@
 
         <div class="columns large-12">
             <div class="more-news">
-                <a href="#">
+              <tal:cond condition="python:context.getPath() != None">
+                <a href="#" tal:attributes="href python:context.getPath().absolute_url()">
                     <h1 class="subheader vindula-icon-plus-sign left"></h1>
                     <p class="left">Eventos</p>
                 </a>
+              </tal:cond>
+              <tal:cond condition="python:context.getPath() == None">
+              <a href="#">
+                    <h1 class="subheader vindula-icon-plus-sign left"></h1>
+                    <p class="left">Eventos</p>
+                </a>
+              </tal:cond>  
             </div>
         </div>
 
