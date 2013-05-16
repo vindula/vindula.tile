@@ -17,7 +17,6 @@
                                tiles view/getItensTiles">
 
         <tal:rep repeat="itens tiles">
-          <div class="row">
               <tal:cond_12 condition="python: len(itens) == 1 ">
                 <div class="columns large-12" tal:define="item python: itens[0]">
 
@@ -51,7 +50,6 @@
                   </tal:rep_odd>
                 </div>
               </tal:cond_6>
-          </div>
         </tal:rep>
 
       </metal:macro>
