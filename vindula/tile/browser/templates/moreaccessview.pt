@@ -60,7 +60,7 @@
 
                 <div class="columns small-9">
 					         <div id="text_tile">
-                	    <a href="" tal:attributes="href obj/absolute_url;
+                	    <a href="" tal:attributes="href string:${obj/absolute_url}/view;
                     	                           alt obj/Title;
                         	                       title obj/Title;">
                         	<span tal:content="obj/Title">Lorem ipsum.</span>
@@ -111,7 +111,7 @@
                 </div>
 
                 <div class="columns small-8">
-                  <a href="" tal:attributes="href obj/absolute_url;
+                  <a href="" tal:attributes="href string:${obj/absolute_url}/view;
                                              alt obj/Title;
                                              title obj/Title;"
                              tal:content="obj/getSiglaunidade|obj/Title">Lorem ipsum.</a>
@@ -165,7 +165,7 @@
                 </div>
 
                 <div class="columns small-8">
-                  <a href="" tal:attributes="href obj/absolute_url;
+                  <a href="" tal:attributes="href string:${obj/absolute_url}/view;
                                              alt obj/Title;
                                              title obj/Title;"
                              tal:content="obj/Title">Lorem ipsum.</a>
