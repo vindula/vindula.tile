@@ -34,6 +34,10 @@
                     <a href="#" class="right more">
                         <h1 class="subheader vindula-icon-plus-sign"></h1>
                     </a>
+
+
+                    <metal:block metal:use-macro="context/@@moreaccess-view/macros/mais_itens" />
+
                 </div>
             </div>
         </div>
@@ -56,7 +60,7 @@
 
                 <div class="columns small-9">
 					         <div id="text_tile">
-                	    <a href="" tal:attributes="href obj/absolute_url;
+                	    <a href="" tal:attributes="href string:${obj/absolute_url}/view;
                     	                           alt obj/Title;
                         	                       title obj/Title;">
                         	<span tal:content="obj/Title">Lorem ipsum.</span>
@@ -85,6 +89,8 @@
                     <a href="#" class="right more">
                         <h1 class="subheader vindula-icon-plus-sign"></h1>
                     </a>
+
+                    <metal:block metal:use-macro="context/@@moreaccess-view/macros/mais_itens" />
                 </div>
             </div>
         </div>
@@ -105,7 +111,7 @@
                 </div>
 
                 <div class="columns small-8">
-                  <a href="" tal:attributes="href obj/absolute_url;
+                  <a href="" tal:attributes="href string:${obj/absolute_url}/view;
                                              alt obj/Title;
                                              title obj/Title;"
                              tal:content="obj/getSiglaunidade|obj/Title">Lorem ipsum.</a>
@@ -136,6 +142,9 @@
                     <a href="#" class="right more">
                         <h1 class="subheader vindula-icon-plus-sign"></h1>
                     </a>
+
+                    <metal:block metal:use-macro="context/@@moreaccess-view/macros/mais_itens" />
+
                 </div>
             </div>
         </div>
@@ -156,7 +165,7 @@
                 </div>
 
                 <div class="columns small-8">
-                  <a href="" tal:attributes="href obj/absolute_url;
+                  <a href="" tal:attributes="href string:${obj/absolute_url}/view;
                                              alt obj/Title;
                                              title obj/Title;"
                              tal:content="obj/Title">Lorem ipsum.</a>
@@ -167,5 +176,28 @@
           </tal:rep>
         </div>
     </div>
+
+</metal:macro>
+<metal:macro define-macro="mais_itens"
+             tal:define="view_macro nocall:context/@@moreaccess-view;">
+
+  <div tal:define="constructor view_macro/constructor">
+    <div class="hide">
+        <tal:rep repeat="item python:constructor.keys()">
+          <h3 tal:content="item"></h3>
+
+          <div tal:attributes="id item">
+            <tal:rep repeat="valor python:constructor[item]">
+
+                <h3 tal:define="obj valor/getObject">
+                  <a tal:attributes="href string:${obj/absolute_url|nothing}${context/getPath_link}"
+                     tal:content="python:view_macro.getTitle(obj)">UNIDADE</a>
+                </h3>
+
+            </tal:rep>
+          </div>
+        </tal:rep>
+    </div>
+  </div>
 
 </metal:macro>

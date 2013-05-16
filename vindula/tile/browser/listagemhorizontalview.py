@@ -40,6 +40,8 @@ class ListagemHorizontalView(BaseView):
                     D['author'] = item.getOwner().getUserName()
                 else:
                     D['author'] = ''
+
+                D['obj'] = item
                 L.append(D)
         return L
 
