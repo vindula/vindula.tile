@@ -30,6 +30,29 @@ TileMoreAccess_schema = BaseTile.schema.copy() + Schema((
         required=True,
     ),
 
+    StringField(
+        name='object_type_more',
+        widget=SelectionWidget(
+            label=_(u"Listagem de mais"),
+            description=_(u"Selecione o tipo do item que sera apresentado no link mais."),
+            format = 'select',
+        ),
+        vocabulary=u'voc_ContentTypes',
+        required=True,
+    ),
+
+    TextField(
+            name='path_link',
+            widget=StringWidget(
+                label=_(u"Caminho adicional"),
+                description=_(u"Adicione o caminho que sera adicionao ao objeto listada acima."),
+                label_msgid='vindula_tile_label_path_link',
+                description_msgid='vindula_tile_help_path_link',
+            ),
+            default = u'/',
+            required=True,
+    ),
+
     IntegerField(
         name='numb_items',
         widget = IntegerWidget(
