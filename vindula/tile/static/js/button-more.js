@@ -7,14 +7,15 @@ $j(document).ready(function(){
         $j(this).parent().find('.box-more-items').toggleClass('active');
     });
     
-    $j('.letters > li > a').click(function(){
+    $j('.letters > li a').click(function(){
         event.preventDefault();
         event.stopPropagation();
+        
         $j('.letters > li')
         .each(function(){
             $j(this).removeClass('active');
         });
-        $j(this).addClass('active');
+        $j(this).parent().parent().addClass('active');
     })
 
 });
