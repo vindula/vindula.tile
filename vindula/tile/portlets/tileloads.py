@@ -72,6 +72,20 @@ class Renderer(base.Renderer):
         return obj.values()
 
 
+    def getScripts_js(self):
+        scripts_js = []
+
+        #Coleta dos Script js dos tiles
+        tiles = self.getTiles()
+
+        for tile in tiles:
+            if hasattr(tile, 'scripts_js'):
+                for i in tile.scripts_js:
+                    if not i in scripts_js:
+                        scripts_js.append(i)
+
+        return scripts_js
+
 
     def getMacro(self, obj):
         macro = 'context/%s/macros/page' %(obj.getLayout())

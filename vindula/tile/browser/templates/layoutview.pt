@@ -13,7 +13,16 @@
 
       <metal:macro define-macro="page"
                    tal:define="view nocall:context/@@layout-view;
-                               tiles view/getItensTiles">
+                               tiles view/getItensTiles;
+                               scripts view/getScripts_js;">
+
+
+        <tal:rep_js repeat="name_script scripts">
+          <script type="text/javascript"
+                  tal:attributes="src string:${context/portal_url}/++resource++vindula.tile/js/${name_script}" />
+        </tal:rep_js>
+
+
         <tal:rep repeat="itens tiles">
               <tal:cond_12 condition="python: len(itens) == 1 ">
                 <div class="columns large-12" tal:define="item python: itens[0]">

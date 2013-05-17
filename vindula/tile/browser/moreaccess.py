@@ -59,10 +59,18 @@ class MoreAccessView(BaseView):
 
         return str
 
-    def constructor(self):
+    def alphabet(self):
         #ABCDEFGHIJKLMNOPQRSTUVWYXZ
-        letras = {}
+        L = []
         for i in string.ascii_uppercase:
+            L.append(i)
+
+        return L
+
+    def constructor(self):
+
+        letras = {}
+        for i in self.alphabet():
             letras[i] = []
 
         for item in self.list_more():

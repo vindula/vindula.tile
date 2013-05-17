@@ -1,5 +1,13 @@
 <tal:def define="view  view/data|nothing;
-                 tiles view/getTiles|python:[]">
+                 tiles view/getTiles|python:[];
+                 scripts view/getScripts_js;">
+
+
+    <tal:rep_js repeat="name_script scripts">
+      <script type="text/javascript"
+              tal:attributes="src string:${context/portal_url}/++resource++vindula.tile/js/${name_script}" />
+    </tal:rep_js>
+
 
     <tal:rep repeat="tile tiles">
         <div id="macro-tile" class="portletWrapper" tal:define="path_macro python:view.getMacro(tile);

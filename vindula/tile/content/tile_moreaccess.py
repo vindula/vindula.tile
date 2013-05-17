@@ -104,4 +104,7 @@ class TileMoreAccess(BaseTile):
     #tamanho do tile
     columns = 6
 
+    #Scripts js
+    scripts_js = ['button-more.js']
+
 registerType(TileMoreAccess, PROJECTNAME)

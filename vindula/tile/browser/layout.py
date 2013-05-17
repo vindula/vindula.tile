@@ -11,6 +11,23 @@ class LayoutView(BaseView):
     grok.name('layout-view')
 
 
+    def getScripts_js(self):
+        scripts_js = []
+
+        #Coleta dos Script js dos tiles
+        context = self.context
+        tiles = context.values()
+
+        for tile in tiles:
+            if hasattr(tile, 'scripts_js'):
+                for i in tile.scripts_js:
+                    if not i in scripts_js:
+                        scripts_js.append(i)
+
+        return scripts_js
+
+
+
     def getItensTiles(self):
         """
         Esse metodo retorna uma lista de listas, com os tiles
@@ -41,6 +58,7 @@ class LayoutView(BaseView):
                 break
 
             tile = tiles[posicao]
+
             if tile.columns == 12:
                 tiles_posicionados.append([tile])
                 posicionados += 1
