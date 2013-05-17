@@ -11,6 +11,7 @@ grok.templatedir('templates')
 class MoreAccessView(BaseView):
     grok.name('moreaccess-view')
 
+    first_active = True
 
     def getItens(self):
         portal_type = self.context.getObject_type()
@@ -48,6 +49,14 @@ class MoreAccessView(BaseView):
                                     )
 
         return itens
+
+    def is_first_active(self,has_content):
+        if not has_content and self.first_active:
+            self.first_active = False
+            return 'active'
+        else:
+            return ''
+
 
     def getTitle(self,obj):
         str = ''

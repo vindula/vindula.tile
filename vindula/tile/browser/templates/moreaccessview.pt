@@ -175,11 +175,16 @@
 </metal:macro>
 <metal:macro define-macro="mais_itens"
              tal:define="view_macro nocall:context/@@moreaccess-view;">
+
     <div class="box-more-items">
       <ul class="letters no-bullet" tal:define="constructor view_macro/constructor">
         <tal:rep repeat="item view_macro/alphabet">
-            <li tal:define="content_itens python: constructor[item]">
-                <h6 class="subheader" tal:attributes="class python: len(content_itens) == 0 and 'subheader' or '' ">
+            <li class="active"
+                tal:define="content_itens python: constructor[item];
+                            has_content python: len(content_itens) == 0"
+                tal:attributes="class python:view_macro.is_first_active(has_content)" >
+
+                <h6 class="subheader" tal:attributes="class python: has_content and 'subheader' or '' ">
                   <a href="#" tal:content="item" tal:condition="content_itens" ></a>
                   <tal:cont  tal:content="item" tal:condition="not: content_itens"  />
                 </h6>
