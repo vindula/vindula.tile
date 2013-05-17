@@ -7,7 +7,6 @@
       i18n:domain="vindula.tile">
 
   <head>
-
   </head>
   <body>
     <metal:main fill-slot="content-core">

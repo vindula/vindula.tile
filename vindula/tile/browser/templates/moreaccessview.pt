@@ -11,7 +11,8 @@
             <metal:macro define-macro="page"
                          tal:define="view_macro nocall:context/@@moreaccess-view;
                                      path_macro  string:context/@@moreaccess-view/macros/${view_macro/getKind}">
-
+                
+                <script tal:attributes="href string:${context/portal_url}/++resource++vindula.tile/js/button-more.js" />
                 <metal:block tal:condition="path_macro"
                              metal:use-macro="python:path(path_macro)"/>
 
@@ -34,20 +35,15 @@
                     <a href="#" class="right more">
                         <h1 class="subheader vindula-icon-plus-sign"></h1>
                     </a>
-
-
                     <metal:block metal:use-macro="context/@@moreaccess-view/macros/mais_itens" />
-
                 </div>
             </div>
         </div>
-
         <div class="columns large-12">
             <h6 class="subheader">
                 Mais Acessadas:
             </h6>
         </div>
-
         <div class="columns large-12">
           <tal:rep repeat="item view_macro/getItens">
             <div class="row news_access" tal:define="obj item/content/getObject">
@@ -180,24 +176,21 @@
 </metal:macro>
 <metal:macro define-macro="mais_itens"
              tal:define="view_macro nocall:context/@@moreaccess-view;">
-
-  <div tal:define="constructor view_macro/constructor">
-    <div class="hide">
+    <div class="box-more-items">
+      <ul class="letters no-bullet" tal:define="constructor view_macro/constructor">
         <tal:rep repeat="item python:constructor.keys()">
-          <h3 tal:content="item"></h3>
-
-          <div tal:attributes="id item">
-            <tal:rep repeat="valor python:constructor[item]">
-
-                <h3 tal:define="obj valor/getObject">
-                  <a tal:attributes="href string:${obj/absolute_url|nothing}${context/getPath_link}"
-                     tal:content="python:view_macro.getTitle(obj)">UNIDADE</a>
-                </h3>
-
-            </tal:rep>
-          </div>
+            <li>
+                <h6><a href="#" tal:content="item"></a></h6>
+                <ul tal:attributes="id item" class="hide no-bullet">
+                    <tal:rep repeat="valor python:constructor[item]">
+                        <li tal:define="obj valor/getObject">
+                            <a tal:attributes="href string:${obj/absolute_url|nothing}${context/getPath_link}"
+                            tal:content="python:view_macro.getTitle(obj)">UNIDADE</a>
+                        </li>
+                    </tal:rep>
+                </ul>
+            </li>
         </tal:rep>
+      </ul>
     </div>
-  </div>
-
 </metal:macro>
