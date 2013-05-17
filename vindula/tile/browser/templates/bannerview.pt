@@ -12,7 +12,7 @@
                  tal:define="view_banner nocall:context/@@banner-view;
                              banners view_banner/getTileBanner;
                              bullets_false string: bullets:false;">
-
+<div class="row">
     <div class="columns large-12">
                 <div class="has-space">
                     <ul data-orbit id="tile-banner" tal:attributes="data-options python: len(banners)==1 and bullets_false">
@@ -44,6 +44,7 @@
                     </ul>
                 </div>
             </div>
+</div>
     </metal:macro>
 </metal:main>
 </body>

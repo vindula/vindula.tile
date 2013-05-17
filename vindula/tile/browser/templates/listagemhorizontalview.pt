@@ -11,63 +11,61 @@
                  tal:define="view nocall:context/@@listagemhorizontal-view;
                              itens view/getItens;
                              bullets_false string: bullets:false;">
-        <div class="columns large-12" tal:condition="python: context.getListTemplates() == 'destaque_unico'">
-                <div class="row">
-                    <div class="columns large-12">
-                        <h4 tal:content="context/Title|nothing">
-                            Notícias
-                        </h4>
-                        <hr />
-                    </div>
-                    <div class="columns large-12">
-                        <ul data-orbit id="tile-news"
-                            tal:attributes="data-options python: len(itens)==1 and bullets_false;">
-                            <li tal:repeat="item itens">
-                                <div class="row">
-                                <div class="columns small-4">
-                                    <img tal:attributes="src item/image"
-                                      src="++theme++vindula.themedefault/images/demos/demo2-th.gif" />
-                                </div>
-                                <div class="columns small-8">
-                                    <small tal:content="string: ${item/unidade|nothing} / ${item/date|nothing} ${item/hour|nothing}">ASCOM / 27/03/2013 14:30</small>
-                                    <h5><a tal:attributes="href item/url|nothing"
-                                           tal:content="item/title|nothing"
-                                           href="#">Nova diretoria da Opas visita Bio</a></h5>
-                                    <p tal:content="item/description|nothing">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ornare placerat leo,
-                                    non scelerisque sem mollis ut.</p>
-                                </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="columns large-12" tal:condition="python: context.getListTemplates() == 'destaque_multipla'">
-                <div class="row">
-                    <div class="columns large-12" tal:repeat="item itens">
-                        <small tal:content="string: ${item/unidade|nothing} / ${item/date|nothing} ${item/hour|nothing}">ASCOM / 27/03/2013 14:30</small>
-                        <h5><a tal:attributes="href item/url|nothing"
-                               tal:content="item/title|nothing"
-                               href="#">Nova diretoria da Opas visita Bio</a></h5>
-                            <p tal:content="item/description|nothing">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ornare placerat leo,
-                            non scelerisque sem mollis ut.</p>
-                        <tal:def define="context nocall: item/obj">
-                            <div metal:use-macro="context/macro-comboStandard-content/macros/view" />
-                        </tal:def>
-
-                    </div>
-
-                    <div class="columns large-12">
-                        <div class="more-news">
-                            <a href="#">
-                                <h1 class="subheader vindula-icon-plus-sign left"></h1>
-                                <p class="left">Notícias</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+		<div class="row">
+	        <div class="columns large-12" tal:condition="python: context.getListTemplates() == 'destaque_unico'">
+	                <div class="row">
+	                    <div class="columns large-12">
+	                        <h4 tal:content="context/Title|nothing">
+	                            Notícias
+	                            <hr>
+	                        </h4>
+	                    </div>
+	                    <div class="columns large-12">
+	                        <ul data-orbit id="tile-news"
+	                            tal:attributes="data-options python: len(itens)==1 and bullets_false;">
+	                            <li tal:repeat="item itens">
+	                                <div class="row">
+	                                <div class="columns small-4">
+	                                    <img tal:attributes="src item/image"
+	                                      src="++theme++vindula.themedefault/images/demos/demo2-th.gif" />
+	                                </div>
+	                                <div class="columns small-8">
+	                                    <small tal:content="string: ${item/unidade|nothing} / ${item/date|nothing} ${item/hour|nothing}">ASCOM / 27/03/2013 14:30</small>
+	                                    <h5><a tal:attributes="href item/url|nothing"
+	                                           tal:content="item/title|nothing"
+	                                           href="#">Nova diretoria da Opas visita Bio</a></h5>
+	                                    <p tal:content="item/description|nothing">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ornare placerat leo,
+	                                    non scelerisque sem mollis ut.</p>
+	                                </div>
+	                                </div>
+	                            </li>
+	                        </ul>
+	                    </div>
+	                </div>
+	            </div>
+	
+	            <div class="columns large-12" tal:condition="python: context.getListTemplates() == 'destaque_multipla'">
+	                <div class="row">
+	                    <div class="columns large-12" tal:repeat="item itens">
+	                        <small tal:content="string: ${item/unidade|nothing} / ${item/date|nothing} ${item/hour|nothing}">ASCOM / 27/03/2013 14:30</small>
+	                        <h5><a tal:attributes="href item/url|nothing"
+	                               tal:content="item/title|nothing"
+	                               href="#">Nova diretoria da Opas visita Bio</a></h5>
+	                            <p tal:content="item/description|nothing">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ornare placerat leo,
+	                            non scelerisque sem mollis ut.</p>
+	                    </div>
+	
+	                    <div class="columns large-12">
+	                        <div class="more-news">
+	                            <a href="#">
+	                                <h1 class="subheader vindula-icon-plus-sign left"></h1>
+	                                <p class="left">Notícias</p>
+	                            </a>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+		</div>
     </metal:macro>
 </metal:main>
 </body>
