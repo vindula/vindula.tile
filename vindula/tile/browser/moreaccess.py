@@ -66,6 +66,7 @@ class MoreAccessView(BaseView):
         if not str:
             str = obj.Title().upper()
 
+        # print str
         return str
 
     def alphabet(self):
@@ -85,7 +86,11 @@ class MoreAccessView(BaseView):
         for item in self.list_more():
             obj = item.getObject()
             title = self.getTitle(obj)
-            letras[title[0]].append(item)
+            try:
+                letras[title[0]].append(item)
+            except KeyError:
+                pass
+
 
         return letras
 
