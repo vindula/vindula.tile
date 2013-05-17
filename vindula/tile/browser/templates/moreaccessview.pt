@@ -175,6 +175,9 @@
              tal:define="view_macro nocall:context/@@moreaccess-view;">
 
     <div class="box-more-items">
+      <div class="seta-box">
+        <img tal:attributes="src string:${context/portal_url}/++resource++vindula.tile/images/seta-box.png" />
+      </div>
       <ul class="letters no-bullet" tal:define="constructor view_macro/constructor">
         <tal:rep repeat="item view_macro/alphabet">
             <li class="active"
