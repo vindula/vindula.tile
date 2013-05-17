@@ -11,3 +11,4 @@ import tile_accordionitem
 import tile_moreaccess
 import tile_label
 import tile_birthdays
+import tile_poll

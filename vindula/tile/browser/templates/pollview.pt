@@ -1,0 +1,127 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="context/main_template/macros/master"
+      lang="en"
+      i18n:domain="vindula.tile">
+<body>
+
+<metal:main fill-slot="main">
+  <metal:macro define-macro="page"
+               tal:define="view_macro nocall:context/@@poll-view;
+                           polls view_macro/polls">
+
+        <div class="columns large-12">
+            <h4>
+                <tal:cont content="context/Title">Enquete</tal:cont>
+                <hr/>
+            </h4>
+        </div>
+        <tal:poll tal:repeat="poll polls">
+
+        <tal:block  tal:define="canVote poll/can_vote;">
+
+            <div class="columns large-12">
+                <p class="discrete" tal:content="poll/question">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit?
+                </p>
+            </div>
+
+            <div class="columns large-12">
+
+                <form action="vote" name="results" method="post" enctype="multipart/form-data"
+                      tal:define="portal_url view_macro/portal_url"
+                      tal:condition="poll/can_vote"
+                      tal:attributes="action poll/form_action;
+                                      name poll/form_name;
+                                      id poll/UID">
+
+                    <div class="row">
+                        <div class="columns large-12">
+
+                          <tal:loop repeat="choice poll/results">
+
+                            <label tal:attributes="for string:popoll_cb_${repeat/poll/index}_${repeat/choice/index}">
+
+                                <input class="custom radio" name="choices:list" id="popoll_0" value="0"
+                                       tal:define="elt_id string:popoll_cb_${repeat/poll/index}_${repeat/choice/index}"
+                                       tal:attributes="value repeat/choice/index;
+                                                   id string:popoll_cb_${repeat/poll/index}_${repeat/choice/index};
+                                                   type poll/input_widget">
+
+                                <span class="custom radio"></span>
+                                <tal:cont tal:content="python:choice[0]">Choice </tal:cont>
+
+                            </label>
+
+
+                            <!-- TODO: Funcionalidade futura
+                            <br tal:omit-tag="poll/show_results" />
+                            <tal:results tal:condition="poll/show_results">
+                                <div tal:define="choice_count python: choice[1];
+                                                 choice_percentage python: '%0.2f'%choice[2];
+                                                 bar_percentage python: int(choice[2]) or 1;
+                                                 number repeat/choice/number;
+                                                 number python:number % 10">
+
+                                  <img height="10" tal:attributes="width string:${bar_percentage}; src string:${portal_url}/bar_${number}.gif; alt string:${choice_percentage}%" />
+                                  <span tal:content="structure string:${choice_count} (${choice_percentage}%)">150 (14%)</span>
+                                </div>
+                            </tal:results>
+                            -->
+
+                          </tal:loop>
+
+                        </div>
+
+                        <div class="columns large-4 left">
+                            <a href="javascript:enviar_formulario('poll')" class="button postfix"
+                               tal:attributes="href string:javascript:enviar_formulario('#${poll/UID}')">Votar</a>
+                        </div>
+
+                </form>
+
+                <!-- TODO: Funcionalidade futura -->
+                <tal:block define="is_visible poll/is_visible"
+                       condition="not: canVote">
+                  <ul tal:condition="is_visible"
+                      tal:define="portal_url view_macro/portal_url">
+
+                    <tal:choices tal:repeat="choice poll/results">
+                      <li tal:define="choice_id python: choice[0];
+                                      choice_count python: choice[1];
+                                      choice_percentage python: '%0.2f' % choice[2];
+                                      bar_percentage python: int(choice[2]) or 1;
+
+                                      oddrow repeat/choice/odd;
+                                      number repeat/choice/number;
+                                      number python:number % 10"
+
+                          tal:attributes="class python:oddrow and 'even' or 'odd'">
+                        <span tal:replace="choice_id">Choice</span><br />
+                            <img style="height:10px;" tal:attributes="width string:${bar_percentage};
+                                                             src string:${portal_url}/bar_${number}.gif;
+                                                             alt string:${choice_percentage}%" />
+                        <strong tal:content="string:${choice_count} (${choice_percentage}%)">44%</strong>
+                      </li>
+                    </tal:choices>
+
+                  </ul>
+
+                  <tal:else condition="not: is_visible"
+                         i18n:translate="text_results_not_visible">
+                    Results will appear later.
+                  </tal:else>
+                </tal:block>
+
+
+            </div>
+
+        </tal:block>
+     </tal:poll>
+
+  </metal:macro>
+</metal:main>
+</body>
+</html>

@@ -40,7 +40,10 @@ class ITileLabel(Interface):
 class ITileBirthdays(Interface):
     """ Interface for TileBirthdays content type """
 
-
 class ILayoutLoad(Interface):
     """ Interface for LayoutLoad content type """
+
+class ITilePoll(Interface):
+    """ Interface for TilePoll content type """
+
 
