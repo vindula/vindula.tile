@@ -11,10 +11,8 @@
             <metal:macro define-macro="page"
                          tal:define="view_macro nocall:context/@@moreaccess-view;
                                      path_macro  string:context/@@moreaccess-view/macros/${view_macro/getKind}">
-
                 <metal:block tal:condition="path_macro"
                              metal:use-macro="python:path(path_macro)"/>
-
             </metal:macro>
         </metal:main>
     </body>
