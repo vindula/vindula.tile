@@ -7,7 +7,7 @@ $j(document).ready(function(){
         $j(this).parent().find('.box-more-items').toggleClass('active');
     });
     
-    $j('.letters > li').click(function(){
+    $j('.letters > li > a').click(function(){
         event.preventDefault();
         event.stopPropagation();
         $j('.letters > li')
