@@ -28,7 +28,7 @@
                         <hr/>
                     </h4>
                 </div>
-                <div class="columns small-2 icon-moreaccess">
+                <div class="columns small-2 icon-moreaccess show-box-hidden">
                     <a href="#" class="right more">
                         <h1 class="subheader vindula-icon-plus-sign"></h1>
                     </a>
@@ -174,7 +174,7 @@
 <metal:macro define-macro="mais_itens"
              tal:define="view_macro nocall:context/@@moreaccess-view;">
 
-    <div class="box-more-items">
+    <div class="box-more-items box-hidden">
       <div class="seta-box">
         <img tal:attributes="src string:${context/portal_url}/++resource++vindula.tile/images/seta-box.png" />
       </div>

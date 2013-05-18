@@ -1,12 +1,4 @@
 $j(document).ready(function(){ 
-    
-    $j('.icon-moreaccess > a').click(function(){
-        event.preventDefault();
-        event.stopPropagation();
-        
-        $j(this).parent().find('.box-more-items').toggleClass('active');
-    });
-    
     $j('.letters > li a').click(function(){
         event.preventDefault();
         event.stopPropagation();
@@ -17,5 +9,4 @@ $j(document).ready(function(){
         });
         $j(this).parent().parent().addClass('active');
     })
-
 });
