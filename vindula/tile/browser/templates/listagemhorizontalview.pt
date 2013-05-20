@@ -17,8 +17,9 @@
 	                    <div class="columns large-12">
 	                        <h4 tal:content="context/Title|nothing">
 	                            Notícias
-	                            <hr>
 	                        </h4>
+                            <hr>
+
 	                    </div>
 	                    <div class="columns large-12">
 	                        <ul data-orbit id="tile-news"
