@@ -99,7 +99,7 @@
               </select -->
               <tal:rep repeat="item view/getItens">
 
-                <div class="columns large-12" tal:define="obj item/getObject">
+                <div class="columns large-12 text_descricao" tal:define="obj item/getObject">
                     <div class="row">
                         <div class="columns small-4 " id="image_tile">
                             <img src="++theme++vindula.themedefault/images/demos/demo1-th.png"
