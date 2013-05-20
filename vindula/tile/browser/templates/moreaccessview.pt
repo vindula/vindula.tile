@@ -67,7 +67,6 @@
 	        </div>
 		</div>
     </div>
-
 </metal:macro>
 <metal:macro define-macro="unidade"
              tal:define="view_macro nocall:context/@@moreaccess-view;">
@@ -177,7 +176,7 @@
 <metal:macro define-macro="mais_itens"
              tal:define="view_macro nocall:context/@@moreaccess-view;">
 
-    <div class="box-more-items">
+    <div class="box-more-items box-hidden">
       <div class="seta-box">
         <img tal:attributes="src string:${context/portal_url}/++resource++vindula.tile/images/seta-box.png" />
       </div>

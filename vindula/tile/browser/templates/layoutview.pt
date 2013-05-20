@@ -15,49 +15,41 @@
                    tal:define="view nocall:context/@@layout-view;
                                tiles view/getItensTiles;
                                scripts view/getScripts_js;">
-
-
         <tal:rep_js repeat="name_script scripts">
-          <script type="text/javascript"
-                  tal:attributes="src string:${context/portal_url}/++resource++vindula.tile/js/${name_script}" />
+            <script type="text/javascript"
+                    tal:attributes="src string:${context/portal_url}/++resource++vindula.tile/js/${name_script}" />
         </tal:rep_js>
 
 
-        <tal:rep repeat="itens tiles">
-              <tal:cond_12 condition="python: len(itens) == 1 ">
+        <div tal:repeat="itens tiles" class="row">
+            <tal:cond_12 condition="python: len(itens) == 1 ">
                 <div class="columns large-12" tal:define="item python: itens[0]">
-
-                        <div id="macro-tile" tal:define="path_macro python:view.getMacro(item);
-                                                        context nocall:item">
-
-                              <metal:block tal:condition="path_macro"
-                                          metal:use-macro="python:path(path_macro)" />
-                        </div>
+                    <div id="macro-tile" tal:define="path_macro python:view.getMacro(item);
+                                                     context nocall:item">
+                        <metal:block tal:condition="path_macro" metal:use-macro="python:path(path_macro)" />
+                    </div>
                 </div>
-              </tal:cond_12>
-
-              <tal:cond_6 condition="python: len(itens) == 2 ">
+            </tal:cond_12>
+            
+            <tal:cond_6 condition="python: len(itens) == 2 ">
                 <div class="columns large-6" id="even">
-                  <tal:rep_even tal:repeat="item python: itens[0]">
+                    <tal:rep_even tal:repeat="item python: itens[0]">
                         <div id="macro-tile" tal:define="path_macro python:view.getMacro(item);
                                                          context nocall:item">
-                              <metal:block tal:condition="path_macro"
-                                          metal:use-macro="python:path(path_macro)" />
+                            <metal:block tal:condition="path_macro" metal:use-macro="python:path(path_macro)" />
                         </div>
-                  </tal:rep_even>
+                    </tal:rep_even>
                 </div>
-
                 <div class="columns large-6" id="odd">
-                  <tal:rep_odd tal:repeat="item python: itens[1]">
+                    <tal:rep_odd tal:repeat="item python: itens[1]">
                         <div id="macro-tile" tal:define="path_macro python:view.getMacro(item);
                                                          context nocall:item">
-                              <metal:block tal:condition="path_macro"
-                                          metal:use-macro="python:path(path_macro)" />
+                            <metal:block tal:condition="path_macro" metal:use-macro="python:path(path_macro)" />
                         </div>
-                  </tal:rep_odd>
+                    </tal:rep_odd>
                 </div>
-              </tal:cond_6>
-        </tal:rep>
+            </tal:cond_6>
+        </div>
       </metal:macro>
     </metal:main>
   </body>
