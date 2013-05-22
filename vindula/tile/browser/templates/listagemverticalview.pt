@@ -125,7 +125,7 @@
              tal:define="view nocall:context/@@listagemvertical-view;">
 
 
-  <div class="columns large-12">
+  <div class="columns large-12 title_events">
       <h4>
           <tal:cont tal:content="context/Title">Proximos eventos</tal:cont>
           <hr/>

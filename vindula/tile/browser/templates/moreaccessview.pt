@@ -36,7 +36,7 @@
                 </div>
             </div>
         </div>
-        <div class="columns large-12">
+        <div>
             <h6 class="subheader">
                 Mais Acessadas:
             </h6>
@@ -45,10 +45,10 @@
           <tal:rep repeat="item view_macro/getItens">
             <div class="row news_access" tal:define="obj item/content/getObject">
 
-                <div class="columns small-3">
+                <div class="columns small-3 padrao_image">
 
                     <img tal:attributes="src obj/getImageIcone|nothing;
-                                         alt obj/Title; title obj/Title;" style="max-width:40px;height: 40px;">
+                                         alt obj/Title; title obj/Title;">
                 </div>
 
                 <div class="columns small-9">
@@ -87,19 +87,20 @@
             </div>
         </div>
 
-        <div class="columns large-12">
+		<div>
             <h6 class="subheader">
                 Mais Acessadas:
             </h6>
         </div>
 
+
         <div class="columns large-12">
           <tal:rep repeat="item view_macro/getItens">
             <div class="row news_access" tal:define="obj item/content/getObject">
 
-                <div class="columns small-4">
+                <div class="columns small-4 unidade_image">
                     <img tal:attributes="src obj/getImageIcone|nothing;
-                                         alt obj/Title; title obj/Title;" style="max-width:40px;height: 40px;">
+                                         alt obj/Title; title obj/Title;" >
                 </div>
 
                 <div class="columns small-8">
@@ -140,20 +141,18 @@
                 </div>
             </div>
         </div>
-
-        <div class="columns large-12">
+        <div>
             <h6 class="subheader">
                 Mais Acessadas:
             </h6>
         </div>
-
         <div class="columns large-12">
           <tal:rep repeat="item view_macro/getItens">
             <div class="row news_access" tal:define="obj item/content/getObject">
 
-                <div class="columns small-4">
+                <div class="columns small-4 lista_ver_image">
                     <img tal:attributes="src obj/getImageIcone|nothing;
-                                         alt obj/Title; title obj/Title;" style="width:50px;height: 50px;">
+                                         alt obj/Title; title obj/Title;">
                 </div>
 
                 <div class="columns small-8">
