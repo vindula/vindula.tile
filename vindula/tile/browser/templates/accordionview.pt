@@ -5,32 +5,32 @@
       metal:use-macro="context/main_template/macros/master"
       lang="en"
       i18n:domain="vindula.tile">
-  <head>
 
+  <head>
   </head>
   <body>
     <metal:main fill-slot="content-core">
-        <metal:macro define-macro="page"
-                     tal:define="view_accordion nocall:context/@@accordion-view;">
+        
+        <div id="tile-accordion" metal:define-macro="page"
+             tal:define="view_accordion nocall:context/@@accordion-view;">
+            <h5>
+              <tal:cont tal:content="context/Title">Accordion</tal:cont>
+              <hr/>
+            </h5>
 
-            <h2 tal:content="context/Title"></h2>
-
-            <div class="section-container accordion" data-section="accordion">
-              <tal:rep repeat="item context/values">
-
-                <section>
-                  <p class="title" data-section-title>
-                    <a href="#" tal:content="item/Title">Section 1</a>
-                  </p>
-                  <div class="content" data-section-content>
-                    <p tal:content="structure item/getText">Content of section 1.</p>
-                  </div>
-                </section>
-
-              </tal:rep>
+            <div class="tile-section-container">
+                <tal:rep repeat="item context/values">
+                    <section>
+                        <h6 class="title">
+                            <a tal:content="item/Title">Accordion</a>
+                        </h6>
+                        <div class="content">
+                            <p tal:content="structure item/getText">Content of section 1.</p>
+                        </div>
+                    </section>
+                </tal:rep>
             </div>
-
-        </metal:macro>
+        </div>
     </metal:main>
   </body>
 </html>

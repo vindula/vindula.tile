@@ -19,59 +19,56 @@
 </html>
 <metal:macro define-macro="padrao"
              tal:define="view_macro nocall:context/@@moreaccess-view;">
-    <div id="tite-more-access">
-		<div class="row">
-	        <div class="columns large-12 colunas">
-	            <div class="row box-title">
-	                <div class="columns small-10">
-	                    <h4>
-	                        <span tal:replace="context/Title"></span>
-	                        <hr/>
-	                    </h4>
-	                </div>
-	                <div class="columns small-2 icon-moreaccess">
-	                    <a href="#" class="right more">
-	                        <h1 class="subheader vindula-icon-plus-sign"></h1>
-	                    </a>
-	                    <metal:block metal:use-macro="context/@@moreaccess-view/macros/mais_itens" />
-	                </div>
-	            </div>
-	        </div>
-	        <div class="columns large-12">
-	            <h6 class="subheader">
-	                Mais Acessadas:
-	            </h6>
-	        </div>
-	        <div class="columns large-12">
-	          <tal:rep repeat="item view_macro/getItens">
-	            <div class="row news_access" tal:define="obj item/content/getObject">
-	
-	                <div class="columns small-3">
-						<div class="padrao_imagem">
-	                    	<img tal:attributes="src obj/getImageIcone|nothing;
-	                                         alt obj/Title; title obj/Title;">
-						</div>
-	                </div>
-	
-	                <div class="columns small-9">
-						         <div id="text_tile">
-	                	    <a href="" tal:attributes="href string:${obj/absolute_url}/view;
-	                    	                           alt obj/Title;
-	                        	                       title obj/Title;">
-	                        	<span tal:content="obj/Title">Lorem ipsum.</span>
-	                   	  </a>
-						         </div>
-	                </div>
-	            </div>
-	          </tal:rep>
-	        </div>
-		</div>
+    <div id="tile-more-access">
+        <div class="columns large-12 colunas">
+            <div class="row box-title">
+                <div class="columns small-10">
+                    <h4>
+                        <span tal:replace="context/Title"></span>
+                        <hr/>
+                    </h4>
+                </div>
+                <div class="columns small-2 icon-moreaccess show-box-hidden">
+                    <a href="#" class="right more">
+                        <h1 class="subheader vindula-icon-plus-sign"></h1>
+                    </a>
+                    <metal:block metal:use-macro="context/@@moreaccess-view/macros/mais_itens" />
+                </div>
+            </div>
+        </div>
+        <div class="columns large-12">
+            <h6 class="subheader">
+                Mais Acessadas:
+            </h6>
+        </div>
+        <div class="columns large-12">
+          <tal:rep repeat="item view_macro/getItens">
+            <div class="row news_access" tal:define="obj item/content/getObject">
+
+                <div class="columns small-3">
+
+                    <img tal:attributes="src obj/getImageIcone|nothing;
+                                         alt obj/Title; title obj/Title;" style="width:32px;height: 32px;">
+                </div>
+
+                <div class="columns small-9">
+					         <div id="text_tile">
+                	    <a href="" tal:attributes="href string:${obj/absolute_url}/view;
+                    	                           alt obj/Title;
+                        	                       title obj/Title;">
+                        	<span tal:content="obj/Title">Lorem ipsum.</span>
+                   	  </a>
+					         </div>
+                </div>
+            </div>
+          </tal:rep>
+        </div>
     </div>
 </metal:macro>
 <metal:macro define-macro="unidade"
              tal:define="view_macro nocall:context/@@moreaccess-view;">
 
-    <div id="tite-more-access">
+    <div id="tile-more-access">
         <div class="columns large-12">
             <div class="row box-title">
                 <div class="columns small-10">
@@ -124,7 +121,7 @@
              tal:define="view_macro nocall:context/@@moreaccess-view;">
 
 
-    <div id="tite-more-access">
+    <div id="tile-more-access">
         <div class="columns large-12">
             <div class="row box-title">
                 <div class="columns small-10">

@@ -187,12 +187,6 @@
       </div>
     </div>
 
-    <!--select id="sort_on"  tal:condition="context/getActiveSort|python:True">
-        <option value="data">Data</option>
-        <option value="mais_acessados">Mais acessados</option>
-    </select-->
-
-
 </metal:macro>
 <metal:macro define-macro="listagem_agenda"
              tal:define="view nocall:context/@@listagemvertical-view;">

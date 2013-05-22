@@ -62,5 +62,8 @@ class TileAccordionContent(ATFolder):
 
     #tamanho do tile
     columns = 6
+    
+    #Scripts js
+    scripts_js = ['tile-accordion.js']
 
 registerType(TileAccordionContent, PROJECTNAME)
