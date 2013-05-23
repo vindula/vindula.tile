@@ -11,8 +11,6 @@ from vindula.tile.config import *
 
 BaseTile_schema = schemata.ATContentTypeSchema.copy() + Schema((
 
-
-
     BooleanField(
         name='activ_recurcividade',
         default=False,
@@ -45,12 +43,19 @@ BaseTile_schema = schemata.ATContentTypeSchema.copy() + Schema((
         vocabulary='voc_coluna',
         schemata = 'Settings'
     ),
-
-
+    
+    BooleanField(
+        name='is_accessory',
+        default=False,
+        widget=BooleanWidget(
+            label="Acessório",
+            description='Selecione caso o tile for um tile acessório (irá mudar o layout do tile)',
+        ),
+        required=False,
+        schemata = 'Settings'
+    ),
 
 ))
-
-
 
 schemata.finalizeATCTSchema(BaseTile_schema, folderish=False)
 
