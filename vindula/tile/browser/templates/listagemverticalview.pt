@@ -234,7 +234,9 @@
 
       <div id="itens">
           <tal:def define="portal_type python: (context.getListTypes(),);
-                           fields python:[{'label': 'Título', 'attribute': 'Title'},];">
+                           fields python:[{'label':  ''     , 'attribute': 'getImageIcone', 'is_image':  'True', 'width':  '50',},
+                                          {'label': 'Nome'  , 'attribute': 'Title'},
+                                          {'label': 'Gestor', 'attribute': 'getManager'}]; ">
               <metal:block metal:use-macro="context/macro_tabular_file/macros/view" />
           </tal:def>
       </div>
