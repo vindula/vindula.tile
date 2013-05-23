@@ -15,6 +15,7 @@ class BaseView(grok.View):
     def __init__(self,context,request):
         super(BaseView,self).__init__(context,request)
         self.portal_catalog = getToolByName(context, 'portal_catalog')
+        self.reference_catalog = getToolByName(self.context, "reference_catalog")
 
 
     def getKind(self):

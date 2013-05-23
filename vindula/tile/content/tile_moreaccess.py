@@ -74,13 +74,29 @@ TileMoreAccess_schema = BaseTile.schema.copy() + Schema((
         ),
         vocabulary=[("padrao",_(u"Tema Padrão")),
                     ("unidade", _(u"Unidade Mais Acessada")),
-                    ("lista_ver", _(u"Listagem vertical"))
+                    ("lista_ver", _(u"Listagem vertical")),
+                    ("two_columns", _(u"Listagem de duas colunas"))
                    ],
         default='padrao',
         required=True,
     ),
 
-
+    IntegerField(
+        name='columns',
+        widget=SelectionWidget(
+            label=_(u"Tamalho do tile"),
+            description=_(u"Selecione o tamanho do tile."),
+            label_msgid='vindula_tile_label_columns',
+            description_msgid='vindula_tile_help_columns',
+            i18n_domain='vindula_tile',
+            format='select',
+        ),
+        vocabulary=[('6',_(u"6 Colunas")),
+                    ('12', _(u"12 Colunas")),
+                    ],
+        default=6,
+        required=True,
+    ),
 
 
 ))
@@ -96,13 +112,10 @@ class TileMoreAccess(BaseTile):
     _at_rename_after_creation = True
     schema = TileMoreAccess_schema
 
-
     def voc_ContentTypes(self):
         types = self.portal_types.listContentTypes()
         return types
 
-    #tamanho do tile
-    columns = 6
 
     #Scripts js
     scripts_js = ['button-more.js']

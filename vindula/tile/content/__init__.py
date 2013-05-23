@@ -12,3 +12,4 @@ import tile_moreaccess
 import tile_label
 import tile_birthdays
 import tile_poll
+import tile_organogram

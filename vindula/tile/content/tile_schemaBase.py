@@ -68,5 +68,12 @@ class BaseTile(base.ATCTContent):
                             (u'meio', u'Coluna do Meio'),
                             (u'esquerda', u'Coluna da Esquerda')))
 
+    def get_columns(self):
+        if hasattr(self, 'getColumns'):
+            return self.getColumns()
+        else:
+            return self.columns
+
+
 registerType(BaseTile, PROJECTNAME)
 
