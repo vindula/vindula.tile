@@ -169,6 +169,42 @@
     </div>
 
 </metal:macro>
+<metal:macro define-macro="two_columns"
+             tal:define="view_macro nocall:context/@@moreaccess-view;">
+
+
+    <div class="columns large-12">
+        <div id="tile-more-acess-unity" class="row">
+            <div class="title columns large-12">
+                <h5>
+                    <span tal:replace="context/Title">UNIDADES MAIS ACESSADAS</span>
+                    <hr/>
+                </h5>
+            </div>
+            <div class="container">
+              <tal:rep repeat="item view_macro/getItens">
+                  <div class="large-6 columns item"
+                       tal:define="obj item/content/getObject">
+                    <div style="width: 16%; height: 40px;" class="left">
+                        <img tal:attributes="src obj/getImageIcone|nothing;
+                                             alt obj/Title; title obj/Title;" />
+                    </div>
+                    <div style="width: 84%;" class="left">
+                        <a class="block" href="#" tal:attributes="href string:${obj/absolute_url}/view;"
+                                         tal:content="obj/getSiglaunidade|obj/Title" >DIBOP</a>
+                        <span class="block" tal:content="obj/Title">Divisao de Boas Praticas</span>
+
+                        <a class="block" href="#">Pedro Miranda Prado</a>
+
+                    </div>
+                  </div>
+              </tal:rep>
+
+
+        </div>
+    </div>
+
+</metal:macro>
 <metal:macro define-macro="mais_itens"
              tal:define="view_macro nocall:context/@@moreaccess-view;">
 

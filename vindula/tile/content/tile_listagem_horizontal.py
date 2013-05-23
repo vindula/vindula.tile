@@ -66,7 +66,8 @@ TileListagemHorizontal_schema = BaseTile.schema.copy() + Schema((
             format = 'select',
          ),
          vocabulary=[("destaque_unico",_(u"Listagem com um único Destaque")),
-                    ("destaque_multipla", _(u"Listagem Múltipla"))],
+                    ("destaque_multipla", _(u"Listagem Múltipla")),
+                    ('destaque_two_columns', _(u"Listagem de duas colunas"))],
          default='destaque_unico',
          required=True,
      ),
@@ -86,5 +87,8 @@ class TileListagemHorizontal(BaseTile):
 
     #tamanho do tile
     columns = 12
+
+    #Scripts js
+    scripts_js = ['ajax_boll_batch.js']
 
 registerType(TileListagemHorizontal, PROJECTNAME)

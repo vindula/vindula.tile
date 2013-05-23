@@ -59,7 +59,7 @@ class LayoutView(BaseView):
 
             tile = tiles[posicao]
 
-            if tile.columns == 12:
+            if tile.get_columns() == 12:
                 tiles_posicionados.append([tile])
                 posicionados += 1
                 posicao+=1
@@ -72,7 +72,7 @@ class LayoutView(BaseView):
                     if posicao >= len(tiles):
                         break
 
-                    if tile_6.columns == 6:
+                    if tile_6.get_columns() == 6:
                         if contador_temp%2 == 0:
                             odd.append(tile_6)
                         else:

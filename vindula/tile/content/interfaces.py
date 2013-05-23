@@ -46,4 +46,5 @@ class ILayoutLoad(Interface):
 class ITilePoll(Interface):
     """ Interface for TilePoll content type """
 
-
+class ITileOrganogram(Interface):
+    """ Interface for TileOrganogram content type """

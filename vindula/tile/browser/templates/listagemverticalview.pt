@@ -180,7 +180,7 @@
                     <h1 class="subheader vindula-icon-plus-sign left"></h1>
                     <p class="left">Eventos</p>
                 </a>
-              </tal:cond>  
+              </tal:cond>
             </div>
         </div>
 
@@ -218,5 +218,28 @@
 
       </tal:rep>
     </div>
+
+</metal:macro>
+<metal:macro define-macro="listagem_tabular">
+
+<div class="columns large-12">
+  <h5>
+      <tal:cont tal:content="context/Title">UNIDADES ORGANIZACIONAIS</tal:cont>
+      <hr/>
+  </h5>
+</div>
+<div class="columns large-12">
+  <div class="conteiner" id="documento">
+      <metal:block metal:use-macro="context/macro_filter_file/macros/tabular" />
+
+      <div id="itens">
+          <tal:def define="portal_type python: (context.getListTypes(),);
+                           fields python:[{'label': 'Título', 'attribute': 'Title'},];">
+              <metal:block metal:use-macro="context/macro_tabular_file/macros/view" />
+          </tal:def>
+      </div>
+  </div>
+</div>
+
 
 </metal:macro>

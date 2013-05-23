@@ -1,0 +1,81 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="context/main_template/macros/master"
+      lang="en"
+      i18n:domain="vindula.tile">
+
+  <head>
+
+    <metal:js fill-slot="javascript_head_slot">
+
+      <script type="text/javascript" src=""
+              tal:attributes="src string:${context/absolute_url|nothing}/++resource++vindula.tile/js/org-tree.js"></script>
+    </metal:js>
+
+  </head>
+  <body>
+
+    <metal:main fill-slot="content-core">
+
+        <metal:macro define-macro="page"
+                     tal:define="view_organogram nocall:context/@@organogram-view;">
+
+          <div id="tile-organograma" class="row">
+              <div class="columns large-12">
+                  <h5>
+                     <tal:cont content="context/Title|nothing"> ORGANOGRAMA </tal:cont>
+                     <hr/>
+                  </h5>
+              </div>
+              <div class="columns large-12">
+                  <div class="container-tree">
+                      <ul class="main-tree lightness"
+                          tal:define="estrutura view_organogram/estrutura_pai;
+                                      estruturas_filho python:view_organogram.get_estruturas_filho(estrutura)"
+                          tal:condition="estrutura">
+
+                          <li class="tree-item arrow " tal:attributes="class python:view_organogram.def_class(estrutura,estruturas_filho) +' open' " >
+                              <div class="content" tal:content="estrutura/Title">Conselho Deliberativo</div>
+
+                              <ul class="tree-2">
+                                <tal:rep repeat="estrutura_filho python:view_organogram.get_estruturas_filho(estrutura)">
+                                  <metal:block metal:use-macro="context/@@organogram-view/macros/recursivo" />
+                                </tal:rep>
+                              </ul>
+                          </li>
+
+
+                      </ul>
+                  </div>
+              </div>
+          </div>
+        </metal:macro>
+    </metal:main>
+  </body>
+</html>
+<metal:macro define-macro="recursivo">
+    <li class="tree-item" tal:define="view_organogram nocall:context/@@organogram-view;
+                                      estrutura nocall:estrutura_filho|nothing;
+                                      estruturas_filho python:view_organogram.get_estruturas_filho(estrutura)"
+
+                          tal:condition="estrutura"
+                          tal:attributes="class python:view_organogram.def_class(estrutura,estruturas_filho)">
+
+      <div class="content">
+        <span class="left"  tal:content="estrutura/Title">Concelho de Assesoria Poilico Estratégico</span>
+        <a href=''  tal:attributes="href estrutura/absolute_url|nothing"
+                    tal:define="username  estrutura/manager|nothing">
+            <img src="" alt="" height="30" width="30" class="right"
+                 tal:attributes="src string:/vindula-api/myvindula/user-picture/photograph/${username}/True"  />
+        </a>
+      </div>
+
+      <ul class="tree-4" tal:attributes="class python: 'tree-'+ str(repeat['estrutura_filho'].number() + 2)">
+            <tal:rep repeat="estrutura_filho estruturas_filho">
+              <metal:block metal:use-macro="context/@@organogram-view/macros/recursivo" />
+            </tal:rep>
+      </ul>
+    </li>
+  </metal:macro>
