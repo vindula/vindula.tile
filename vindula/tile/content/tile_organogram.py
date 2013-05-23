@@ -23,6 +23,7 @@ TileOrganogram_schema = BaseTile.schema.copy() + Schema((
             label=_(u"Escolha uma Unidade Organizacional Principal"),
             description=_(u"Selecione uma Unidade Organizacional principal para o organograma."),
         ),
+        required=True,
     ),
 
 ))
