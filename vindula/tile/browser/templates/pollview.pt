@@ -11,7 +11,8 @@
   <metal:macro define-macro="page"
                tal:define="view_macro nocall:context/@@poll-view;
                            polls view_macro/polls">
-
+		
+	<div class="row">
         <div class="columns large-12">
             <h4>
                 <tal:cont content="context/Title">Enquete</tal:cont>
@@ -81,6 +82,7 @@
                         </div>
 
                 </form>
+			</div>
 
                 <!-- TODO: Funcionalidade futura -->
                 <tal:block define="is_visible poll/is_visible"
