@@ -118,12 +118,13 @@
              tal:define="view_macro nocall:context/@@featured-view;
                          items context/getItens;">
 
-    <div class="columns large-6" tal:define="item python:items[0]">
+    <div class="columns large-12" tal:define="item python:items[0];
+                                             text item/Description">
         <h5>
             <span tal:replace="context/Title">INFORMES</span>
             <hr/>
         </h5>
-        <p tal:content="structure item/getText|string: ">
+        <p tal:content="python: view_macro.limitTextSize(text,500)" >
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             Suspendisse feugiat, leo vitae consequat congue, orci dui mollis dui, ut lacinia felis lorem id augue.
             Morbi sit amet erat turpis, eu rutrum arcu. Suspendisse vel leo purus, non lobortis lorem.
