@@ -48,48 +48,24 @@
 	                tal:attributes="data-options python: len(itens)==1 and bullets_false;">
 	                <li tal:repeat="item itens">
 	                    <div class="row">
-	                    <div class="columns small-4 listagem_horizontal_image">
-	                        <img tal:attributes="src item/image"
-	                          src="++theme++vindula.themedefault/images/demos/demo2-th.gif" />
-	                    </div>
-	                    <div class="columns large-12 listagem_horizontal_main">
-	                        <ul data-orbit id="tile-news"
-	                            tal:attributes="data-options python: len(itens)==1 and bullets_false;">
-	                            <li tal:repeat="item itens">
-	                                <div class="row">
-	                                <div class="columns small-4 listagem_horizontal_image">
-	                                    <img tal:attributes="src item/image"
-	                                      src="++theme++vindula.themedefault/images/demos/demo2-th.gif" />
-	                                </div>
-	                                <div class="columns small-8 listagem_horizontal_text">
-	                                    <small tal:content="string: ${item/unidade|nothing} / ${item/date|nothing} ${item/hour|nothing}">ASCOM / 27/03/2013 14:30</small>
-	                                    <h5><a tal:attributes="href item/url|nothing"
-	                                           tal:content="item/title|nothing"
-	                                           href="#">Nova diretoria da Opas visita Bio</a></h5>
-	                                    <p tal:content="item/description|nothing">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ornare placerat leo,
-	                                    non scelerisque sem mollis ut.</p>
-	                                </div>
-	                                </div>
-	                            </li>
-	                        </ul>
-	                    </div>
-	                </div>
-	            </div>
-	
-	            <div class="columns large-12" tal:condition="python: context.getListTemplates() == 'destaque_multipla'">
-	                <div class="row">
-	                    <div class="columns large-12" tal:repeat="item itens">
-	                        <small tal:content="string: ${item/unidade|nothing} / ${item/date|nothing} ${item/hour|nothing}">ASCOM / 27/03/2013 14:30</small>
-	                        <h5><a tal:attributes="href item/url|nothing"
-	                               tal:content="item/title|nothing"
-	                               href="#">Nova diretoria da Opas visita Bio</a></h5>
-	                        <p tal:content="item/description|nothing">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ornare placerat leo,
-	                        non scelerisque sem mollis ut.</p>
-	                    </div>
+	                        <div class="columns small-4 listagem_horizontal_image">
+	                            <img tal:attributes="src item/image"
+	                              src="++theme++vindula.themedefault/images/demos/demo2-th.gif" />
+	                        </div>
+	                        <div class="columns small-8 listagem_horizontal_text">
+	                            <small tal:content="string: ${item/unidade|nothing} / ${item/date|nothing} ${item/hour|nothing}">ASCOM / 27/03/2013 14:30</small>
+	                            <h5><a tal:attributes="href item/url|nothing"
+	                                   tal:content="item/title|nothing"
+	                                   href="#">Nova diretoria da Opas visita Bio</a></h5>
+	                            <p tal:content="item/description|nothing">Lorem ipsum dolor sit amet,
+	                            	consectetur adipiscing elit. In ornare placerat leo,
+	                            	non scelerisque sem mollis ut.</p>
+	                        </div>
 	                    </div>
 	                </li>
 	            </ul>
 	        </div>
+
 	    </div>
 	</div>
 </metal:macro>

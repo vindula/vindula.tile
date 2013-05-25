@@ -12,39 +12,36 @@
                  tal:define="view_banner nocall:context/@@banner-view;
                              banners view_banner/getTileBanner;
                              bullets_false string: bullets:false;">
-<div class="row">
-    <div class="columns large-12">
-                <div class="has-space">
-                    <ul data-orbit id="tile-banner" tal:attributes="data-options python: len(banners)==1 and bullets_false">
-                        <li tal:repeat="banner banners">
-                            <a href="" tal:attributes="href    banner/url|nothing;
-                                                       target  banner/target|nothing">
-                              <img  tal:attributes="src banner/image" src="++theme++vindula.themedefault/images/demos/demo1.jpg" />
-                            </a>
-                            <div class="orbit-caption">
-                                <span tal:content="banner/text|nothing">
-                                  Lorem ipsum dolor sit amet
-                                </span>
-                                <br />
+      <div class="row">
+          <div class="columns large-12">
+              <div class="has-space">
+                  <ul data-orbit id="tile-banner" tal:attributes="data-options python: len(banners)==1 and bullets_false">
+                      <li tal:repeat="banner banners">
+                          <a href="" tal:attributes="href    banner/url|nothing;
+                                                     target  banner/target|nothing">
+                            <img  tal:attributes="src banner/image" src="++theme++vindula.themedefault/images/demos/demo1.jpg" />
+                          </a>
+                          <div class="orbit-caption">
+                              <span tal:content="banner/text|nothing">
+                                Lorem ipsum dolor sit amet
+                              </span>
+                              <br />
 
-                                <span tal:condition="context/getActiveUnit|nothing"
-                                      tal:content="string: ${banner/unit|nothing} /"> ASCON /</span>
+                              <span tal:condition="context/getActiveUnit|nothing"
+                                    tal:content="string: ${banner/unit|nothing} /"> ASCON /</span>
 
-                                <span tal:condition="context/getActiveDate|nothing"
-                                      tal:content="string: ${banner/date|nothing} /"> DATA </span>
+                              <span tal:condition="context/getActiveDate|nothing"
+                                    tal:content="string: ${banner/date|nothing} /"> DATA </span>
 
-                                <span tal:condition="context/getActiveAuthor|nothing"
-                                      tal:content="string: ${banner/author|nothing}"> ADMIN </span>
+                              <span tal:condition="context/getActiveAuthor|nothing"
+                                    tal:content="string: ${banner/author|nothing}"> ADMIN </span>
 
-                            </div>
-                            <div>
-
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-</div>
+                          </div>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+      </div>
     </metal:macro>
 </metal:main>
 </body>

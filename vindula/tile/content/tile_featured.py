@@ -25,6 +25,7 @@ TileFeatured_schema = BaseTile.schema.copy() + Schema((
             label=_(u"Itens em Destaque"),
             description='Selecione os itens que serão destaque.'
         ),
+        required=True,
     ),
 
     StringField(
@@ -39,12 +40,12 @@ TileFeatured_schema = BaseTile.schema.copy() + Schema((
         ),
         vocabulary=[("alerta_normal",_(u"Alerta Cinza Normal")),
                     ("alerta_importante", _(u"Alerta Amarelo Importante")),
-                    ("destaque", _(u"Destaque de Noticia"))
+                    ("destaque", _(u"Destaque de Noticia")),
+                    ("destaque_simples", _(u"Destaque Simples")),
                    ],
         default='destaque',
         required=True,
     ),
-
 
 ))
 

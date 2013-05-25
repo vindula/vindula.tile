@@ -30,6 +30,8 @@ class BannerView(BaseView):
                 #TODO: Criar método para buscar o nome da Unidade
                 if obj.activeUnit == True:
                     D['unit']= 'Nome da Unidade'
+
+                D['obj'] = banner
                 L.append(D)
         return L
 

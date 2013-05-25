@@ -30,7 +30,7 @@
                     </div>
                 </div>
             </tal:cond_12>
-            
+
             <tal:cond_6 condition="python: len(itens) == 2 ">
                 <div class="columns large-6" id="even">
                     <tal:rep_even tal:repeat="item python: itens[0]">

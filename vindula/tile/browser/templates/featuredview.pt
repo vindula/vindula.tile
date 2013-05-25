@@ -25,27 +25,27 @@
                          bullets_false string: bullets:false;;">
 
     <h2 tal:content="context/Title">ANUNCIO</h2>
-<div id="anuncio-normal">
-    <ul data-orbit tal:attributes="data-options python: len(items)==1 and bullets_false"
-                   id="tile-featured">
-      <tal:rep tal:repeat="item items">
-        <li>
-          <div tal:define="text item/Description">
-            <p tal:content="python: view_macro.limitTextSize(text)" >
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta,
-              inventore incidunt ullam eligendi laborum aliquid illum et non sunt praesentium!
-            </p>
+    <div id="anuncio-normal">
+      <ul data-orbit tal:attributes="data-options python: len(items)==1 and bullets_false"
+                     id="tile-featured">
+        <tal:rep tal:repeat="item items">
+          <li>
+            <div tal:define="text item/Description">
+              <p tal:content="python: view_macro.limitTextSize(text)" >
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta,
+                inventore incidunt ullam eligendi laborum aliquid illum et non sunt praesentium!
+              </p>
 
-            <a tal:attributes="href item/absolute_url"
-               tal:condition="python: view_macro.cont_text(text)"
-               href="">Leia Mais</a>
+              <a tal:attributes="href item/absolute_url"
+                 tal:condition="python: view_macro.cont_text(text)"
+                 href="">Leia Mais</a>
 
-          </div>
-        </li>
+            </div>
+          </li>
 
-      </tal:rep>
-    </ul>
-</div>
+        </tal:rep>
+      </ul>
+    </div>
 </metal:macro>
 <metal:macro define-macro="alerta_importante"
              tal:define="view_macro nocall:context/@@featured-view;
@@ -80,40 +80,61 @@
                                      items context/getItens;
                                      bullets_false string: bullets:false;;">
 
-                <div class="columns small-12" id="tile-featured">
-                    <div class="row">
-                        <div class="columns large-12 feature_text">
-                            <h4 tal:content="context/Title">ANUNCIO</h4>
-                        </div>
-                        <div class="columns large-12">
-                            <ul data-orbit id="tile-news"
-                                data-options="bullets:true;">
-                                <tal:rep tal:repeat="item items">
-                                    <li>
-                                        <div class="row">
-                                        <div class="columns small-12 feature_image">
-                                            <img tal:condition="item/getImageRelac|nothing"
-                                                  tal:attributes="src python: item.getImageRelac().absolute_url()+'/image_mini';
-                                                     alt item/Title;
-                                                     title item/Title;">
-                                        </div>
-                                        <div class="columns small-12">
-                                            <strong>
-                                                <a tal:attributes="href item/absolute_url"
-                                                    tal:content="item/Title" href="">
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta,
-                                                    inventore incidunt ullam eligendi laborum aliquid illum!
-                                                </a>
-                                            </strong>
-                                        </div>
-                                        </div>
-                                    </li>
-                                </tal:rep>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+    <div class="columns small-12" id="tile-featured">
+        <div class="row">
+            <div class="columns large-12 feature_text">
+                <h4 tal:content="context/Title">ANUNCIO</h4>
+            </div>
+            <div class="columns large-12">
+                <ul data-orbit id="tile-news"
+                    data-options="bullets:true;">
+                    <tal:rep tal:repeat="item items">
+                        <li>
+                            <div class="row">
+                            <div class="columns small-12 feature_image">
+                                <img tal:condition="item/getImageRelac|nothing"
+                                      tal:attributes="src python: item.getImageRelac().absolute_url()+'/image_mini';
+                                         alt item/Title;
+                                         title item/Title;">
+                            </div>
+                            <div class="columns small-12">
+                                <strong>
+                                    <a tal:attributes="href item/absolute_url"
+                                        tal:content="item/Title" href="">
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta,
+                                        inventore incidunt ullam eligendi laborum aliquid illum!
+                                    </a>
+                                </strong>
+                            </div>
+                            </div>
+                        </li>
+                    </tal:rep>
+                </ul>
+            </div>
+        </div>
+    </div>
+</metal:macro>
+<metal:macro define-macro="destaque_simples"
+             tal:define="view_macro nocall:context/@@featured-view;
+                         items context/getItens;">
+
+    <div class="columns large-6" tal:define="item python:items[0]">
+        <h5>
+            <span tal:replace="context/Title">INFORMES</span>
+            <hr/>
+        </h5>
+        <p tal:content="structure item/getText|string: ">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Suspendisse feugiat, leo vitae consequat congue, orci dui mollis dui, ut lacinia felis lorem id augue.
+            Morbi sit amet erat turpis, eu rutrum arcu. Suspendisse vel leo purus, non lobortis lorem.
+            Sed commodo varius urna, ut dapibus felis venenatis eget. In eget metus dolor. Donec odio nunc,
+            tempus sed semper et, sodales ut urna.
+        </p>
+
+        <a class="button small radius"
+           tal:attributes="href item/aboslute_url|nothing;
+                           alt item/Title|nothing;
+                           title item/Title|nothing;">Continuar Lendo</a>
+    </div>
 
 </metal:macro>
-
-
