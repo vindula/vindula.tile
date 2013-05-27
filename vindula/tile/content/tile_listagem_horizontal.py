@@ -22,10 +22,11 @@ TileListagemHorizontal_schema = BaseTile.schema.copy() + Schema((
             relationship='VindulaNews',
             widget=VindulaReferenceSelectionWidget(
                 label=_(u"Destaques"),
-                description='Selecione os destaques rotativos.'),
-                review_state = ('published', 'internal','external'),
+                description='Selecione os destaques rotativos.'
+            ),
+            review_state = ('published', 'internal','external'),
             required=True,
-                ),
+    ),
 
 
     StringField(

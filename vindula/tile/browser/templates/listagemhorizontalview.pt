@@ -104,7 +104,7 @@
 <metal:macro define-macro="destaque_two_columns">
 	<div class="columns large-12">
 
-	 	<div id="tile-listagem-horizontal-two-columns" class="row"
+	 	<div id="tile-listagem-horizontal-two-columns" class="row list_tile"
 			 tal:define="view nocall:context/@@listagemhorizontal-view;
 	                     itens view/getItens;
 	                     bullets_false string: bullets:false;
@@ -116,8 +116,6 @@
 
 	                     batch python:Batch(itens, int(b_size), int(b_start), pagerange=len(itens));"
 	         tal:condition="batch">
-
-
 
 		    <div class="columns large-12">
 		    	<div class="right" id="pag-nav">
@@ -156,12 +154,13 @@
 				    </div>
 
 				</tal:rep>
-
-				<!-- Spinner -->
-		        <div id="spinner" class="display-none" style="text-align:center; margin: 30px;">
-		            <img src="" alt="spinner" align="center" tal:attributes="src string:${context/portal_url}/++resource++vindula.myvindula.views/ajaxLoader.gif" />
-		        </div>
 			</div>
+
+			<!-- Spinner -->
+	        <div class="spinner display-none" style="text-align:center; margin: 30px;">
+	            <img src="" alt="spinner" align="center" tal:attributes="src string:${context/portal_url}/++resource++vindula.myvindula.views/ajaxLoader.gif" />
+	        </div>
+
 
 		</div>
 	</div>
