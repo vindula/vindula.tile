@@ -118,6 +118,6 @@ class TileMoreAccess(BaseTile):
 
 
     #Scripts js
-    scripts_js = ['button-more.js']
+    scripts_js = ['button-more.js','ajax_boll_batch.js']
 
 registerType(TileMoreAccess, PROJECTNAME)

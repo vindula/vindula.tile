@@ -1,5 +1,5 @@
 
-function executaAjax(ctx, b_start){
+function executaAjaxTile(ctx, b_start){
     var url = ctx.find('input#absolute_url').val(),
         b_size = parseInt(ctx.find('input#b_size').val()),
         params = {};
@@ -11,8 +11,10 @@ function executaAjax(ctx, b_start){
     params['b_size'] = b_size;
     params['b_start'] = b_start;
 
-    ctx.find('#spinner').removeClass('display-none');
-    ctx.find('div.row').addClass('display-none');
+    params['ajax_load'] = true;
+
+    ctx.find('.spinner').removeClass('display-none');
+    ctx.find('div.lista-news').addClass('display-none');
 
     $j.ajax({
           url: url,
@@ -29,7 +31,7 @@ function executaAjax(ctx, b_start){
                 //             $j.eval(data);
                 //         })
                 // });
-                var content = dom.find('div#tile-listagem-horizontal-two-columns').contents();
+                var content = dom.find('div.list_tile').contents();
                 ctx.html(content);
             },
         });
@@ -38,10 +40,10 @@ function executaAjax(ctx, b_start){
 
 //TODO: Criar um arquivo javacript para uma navegacao por ajax GENERICA, atualmente eh preciso criar um arquivo js para cada navegacao por ajax (news, biblioteca e servicos)
 $j(document).ready(function(){
-    $j('div#cycle-next, div#cycle-prev').live('click',function(){
-        var $conteiner = $j(this).parents('div').find('#tile-listagem-horizontal-two-columns'),
+    $j('.list_tile div#cycle-next, .list_tile div#cycle-prev').live('click',function(){
+        var $conteiner = $j(this).parents('div.list_tile'),
             b_start = parseInt($j(this).find('input').val());
-        executaAjax($conteiner,b_start);
+        executaAjaxTile($conteiner,b_start);
     });
 
 });
