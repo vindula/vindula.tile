@@ -116,7 +116,8 @@
 </metal:macro>
 <metal:macro define-macro="destaque_simples"
              tal:define="view_macro nocall:context/@@featured-view;
-                         items context/getItens;">
+                         items context/getItens;"
+             tal:condition="items">
 
     <div class="columns large-12" tal:define="item python:items[0];
                                              text item/Description">

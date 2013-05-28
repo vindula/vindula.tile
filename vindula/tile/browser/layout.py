@@ -50,7 +50,7 @@ class LayoutView(BaseView):
 
         posicionados = 0
         posicao = 0
-        tiles = context.values()
+        tiles = [ t for t in context.values() if t.portal_type != 'VindulaFolder']
         tiles_posicionados = []
         for i in range(len(tiles)):
 
