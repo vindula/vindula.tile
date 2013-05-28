@@ -60,11 +60,12 @@
 	                            <p tal:content="item/description|nothing">Lorem ipsum dolor sit amet,
 	                            	consectetur adipiscing elit. In ornare placerat leo,
 	                            	non scelerisque sem mollis ut.</p>
+								<div class="left"  define="content item/obj">
+			                	<metal:use use-macro="context/macro-share-content/macros/view" />
+			                	</div>
 	                        </div>
 	                    </div>
-	                    <div class="left"  define="content item/obj">
-		                	<metal:use use-macro="context/macro-share-content/macros/view" />
-		                </div>
+	                    
 	                </li>
 	            </ul>
 	        </div>
