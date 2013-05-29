@@ -36,7 +36,7 @@
 	<div class="columns large-12"  tal:define="view nocall:context/@@listagemhorizontal-view;
     					                       itens view/getItens;
                         				       bullets_false string: bullets:false;">
-	    <div class="row">
+	    <div class="row main_row">
 	        <div class="columns large-12 listagem_horizontal_text">
 	            <h4>
 	            	<tal:cont content="context/Title|nothing"> Notícias </tal:cont>
@@ -48,6 +48,9 @@
 	                tal:attributes="data-options python: len(itens)==1 and bullets_false;">
 	                <li tal:repeat="item itens">
 	                    <div class="row">
+							<div class="left"  define="content item/obj">
+			                	<metal:use use-macro="context/macro-share-content/macros/view" />
+			                </div>
 	                        <div class="columns small-4 listagem_horizontal_image">
 	                            <img tal:attributes="src item/image"
 	                              src="++theme++vindula.themedefault/images/demos/demo2-th.gif" />
@@ -60,9 +63,6 @@
 	                            <p tal:content="item/description|nothing">Lorem ipsum dolor sit amet,
 	                            	consectetur adipiscing elit. In ornare placerat leo,
 	                            	non scelerisque sem mollis ut.</p>
-								<div class="left"  define="content item/obj">
-			                	<metal:use use-macro="context/macro-share-content/macros/view" />
-			                	</div>
 	                        </div>
 	                    </div>
 	                    
