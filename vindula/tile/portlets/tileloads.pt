@@ -10,7 +10,7 @@
 
 
     <tal:rep repeat="tile tiles">
-        <div id="macro-tile" class="portletWrapper teste" tal:define="path_macro python:view.getMacro(tile);
+        <div id="macro-tile" class="portletWrapper" tal:define="path_macro python:view.getMacro(tile);
                                                                 context nocall:tile" style="float:left"
                                                     tal:attributes="class string:portletWrapper ${tile/portal_type} ${tile/getKind|nothing} " >
 
