@@ -118,7 +118,7 @@
              tal:define="view_macro nocall:context/@@featured-view;
                          items context/getItens;"
              tal:condition="items">
-
+   <div class="row">
     <div class="columns large-12" tal:define="item python:items[0];
                                              text item/Description">
         <h5>
@@ -138,5 +138,6 @@
                            alt item/Title|nothing;
                            title item/Title|nothing;">Continuar Lendo</a>
     </div>
+  </div>
 
 </metal:macro>
