@@ -12,7 +12,7 @@
                          tal:define="view_macro nocall:context/@@macrolist-view;
                                      macros view_macro/get_macros">
 
-                <div class="section-container tabs" data-section="tabs">
+                <div class="container-tiles-section section-container auto" data-section>
                     <tal:rep repeat="item macros">
 
                       <section>

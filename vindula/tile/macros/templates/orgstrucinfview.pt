@@ -31,7 +31,7 @@
                             <p tal:content="dados_gestor/position|string: ">Diretor</p>
                         </div>
                         <div class="left manager-contact">
-                            <a href="#" tal:attributes="href python: 'mailto:'+ dados_gestor.get('email','')"
+                            <a href="#" tal:attributes="href python: 'mailto:'+ str(dados_gestor.get('email',''))"
                                         tal:content="dados_gestor/email|string: " >alfredo.m@bio.fiocruz.br</a>
                             <a href="#" id="new_menssage" >Enviar Mensagem</a>
                             <p tal:content="dados_gestor/phone_number|string: " >(00) 3333-3333</p>
