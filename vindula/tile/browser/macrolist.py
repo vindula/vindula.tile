@@ -7,8 +7,8 @@ grok.templatedir('templates')
 class MacroListView(BaseView):
     grok.name('macrolist-view')
 
-    def getMacros(self):
-        macros = self.context.getMacros()
+    def get_macros(self):
+        macros = self.context.getList_macros()
         L = []
         if macros:
             for macro in macros:

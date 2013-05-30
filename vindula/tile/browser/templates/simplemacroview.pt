@@ -12,12 +12,11 @@
                          tal:define="view_macro nocall:context/@@simplemacro-view;
                                      macro view_macro/getMacro">
 
-                <h2 tal:content="context/Title"></h2>
-                <hr />
-                <div>
-                    <metal:block tal:condition="macro"
-                                  metal:use-macro="python:path(macro)"/>
-                </div>
+                <!--h2 tal:content="context/Title"></h2>
+                <hr /-->
+                <metal:block tal:condition="macro"
+                              metal:use-macro="python:path(macro)"/>
+
             </metal:macro>
         </metal:main>
     </body>

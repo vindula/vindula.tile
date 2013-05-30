@@ -10,7 +10,7 @@
         <metal:main fill-slot="content-core">
             <metal:macro define-macro="page"
                          tal:define="view_macro nocall:context/@@macrolist-view;
-                                     macros view_macro/getMacros">
+                                     macros view_macro/get_macros">
 
                 <div class="section-container tabs" data-section="tabs">
                     <tal:rep repeat="item macros">

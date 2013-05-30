@@ -17,7 +17,7 @@ from vindula.tile.config import *
 TileMacroList_schema = BaseTile.schema.copy() + Schema((
 
 
-    DataGridField('macros',
+    DataGridField('list_macros',
                 searchable=True,
                 columns=('title','page', 'macro'),
                 allow_delete = True,
@@ -30,7 +30,7 @@ TileMacroList_schema = BaseTile.schema.copy() + Schema((
                                         columns= {
                                             "title" : Column(_(u"Titulo")),
                                             "page" : Column(_(u"Página")),
-                                            "macro" : Column(_(u"Macro", default=u'page'))
+                                            "macro" : Column(_(u"Macro"),default='page')
                                         }),
                 ),
 
