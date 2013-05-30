@@ -31,7 +31,7 @@ class ListagemHorizontalView(BaseView):
             #TODO: Criar método para buscar a Unidade Organizacional
             D['unidade'] = 'ASCOM'
             try:
-                D['image'] = item.getImageRelac().absolute_url() + '/image_tile'
+                D['image'] = item.getImageRelac().absolute_url() + '/image_mini'
             except:
                 D['image'] = ''
             D['alt'] = item.getImageCaption()

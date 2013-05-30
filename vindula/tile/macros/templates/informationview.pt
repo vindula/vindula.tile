@@ -13,7 +13,8 @@
             </li-->
             <li>
                 <strong>email:</strong>
-                <a href="#" tal:attributes="href python: 'mailto:'+ orgstruc.email"
+                <a href="#" tal:define="email orgstruc/email|string: "
+                            tal:attributes="href python: 'mailto:'+ email"
                             tal:content="orgstruc/getEmail|string: ">contato@empresa.com</a>
             </li>
             <li>

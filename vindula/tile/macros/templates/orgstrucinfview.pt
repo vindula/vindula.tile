@@ -1,7 +1,7 @@
 <metal:main define-macro="page"
             tal:define="view_macro nocall:context/@@orgstruc-info;
                         orgstruc view_macro/get_structure;
-                        gestor orgstruc/getManager;
+                        gestor orgstruc/getManager|python:'';
                         members orgstruc/getEmployees|python:[];">
 
     <div id="tile-org-info">
