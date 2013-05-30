@@ -71,7 +71,7 @@
 		        <option value="mais_acessados">Mais acessados</option>
 		    </select>
 		    <div class="content_itens">
-			<ul>
+			<ul class="square">
 		      <li tal:repeat="item view/getItens">
 		         <a tal:define="obj item/getObject"
 		            tal:attributes="href obj/absolute_url"
@@ -190,8 +190,13 @@
 </metal:macro>
 <metal:macro define-macro="listagem_agenda"
              tal:define="view nocall:context/@@listagemvertical-view;">
+<div class="columns large-12">	
+     <h4>
+          <tal:cont tal:content="context/Title">Notícias</tal:cont>
+          <hr/>
+      </h4>
+		
 
-    <h2 tal:content="context/Title">Notícias</h2>
 
     <select id="sort_on"  tal:condition="context/getActiveSort|python:True">
         <option value="data">Data</option>
@@ -200,7 +205,7 @@
 
     <div class="content_itens">
       <tal:rep repeat="item view/getItens">
-        <div tal:define="obj item/getObject">
+        <div class="main_text" tal:define="obj item/getObject">
 
           <a tal:attributes="href obj/absolute_url"
             tal:content="obj/Title">Lorem ipsum dolor sit amet </a>
@@ -218,7 +223,7 @@
 
       </tal:rep>
     </div>
-
+</div>
 </metal:macro>
 <metal:macro define-macro="listagem_tabular">
 

@@ -188,10 +188,11 @@
 
                          batch python:Batch(itens, int(b_size), int(b_start), pagerange=len(itens));"
              tal:condition="batch">
-
+<div class="row">
     <div class="columns large-12">
         <div id="tile-more-acess-unity" class="row list_tile">
             <div class="title columns large-12">
+
               <div class="right" id="pag-nav">
                 <metal:block metal:use-macro="context/boll_batch/macros/navigation" />
               </div>
@@ -209,11 +210,11 @@
               <tal:rep repeat="item batch">
                   <div class="large-6 columns item"
                        tal:define="obj item/content/getObject">
-                    <div style="width: 16%; height: 40px;" class="left">
+                    <div class="left">
                         <img tal:attributes="src obj/getImageIcone|nothing;
                                              alt obj/Title; title obj/Title;" />
                     </div>
-                    <div style="width: 84%;" class="left">
+                    <div class="left">
                         <a class="block" href="#" tal:attributes="href string:${obj/absolute_url}/view;"
                                          tal:content="obj/getSiglaunidade|obj/Title" >DIBOP</a>
                         <span class="block" tal:content="obj/Title">Divisao de Boas Praticas</span>
@@ -229,10 +230,8 @@
             <div class="spinner display-none" style="text-align:center; margin: 30px;">
                 <img src="" alt="spinner" align="center" tal:attributes="src string:${context/portal_url}/++resource++vindula.myvindula.views/ajaxLoader.gif" />
             </div>
-
-
-    </div>
-
+     </div>
+  </div>
 </metal:macro>
 <metal:macro define-macro="mais_itens"
              tal:define="view_macro nocall:context/@@moreaccess-view;">
