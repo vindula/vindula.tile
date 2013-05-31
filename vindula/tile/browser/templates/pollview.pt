@@ -10,7 +10,7 @@
     	<div class="row" metal:define-macro="page"
                          tal:define="view_macro nocall:context/@@poll-view;
                                polls view_macro/polls">
-            <div class="columns large-12">
+            <div class="columns large-12 box-title">
                 <h4>
                     <tal:cont content="context/Title">Enquete</tal:cont>
                     <hr/>

@@ -13,11 +13,12 @@
         
         <div id="tile-accordion" metal:define-macro="page"
              tal:define="view_accordion nocall:context/@@accordion-view;">
-            <h5>
-              <tal:cont tal:content="context/Title">Accordion</tal:cont>
-              <hr/>
-            </h5>
-
+            <div class="box-title">
+                <h5>
+                  <tal:cont tal:content="context/Title">Accordion</tal:cont>
+                  <hr/>
+                </h5>
+            </div>
             <div class="tile-section-container">
                 <tal:rep repeat="item context/values">
                     <section>

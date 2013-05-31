@@ -54,4 +54,8 @@
     <object name="TileOrganogram"
             meta_type="Factory-based Type Information with dynamic views"/>
 
+    <object name="TileNewEmployee"
+            meta_type="Factory-based Type Information with dynamic views"/>
+
+
 </object>

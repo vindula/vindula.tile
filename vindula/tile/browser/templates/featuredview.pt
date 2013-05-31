@@ -82,7 +82,7 @@
 
     <div class="columns small-12" id="tile-featured">
         <div class="row">
-            <div class="columns large-12 feature_text">
+            <div class="columns large-12 feature_text box-title">
                 <h4 tal:content="context/Title">ANUNCIO</h4>
             </div>
             <div class="columns large-12">
@@ -121,10 +121,12 @@
    <div class="row">
     <div class="columns large-12 main_featured" tal:define="item python:items[0];
                                              text item/Description">
-        <h5>
-            <span tal:replace="context/Title">INFORMES</span>
-            <hr/>
-        </h5>
+        <div class="box-title">
+            <h5>
+                <span tal:replace="context/Title">INFORMES</span>
+                <hr/>
+            </h5>
+        </div>
         <p tal:content="python: view_macro.limitTextSize(text,500)" >
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             Suspendisse feugiat, leo vitae consequat congue, orci dui mollis dui, ut lacinia felis lorem id augue.

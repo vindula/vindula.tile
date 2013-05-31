@@ -1,0 +1,85 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="vindula.tile">
+
+    <head>
+      <metal:js fill-slot="javascript_head_slot">
+
+        <script type="text/javascript" src=""
+                tal:attributes="src string:${context/absolute_url|nothing}/++resource++vindula.tile/js/ajax_boll_batch.js"></script>
+      </metal:js>
+
+    </head>
+    <body>
+        <metal:main fill-slot="content-core">
+            <metal:macro define-macro="page"
+                         tal:define="view_macro nocall:context/@@newemployee-view;
+                                     path_macro  string:context/@@newemployee-view/macros/${view_macro/getKind}">
+                <metal:block tal:condition="path_macro"
+                             metal:use-macro="python:path(path_macro)"/>
+            </metal:macro>
+        </metal:main>
+    </body>
+</html>
+
+<metal:macro define-macro="padrao"
+             tal:define="view_macro nocall:context/@@newemployee-view;
+                         itens view_macro/getItens;
+
+                         Batch python:modules['Products.CMFPlone'].Batch;
+                         b_size request/b_size|string:6;
+                         b_start python:0;
+                         b_start request/b_start | b_start;
+
+                         batch python:Batch(itens, int(b_size), int(b_start), pagerange=len(itens));"
+             tal:condition="batch">
+
+    <div class="row">
+        <div class="columns large-12">
+            <div id="tile-more-acess-unity" class="row list_tile">
+                <div class="title columns large-12">
+
+                  <div class="right" id="pag-nav">
+                    <metal:block metal:use-macro="context/boll_batch/macros/navigation" />
+                  </div>
+
+                  <h5>
+                      <span tal:replace="context/Title">UNIDADES MAIS ACESSADAS</span>
+                      <hr/>
+                  </h5>
+                </div>
+                <div class="container lista-news">
+                  <input type="hidden" id="b_size" tal:attributes="value b_size" />
+                  <input type="hidden" id="b_start" tal:attributes="value b_start" />
+                  <input type="hidden" id="absolute_url" tal:attributes="value string:${context/absolute_url}" />
+
+                  <tal:rep repeat="item batch">
+                      <div class="large-6 columns item" tal:define="username item/username|nothing">
+
+                        <div class="left">
+                            <img tal:attributes="src python:view_macro.getURLFotoUser(username);
+                                                 alt item/name|string: ; title item/name|string: " />
+                        </div>
+                        <div class="left">
+                            <a class="block" href="#" tal:attributes="href python: here.portal_url() + '/myvindulaprefs?user=' + view_macro.encodeUser(username)"
+                                             tal:content="item/name|string: ">Pedro Miranda Prado</a>
+                            <span class="block" tal:content="item/unidadeprincipal|string: ">ASCON</span>
+                        </div>
+
+                      </div>
+                  </tal:rep>
+                </div>
+
+                <!-- Spinner -->
+                <div class="spinner display-none" style="text-align:center; margin: 30px;">
+                    <img src="" alt="spinner" align="center" tal:attributes="src string:${context/portal_url}/++resource++vindula.myvindula.views/ajaxLoader.gif" />
+                 </div>
+            </div>
+        </div>
+    </div>
+
+</metal:macro>
