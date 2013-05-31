@@ -8,18 +8,21 @@
 
     <body>
         <metal:main fill-slot="content-core">
-            <metal:macro define-macro="page"
-                         tal:define="view_macro nocall:context/@@simplemacro-view;
-                                     macro view_macro/getMacro">
-
-                <h2 tal:content="context/Title"></h2>
-                <hr />
-                <div>
-                    <metal:block tal:condition="macro"
-                                  metal:use-macro="python:path(macro)"/>
-                </div>
-            </metal:macro>
-        </metal:main>
+			<div class="row">
+	            <metal:macro define-macro="page"
+	                         tal:define="view_macro nocall:context/@@simplemacro-view;
+	                                     macro view_macro/getMacro">
+			
+			
+	                <h2 tal:content="context/Title"></h2>
+	                <hr />
+	                <div>
+	                    <metal:block tal:condition="macro"
+	                                  metal:use-macro="python:path(macro)"/>
+	                </div>
+	            </metal:macro>
+	        </metal:main>
+		</div>
     </body>
 </html>
 

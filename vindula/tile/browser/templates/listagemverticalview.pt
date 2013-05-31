@@ -86,7 +86,7 @@
 <metal:macro define-macro="listagem_com_imagem"
              tal:define="view nocall:context/@@listagemvertical-view;">
 
-              <div class="columns large-12">
+              <div class="columns large-12 header_text">
                   <h4>
                       <tal:cont tal:content="context/Title">Mais Populares</tal:cont>
                       <hr/>
