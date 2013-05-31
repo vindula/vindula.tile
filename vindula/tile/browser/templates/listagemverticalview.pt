@@ -86,7 +86,7 @@
 
 <metal:macro define-macro="listagem_com_imagem"
              tal:define="view nocall:context/@@listagemvertical-view;">
-
+		<div class="box-listagem clear">
               <div class="columns large-12 box-title">
                   <h4>
                       <tal:cont tal:content="context/Title">Mais Populares</tal:cont>
@@ -120,7 +120,7 @@
                 </div>
 
               </tal:rep>
-
+		</div>
 </metal:macro>
 <metal:macro define-macro="listagem_evento"
              tal:define="view nocall:context/@@listagemvertical-view;">
