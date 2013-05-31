@@ -18,6 +18,7 @@
         <type portal_type="TilePoll"/>
         <type portal_type="TileSimpleMacro"/>
         <type portal_type="TileNewEmployee"/>
+        <type portal_type="TileFood"/>
 
     </factorytypes>
 </object>

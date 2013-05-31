@@ -1,0 +1,51 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="context/main_template/macros/master"
+      lang="en"
+      i18n:domain="vindula.tile">
+<body>
+
+<metal:main fill-slot="content-core">
+    <metal:macro define-macro="page"
+                 tal:define="view nocall:context/@@food-view;">
+
+        <div class="columns large-12 title_events">
+          <h4>
+              <tal:cont tal:content="context/Title">Restaurantes</tal:cont>
+              <hr/>
+          </h4>
+        </div>
+        <div class="columns large-12">
+          <div class="row">
+
+            <tal:rep repeat="item view/getItens">
+              <div class="food" tal:define="obj item/getObject">
+
+                <div class="columns small-4 " id="image_tile">
+                    <img src="++theme++vindula.themedefault/images/demos/demo1-th.png"
+                         tal:attributes="src obj/getImageIcone|nothing" />
+                </div>
+
+                <div class="columns small-8 box-title">
+                    <strong><a href="#" tal:attributes="href obj/absolute_url"
+                                        tal:content="obj/Title">Nova diretoria da Opas visita Bio</a></strong>
+                </div>
+                <div class="columns small-12 box-description">
+                    <p class="discrete" tal:content="obj/Description">
+                        Prosciutto ground round tri-tip, sirloin salami ham hock drumstick shank
+                        brisket shankle short loin rump pastrami pork ball tip.
+                    </p>
+                </div>
+
+              </div>
+            </tal:rep>
+
+          </div>
+        </div>
+
+    </metal:macro>
+</metal:main>
+</body>
+</html>
