@@ -1,0 +1,40 @@
+<metal:main define-macro="page"
+            tal:define="view_macro nocall:context/@@information-view;
+                        orgstruc view_macro/get_structure;">
+
+    <div class="columns large-12 ">
+        <h5>
+            INFORMAÇÕES
+            <hr/>
+        </h5>
+        <ul class="no-bullet">
+            <!--li>
+                <strong>Grupo:</strong><span>Aberto</span>
+            </li-->
+            <li>
+                <strong>email:</strong>
+                <a href="#" tal:define="email orgstruc/email|string: "
+                            tal:attributes="href python: 'mailto:'+ email"
+                            tal:content="orgstruc/getEmail|string: ">contato@empresa.com</a>
+            </li>
+            <li>
+                <strong>Tel.:</strong>
+                <span tal:content="orgstruc/getPhone_number|string:">(00) 3332-3334</span>
+            </li>
+            <li>
+                <strong>Localização:</strong>
+                <span tal:content="orgstruc/getLocation|string:">Lorem Ipsum, Ed. Sodeles, Amete daram 232</span>
+            </li>
+            <li>
+                <strong>Projetos:</strong><span>12</span>
+            </li>
+            <li>
+                <strong>Equipe:</strong><span>200</span>
+            </li>
+
+        </ul>
+    </div>
+
+
+
+</metal:main>
