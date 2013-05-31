@@ -48,3 +48,7 @@ class ITilePoll(Interface):
 
 class ITileOrganogram(Interface):
     """ Interface for TileOrganogram content type """
+
+class ITileNewEmployee(Interface):
+    """ Interface for TileNewEmployee content type """
+

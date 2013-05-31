@@ -3,18 +3,21 @@
     <factorytypes>
 
         <type portal_type="Layout"/>
-        <type portal_type="TileBanner"/>
-        <type portal_type="TileListagemVertical"/>
-        <type portal_type="TileListagemHorizontal"/>
-        <type portal_type="TileSimpleMacro"/>
-        <type portal_type="TileMacroList"/>
-        <type portal_type="TileFeatured"/>
+        <type portal_type="LayoutLoad"/>
         <type portal_type="TileAccordionContent"/>
         <type portal_type="TileAccordionItem"/>
-        <type portal_type="TileMoreAccess"/>
-        <type portal_type="TileLabel"/>
+        <type portal_type="TileBanner"/>
         <type portal_type="TileBirthdays"/>
+        <type portal_type="TileFeatured"/>
         <type portal_type="TileLabel"/>
+        <type portal_type="TileListagemHorizontal"/>
+        <type portal_type="TileListagemVertical"/>
+        <type portal_type="TileMacroList"/>
+        <type portal_type="TileMoreAccess"/>
+        <type portal_type="TileOrganogram"/>
+        <type portal_type="TilePoll"/>
+        <type portal_type="TileSimpleMacro"/>
+        <type portal_type="TileNewEmployee"/>
 
     </factorytypes>
 </object>

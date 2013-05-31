@@ -13,3 +13,4 @@ import tile_label
 import tile_birthdays
 import tile_poll
 import tile_organogram
+import tile_newemployee

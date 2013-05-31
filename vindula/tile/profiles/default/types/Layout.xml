@@ -27,6 +27,7 @@
         <element value="TileBirthdays" />
         <element value="TilePoll" />
         <element value="TileOrganogram" />
+        <element value="TileNewEmployee" />
     </property>
 
     <property name="immediate_view">layout-view</property>
