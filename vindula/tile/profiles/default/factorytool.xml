@@ -19,6 +19,7 @@
         <type portal_type="TileSimpleMacro"/>
         <type portal_type="TileNewEmployee"/>
         <type portal_type="TileFood"/>
+        <type portal_type="TileCalendar"/>
 
     </factorytypes>
 </object>
