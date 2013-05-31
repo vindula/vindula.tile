@@ -31,7 +31,7 @@
               </div>
               <div class="columns large-12">
                   <div class="container-tree">
-                      <ul class="main-tree lightness"
+                      <ul class="no-bullet main-tree lightness"
                           tal:define="estrutura view_organogram/estrutura_pai;
                                       estruturas_filho python:view_organogram.get_estruturas_filho(estrutura)"
                           tal:condition="estrutura">
