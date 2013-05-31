@@ -119,7 +119,7 @@
                          items context/getItens;"
              tal:condition="items">
    <div class="row">
-    <div class="columns large-12" tal:define="item python:items[0];
+    <div class="columns large-12 main_featured" tal:define="item python:items[0];
                                              text item/Description">
         <h5>
             <span tal:replace="context/Title">INFORMES</span>
