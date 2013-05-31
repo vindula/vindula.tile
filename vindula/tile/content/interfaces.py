@@ -52,3 +52,6 @@ class ITileOrganogram(Interface):
 class ITileNewEmployee(Interface):
     """ Interface for TileNewEmployee content type """
 
+class ITileFood(Interface):
+    """ Interface for TileFood content type """
+
