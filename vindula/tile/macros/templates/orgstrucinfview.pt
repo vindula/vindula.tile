@@ -6,7 +6,7 @@
 
     <div id="tile-org-info">
         <div class="row">
-            <div class="columns large-4">
+            <div class="columns large-4 org-info_image">
                 <img tal:attributes="src orgstruc/getImageIcone|nothing" />
             </div>
             <div class="columns large-8">

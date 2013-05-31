@@ -2,7 +2,7 @@
             tal:define="view_macro nocall:context/@@information-view;
                         orgstruc view_macro/get_structure;">
 
-    <div class="columns large-12 ">
+    <div class="columns large-12 main_information ">
         <h5>
             INFORMAÇÕES
             <hr/>
