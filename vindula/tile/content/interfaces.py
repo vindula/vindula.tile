@@ -55,3 +55,5 @@ class ITileNewEmployee(Interface):
 class ITileFood(Interface):
     """ Interface for TileFood content type """
 
+class ITileCalendar(Interface):
+    """ Interface for TileCalendar content type """

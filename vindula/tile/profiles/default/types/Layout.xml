@@ -29,6 +29,7 @@
         <element value="TileOrganogram" />
         <element value="TileNewEmployee" />
         <element value="TileFood" />
+        <element value="TileCalendar" />
     </property>
 
     <property name="immediate_view">layout-view</property>
