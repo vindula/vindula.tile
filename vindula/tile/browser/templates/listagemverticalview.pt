@@ -86,7 +86,7 @@
 
 <metal:macro define-macro="listagem_com_imagem"
              tal:define="view nocall:context/@@listagemvertical-view;">
-		<div class="box-listagem clear">
+		<div id="box-listagem" class="clear">
               <div class="columns large-12 box-title">
                   <h4>
                       <tal:cont tal:content="context/Title">Mais Populares</tal:cont>
@@ -113,8 +113,7 @@
                                                 tal:content="obj/Title">Nova diretoria da Opas visita Bio</a></strong>
                         </div>
                         <div class="columns small-12" tal:define="context nocall: obj">
-                            <!--p class="discrete">Compartilhamento</p-->
-                            <metal:use use-macro="context/macro-share-content/macros/view" />
+                            <div metal:use-macro="context/macro-comboStandard-content/macros/view" />
                         </div>
                     </div>
                 </div>
@@ -136,7 +135,7 @@
   <div class="columns large-12" id="tile-events">
       <div class="row">
         <tal:rep repeat="item view/getItens">
-          <div class="event" tal:define="obj item/getObject">
+          <div class="event clear" tal:define="obj item/getObject">
             <div class="columns small-3 date-box">
                 <div class="box-date">
                     <h2 tal:condition="obj/startDate|nothing"
@@ -162,8 +161,7 @@
                 </p>
             </div>
             <div class="columns small-12" tal:define="context nocall: obj">
-                <!--p class="discrete">Compartilhamento</p-->
-                <div metal:use-macro="context/macro-share-content/macros/view" />
+                <div metal:use-macro="context/macro-comboStandard-content/macros/view" />
             </div>
           </div>
         </tal:rep>
