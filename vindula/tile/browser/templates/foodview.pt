@@ -21,7 +21,7 @@
           <div class="row">
 
             <tal:rep repeat="item view/getItens">
-              <div class="food" tal:define="obj item/getObject">
+              <div class="food clear" tal:define="obj item/getObject">
 
                 <div class="columns small-4 " id="image_tile">
                     <img src="++theme++vindula.themedefault/images/demos/demo1-th.png"

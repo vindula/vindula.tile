@@ -17,14 +17,14 @@
                             showPrevMonth view/showPrevMonth;
                             showNextMonth view/showNextMonth;
                             year view/year;">
-
+<div class="row">
         <div class="columns large-12 box-title">
             <h4>
                 <tal:cont tal:content="context/Title">Aniversariantes da semana</tal:cont>
                 <hr/>
             </h4>
         </div>
-        <div class="columns large-12">
+        <div class="columns large-12 main_calendar">
 
             <div>
 
@@ -111,6 +111,7 @@
                 </table>
             </div>
         </div>
+	  </div>
     </metal:macro>
 </metal:main>
 </body>
