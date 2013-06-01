@@ -129,7 +129,8 @@ class TileListagemVertical(BaseTile):
     schema = TileListagemVertical_schema
 
     def voc_list_types(self):
-        types = self.portal_types.listContentTypes()
+        types = ['Pessoas']
+        types += self.portal_types.listContentTypes()
         return types
 
     def voc_list_workflow(self):

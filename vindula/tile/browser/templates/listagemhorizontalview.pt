@@ -86,7 +86,7 @@
 	                <p tal:content="item/description|nothing">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ornare placerat leo,
 	                non scelerisque sem mollis ut.</p>
 
-        		<div class="left" define="context nocall:item/obj">
+        		<div class="left" tal:define="context nocall:item/obj">
                 	<metal:use use-macro="context/macro-comboStandard-content/macros/view" />
                 </div>
 	        </div>
