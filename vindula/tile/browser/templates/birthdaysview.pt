@@ -19,7 +19,7 @@
                 <hr/>
             </h4>
         </div>
-        <div class="columns large-12">
+        <div class="columns large-12 main_birthday">
             <ul id="birthdays"
                 tal:attributes="data-options python: len(view_birthdays.birthdaysToday())==1 and bullets_false;">
                 <li tal:define="quant context/numb_items;
