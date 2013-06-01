@@ -203,9 +203,9 @@
         <option value="mais_acessados">Mais acessados</option>
     </select>
 
-    <div class="content_itens clear">
+    <div class="content_itens">
       <tal:rep repeat="item view/getItens">
-        <div class="main_text" tal:define="obj item/getObject">
+        <div class="main_text clear" tal:define="obj item/getObject">
 
           <a tal:attributes="href obj/absolute_url"
             tal:content="obj/Title">Lorem ipsum dolor sit amet </a>

@@ -7,7 +7,7 @@
       i18n:domain="vindula.tile">
 <body>
     <metal:main fill-slot="main">
-    	<div class="row" metal:define-macro="page"
+    	<div class="row main_poll" metal:define-macro="page"
                          tal:define="view_macro nocall:context/@@poll-view;
                                polls view_macro/polls">
             <div class="columns large-12 box-title">
