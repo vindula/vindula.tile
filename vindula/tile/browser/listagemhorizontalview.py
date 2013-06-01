@@ -19,8 +19,8 @@ class ListagemHorizontalView(BaseView):
 
         for item in context.getHighlights():
             D={}
-            D['title'] = item.Title()
-            D['description'] = item.Description()[:200] + '...'
+            D['title'] = item.Title()[:50]
+            D['description'] = item.Description()[:120] + '...'
             D['url'] = item.absolute_url()
             if item.getActive_date():
                 D['date'] = item.creation_date.strftime('%d/%m/%Y')
