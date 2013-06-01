@@ -151,7 +151,7 @@
                 Mais Acessadas:
             </h6>
         </div>
-        <div class="columns large-12 main_moreacces">
+        <div class="columns large-12 main_moreaccess">
           <tal:rep repeat="item view_macro/getItens">
             <div class="row news_access" tal:define="obj item/content/getObject">
 
