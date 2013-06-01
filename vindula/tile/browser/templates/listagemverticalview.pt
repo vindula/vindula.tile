@@ -52,7 +52,7 @@
 
 <metal:macro define-macro="listagem_sem_icones"
              tal:define="view nocall:context/@@listagemvertical-view;">
-	<div id="list-no-icon" class="clear">
+	<div id="list-no-icon">
 		 <div class="columns large-12">
 			<div class="row box-title">
                 <div class="columns small-10 text">
@@ -112,7 +112,7 @@
                             <strong><a href="#" tal:attributes="href obj/absolute_url"
                                                 tal:content="obj/Title">Nova diretoria da Opas visita Bio</a></strong>
                         </div>
-                        <div class="columns small-12" tal:define="context nocall: obj">
+                        <div class="vd-social-left columns small-12" tal:define="context nocall: obj">
                             <div metal:use-macro="context/macro-comboStandard-content/macros/view" />
                         </div>
                     </div>
@@ -160,7 +160,7 @@
                     <strong>Site: </strong><a tal:attributes="href obj/eventUrl"><span tal:content="obj/eventUrl">FioCruz</span></a>
                 </p>
             </div>
-            <div class="columns small-12" tal:define="context nocall: obj">
+            <div class="vd-social-left columns small-12" tal:define="context nocall: obj">
                 <div metal:use-macro="context/macro-comboStandard-content/macros/view" />
             </div>
           </div>
@@ -189,7 +189,7 @@
 </metal:macro>
 <metal:macro define-macro="listagem_agenda"
              tal:define="view nocall:context/@@listagemvertical-view;">
-<div class="columns large-12 agenda_main">
+<div class="columns large-12">
     
     <div class="box-title">	
         <h4>
@@ -204,7 +204,7 @@
         <option value="mais_acessados">Mais acessados</option>
     </select>
 
-    <div class="content_itens">
+    <div class="content_itens clear">
       <tal:rep repeat="item view/getItens">
         <div class="main_text" tal:define="obj item/getObject">
 
@@ -216,8 +216,8 @@
             <span tal:content="obj/startDate|nothing">Lorem ipsum dolor </span>
           </p>
 
-          <div tal:define="context nocall: obj">
-               <metal:use use-macro="context/macro-share-content/macros/view" />
+          <div class="vd-social-left" tal:define="context nocall:obj">
+               <div metal:use-macro="context/macro-comboStandard-content/macros/view" />
           </div>
 
         </div>
