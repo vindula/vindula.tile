@@ -1,5 +1,5 @@
 $j(document).ready(function(){ 
-    $j('.letters > li a').click(function(){
+    $j('ul.letters > li > h6 > a').click(function(){
         event.preventDefault();
         event.stopPropagation();
         
