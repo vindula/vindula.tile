@@ -67,7 +67,7 @@
                         <div class="left">
                             <a class="block" href="#" tal:attributes="href python: here.portal_url() + '/myvindulaprefs?user=' + view_macro.encodeUser(username)"
                                              tal:content="item/name|string: ">Pedro Miranda Prado</a>
-                            <span class="block" tal:content="item/unidadeprincipal|string: ">ASCON</span>
+                            <span class="block" tal:content="item/get_unidadeprincipal|string: ">ASCON</span>
                         </div>
 
                       </div>
