@@ -125,14 +125,14 @@
 <metal:macro define-macro="listagem_evento"
              tal:define="view nocall:context/@@listagemvertical-view;">
 
-  
+
   <div class="columns large-12 box-title">
       <h4>
           <tal:cont tal:content="context/Title">Proximos eventos</tal:cont>
           <hr/>
       </h4>
   </div>
-  
+
   <div class="columns large-12" id="tile-events">
       <div class="row">
         <tal:rep repeat="item view/getItens">
@@ -192,8 +192,8 @@
 <metal:macro define-macro="listagem_agenda"
              tal:define="view nocall:context/@@listagemvertical-view;">
 <div class="columns large-12 agenda_main">
-    
-    <div class="box-title">	
+
+    <div class="box-title">
         <h4>
             <tal:cont tal:content="context/Title">Notícias</tal:cont>
             <hr/>
@@ -244,9 +244,22 @@
           <tal:def define="portal_type python: (context.getListTypes(),);
                            fields python:[{'label':  ''     , 'attribute': 'getImageIcone', 'is_image':  'True', 'width':  '50',},
                                           {'label': 'Nome'  , 'attribute': 'Title'},
-                                          {'label': 'Gestor', 'attribute': 'getManager'}]; ">
+                                          {'label': 'Gestor', 'attribute': 'getManager'}]; "
+                   tal:condition="python: not 'Pessoas' in portal_type">
               <metal:block metal:use-macro="context/macro_tabular_file/macros/view" />
           </tal:def>
+          <tal:def define="portal_type python: (context.getListTypes(),);
+                           fields python:[{'label':  ''     , 'attribute': 'getImageIcone', 'is_image':  'True', 'width':  '50',},
+                                          {'label': 'Nome'  , 'attribute': 'name'},
+                                          {'label': 'Cargo',  'attribute': 'position'},
+                                          {'label': 'Unidade','attribute': 'unidadeprincipal'},
+                                          {'label': 'Contato','attribute': 'getContato'},
+                                          ]; "
+                   tal:condition="python: 'Pessoas' in portal_type">
+              <metal:block metal:use-macro="context/macro_tabular_file/macros/view" />
+          </tal:def>
+
+
       </div>
   </div>
 </div>
