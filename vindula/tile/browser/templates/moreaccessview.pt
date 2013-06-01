@@ -85,11 +85,10 @@
                         <hr/>
                     </h4>
                 </div>
-                <div class="columns small-2">
+                <div class="columns small-2 icon-moreaccess show-box-hidden">
                     <a href="#" class="right more">
                         <h1 class="subheader vindula-icon-plus-sign"></h1>
                     </a>
-
                     <metal:block metal:use-macro="context/@@moreaccess-view/macros/mais_itens" />
                 </div>
             </div>
@@ -139,13 +138,11 @@
                         <hr/>
                     </h4>
                 </div>
-                <div class="columns small-2">
+                <div class="columns small-2 icon-moreaccess show-box-hidden">
                     <a href="#" class="right more">
                         <h1 class="subheader vindula-icon-plus-sign"></h1>
                     </a>
-
                     <metal:block metal:use-macro="context/@@moreaccess-view/macros/mais_itens" />
-
                 </div>
             </div>
         </div>
