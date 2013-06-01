@@ -11,6 +11,7 @@
     <metal:macro define-macro="page"
                  tal:define="view nocall:context/@@food-view;">
 
+	<div class="row">
         <div class="columns large-12 title_events">
           <h4>
               <tal:cont tal:content="context/Title">Restaurantes</tal:cont>
@@ -21,7 +22,7 @@
           <div class="row">
 
             <tal:rep repeat="item view/getItens">
-              <div class="food" tal:define="obj item/getObject">
+              <div class="food clear" tal:define="obj item/getObject">
 
                 <div class="columns small-4 " id="image_tile">
                     <img src="++theme++vindula.themedefault/images/demos/demo1-th.png"
@@ -41,10 +42,9 @@
 
               </div>
             </tal:rep>
-
           </div>
         </div>
-
+      </div>
     </metal:macro>
 </metal:main>
 </body>
