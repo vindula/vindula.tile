@@ -63,10 +63,12 @@
 	                            	consectetur adipiscing elit. In ornare placerat leo,
 	                            	non scelerisque sem mollis ut.</p>
 
-								<div class="left" tal:define="content item/obj">
+								<!--div class="left" tal:define="content item/obj">
 				                	<metal:use use-macro="context/macro-share-content/macros/view" />
-				                </div>
-
+				                </div-->
+                                <div class="vd-social-left" tal:define="context nocall: item/obj">
+                                    <div metal:use-macro="context/macro-comboStandard-content/macros/view" />
+                                </div>
 	                        </div>
 	                    </div>
 
@@ -150,11 +152,14 @@
 			                	<strong><a href="#" tal:attributes="href item/url|nothing" tal:content="item/title|nothing">
 			                			Nova diretoria da Opas visita Bio</a></strong>
 				            </div>
-				            <div class="columns small-12">
+				            <!--div class="columns small-12">
 				            	<tal:def define="context nocall:item/obj">
 				                	<metal:use use-macro="context/macro-share-content/macros/view" />
 				                </tal:def>
-				            </div>
+				            </div-->
+                            <div class="vd-social-left columns small-12" tal:define="context nocall: item/obj">
+                                <div metal:use-macro="context/macro-comboStandard-content/macros/view" />
+                            </div>
 				        </div>
 				    </div>
 
