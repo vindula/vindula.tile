@@ -1,8 +1,8 @@
-
 function executaAjaxTile(ctx, b_start){
     var url = ctx.find('input#absolute_url').val(),
         b_size = parseInt(ctx.find('input#b_size').val()),
-        params = {};
+        params = {},
+        ctx_id = "#"+ctx.attr('id');
 
 
     if (b_start==null)
@@ -22,16 +22,7 @@ function executaAjaxTile(ctx, b_start){
           dataType: 'GET',
           success: function(data){
                 var dom = $j(data);
-                // dom.filter('script').each(function(){
-                //     var content_script = this.text || this.textContent || this.innerHTML || ''
-                //     if (content_script)
-                //         $j.eval(content_script);
-                //     else
-                //         $j.get(this.src, function(data){
-                //             $j.eval(data);
-                //         })
-                // });
-                var content = dom.find('div.list_tile').contents();
+                var content = dom.find(ctx_id).contents();
                 ctx.html(content);
             },
         });
@@ -45,5 +36,4 @@ $j(document).ready(function(){
             b_start = parseInt($j(this).find('input').val());
         executaAjaxTile($conteiner,b_start);
     });
-
 });
