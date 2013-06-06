@@ -66,10 +66,12 @@
 								<!--div class="left" tal:define="content item/obj">
 				                	<metal:use use-macro="context/macro-share-content/macros/view" />
 				                </div-->
-                                <div class="vd-social-left" tal:condition="context/getActiveSocial|python:True"
-                                	 tal:define="context nocall: item/obj">
-                                    <div metal:use-macro="context/macro-comboStandard-content/macros/view" />
-                                </div>
+			                	<tal:cond condition="context/getActiveSocial|python:True">
+									<div class="vd-social-left" tal:define="context nocall: item/obj">
+	                                    <div metal:use-macro="context/macro-comboStandard-content/macros/view" />
+	                                </div>
+			                	</tal:cond>
+
 	                        </div>
 	                    </div>
 
