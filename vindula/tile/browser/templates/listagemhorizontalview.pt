@@ -126,7 +126,7 @@
 	         tal:condition="batch">
 
 		    <div class="columns large-12 box-title">
-		    	<div class="right" id="pag-nav">
+		    	<div class="ajax_pagination right" id="pag-nav">
 	            	<metal:block metal:use-macro="context/boll_batch/macros/navigation" />
 	        	</div>
 
