@@ -33,7 +33,7 @@
                                               name poll/form_name;
                                               id poll/UID">
         
-                            <div class="row">
+                            <div class="row main-row-poll">
                                 <div class="columns large-12 poll_answers">
         
                                   <tal:loop repeat="choice poll/results">
