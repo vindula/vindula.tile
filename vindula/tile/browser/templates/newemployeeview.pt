@@ -43,7 +43,7 @@
             <div id="tile-more-acess-unity" class="row list_tile">
                 <div class="title columns large-12">
 
-                  <div class="right" id="pag-nav">
+                  <div class="ajax_pagination right" id="pag-nav">
                     <metal:block metal:use-macro="context/boll_batch/macros/navigation" />
                   </div>
 

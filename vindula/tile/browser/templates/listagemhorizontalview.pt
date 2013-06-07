@@ -66,9 +66,12 @@
 								<!--div class="left" tal:define="content item/obj">
 				                	<metal:use use-macro="context/macro-share-content/macros/view" />
 				                </div-->
-                                <div class="vd-social-left" tal:define="context nocall: item/obj">
-                                    <div metal:use-macro="context/macro-comboStandard-content/macros/view" />
-                                </div>
+			                	<tal:cond condition="context/getActiveSocial|python:True">
+									<div class="vd-social-left" tal:define="context nocall: item/obj">
+	                                    <div metal:use-macro="context/macro-comboStandard-content/macros/view" />
+	                                </div>
+			                	</tal:cond>
+
 	                        </div>
 	                    </div>
 
@@ -125,7 +128,7 @@
 	         tal:condition="batch">
 
 		    <div class="columns large-12 box-title">
-		    	<div class="right" id="pag-nav">
+		    	<div class="ajax_pagination right" id="pag-nav">
 	            	<metal:block metal:use-macro="context/boll_batch/macros/navigation" />
 	        	</div>
 
