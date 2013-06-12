@@ -4,7 +4,7 @@
         xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 
     <!-- Basic metadata -->
-    <property name="title" i18n:translate="">TileFood</property>
+    <property name="title" i18n:translate="">Bloco de Restaurante</property>
     <property name="description" i18n:translate="">TileFood</property>
     <property name="content_icon">++resource++vindula.tile/images/food.png</property>
     <property name="content_meta_type">TileFood</property>

@@ -4,7 +4,7 @@
         xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 
     <!-- Basic metadata -->
-    <property name="title" i18n:translate="">TileLabel</property>
+    <property name="title" i18n:translate="">Bloco de Texto</property>
     <property name="description" i18n:translate="">TileLabel</property>
     <property name="content_icon">++resource++vindula.tile/images/label.png</property>
     <property name="content_meta_type">TileLabel</property>

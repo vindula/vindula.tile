@@ -4,7 +4,7 @@
         xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 
     <!-- Basic metadata -->
-    <property name="title" i18n:translate="">TileBirthdays</property>
+    <property name="title" i18n:translate="">Bloco de Aniversariantes</property>
     <property name="description" i18n:translate="">TileBirthdays</property>
     <property name="content_icon">++resource++vindula.tile/images/birthday.png</property>
     <property name="content_meta_type">TileBirthdays</property>

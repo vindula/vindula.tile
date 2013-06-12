@@ -4,7 +4,7 @@
         xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 
     <!-- Basic metadata -->
-    <property name="title" i18n:translate="">TileNewEmployee</property>
+    <property name="title" i18n:translate="">Bloco de Novos Funcionários</property>
     <property name="description" i18n:translate="">TileNewEmployee</property>
     <property name="content_icon">++resource++vindula.tile/images/newemploye.png</property>
     <property name="content_meta_type">TileNewEmployee</property>

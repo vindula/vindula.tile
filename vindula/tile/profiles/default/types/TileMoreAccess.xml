@@ -4,7 +4,7 @@
         xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 
     <!-- Basic metadata -->
-    <property name="title" i18n:translate="">TileMoreAccess</property>
+    <property name="title" i18n:translate="">Bloco de Mais Acessados</property>
     <property name="description" i18n:translate="">TileMoreAccess</property>
     <property name="content_icon">++resource++vindula.tile/images/moreaccess.png</property>
     <property name="content_meta_type">TileMoreAccess</property>
