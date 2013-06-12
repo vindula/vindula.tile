@@ -6,7 +6,7 @@
     <!-- Basic metadata -->
     <property name="title" i18n:translate="">TilePoll</property>
     <property name="description" i18n:translate="">TilePoll</property>
-    <property name="content_icon">++resource++vindula.tile.images/tile_label.png</property>
+    <property name="content_icon">++resource++vindula.tile/images/event.png</property>
     <property name="content_meta_type">TilePoll</property>
     <property name="product">vindula.tile</property>
     <property name="factory">addTilePoll</property>

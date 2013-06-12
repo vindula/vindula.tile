@@ -6,7 +6,7 @@
     <!-- Basic metadata -->
     <property name="title" i18n:translate="">TileCalendar</property>
     <property name="description" i18n:translate="">TileCalendar</property>
-    <property name="content_icon">++resource++vindula.tile.images/calendar.png</property>
+    <property name="content_icon">++resource++vindula.tile/images/calendar.png</property>
     <property name="content_meta_type">TileCalendar</property>
     <property name="product">vindula.tile</property>
     <property name="factory">addTileCalendar</property>

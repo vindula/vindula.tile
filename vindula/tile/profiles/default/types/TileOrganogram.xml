@@ -6,7 +6,7 @@
     <!-- Basic metadata -->
     <property name="title" i18n:translate="">TileOrganogram</property>
     <property name="description" i18n:translate="">TileMoreAccess</property>
-    <property name="content_icon">++resource++vindula.tile.images/tile_listagem_vertical.png</property>
+    <property name="content_icon">++resource++vindula.tile/images/org.png</property>
     <property name="content_meta_type">TileOrganogram</property>
     <property name="product">vindula.tile</property>
     <property name="factory">addTileOrganogram</property>
