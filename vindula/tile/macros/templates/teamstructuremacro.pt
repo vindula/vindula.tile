@@ -1,0 +1,21 @@
+<metal:main define-macro="page"
+            tal:define="view_macro nocall:context/@@team-structure;
+                        orgstruc view_macro/get_structure;
+                        members orgstruc/getEmployees|python:[];">
+    <div id="tile-org-info">
+        <div class="row">
+            <div class="columns large-12">
+                <ul class="small-block-grid-4 large-block-grid-4">
+                    <tal:rep repeat="member members">
+                        <li tal:define="dados_member python:view_macro.get_prefs_user(member)">
+                            <a href="#" tal:attributes="href python: here.portal_url() + '/myvindulaprefs?user=' + view_macro.encodeUser(member);
+                                                        alt dados_member/name|string:''; title dados_member/name|string:'';">
+                                <img width="130" height="130" tal:attributes="src python:view_macro.getURLFotoUser(member);" />
+                            </a>
+                        </li>
+                    </tal:rep>
+                </ul>
+            </div>
+        </div>
+    </div>
+</metal:main >

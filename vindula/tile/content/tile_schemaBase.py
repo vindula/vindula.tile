@@ -2,14 +2,17 @@
 from AccessControl import ClassSecurityInfo
 from zope.interface import implements
 from Products.Archetypes.atapi import *
-from Products.ATContentTypes.content import schemata, base
+from Products.Archetypes.public import *
+
+from Products.ATContentTypes.content.base import ATCTContent, ATContentTypeSchema
+from Products.ATContentTypes.content import schemata
 
 
 from vindula.tile.content.interfaces import IBaseTile
 from vindula.tile import MessageFactory as _
 from vindula.tile.config import *
 
-BaseTile_schema = schemata.ATContentTypeSchema.copy() + Schema((
+BaseTile_schema = ATContentTypeSchema + Schema((
 
     BooleanField(
         name='activ_recurcividade',
@@ -59,7 +62,7 @@ BaseTile_schema = schemata.ATContentTypeSchema.copy() + Schema((
 
 schemata.finalizeATCTSchema(BaseTile_schema, folderish=False)
 
-class BaseTile(base.ATCTContent):
+class BaseTile(ATCTContent):
     """ Reserve Content for BaseTile"""
     security = ClassSecurityInfo()
 

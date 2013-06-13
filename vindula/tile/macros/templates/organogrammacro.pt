@@ -1,0 +1,9 @@
+<metal:main define-macro="page"
+            tal:define="view_macro nocall:context/@@organogram-macro;
+                        estrutura view_macro/get_org">
+    
+    <script type="text/javascript" src=""
+            tal:attributes="src string:${context/absolute_url|nothing}/++resource++vindula.tile/js/org-tree.js"></script>    
+    <metal:block metal:use-macro="context/@@organogram-view/macros/page" />
+    
+</metal:main >

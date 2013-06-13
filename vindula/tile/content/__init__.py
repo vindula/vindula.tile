@@ -16,3 +16,7 @@ import tile_organogram
 import tile_newemployee
 import tile_food
 import tile_calendar
+import tile_team
+import tile_referencelist
+import tile_infostructure
+import tile_tabularlist

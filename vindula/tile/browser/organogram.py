@@ -6,18 +6,30 @@ grok.templatedir('templates')
 
 class OrganogramView(BaseView):
     grok.name('organogram-view')
-
+    
+    
+    def getSuperStructure(self, context):
+        if context.portal_type == 'OrganizationalStructure':
+            return context
+        if context.portal_type == 'Plone Site':
+            return None
+        else:
+            return self.getSuperStructure(context.aq_parent)
 
     def estrutura_pai(self):
         context = self.context
         item = context.getEstrutura_principal()
-
-        estrutura_pai = item.getStructures()
-        if estrutura_pai:
-            return estrutura_pai
-        else:
-            return item
-
+        if not item:
+            item = self.getSuperStructure(context)
+        
+        if item:
+            estrutura_pai = item.getStructures()
+            if estrutura_pai:
+                return estrutura_pai
+            else:
+                return item
+        
+        return None
 
     def get_estruturas_filho(self,estrutura_pai):
         L = []
@@ -26,8 +38,7 @@ class OrganogramView(BaseView):
             for ref in refs:
                 obj = ref.getSourceObject()
                 if obj.portal_type == 'OrganizationalStructure':
-                    L.append(obj)
-
+                    L.append(ref)
         return L
 
     def def_class(sef,estrutura, estruturas_filho):

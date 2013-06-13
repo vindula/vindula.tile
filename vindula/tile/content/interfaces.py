@@ -57,3 +57,15 @@ class ITileFood(Interface):
 
 class ITileCalendar(Interface):
     """ Interface for TileCalendar content type """
+
+class ITileTeam(Interface):
+    """ Interface for TileTeam content type """
+
+class ITileReferenceList(Interface):
+    """ Interface for TileReferenceList content type """
+
+class ITileInfoStructure(Interface):
+    """ Interface for TileInfoStructure content type """
+
+class ITileTabularList(Interface):
+    """ Interface for TileInfoStructure content type """  

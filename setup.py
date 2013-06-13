@@ -30,6 +30,7 @@ setup(name='vindula.tile',
           'plone.namedfile [blobs]',
           # -*- Extra requirements: -*-
           'Products.DataGridField',
+          'collective.referencedatagridfield',
       ],
       entry_points="""
       # -*- Entry points: -*-

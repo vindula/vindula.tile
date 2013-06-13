@@ -19,10 +19,8 @@
 
     <metal:main fill-slot="content-core">
 
-        <metal:macro define-macro="page"
-                     tal:define="view_organogram nocall:context/@@organogram-view;">
-
-          <div id="tile-organograma" class="row">
+        <metal:macro define-macro="page">
+          <div class="row">
               <div class="columns large-12 box-title">
                   <h5>
                      <tal:cont content="context/Title|nothing"> ORGANOGRAMA </tal:cont>
@@ -30,38 +28,44 @@
                   </h5>
               </div>
               <div class="columns large-12">
-                  <div class="container-tree">
-                      <ul class="no-bullet main-tree lightness"
-                          tal:define="estrutura view_organogram/estrutura_pai;
-                                      estruturas_filho python:view_organogram.get_estruturas_filho(estrutura)"
-                          tal:condition="estrutura">
-
-                          <li class="tree-item arrow " tal:attributes="class python:view_organogram.def_class(estrutura,estruturas_filho) +' open' " >
-                              <div class="content" tal:content="estrutura/Title">Conselho Deliberativo</div>
-
-                              <ul class="tree-2">
-                                <tal:rep repeat="estrutura_filho python:view_organogram.get_estruturas_filho(estrutura)">
-                                  <metal:block metal:use-macro="context/@@organogram-view/macros/recursivo" />
-                                </tal:rep>
-                              </ul>
-                          </li>
-
-
-                      </ul>
-                  </div>
+                  <metal:macro define-macro="body"
+                               tal:define="view_organogram nocall:context/@@organogram-view;">
+                      
+                      <div id="tile-organograma" class="container-tree">
+                          <ul class="no-bullet main-tree lightness"
+                              tal:define="estrutura nocall:view_organogram/estrutura_pai|nothing;"
+                              tal:condition="estrutura">
+                                  
+                              <tal:def define="estruturas_filho python:view_organogram.get_estruturas_filho(estrutura())">
+                                  <li class="tree-item arrow"
+                                      tal:attributes="class python:view_organogram.def_class(estrutura(),estruturas_filho) +' open'">
+    
+                                      <div class="content" tal:content="python:estrutura().Title()">
+                                          Conselho Deliberativo
+                                      </div>
+                                      <ul class="tree-2">
+                                        <tal:rep repeat="estrutura_filho python:view_organogram.get_estruturas_filho(estrutura())">
+                                          <metal:block metal:use-macro="context/@@organogram-view/macros/recursivo" />
+                                        </tal:rep>
+                                      </ul>
+                                  </li>
+                              </tal:def>
+                          </ul>
+                      </div>
+                  </metal:macro>
               </div>
           </div>
         </metal:macro>
     </metal:main>
   </body>
 </html>
+
 <metal:macro define-macro="recursivo">
     <li class="tree-item" tal:define="view_organogram nocall:context/@@organogram-view;
-                                      estrutura nocall:estrutura_filho|nothing;
-                                      estruturas_filho python:view_organogram.get_estruturas_filho(estrutura)"
-
+                                      estrutura estrutura_filho|nothing;
+                                      estruturas_filho python:view_organogram.get_estruturas_filho(estrutura.getSourceObject())"
                           tal:condition="estrutura"
-                          tal:attributes="class python:view_organogram.def_class(estrutura,estruturas_filho)">
+                          tal:attributes="class python:view_organogram.def_class(estrutura.getSourceObject(),estruturas_filho)">
 
       <div class="content">
         <span class="left"  tal:content="estrutura/Title">Concelho de Assesoria Poilico Estratégico</span>

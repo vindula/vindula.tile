@@ -1,0 +1,95 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="context/main_template/macros/master"
+      lang="en"
+      i18n:domain="vindula.tile">
+
+<head>
+    <metal:js fill-slot="javascript_head_slot">
+      <!--script type="text/javascript" src=""
+              tal:attributes="src string:${context/absolute_url|nothing}/++resource++vindula.tile/js/org-tree.js"></script-->
+    </metal:js>
+</head>
+<body>
+    <metal:main fill-slot="content-core">
+        <metal:macro define-macro="page">
+            
+            <metal:macro define-macro="body"
+                         tal:condition="orgstruc"
+                         tal:define="view_macro nocall:context/@@infostructure-view;
+                                     orgstruc nocall:view_macro/getStructure|nothing;">
+                                         
+                <tal:def define="gestor python:orgstruc().getManager() or '';
+                                 members python:orgstruc().getEmployees() or [];">
+                     <div id="tile-org-info">
+                        <div class="row">
+                            <div class="columns large-4 org-info_image">
+                                <img tal:attributes="src python:orgstruc().getImageIcone() or None" />
+                            </div>
+                            <div class="columns large-8">
+                                <div>
+                                    <span tal:content="structure python:orgstruc().getText() or None">
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                        Nam ut imperdiet urna. Nullam a lacus velit, id sollicitudin nisi.
+                                        Curabitur at justo eget nulla pellentesque vestibulum.
+                                    </span>
+                                </div>
+                
+                                <div class="container-manager">
+                                    <div>
+                                        <strong>Gestor</strong>
+                                    </div>
+                                    <div tal:define="dados_gestor python:view_macro.get_prefs_user(gestor)">
+                                        <div class="left manager-pic">
+                                            <img tal:attributes="src python:view_macro.getURLFotoUser(gestor);" />
+                                        </div>
+                                        <div class="left manager-info">
+                                            <a href="#" tal:attributes="href python: here.portal_url() + '/myvindulaprefs?user=' + view_macro.encodeUser(gestor)">Alfredo Macedo</a>
+                                            <p tal:content="dados_gestor/position|string: ">Diretor</p>
+                                        </div>
+                                        <div class="left manager-contact">
+                                            <a href="#" tal:attributes="href python: 'mailto:'+ str(dados_gestor.get('email',''))"
+                                                        tal:content="dados_gestor/email|string: " >alfredo.m@bio.fiocruz.br</a>
+                                            <a href="#" id="new_menssage" >Enviar Mensagem</a>
+                                            <p tal:content="dados_gestor/phone_number|string: " >(00) 3333-3333</p>
+                                            <p tal:content="dados_gestor/cell_phone|string: " >(00) 3333-3333</p>
+                                        </div>
+                                    </div>
+                
+                                </div>
+                            </div>
+                
+                            <div class="columns large-12 label-team">
+                                <strong>
+                                    <a href="">Equipe</a>
+                                </strong>
+                                <span tal:content="python:'('+str(len(members))+')'">(132)</span>
+                            </div>
+                
+                            <div class="columns large-12">
+                                <div class="pagination pag-left"><a href="#"></a></div>
+                                <div class="pagination pag-right"><a href="#"></a></div>
+                
+                                <ul class="small-block-grid-9 large-block-grid-9 members-team">
+                                    <tal:rep repeat="member members">
+                                        <li tal:define="dados_member python:view_macro.get_prefs_user(member)">
+                                            <a href="#" tal:attributes="href python: here.portal_url() + '/myvindulaprefs?user=' + view_macro.encodeUser(member);
+                                                                        alt dados_member/name|string:''; title dados_member/name|string:'';">
+                                                <img tal:attributes="src python:view_macro.getURLFotoUser(member);" />
+                                            </a>
+                                        </li>
+                
+                                    </tal:rep>
+                
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </tal:def>
+            </metal:macro>
+        </metal:macro>
+    </metal:main>
+</body>
+</html>

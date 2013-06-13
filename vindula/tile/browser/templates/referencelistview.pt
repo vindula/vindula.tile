@@ -5,32 +5,29 @@
       lang="en"
       metal:use-macro="context/main_template/macros/master"
       i18n:domain="vindula.tile">
-
     <body>
         <metal:main fill-slot="content-core">
             <metal:macro define-macro="page"
-                         tal:define="view_macro nocall:context/@@macrolist-view;
-                                     macros view_macro/get_macros">
-
+                         tal:define="view_macro nocall:context/@@referencelist-view;
+                                     items view_macro/getReferences">
                 <div class="container-tiles-section section-container auto" data-section>
-                    <tal:rep repeat="item macros">
-
+                    <tal:rep repeat="item items">
                       <section>
                         <p class="title" data-section-title>
                           <a href="#" tal:content="item/title">Section 1</a>
                         </p>
 
                         <div class="content content-section" data-section-content
-                              tal:define="path_macro item/macro">
+                              tal:define="context nocall:item/object;
+                                          path_macro string:context/${context/getLayout}/macros/body;">
                             <div class="color-bg">
                                 <metal:block tal:condition="path_macro"
-                                             metal:use-macro="python:path(path_macro)"/>
+                                         metal:use-macro="python:path(path_macro)"/>
                             </div>
                         </div>
                       </section>
                     </tal:rep>
                 </div>
-
             </metal:macro>
         </metal:main>
     </body>

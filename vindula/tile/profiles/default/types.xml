@@ -62,5 +62,16 @@
 
     <object name="TileCalendar"
             meta_type="Factory-based Type Information with dynamic views"/>
-
+    
+    <object name="TileTeam"
+            meta_type="Factory-based Type Information with dynamic views"/>
+            
+    <object name="TileReferenceList"
+            meta_type="Factory-based Type Information with dynamic views"/>
+    
+    <object name="TileInfoStructure"
+            meta_type="Factory-based Type Information with dynamic views"/>
+            
+    <object name="TileTabularList"
+            meta_type="Factory-based Type Information with dynamic views"/>
 </object>

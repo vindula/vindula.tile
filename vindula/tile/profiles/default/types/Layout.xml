@@ -30,6 +30,10 @@
         <element value="TileNewEmployee" />
         <element value="TileFood" />
         <element value="TileCalendar" />
+        <element value="TileTeam" />
+        <element value="TileReferenceList" />
+        <element value="TileInfoStructure" />
+        <element value="TileTabularList" />
     </property>
 
     <property name="immediate_view">layout-view</property>
