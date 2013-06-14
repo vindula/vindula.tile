@@ -74,4 +74,7 @@
             
     <object name="TileTabularList"
             meta_type="Factory-based Type Information with dynamic views"/>
+    
+    <object name="TileHowDo"
+            meta_type="Factory-based Type Information with dynamic views"/>
 </object>

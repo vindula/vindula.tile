@@ -1,0 +1,48 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="vindula.tile">
+
+    <body>
+        <metal:main fill-slot="content-core">
+            <metal:macro define-macro="page"
+                         tal:define="view nocall:context/@@howdo-view;">
+                <div class="row">
+                    <div id="list-no-icon" class="clear">
+                         <div class="columns large-12">
+                            <div class="row box-title">
+                                <div class="columns small-10 text">
+                                    <h4 tal:content="context/Title">Notícias</h4>
+                                    <hr/>
+                                </div>
+                                <div class="columns small-2 sub_header">
+                                    <a href="#" class="right more">
+                                        <h1 class="subheader vindula-icon-plus-sign"></h1>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="columns large-12">
+                            <select id="sort_on"  tal:condition="context/getActiveSort|python:True">
+                                <option value="data">Data</option>
+                                <option value="mais_acessados">Mais acessados</option>
+                            </select>
+                            <div class="content_itens">
+                            <ul class="square">
+                              <li tal:repeat="item view/getItens">
+                                 <a tal:define="obj item/getObject"
+                                    tal:attributes="href obj/absolute_url"
+                                    tal:content="obj/Title">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a>
+                              </li>
+                            </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </metal:macro>
+        </metal:main>
+    </body>
+</html>

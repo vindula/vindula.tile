@@ -69,3 +69,6 @@ class ITileInfoStructure(Interface):
 
 class ITileTabularList(Interface):
     """ Interface for TileInfoStructure content type """  
+
+class ITileHowDo(Interface):
+    """ Interface for TileHowDo content type """

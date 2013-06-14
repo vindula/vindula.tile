@@ -34,6 +34,7 @@
         <element value="TileReferenceList" />
         <element value="TileInfoStructure" />
         <element value="TileTabularList" />
+        <element value="TileHowDo" />
     </property>
 
     <property name="immediate_view">layout-view</property>

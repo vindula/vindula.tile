@@ -10,7 +10,6 @@ grok.templatedir('templates')
 
 class MoreAccessView(BaseView):
     grok.name('moreaccess-view')
-
     first_active = True
 
     def getItens(self):
@@ -25,7 +24,6 @@ class MoreAccessView(BaseView):
         else:
             return result[:cont]
 
-
     def list_files(self, portal_type):
         list_files = []
         rs = True
@@ -38,7 +36,6 @@ class MoreAccessView(BaseView):
                                                           rs=rs,
                                                           **query)
         return result
-
 
     def list_more(self):
         context = self.context
@@ -83,7 +80,6 @@ class MoreAccessView(BaseView):
         return L
 
     def constructor(self):
-
         letras = {}
         for i in self.alphabet():
             letras[i] = []
@@ -98,7 +94,3 @@ class MoreAccessView(BaseView):
 
 
         return letras
-
-
-
-
