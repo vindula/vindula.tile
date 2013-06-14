@@ -27,7 +27,7 @@
                               </span>
                               <br />
 
-                              <span tal:condition="context/getActiveUnit|nothing"
+                              <span tal:condition="python:context.getActiveUnit() and banner.get('unit', None) or None"
                                     tal:content="string: ${banner/unit|nothing} /"> ASCON /</span>
 
                               <span tal:condition="context/getActiveDate|nothing"

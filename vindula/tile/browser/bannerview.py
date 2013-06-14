@@ -29,12 +29,23 @@ class BannerView(BaseView):
                     D['author'] = banner.getOwner().getUserName()
                 #TODO: Criar método para buscar o nome da Unidade
                 if obj.activeUnit == True:
-                    D['unit']= 'Nome da Unidade'
+                    title_structure = ''
+                    structure = self.getStructure(obj)
+                    if structure:
+                        title_structure = structure.Title()
+                    D['unit']= title_structure
 
                 D['obj'] = banner
                 L.append(D)
         return L
 
-
+    def getStructure(self, context):
+        if context.portal_type == 'OrganizationalStructure':
+            return context
+        if context.portal_type == 'Plone Site':
+            return None
+        else:
+            return self.getStructure(context.aq_parent)
+        
 
 
