@@ -4,9 +4,9 @@
         xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 
     <!-- Basic metadata -->
-    <property name="title" i18n:translate="">TileTabularList</property>
+    <property name="title" i18n:translate="">Bloco de Lista Tabular</property>
     <property name="description" i18n:translate="">TileTabularList</property>
-    <property name="content_icon">++resource++vindula.tile.images/tile_listagem_vertical.png</property>
+    <property name="content_icon">++resource++vindula.tile/images/list-tabular.png</property>
     <property name="content_meta_type">TileTabularList</property>
     <property name="product">vindula.tile</property>
     <property name="factory">addTileTabularList</property>

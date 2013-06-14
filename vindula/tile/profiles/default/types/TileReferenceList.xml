@@ -4,9 +4,9 @@
         xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 
     <!-- Basic metadata -->
-    <property name="title" i18n:translate="">TileReferenceList</property>
+    <property name="title" i18n:translate="">Bloco de Lista de Referência</property>
     <property name="description" i18n:translate="">TileReferenceList</property>
-    <property name="content_icon">++resource++vindula.tile.images/tile_listagem_vertical.png</property>
+    <property name="content_icon">++resource++vindula.tile/images/list-ref.png</property>
     <property name="content_meta_type">TileReferenceList</property>
     <property name="product">vindula.tile</property>
     <property name="factory">addTileReferenceList</property>
