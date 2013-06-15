@@ -5,7 +5,7 @@
 
     <!-- Basic metadata -->
     <property name="title" i18n:translate="">Capa</property>
-    <property name="description" i18n:translate="">Layout pata o portal</property>
+    <property name="description" i18n:translate="">Layout para o portal</property>
     <property name="content_icon">++resource++vindula.tile/images/layout.png</property>
     <property name="content_meta_type">Layout</property>
     <property name="product">vindula.tile</property>
