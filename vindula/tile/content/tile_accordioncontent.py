@@ -8,11 +8,12 @@ from Products.ATContentTypes.content.schemata import finalizeATCTSchema
 from plone.app.folder.folder import ATFolder
 
 from vindula.tile.content.interfaces import ITileAccordionContent
+from vindula.tile.content.tile_schemaBase import BaseTile
 
 from vindula.tile import MessageFactory as _
 from vindula.tile.config import *
 
-TileAccordionContent_schema = ATFolder.schema.copy() + Schema((
+TileAccordionContent_schema = ATFolder.schema.copy() + BaseTile.schema.copy() + Schema((
 
     BooleanField(
         name='activ_recurcividade',
@@ -51,7 +52,7 @@ TileAccordionContent_schema = ATFolder.schema.copy() + Schema((
 
 finalizeATCTSchema(TileAccordionContent_schema, folderish=True)
 
-class TileAccordionContent(ATFolder):
+class TileAccordionContent(ATFolder, BaseTile):
     """ Reserve Content for TileAccordionContent """
     security = ClassSecurityInfo()
 
