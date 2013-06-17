@@ -29,22 +29,6 @@ TileListagemHorizontal_schema = BaseTile.schema.copy() + Schema((
     ),
 
 
-    StringField(
-        name='typeNavigation',
-        widget=SelectionWidget(
-            label=_(u"Tipo da navegação do(s) destaque(s)"),
-            description=_(u"Selecione o tipo de navegação para o(s) destaque(s)."),
-            label_msgid='vindula_tile_label_typeNavigation',
-            description_msgid='vindula_tile_help_typeNavigation',
-            i18n_domain='vindula_tile',
-            format='radio',
-        ),
-        vocabulary=[("number","Número"),("image","Imagem")],
-        default="image",
-        required=True,
-    ),
-
-
     BooleanField(
         name='activeSocial',
         default=True,
