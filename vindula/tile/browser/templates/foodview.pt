@@ -23,6 +23,13 @@
 
             <tal:rep repeat="item view/getItens">
               <div class="food clear" tal:define="obj item/getObject">
+                <div class="columns small-12 ">
+                  <h6 class="subheader"
+                      tal:define="rest_obj python: view.aq_parent(obj)">
+                    <a href="" tal:attributes="href rest_obj/absolute_url|nothing"
+                               tal:content="rest_obj/Title|string: "></a>
+                  </h6>
+                </div>
 
                 <div class="columns small-4 " id="image_tile">
                     <img src="++theme++vindula.themedefault/images/demos/demo1-th.png"

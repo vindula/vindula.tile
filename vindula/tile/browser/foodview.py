@@ -27,3 +27,7 @@ class FoodView(BaseView):
                                     )
 
         return itens[:numbers]
+
+    def aq_parent(self, obj):
+        context = self.context
+        return obj.aq_parent

@@ -65,7 +65,7 @@
                                                  alt item/name|string: ; title item/name|string: " />
                         </div>
                         <div class="left">
-                            <a class="block" href="#" tal:attributes="href python: here.portal_url() + '/myvindulaprefs?user=' + view_macro.encodeUser(username)"
+                            <a class="block" href="#" tal:attributes="href item/getUrlPerfil|nothing"
                                              tal:content="item/name|string: ">Pedro Miranda Prado</a>
                             <span class="block" tal:content="python: item.get_unidadeprincipal().get('title','') ">ASCON</span>
                         </div>
