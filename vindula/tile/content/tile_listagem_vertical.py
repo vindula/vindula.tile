@@ -39,7 +39,7 @@ TileListagemVertical_schema = BaseTile.schema.copy() + Schema((
     IntegerField(
         name='columns',
         widget=SelectionWidget(
-            label=_(u"Tamalho do tile"),
+            label=_(u"Tamanho do tile"),
             description=_(u"Selecione o tamanho do tile."),
             label_msgid='vindula_tile_label_columns',
             description_msgid='vindula_tile_help_columns',
