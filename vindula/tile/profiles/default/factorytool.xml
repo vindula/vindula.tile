@@ -20,6 +20,8 @@
         <type portal_type="TileNewEmployee"/>
         <type portal_type="TileFood"/>
         <type portal_type="TileCalendar"/>
+        <type portal_type="TileTabularList"/>
+        <type portal_type="TileReferenceList"/>
 
     </factorytypes>
 </object>
