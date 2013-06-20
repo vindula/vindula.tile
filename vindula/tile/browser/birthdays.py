@@ -3,11 +3,12 @@ from five import grok
 from vindula.tile.browser.baseview import BaseView
 
 from vindula.myvindula.tools.utils import UtilMyvindula
-from vindula.myvindula.models.dados_funcdetail import ModelsDadosFuncdetails
+from vindula.myvindula.models.funcdetails import FuncDetails
 
 
 #import datetime
 from DateTime.DateTime import DateTime
+from datetime import datetime, date, timedelta
 import calendar
 
 grok.templatedir('templates')
@@ -17,64 +18,91 @@ class BirthdaysView(BaseView, UtilMyvindula):
 
 
     def parse_data(self, str_data):
-
         D={'day':'','month':''}
+        months = ['XX','Jan','Fev','Mar','Abr','Maio','Jun',\
+                       'Jul','Ago','Set', 'Out', 'Nov','Dez']
 
-        date = str_data.split('/')
-        obj_date = DateTime(int(date[2]),int(date[1]),int(date[0]))
+        list_date = str_data.split('/')
+        obj_date = date(int(list_date[2]),int(list_date[1]),int(list_date[0]))
 
         D['day'] = obj_date.day
-        D['month'] = obj_date.pMonth()
+        D['month'] = months[obj_date.month]
 
         return D
 
-    def get_birthdaysToday(self, type_filter):
-        results = []
-        now = DateTime()
-        ops = False
+    def get_details_user(self,dado_user):
+        context = self.context
+        if context.getDetails_user():
 
-        if type_filter == 1:
-            date_start = date.today().strftime('%Y-%m-%d')
-            date_end = date.today().strftime('%Y-%m-%d')
-            ops = True
-            # results = ModelsDadosFuncdetails().get_FuncBirthdays(date_start,date_end,True)
+            lines = context.getDetails_user().splitlines()
+            L = []
+            for line in lines:
+                D = {}
+                line = line.replace('[', '').replace(']', '').split(' | ')
+                try:
+                    D['label'] = line[0]
+                    if line[1] == 'date_birth':
+                        dado = dado_user.get(line[1])
+                        dado = dado.split('/')
+                        D['content'] = '/'.join(dado[:-1])
 
-        elif type_filter == 7:
+                    elif line[1] == 'unidadeprincipal':
+                        D['content'] = dado_user.get_unidadeprincipal().get('title','')
 
-            dow = now.dow()
-            date_start = (now + 1 - dow).strftime('%Y-%m-%d')
-            date_end = (now + 1 - dow + 6).strftime('%Y-%m-%d')
+                    elif line[1] == 'departamento':
+                        texto = ''
+                        for item in dado_user.get_department():
+                            texto += ' %s /' % item.get('title')
 
-            # results = ModelsDadosFuncdetails().get_FuncBirthdays(date_start,date_end)
+                        D['content'] = texto
 
-        elif type_filter == 30:
+                    else:
+                        D['content'] = dado_user.get(line[1])
+                    L.append(D)
+                except :
+                    pass
+            return L
 
-            dia = calendar.monthrange(now.year(),now.month())[1]
-            date_start = now.strftime('%Y-%m-1')
-            date_end = now.strftime('%Y-%m-'+str(dia))
+        return []
 
-            # results = ModelsDadosFuncdetails().get_FuncBirthdays(date_start,date_end)
+    def get_birthdaysToday(self, type_filter, filtro_OU):
+        Z_now = DateTime()
+        today = DateTime().asdatetime().date()
+
+        if type_filter == '1':
+            date_start = date_end = today
+
+        elif type_filter == '7':
+
+            day_of_weekday = Z_now.dow()
+            date_start = (Z_now + 1 - day_of_weekday).asdatetime().date()
+            date_end = (Z_now + 1 - day_of_weekday + 6).asdatetime().date()
+
+        elif type_filter == '30':
+            last_dia = calendar.monthrange(today.year,today.month)[1]
+            date_start = date(today.year,today.month,1)
+            date_end = date(today.year,today.month,last_dia)
 
         elif type_filter == 'prox':
+            date_start = today
+            date_end = today + timedelta(days=365)
 
-            date_start = ''
-            date_end = ''
-            ops = 'proximo'
+        results = FuncDetails.get_FuncBirthdays(date_start,date_end)
 
+        if filtro_OU:
+            results_OU = []
+            for user in results:
+                if filtro_OU == user.get_unidadeprincipal().get('obj',None):
+                    results_OU.append(user)
 
-        results = ModelsDadosFuncdetails().get_FuncBirthdays(date_start,date_end,ops)
+            return results_OU
 
-        return results #results[:int(quant)]
+        return results
 
 
     def birthdaysToday(self):
-        type_filter = self.context.type_search
-        #quant = self.data.quantidade_portlet
+        type_filter = self.context.getType_search()
+        filtro_OU = self.context.getStructures()
 
-
-        results = self.get_birthdaysToday(type_filter)
-
-        if results:
-            return results #results[:int(quant)]
-        else:
-            return []
+        results = self.get_birthdaysToday(type_filter,filtro_OU)
+        return results

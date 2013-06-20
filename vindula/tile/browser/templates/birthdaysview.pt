@@ -21,12 +21,12 @@
         </div>
         <div class="columns large-12 main_birthday">
             <ul id="birthdays"
+                tal:define="quant context/numb_items;
+                            results view_birthdays/birthdaysToday;"
                 tal:attributes="data-options python: len(view_birthdays.birthdaysToday())==1 and bullets_false;">
-                <li tal:define="quant context/numb_items;
-                                results view_birthdays/birthdaysToday;">
 
+                <li tal:condition="results">
                     <tal:results tal:repeat="item python:results[:quant]">
-
                         <div class="row" tal:define="username item/username">
                             <div class="columns small-12">
                                 <div class="left box-date" tal:define="data item/date_birth;
@@ -36,24 +36,31 @@
                                 </div>
                                 <div class="left box-image">
                                     <img src="++theme++vindula.themedefault/images/demos/demo-photo.png"
-                                         tal:attributes="src python:view_birthdays.getURLFotoUser(username);
-                                                    alt item/name|nothing;
-                                                    title item/name|nothing;" />
+                                         tal:attributes="src item/getImageIcone;
+                                                         alt item/name|nothing;
+                                                         title item/name|nothing;" />
 
                                 </div>
                                 <div class="left box-data">
-                                    <a href="#" tal:attributes="href python: here.portal_url() + '/myvindulaprefs?user=' + view_birthdays.encodeUser(username)"
-                                        tal:content="item/name">Paulo Sobral</a>
-                                    <p class="discrete" >DITIN</p>
+                                    <a href="#" tal:attributes="href item/getUrlPerfil"
+                                                tal:content="python: item.get(context.getPrincipal_user(),'')">Paulo Sobral</a>
+                                    <p class="discrete" tal:content="python: item.get_unidadeprincipal().get('title','')">DITIN</p>
+
+                                    <tal:rep repeat="detail python: view.get_details_user(item)">
+                                        <span tal:condition="python: detail['label'] and detail['content']"
+                                              tal:content="string: ${detail/label}: "> </span>
+                                        <span tal:condition="detail/content" tal:content="detail/content"> </span>
+                                        <br tal:condition="python: detail['label'] or detail['content']">
+                                    </tal:rep>
+
+
                                 </div>
                             </div>
                         </div>
-
                     </tal:results>
-
-
-
-
+                </li>
+                <li tal:condition="not: results">
+                    Não há aniversariantes
 
                 </li>
             </ul>

@@ -4,7 +4,7 @@ from zope.interface import implements
 from Products.Archetypes.atapi import *
 from Products.ATContentTypes.content.schemata import finalizeATCTSchema
 
-
+from vindula.controlpanel.browser.at.widget import VindulaReferenceSelectionWidget
 from vindula.tile.content.interfaces import ITileBirthdays
 from vindula.tile.content.tile_schemaBase import BaseTile
 
@@ -23,6 +23,20 @@ TileBirthdays_schema = BaseTile.schema.copy() + Schema((
             description='Quantidade maxima de items.',
         ),
         default=5,
+    ),
+
+    ReferenceField('structures',
+        multiValued=0,
+        allowed_types=('OrganizationalStructure',),
+        relationship='structures',
+        widget=VindulaReferenceSelectionWidget(
+            typeview='list',
+            label=_(u"Escolha uma Unidade Organizacional"),
+            description=_(u"Selecione uma Unidade Organizacional. "
+                          u"Esta escolha fará com so apresente usuários desta Unidade Organizacional"),
+
+            ),
+        required=False
     ),
 
     StringField(
@@ -53,19 +67,6 @@ TileBirthdays_schema = BaseTile.schema.copy() + Schema((
         vocabulary=list_types_choice,
         default="prox",
         required=True,
-    ),
-
-    TextField(
-            name='principal_user',
-            widget=StringWidget(
-                label=_(u"Destaque do aniversariante"),
-                description=_(u"Adicione o campo com a informação princial do aniversariante como\
-                                'name' para Nome ou 'nickname' para Apelido ou outros."),
-                label_msgid='vindula_tile_label_principal_user',
-                description_msgid='vindula_tile_help_principal_user',
-            ),
-            default = u'name',
-            required=True,
     ),
 
     TextField(
