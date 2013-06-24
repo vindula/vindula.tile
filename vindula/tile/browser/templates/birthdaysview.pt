@@ -46,7 +46,7 @@
                                                 tal:content="python: item.get(context.getPrincipal_user(),'')">Paulo Sobral</a>
                                     <p class="discrete" tal:content="python: item.get_unidadeprincipal().get('title','')">DITIN</p>
 
-                                    <tal:rep repeat="detail python: view.get_details_user(item)">
+                                    <tal:rep repeat="detail python: view_birthdays.get_details_user(item)">
                                         <span tal:condition="python: detail['label'] and detail['content']"
                                               tal:content="string: ${detail/label}: "> </span>
                                         <span tal:condition="detail/content" tal:content="detail/content"> </span>
