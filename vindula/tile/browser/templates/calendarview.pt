@@ -26,7 +26,7 @@
         </div>
 		<div class="row">
 	        <div class="columns large-12 main_calendar">
-	            <div class="columns large-12">
+	            <div class="columns large-12 top-title">
 	                <a href="#" rel="nofollow"
 	                   title="Previous month"
 	                   tal:define="prevMonthMonth view/prevMonthMonth;
@@ -35,7 +35,7 @@
 	                                   href python:'%s?%smonth:int=%d&amp;year:int=%d&amp;orig_query=%s' % (request['ACTUAL_URL'], query_string, prevMonthMonth, prevMonthYear, url_quote_plus(query_string));
 	                                   class string:kssCalendarChange kssattr-year-${prevMonthYear} kssattr-month-${prevMonthMonth} calendarPrevious;"
 	                   tal:condition="showPrevMonth"
-	                   i18n:attributes="title title_previous_month;">&laquo;</a>
+	                   i18n:attributes="title title_previous_month;">◄</a>
 	
 	                <span i18n:translate="" tal:omit-tag="">
 	                    <span i18n:name="monthname" i18n:translate=""
@@ -54,7 +54,7 @@
 	                                   href python:'%s?%smonth:int=%d&amp;year:int=%d&amp;orig_query=%s' % (request['ACTUAL_URL'], query_string, nextMonthMonth, nextMonthYear, url_quote_plus(query_string));
 	                                   class string:kssCalendarChange kssattr-year-${nextMonthYear} kssattr-month-${nextMonthMonth} calendarNext;"
 	                   tal:condition="showNextMonth"
-	                   i18n:attributes="title title_next_month;">&raquo;</a>
+	                   i18n:attributes="title title_next_month;">►</a>
 	            </div>
 	
 	
