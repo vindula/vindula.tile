@@ -20,8 +20,8 @@ class ListagemHorizontalView(BaseView):
         for item in context.getHighlights():
             D={}
 
-            D['title'] = self.limitTextSize(50,item.Title())
-            D['description'] = self.limitTextSize(120,item.Description()[:120])
+            D['title'] = self.limitTextSize(item.Title(),50)
+            D['description'] = self.limitTextSize(item.Description(),120)
             D['url'] = item.absolute_url()
 
             if item.getActive_date():
@@ -53,13 +53,3 @@ class ListagemHorizontalView(BaseView):
             L.append(D)
         return L
 
-
-    def limitTextSize(self, size, text):
-        if len(text) > size:
-            i = size
-            while text[i] != " " and (i < len(text)):
-                i += 1
-
-            return text[:i]+'...'
-        else:
-            return text
