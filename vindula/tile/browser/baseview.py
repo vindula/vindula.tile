@@ -21,3 +21,16 @@ class BaseView(grok.View):
     def getKind(self):
         context = self.context
         return context.getKind()
+
+
+    def limitTextSize(self, text, size=100):
+        if len(text) > size:
+            i = size
+            try:
+                while text[i] != " ":
+                    i += 1
+                return text[:i]+'...'
+            except IndexError:
+                return text
+        else:
+            return text

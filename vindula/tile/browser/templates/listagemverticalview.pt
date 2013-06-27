@@ -250,7 +250,7 @@
                            fields python:[{'label':  ''     , 'attribute': 'getImageIcone', 'is_image':  'True', 'width':  '50',},
                                           {'label': 'Nome'  , 'attribute': 'name'},
                                           {'label': 'Cargo',  'attribute': 'position'},
-                                          {'label': 'Unidade','attribute': 'get_unidadeprincipal'},
+                                          {'label': 'Unidade','attribute': 'get_sigla_unidadeprincipal'},
                                           {'label': 'Contato','attribute': 'getContato'},
                                           ]; "
                    tal:condition="python: 'Pessoas' in portal_type">
