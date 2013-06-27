@@ -46,7 +46,7 @@
                                     <a href="#" tal:attributes="href item/getUrlPerfil"
                                                 tal:content="python: item.get(context.getPrincipal_user(),'')">Paulo Sobral</a>
                                     <p class="discrete"
-                                       tal:condition="python: structure =! None"
+                                       tal:condition="python: structure != None"
                                        tal:content="structure/getSiglaOrTitle">DITIN</p>
 
                                     <tal:rep repeat="detail python: view_birthdays.get_details_user(item)">
