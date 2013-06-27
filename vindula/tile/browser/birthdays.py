@@ -47,7 +47,11 @@ class BirthdaysView(BaseView, UtilMyvindula):
                         D['content'] = '/'.join(dado[:-1])
 
                     elif line[1] == 'unidadeprincipal':
-                        D['content'] = dado_user.get_unidadeprincipal().getSiglaOrTitle()
+                        structure = dado_user.get_unidadeprincipal()
+                        result = ''
+                        if structure:
+                            result = structure.getSiglaOrTitle()
+                        D['content'] = result
 
                     elif line[1] == 'departamento':
                         texto = ''

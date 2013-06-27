@@ -64,10 +64,13 @@
                             <img tal:attributes="src python:view_macro.getURLFotoUser(username);
                                                  alt item/name|string: ; title item/name|string: " />
                         </div>
-                        <div class="left">
+                        <div class="left"
+                             tal:define="structure item/get_unidadeprincipal">
                             <a class="block" href="#" tal:attributes="href item/getUrlPerfil|nothing"
                                              tal:content="item/name|string: ">Pedro Miranda Prado</a>
-                            <span class="block" tal:content="python: item.get_unidadeprincipal().getSiglaOrTitle() ">ASCON</span>
+                            <span class="block"
+                                  tal:condition="structure"
+                                  tal:content="structure/getSiglaOrTitle">ASCON</span>
                         </div>
 
                       </div>
