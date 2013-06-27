@@ -67,7 +67,7 @@
                         <div class="left">
                             <a class="block" href="#" tal:attributes="href item/getUrlPerfil|nothing"
                                              tal:content="item/name|string: ">Pedro Miranda Prado</a>
-                            <span class="block" tal:content="python: item.get_unidadeprincipal().get('title','') ">ASCON</span>
+                            <span class="block" tal:content="python: item.get_unidadeprincipal().getSiglaOrTitle() ">ASCON</span>
                         </div>
 
                       </div>
