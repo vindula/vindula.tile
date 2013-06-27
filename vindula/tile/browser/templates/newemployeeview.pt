@@ -69,7 +69,7 @@
                             <a class="block" href="#" tal:attributes="href item/getUrlPerfil|nothing"
                                              tal:content="item/name|string: ">Pedro Miranda Prado</a>
                             <span class="block"
-                                  tal:condition="structure"
+                                  tal:condition="python: structure != None"
                                   tal:content="structure/getSiglaOrTitle">ASCON</span>
                         </div>
 
