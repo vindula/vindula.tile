@@ -241,11 +241,14 @@
       <div id="itens">
           <tal:def define="portal_type python: (context.getListTypes(),);
                            fields python:[{'label':  ''     , 'attribute': 'getImageIcone', 'is_image':  'True', 'width':  '65',},
-                                          {'label': 'Nome'  , 'attribute': 'Title'},
-                                          {'label': 'Gestor', 'attribute': 'getManager'}]; "
+                                          {'label': 'Nome'  , 'attribute': 'getSigla_and_Title'},
+                                          {'label': 'Contato','attribute': 'getContatoInfo'},
+                                          {'label': 'Gestor', 'attribute': 'getGestorInfo'}]; "
                    tal:condition="python: not 'Pessoas' in portal_type">
               <metal:block metal:use-macro="context/macro_tabular_file/macros/view" />
           </tal:def>
+
+
           <tal:def define="portal_type python: (context.getListTypes(),);
                            fields python:[{'label':  ''     , 'attribute': 'getImageIcone', 'is_image':  'True', 'width':  '65',},
                                           {'label': 'Nome'  , 'attribute': 'name'},
