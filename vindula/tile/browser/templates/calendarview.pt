@@ -37,7 +37,7 @@
 	                   tal:condition="showPrevMonth"
 	                   i18n:attributes="title title_previous_month;">◄</a>
 	
-	                <span i18n:translate="" tal:omit-tag="">
+	                <span i18n:translate="">
 	                    <span i18n:name="monthname" i18n:translate=""
 	                          tal:content="view/monthName"
 	                          tal:omit-tag="">monthname</span>
