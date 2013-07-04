@@ -15,12 +15,12 @@
 <body>
     <metal:main fill-slot="content-core">
         <metal:macro define-macro="page">
-            
+
             <metal:macro define-macro="body"
                          tal:condition="orgstruc"
                          tal:define="view_macro nocall:context/@@infostructure-view;
                                      orgstruc nocall:view_macro/getStructure|nothing;">
-                                         
+
                 <tal:def define="gestor python:orgstruc().getManager() or '';
                                  members python:orgstruc().getEmployees() or [];">
                      <div id="tile-org-info">
@@ -36,7 +36,7 @@
                                         Curabitur at justo eget nulla pellentesque vestibulum.
                                     </span>
                                 </div>
-                
+
                                 <div class="container-manager">
                                     <div>
                                         <strong>Gestor</strong>
@@ -46,7 +46,8 @@
                                             <img width="60" tal:attributes="src python:view_macro.getURLFotoUser(gestor);" />
                                         </div>
                                         <div class="left manager-info">
-                                            <a href="#" tal:attributes="href python: here.portal_url() + '/myvindulaprefs?user=' + view_macro.encodeUser(gestor)">Alfredo Macedo</a>
+                                            <a href="#" tal:attributes="href python: here.portal_url() + '/myvindulaprefs?user='+gestor"
+                                                        tal:content="dados_gestor/name|string: ">Alfredo Macedo</a>
                                             <p tal:content="dados_gestor/position|string: ">Diretor</p>
                                         </div>
                                         <div class="left manager-contact">
@@ -57,23 +58,23 @@
                                             <p tal:content="dados_gestor/cell_phone|string: " >(00) 3333-3333</p>
                                         </div>
                                     </div>
-                
+
                                 </div>
                             </div>
-                
+
                             <div class="columns large-12 label-team">
                                 <strong>
                                     <a href="">Equipe</a>
                                 </strong>
                                 <span tal:content="python:'('+str(len(members))+')'">(132)</span>
                             </div>
-                
+
                             <div class="columns large-12">
                                 <div class="row">
-                                    <ul data-orbit 
+                                    <ul data-orbit
                                         data-options="bullets:false;
                                                       next_class:orbit-next;
-                                                      prev_class:orbit-prev;" 
+                                                      prev_class:orbit-prev;"
                                         class="orbit-slides-container">
                                         <tal:rep repeat="block python: view_macro.format_members(members)">
                                             <li>
