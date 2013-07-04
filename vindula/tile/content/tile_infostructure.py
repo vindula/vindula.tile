@@ -43,7 +43,7 @@ class TileInfoStructure(BaseTile):
     columns = 12
 
     #Scripts js
-    #scripts_js = ['org-tree.js']
+#    scripts_js = ['org-info.js']
 
 
 registerType(TileInfoStructure, PROJECTNAME)

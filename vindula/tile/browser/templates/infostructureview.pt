@@ -24,9 +24,9 @@
                 <tal:def define="gestor python:orgstruc().getManager() or '';
                                  members python:orgstruc().getEmployees() or [];">
                      <div id="tile-org-info">
-                        <div class="row">
+                        <div class="row manager">
                             <div class="columns large-4 org-info_image">
-                                <img tal:attributes="src python:orgstruc().getImageIcone() or None" />
+                                <img width="150" tal:attributes="src python:orgstruc().getImageIcone() or None" />
                             </div>
                             <div class="columns large-8">
                                 <div>
@@ -43,7 +43,7 @@
                                     </div>
                                     <div tal:define="dados_gestor python:view_macro.get_prefs_user(gestor)">
                                         <div class="left manager-pic">
-                                            <img tal:attributes="src python:view_macro.getURLFotoUser(gestor);" />
+                                            <img width="60" tal:attributes="src python:view_macro.getURLFotoUser(gestor);" />
                                         </div>
                                         <div class="left manager-info">
                                             <a href="#" tal:attributes="href python: here.portal_url() + '/myvindulaprefs?user=' + view_macro.encodeUser(gestor)">Alfredo Macedo</a>
@@ -69,21 +69,28 @@
                             </div>
                 
                             <div class="columns large-12">
-                                <div class="pagination pag-left"><a href="#"></a></div>
-                                <div class="pagination pag-right"><a href="#"></a></div>
-                
-                                <ul class="small-block-grid-9 large-block-grid-9 members-team">
-                                    <tal:rep repeat="member members">
-                                        <li tal:define="dados_member python:view_macro.get_prefs_user(member)">
-                                            <a href="#" tal:attributes="href python: here.portal_url() + '/myvindulaprefs?user=' + view_macro.encodeUser(member);
-                                                                        alt dados_member/name|string:''; title dados_member/name|string:'';">
-                                                <img tal:attributes="src python:view_macro.getURLFotoUser(member);" />
-                                            </a>
-                                        </li>
-                
-                                    </tal:rep>
-                
-                                </ul>
+                                <div class="row">
+                                    <ul data-orbit 
+                                        data-options="bullets:false;
+                                                      next_class:orbit-next;
+                                                      prev_class:orbit-prev;" 
+                                        class="orbit-slides-container">
+                                        <tal:rep repeat="block python: view_macro.format_members(members)">
+                                            <li>
+                                                <ul class="small-block-grid-9 large-block-grid-9 members-team">
+                                                    <tal:rep repeat="member block">
+                                                        <li tal:define="dados_member python:view_macro.get_prefs_user(member)">
+                                                            <a href="#" tal:attributes="href python: here.portal_url() + '/myvindulaprefs?user=' + view_macro.encodeUser(member);
+                                                                                        alt dados_member/name|string:''; title dados_member/name|string:'';">
+                                                                <img tal:attributes="src python:view_macro.getURLFotoUser(member);" />
+                                                            </a>
+                                                        </li>
+                                                    </tal:rep>
+                                                </ul>
+                                            </li>
+                                        </tal:rep>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>

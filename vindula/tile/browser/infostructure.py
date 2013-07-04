@@ -25,3 +25,19 @@ class InfoStructureView(grok.View, UtilMyvindula):
         if not item:
             item = self.getSuperStructure(self.context)
         return item
+    
+    def format_members(self, obj_list):
+        lista = []
+        L = None
+        for count, obj in enumerate(obj_list):
+            if count == 0 or count % 9 == 0:
+                L = []
+            L.append(obj)
+
+            if (count + 1) % 9 == 0:
+                lista.append(L)
+                L = None
+        if L:
+            lista.append(L)
+
+        return lista
