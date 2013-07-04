@@ -82,24 +82,27 @@
                         <tal:block define="is_visible poll/is_visible"
                                condition="not: canVote">
                           <ul tal:condition="is_visible"
+                              class="no-bullet"
                               tal:define="portal_url view_macro/portal_url">
         
                             <tal:choices tal:repeat="choice poll/results">
                               <li tal:define="choice_id python: choice[0];
                                               choice_count python: choice[1];
                                               choice_percentage python: '%0.2f' % choice[2];
-                                              bar_percentage python: int(choice[2]) or 1;
+                                              bar_percentage python: int(choice[2]) or 0;
         
                                               oddrow repeat/choice/odd;
                                               number repeat/choice/number;
                                               number python:number % 10"
         
                                   tal:attributes="class python:oddrow and 'even' or 'odd'">
-                                <span tal:replace="choice_id">Choice</span><br />
-                                    <img style="height:10px;" tal:attributes="width string:${bar_percentage};
-                                                                     src string:${portal_url}/bar_${number}.gif;
-                                                                     alt string:${choice_percentage}%" />
-                                <strong tal:content="string:${choice_count} (${choice_percentage}%)">44%</strong>
+                                  <span tal:replace="choice_id">Choice</span><br />
+                                  <!-- TODO: Implementar a classe de estilo para o Poll -->
+                                  <img style="height:10px; margin-bottom: 3px;" 
+                                       tal:attributes="width string:${bar_percentage};
+                                                       src string:${portal_url}/bar_${number}.gif;
+                                                       alt string:${choice_percentage}%" />
+                                  <strong tal:content="string:${choice_count} (${choice_percentage}%)">44%</strong>
                               </li>
                             </tal:choices>
         
