@@ -60,13 +60,13 @@
                 </div>
 
                 <div class="columns small-9">
-					         <div id="text_tile">
+                    <div id="text_tile">
                 	    <a href="" tal:attributes="href string:${obj/absolute_url}/view;
                     	                           alt obj/Title;
                         	                       title obj/Title;">
                         	<span tal:content="obj/Title">Lorem ipsum.</span>
-                   	  </a>
-					         </div>
+                        </a>
+                    </div>
                 </div>
             </div>
           </tal:rep>
@@ -110,7 +110,7 @@
                                          alt obj/Title; title obj/Title;" >
                 </div>
 
-                <div class="columns small-8">
+                <div class="columns small-8 ">
                   <a href="" tal:attributes="href string:${obj/absolute_url}/view;
                                              alt obj/Title;
                                              title obj/Title;"
@@ -155,12 +155,12 @@
           <tal:rep repeat="item view_macro/getItens">
             <div class="row news_access" tal:define="obj item/content/getObject">
 
-                <div class="columns small-4 lista_ver_image">
+                <div class="columns small-3 lista_ver_image">
                     <img tal:attributes="src obj/getImageIcone|nothing;
                                          alt obj/Title; title obj/Title;">
                 </div>
 
-                <div class="columns small-8">
+                <div class="columns small-9 title_ver_image">
                   <a href="" tal:attributes="href string:${obj/absolute_url}/view;
                                              alt obj/Title;
                                              title obj/Title;"
