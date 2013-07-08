@@ -216,7 +216,15 @@
                                          tal:content="obj/getSiglaunidade|obj/Title" >DIBOP</a>
                         <span class="block" tal:content="obj/Title">Divisao de Boas Praticas</span>
 
-                        <a class="block" href="#">Pedro Miranda Prado</a>
+
+                        <tal:def define="gestor obj/getManager|string: ;
+                                         view_macro_structure nocall:context/@@infostructure-view;
+                                         dados_gestor python: view_macro_structure.get_prefs_user(gestor);">
+
+                            <a class="block" href="#" tal:attributes="href dados_gestor/getUrlPerfil|string: "
+                                                      tal:content="dados_gestor/name|gestor"  >Pedro Miranda Prado</a>
+
+                        </tal:def>
 
                     </div>
                   </div>
