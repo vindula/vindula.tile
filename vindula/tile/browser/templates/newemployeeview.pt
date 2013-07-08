@@ -59,12 +59,13 @@
 
                   <tal:rep repeat="item batch">
                       <div class="large-6 columns item" tal:define="username item/username|nothing">
-
-                        <div class="left">
-                            <img tal:attributes="src python:view_macro.getURLFotoUser(username);
-                                                 alt item/name|string: ; title item/name|string: " />
+                        
+                        <div class="left image">
+                            <img width="60" tal:attributes="src python:view_macro.getURLFotoUser(username);
+                                                            alt item/name|string: ; 
+                                                            title item/name|string: " />
                         </div>
-                        <div class="left"
+                        <div class="left content"
                              tal:define="structure item/get_unidadeprincipal">
                             <a class="block" href="#" tal:attributes="href item/getUrlPerfil|nothing"
                                              tal:content="item/name|string: ">Pedro Miranda Prado</a>
