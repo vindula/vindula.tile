@@ -61,10 +61,10 @@
 
                 <div class="columns small-9">
                     <div id="text_tile">
-                	    <a href="" tal:attributes="href string:${obj/absolute_url}/view;
-                    	                           alt obj/Title;
-                        	                       title obj/Title;">
-                        	<span tal:content="obj/Title">Lorem ipsum.</span>
+                      <a href="" tal:attributes="href string:${obj/absolute_url}/view;
+                                                 alt obj/Title;
+                                                 title obj/Title;">
+                          <span tal:content="obj/Title">Lorem ipsum.</span>
                         </a>
                     </div>
                 </div>
@@ -94,7 +94,7 @@
             </div>
         </div>
 
-		<div>
+    <div>
             <h6 class="subheader">
                 Mais Acessadas:
             </h6>
