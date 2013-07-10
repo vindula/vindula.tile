@@ -27,10 +27,17 @@
         <div tal:repeat="itens tiles" class="row">
             <tal:cond_12 condition="python: len(itens) == 1 ">
                 <div class="columns large-12" tal:define="item python: itens[0]">
-                    <div id="macro-tile" tal:attributes="class python:item.getIs_accessory() and 'is_accessory' or ''" 
+                    <div id="macro-tile" tal:attributes="class python:item.getIs_accessory() and 'is_accessory' or ''"
                                          tal:define="path_macro python:view.getMacro(item);
                                                      context nocall:item">
-                        <metal:block tal:condition="path_macro" metal:use-macro="python:path(path_macro)" />
+
+                        <tal:cod tal:condition="path_macro"
+                                 tal:on-error="string: Erro ao carregar o bloco ${context/Title}">
+
+                          <metal:block metal:use-macro="python:path(path_macro)"/>
+
+                        </tal:cod>
+
                     </div>
                 </div>
             </tal:cond_12>
@@ -39,20 +46,34 @@
                 <div class="columns large-6" id="even"
                     tal:attributes="class string: columns large-${size_large}">
                     <tal:rep_even tal:repeat="item python: itens[0]">
-                        <div id="macro-tile" tal:attributes="class python:item.getIs_accessory() and 'is_accessory' or ''"  
+                        <div id="macro-tile" tal:attributes="class python:item.getIs_accessory() and 'is_accessory' or ''"
                                              tal:define="path_macro python:view.getMacro(item);
                                                          context nocall:item">
-                            <metal:block tal:condition="path_macro" metal:use-macro="python:path(path_macro)" />
+
+                          <tal:cod tal:condition="path_macro"
+                                   tal:on-error="string: Erro ao carregar o bloco ${context/Title}">
+
+                            <metal:block metal:use-macro="python:path(path_macro)"/>
+
+                          </tal:cod>
+
                         </div>
                     </tal:rep_even>
                 </div>
                 <div class="columns large-6" id="odd"
                      tal:attributes="class string: columns large-${size_large}">
                     <tal:rep_odd tal:repeat="item python: itens[1]">
-                        <div id="macro-tile" tal:attributes="class python:item.getIs_accessory() and 'is_accessory' or ''" 
+                        <div id="macro-tile" tal:attributes="class python:item.getIs_accessory() and 'is_accessory' or ''"
                                              tal:define="path_macro python:view.getMacro(item);
                                                          context nocall:item">
-                            <metal:block tal:condition="path_macro" metal:use-macro="python:path(path_macro)" />
+
+                            <tal:cod tal:condition="path_macro"
+                                     tal:on-error="string: Erro ao carregar o bloco ${context/Title}">
+
+                              <metal:block metal:use-macro="python:path(path_macro)"/>
+
+                            </tal:cod>
+
                         </div>
                     </tal:rep_odd>
                 </div>

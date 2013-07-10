@@ -23,8 +23,14 @@
                         <div class="content content-section" data-section-content
                               tal:define="path_macro item/macro">
                             <div class="color-bg">
-                                <metal:block tal:condition="path_macro"
-                                             metal:use-macro="python:path(path_macro)"/>
+
+                                <tal:cod tal:condition="path_macro"
+                                         tal:on-error="string: Erro ao carregar o bloco ${context/Title}, macro ${path_macro}">
+
+                                  <metal:block metal:use-macro="python:path(path_macro)"/>
+
+                                </tal:cod>
+
                             </div>
                         </div>
                       </section>

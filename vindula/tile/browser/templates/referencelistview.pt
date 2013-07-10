@@ -21,8 +21,14 @@
                               tal:define="context nocall:item/object;
                                           path_macro string:context/${context/getLayout}/macros/body;">
                             <div class="color-bg">
-                                <metal:block tal:condition="path_macro"
-                                         metal:use-macro="python:path(path_macro)"/>
+
+                                <tal:cod tal:condition="path_macro"
+                                         tal:on-error="string: Erro ao carregar o bloco ${context/Title}">
+
+                                  <metal:block metal:use-macro="python:path(path_macro)"/>
+
+                                </tal:cod>
+
                             </div>
                         </div>
                       </section>

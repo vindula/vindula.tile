@@ -12,7 +12,11 @@
 
     <div tal:define="context python:context.getObj_layout()">
 
-      <metal:block metal:use-macro="context/@@layout-view/macros/page"/>
+      <tal:error tal:on-error="string: Erro ao carregar a capa ${context/Title}">
+
+        <metal:block metal:use-macro="context/@@layout-view/macros/page"/>
+
+      </tal:error>
 
     </div>
   </metal:macro>
