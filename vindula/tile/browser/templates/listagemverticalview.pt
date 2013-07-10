@@ -235,16 +235,16 @@
   <div class="conteiner" id="documento">
 
       <tal:def define="not_filter python:False">
-
         <metal:block metal:use-macro="context/macro_filter_file/macros/tabular" />
       </tal:def>
+      
       <div id="itens">
           <tal:def define="portal_type python: (context.getListTypes(),);
                            fields python:[{'label':  ''     , 'attribute': 'getImageIcone', 'is_image':  'True', 'width':  '65',},
                                           {'label': 'Nome'  , 'attribute': 'getSigla_and_Title'},
                                           {'label': 'Contato','attribute': 'getContatoInfo'},
                                           {'label': 'Gestor', 'attribute': 'getGestorInfo'}]; "
-                   tal:condition="python: not 'Pessoas' in portal_type">
+                   condition="python: not 'Pessoas' in portal_type">
               <metal:block metal:use-macro="context/macro_tabular_file/macros/view" />
           </tal:def>
 
@@ -255,11 +255,9 @@
                                           {'label': 'Unidade','attribute': 'get_sigla_unidadeprincipal'},
                                           {'label': 'Contato','attribute': 'getContato'},
                                           ]; "
-                   tal:condition="python: 'Pessoas' in portal_type">
-              <metal:block metal:use-macro="context/macro_tabular_file/macros/view" />
+                   condition="python: 'Pessoas' in portal_type">
+              <metal:block metal:use-macro="context/macro_tabular_file/macros/personal_view" />
           </tal:def>
-
-
       </div>
   </div>
 </div>
