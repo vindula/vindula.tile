@@ -72,9 +72,7 @@
                             <div class="columns large-12">
                                 <div class="row">
                                     <ul data-orbit
-                                        data-options="bullets:false;
-                                                      next_class:orbit-next;
-                                                      prev_class:orbit-prev;"
+                                        data-options="bullets:false;"
                                         class="orbit-slides-container">
                                         <tal:rep repeat="block python: view_macro.format_members(members)">
                                             <li>
