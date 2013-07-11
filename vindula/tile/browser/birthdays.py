@@ -96,7 +96,8 @@ class BirthdaysView(BaseView, UtilMyvindula):
         if filtro_OU:
             results_OU = []
             for user in results:
-                if filtro_OU == user.get_unidadeprincipal().get('obj',None):
+                unidade_user = user.get_unidadeprincipal()
+                if filtro_OU == unidade_user:
                     results_OU.append(user)
 
             return results_OU
