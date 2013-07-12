@@ -26,11 +26,11 @@
                      <div id="tile-org-info">
                         <div class="row manager">
                             <div class="columns large-4 org-info_image">
-                                <img width="150" tal:attributes="src python:orgstruc().getImageIcone() or None" />
+                                <img width="150" tal:attributes="src python:orgstruc().getImageSize('mini') or None" />
                             </div>
                             <div class="columns large-8">
                                 <div>
-                                    <span tal:content="structure python:orgstruc().getText() or None">
+                                    <span tal:content="structure python:orgstruc().Description() or None">
                                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                         Nam ut imperdiet urna. Nullam a lacus velit, id sollicitudin nisi.
                                         Curabitur at justo eget nulla pellentesque vestibulum.
