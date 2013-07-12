@@ -3,10 +3,10 @@
                         orgstruc view_macro/get_structure;">
 
     <div class="columns large-12 main_information ">
-        <h5>
+        <h4>
             Informações
             <hr/>
-        </h5>
+        </h4>
         <ul class="no-bullet">
             <!--li>
                 <strong>Grupo:</strong><span>Aberto</span>
