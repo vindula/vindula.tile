@@ -11,13 +11,10 @@ grok.templatedir('templates')
 def por_admicao(item):
     return item.get('admission_date','')
 
-
 class NewEmployeeView(BaseView, UtilMyvindula):
     grok.name('newemployee-view')
 
-    def getItens(self):
+    def getItens(self,):
         dados_users = FuncDetails.get_AllFuncDetails()
         result = sorted(dados_users, key=por_admicao)
-
-
         return result

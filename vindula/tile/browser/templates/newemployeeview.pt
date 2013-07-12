@@ -29,12 +29,10 @@
 <metal:macro define-macro="padrao"
              tal:define="view_macro nocall:context/@@newemployee-view;
                          itens view_macro/getItens;
-
                          Batch python:modules['Products.CMFPlone'].Batch;
                          b_size request/b_size|string:6;
                          b_start python:0;
                          b_start request/b_start | b_start;
-
                          batch python:Batch(itens, int(b_size), int(b_start), pagerange=len(itens));"
              tal:condition="batch">
 
