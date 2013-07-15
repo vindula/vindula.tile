@@ -40,9 +40,15 @@
                                   <li class="tree-item arrow"
                                       tal:attributes="class python:view_organogram.def_class(estrutura(),estruturas_filho) +' open'">
     
-                                      <div class="content" tal:content="python:estrutura().Title()">
-                                          Conselho Deliberativo
+                                      <div class="content">
+                                          <span class="left org-title" tal:content="python:estrutura().Title()"> </span>
+                                          <a href=''  tal:attributes="href python:estrutura().absolute_url() or None"
+                                             tal:define="username  estrutura/manager|nothing">
+                                              <img src="" alt="" height="30" width="30" class="right"
+                                                   tal:attributes="src string:/vindula-api/myvindula/user-picture/photograph/${username}/True"  />
+                                          </a>
                                       </div>
+                                      
                                       <ul class="tree-2">
                                         <tal:rep repeat="estrutura_filho python:view_organogram.get_estruturas_filho(estrutura())">
                                           <metal:block metal:use-macro="context/@@organogram-view/macros/recursivo" />
@@ -67,8 +73,8 @@
         <li class="tree-item" tal:define="estruturas_filho python:view_organogram.get_estruturas_filho(estrutura.getSourceObject())"
                               tal:attributes="class python:view_organogram.def_class(estrutura.getSourceObject(),estruturas_filho)">
             <div class="content">
-                <span class="left"  tal:content="estrutura/Title">Concelho de Assesoria Poilico Estratégico</span>
-                <a href=''  tal:attributes="href estrutura/absolute_url|nothing"
+                <span class="left org-title" tal:content="estrutura/Title">Concelho de Assesoria Poilico Estratégico</span>
+                <a href=''  tal:attributes="href python:estrutura.getSourceObject().absolute_url() or None"
                             tal:define="username  estrutura/manager|nothing">
                     <img src="" alt="" height="30" width="30" class="right"
                          tal:attributes="src string:/vindula-api/myvindula/user-picture/photograph/${username}/True"  />
