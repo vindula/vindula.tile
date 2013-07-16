@@ -18,11 +18,7 @@ class MoreAccessView(BaseView):
 
         result = self.list_files(portal_type)
 
-
-        if self.context.getKind() == 'two_columns':
-            return result
-        else:
-            return result[:cont]
+        return result[:cont]
 
     def list_files(self, portal_type):
         list_files = []
