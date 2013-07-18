@@ -6,37 +6,62 @@
       metal:use-macro="context/main_template/macros/master"
       i18n:domain="vindula.tile">
 
-    <head>
-      <metal:js fill-slot="javascript_head_slot">
+<head>
+  <metal:js fill-slot="javascript_head_slot">
 
-        <script type="text/javascript" src=""
-                tal:attributes="src string:${context/absolute_url|nothing}/++resource++vindula.tile/js/ajax_boll_batch.js"></script>
-      </metal:js>
+    <script type="text/javascript" src=""
+            tal:attributes="src string:${context/absolute_url|nothing}/++resource++vindula.tile/js/ajax_boll_batch.js"></script>
+  </metal:js>
+</head>
 
-    </head>
-    <body>
-        <metal:main fill-slot="content-core">
-            <metal:macro define-macro="page">
-
-                <metal:macro define-macro="body"
-                             tal:define="view_macro nocall:context/@@tabularlist-view;">
-                    <div id="tile-tabular-list">
-                        <metal:block metal:use-macro="context/macro_filter_file/macros/tabular"/>
-                        <div id="itens">
-                            <tal:def condition="structures"
-                                     define="portal_type context/getObject_type;
-                                             structures nocall:view_macro/getStructure|nothing;">
-                                <tal:def define="structures python:structures().UID() or None;
-                                                  fields python:[{'label': 'Título', 'attribute': 'Title'},
-                                                                 {'label': 'Criação', 'attribute': 'getRawCreation_date'},];">
-                                    <metal:block metal:use-macro="context/macro_tabular_file/macros/view" />
-                                </tal:def>
-                            </tal:def>
-                        </div>
-                    </div>
-                </metal:macro>
-                
-            </metal:macro>
-        </metal:main>
-    </body>
+<body>
+    <metal:main fill-slot="content-core">
+        <metal:macro define-macro="page"
+                     tal:define="view_macro nocall:context/@@tabularlist-view;
+                                 path_macro  string:context/@@tabularlist-view/macros/${view_macro/getKind}">
+            <metal:block tal:condition="path_macro"
+                         metal:use-macro="python:path(path_macro)"/>
+        </metal:macro>
+    </metal:main>
+</body>
 </html>
+
+<metal:macro define-macro="padrao">
+    <metal:macro define-macro="body"
+                 tal:define="view_macro nocall:context/@@tabularlist-view;">
+        <div id="tile-tabular-list">
+            <metal:block metal:use-macro="context/macro_filter_file/macros/tabular"/>
+            <div id="itens">
+                <tal:def define="portal_type context/getObject_type;
+                                 structures nocall:view_macro/getStructure|nothing;">
+                    <tal:def define="structures python:(structures == None) and structures().UID() or None;
+                                     fields python:[{'label': 'Título', 'attribute': 'Title'},
+                                                    {'label': 'Criação', 'attribute': 'getRawCreation_date'},];">
+                        <metal:block metal:use-macro="context/macro_tabular_file/macros/view" />
+                    </tal:def>
+                </tal:def>
+            </div>
+        </div>
+    </metal:macro>
+</metal:macro>
+
+<metal:macro define-macro="unidade"
+             tal:define="view_macro nocall:context/@@tabularlist-view;">
+                     
+    <div id="tile-tabular-list">
+        <metal:block metal:use-macro="context/macro_filter_file/macros/unit-tabular"/>
+        <div id="itens">
+            <tal:def define="portal_type context/getObject_type;
+                             structures nocall:view_macro/getStructure|nothing;">
+                <tal:def define="structures python:(structures == None) and structures().UID() or None;
+                                 fields python:[{'label':  ''     , 'attribute': 'getImageIcone', 'is_image':  'True', 'width':  '65',},
+                                          {'label': 'Nome'  , 'attribute': 'getSigla_and_Title'},
+                                          {'label': 'Contato','attribute': 'getContatoInfo'},
+                                          {'label': 'Gestor', 'attribute': 'getGestorInfo'},
+                                          {'label': 'Açoes', 'attribute': '', 'is_action':  'True', 'width':  '40',}];">
+                    <metal:block metal:use-macro="context/macro_tabular_file/macros/view" />
+                </tal:def>
+            </tal:def>
+        </div>
+    </div>
+</metal:macro>

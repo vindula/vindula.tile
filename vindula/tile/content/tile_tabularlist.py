@@ -40,6 +40,23 @@ TileTabularList_schema = BaseTile.schema.copy() + Schema((
         vocabulary=u'voc_ContentTypes',
         required=True,
     ),
+    
+    StringField(
+        name='kind',
+        widget=SelectionWidget(
+            label=_(u"Selecione o tipo do filtro"),
+            description=_(u"Selecione o tipo do filtro desejado para este bloco"),
+            label_msgid='vindula_tile_label_layout',
+            description_msgid='vindula_tile_help_layout',
+            i18n_domain='vindula_tile',
+            format='select',
+        ),
+        vocabulary=[("padrao",_(u"Filtro Padrão")),
+                    ("unidade", _(u"Filtro de Unidades")),
+                   ],
+        default='padrao',
+        required=True,
+    ),
 
 ))
 
