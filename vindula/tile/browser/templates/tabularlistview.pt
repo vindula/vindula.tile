@@ -65,3 +65,21 @@
         </div>
     </div>
 </metal:macro>
+
+<metal:macro define-macro="pessoas"
+             tal:define="view_macro nocall:context/@@tabularlist-view;">
+                     
+    <div id="tile-tabular-list">
+        <metal:block metal:use-macro="context/macro_filter_file/macros/person-tabular"/>
+        <div id="itens">
+            <tal:def define="portal_type context/getObject_type;">
+                <tal:def define="fields python:[{'label':  ''     , 'attribute': 'getImageIcone', 'is_image':  'True', 'width':  '65',},
+                                                {'label': 'Nome'  , 'attribute': 'name'},
+                                                {'label': 'Unidade','attribute': 'get_sigla_unidadeprincipal'},
+                                                {'label': 'Contato','attribute': 'getContato'},]; ">
+                    <metal:block metal:use-macro="context/macro_tabular_file/macros/personal_view" />
+                </tal:def>
+            </tal:def>
+        </div>
+    </div>
+</metal:macro>

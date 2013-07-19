@@ -53,7 +53,7 @@ TileTabularList_schema = BaseTile.schema.copy() + Schema((
         ),
         vocabulary=[("padrao",_(u"Filtro Padrão")),
                     ("unidade", _(u"Filtro de Unidades")),
-                   ],
+                    ("pessoas", _(u"Filtro de Pessoas")),],
         default='padrao',
         required=True,
     ),
@@ -72,7 +72,8 @@ class TileTabularList(BaseTile):
     schema = TileTabularList_schema
 
     def voc_ContentTypes(self):
-        types = self.portal_types.listContentTypes()
+        types = ['Pessoas']
+        types += self.portal_types.listContentTypes()
         return types
     
     #tamanho do tile
