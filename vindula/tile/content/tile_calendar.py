@@ -29,6 +29,9 @@ class TileCalendar(BaseTile):
 
     #tamanho do tile
     columns = 6
+    
+    #Scripts js
+    scripts_js = ['ajax_calendar.js']
 
 
 registerType(TileCalendar, PROJECTNAME)
