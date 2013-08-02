@@ -65,7 +65,7 @@
                         </div>
                         <div class="left content"
                              tal:define="structure item/get_unidadeprincipal">
-                            <a class="block" href="#" tal:attributes="href item/getUrlPerfil|nothing;
+                            <a class="block profile-link" href="#" tal:attributes="href item/getUrlPerfil|nothing;
                                                                       data-username item/username|nothing;"
                                              tal:content="item/name|string: ">Pedro Miranda Prado</a>
                             <span class="block"
