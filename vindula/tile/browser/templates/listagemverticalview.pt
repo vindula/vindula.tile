@@ -208,9 +208,9 @@
           <a tal:attributes="href obj/absolute_url"
             tal:content="obj/Title">Lorem ipsum dolor sit amet </a>
 
-          <p>
+          <p tal:condition="obj/startDate">
             <b>Data:</b>
-            <span tal:content="obj/startDate|nothing">Lorem ipsum dolor </span>
+            <span tal:content="python:obj.startDate.strftime('%d/%m/%Y as %H:%M')">Lorem ipsum dolor </span>
           </p>
 
           <div class="vd-social-left" tal:define="context nocall:obj">
