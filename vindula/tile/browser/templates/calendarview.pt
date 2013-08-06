@@ -17,7 +17,7 @@
                             showPrevMonth view/showPrevMonth;
                             showNextMonth view/showNextMonth;
                             year view/year;
-                            ativa_ajax python:False;">
+                            ativa_ajax python:True;">
         <div class="row">
             <div class="columns large-12 box-title">
                 <h4>
