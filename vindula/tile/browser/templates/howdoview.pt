@@ -36,7 +36,7 @@
                             <ul class="square">
                               <li tal:repeat="item view/getItens">
                                  <a tal:define="obj item/getObject"
-                                    tal:attributes="href obj/absolute_url"
+                                    tal:attributes="href python:'%s%s' % (obj.absolute_url(), obj.portal_type == 'File' and '/file_view' or '/view')"
                                     tal:content="obj/Title">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a>
 
 </li>
