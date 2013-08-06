@@ -28,6 +28,7 @@
 
 <metal:macro define-macro="padrao"
              tal:define="view_macro nocall:context/@@newemployee-view;
+                         view_myvindula nocall:context/@@myvindula;
                          itens view_macro/getItens;
                          Batch python:modules['Products.CMFPlone'].Batch;
                          b_size request/b_size|string:6;
@@ -67,7 +68,7 @@
                              tal:define="structure item/get_unidadeprincipal">
                             <a class="block profile-link" href="#" tal:attributes="href item/getUrlPerfil|nothing;
                                                                       data-username item/username|nothing;"
-                                             tal:content="item/name|string: ">Pedro Miranda Prado</a>
+                                             tal:content="python:view_myvindula.name_user_top(item.get('name',' '))">Pedro Miranda Prado</a>
                             <span class="block"
                                   tal:condition="python: structure != None"
                                   tal:content="structure/getSiglaOrTitle">ASCON</span>
