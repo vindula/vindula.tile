@@ -21,8 +21,7 @@ class FoodView(BaseView):
         path = context.portal_url.getPortalObject()
         itens = self.portal_catalog(portal_type = ('Menu',),
                                     path={'query':'/'.join(path.getPhysicalPath()),'depth':99},
-                                    sort_on='effective',
-                                    sort_order='descending',
+                                    sort_on='getObjPositionInParent',
                                     getDias=str(weekday)
                                     )
 
