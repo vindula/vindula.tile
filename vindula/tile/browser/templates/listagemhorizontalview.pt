@@ -20,21 +20,19 @@
 <metal:main fill-slot="content-core">
     <metal:macro define-macro="page"
                  tal:define="global view_macro nocall:context/@@listagemhorizontal-view;
-                             path_macro string:context/@@listagemhorizontal-view/macros/${view_macro/getListTemplates}">
+                             path_macro string:context/@@listagemhorizontal-view/macros/${context/getListTemplates}">
         <div class="row">
-
             <metal:block tal:condition="path_macro"
                          metal:use-macro="python:path(path_macro)"/>
 
 		</div>
-
     </metal:macro>
 </metal:main>
 </body>
 </html>
 
 <metal:macro define-macro="destaque_unico"
-             tal:condition="python:view_macro.getListTemplates() == 'destaque_unico'">
+             tal:condition="python:context.getListTemplates() == 'destaque_unico'">
 	<div class="columns large-12"  tal:define="itens view_macro/getItens;
                         				       bullets_false string: bullets:false;">
 	    <div class="row main_row">
@@ -83,7 +81,7 @@
 </metal:macro>
 
 <metal:macro define-macro="destaque_multipla"
-             tal:condition="python:view_macro.getListTemplates() == 'destaque_multipla'">
+             tal:condition="python:context.getListTemplates() == 'destaque_multipla'">
 	<div class="columns large-12"  tal:define="itens view_macro/getItens;
                              				   bullets_false string: bullets:false;">
 	    <div class="row">
@@ -117,7 +115,7 @@
 </metal:macro>
 
 <metal:macro define-macro="destaque_two_columns"
-             tal:condition="python:view_macro.getListTemplates() == 'destaque_two_columns'">
+             tal:condition="python:context.getListTemplates() == 'destaque_two_columns'">
 	<div class="columns large-12">
 	 	<div id="tile-listagem-horizontal-two-columns" class="row list_tile"
 			 tal:define="itens view_macro/getItens;
