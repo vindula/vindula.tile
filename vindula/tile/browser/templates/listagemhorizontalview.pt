@@ -19,8 +19,8 @@
 <body>
 <metal:main fill-slot="content-core">
     <metal:macro define-macro="page"
-                 tal:define="view nocall:context/@@listagemhorizontal-view;
-                             path_macro string:context/@@listagemhorizontal-view/macros/${context/getListTemplates}">
+                 tal:define="global view_macro nocall:context/@@listagemhorizontal-view;
+                             path_macro string:context/@@listagemhorizontal-view/macros/${view_macro/getListTemplates}">
         <div class="row">
 
             <metal:block tal:condition="path_macro"
@@ -32,9 +32,10 @@
 </metal:main>
 </body>
 </html>
-<metal:macro define-macro="destaque_unico">
-	<div class="columns large-12"  tal:define="view nocall:context/@@listagemhorizontal-view;
-    					                       itens view/getItens;
+
+<metal:macro define-macro="destaque_unico"
+             tal:condition="python:view_macro.getListTemplates() == 'destaque_unico'">
+	<div class="columns large-12"  tal:define="itens view_macro/getItens;
                         				       bullets_false string: bullets:false;">
 	    <div class="row main_row">
 	        <div class="columns large-12 listagem_horizontal_text box-title">
@@ -80,9 +81,10 @@
 	    </div>
 	</div>
 </metal:macro>
-<metal:macro define-macro="destaque_multipla" >
-	<div class="columns large-12"  tal:define="view nocall:context/@@listagemhorizontal-view;
-                             				   itens view/getItens;
+
+<metal:macro define-macro="destaque_multipla"
+             tal:condition="python:view_macro.getListTemplates() == 'destaque_multipla'">
+	<div class="columns large-12"  tal:define="itens view_macro/getItens;
                              				   bullets_false string: bullets:false;">
 	    <div class="row">
 	        <div class="columns large-12" tal:repeat="item itens">
@@ -113,12 +115,12 @@
 	    </div>
 	</div>
 </metal:macro>
-<metal:macro define-macro="destaque_two_columns">
-	<div class="columns large-12">
 
+<metal:macro define-macro="destaque_two_columns"
+             tal:condition="python:view_macro.getListTemplates() == 'destaque_two_columns'">
+	<div class="columns large-12">
 	 	<div id="tile-listagem-horizontal-two-columns" class="row list_tile"
-			 tal:define="view nocall:context/@@listagemhorizontal-view;
-	                     itens view/getItens;
+			 tal:define="itens view_macro/getItens;
 	                     bullets_false string: bullets:false;
 
 						 Batch python:modules['Products.CMFPlone'].Batch;
@@ -174,9 +176,6 @@
 	        <div class="spinner display-none" style="text-align:center; margin: 30px;">
 	            <img src="" alt="spinner" align="center" tal:attributes="src string:${context/portal_url}/++resource++vindula.myvindula.views/ajaxLoader.gif" />
 	        </div>
-
-
 		</div>
 	</div>
-
 </metal:macro>

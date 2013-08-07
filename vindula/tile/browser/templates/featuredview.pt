@@ -9,7 +9,7 @@
     <body>
         <metal:main fill-slot="content-core">
             <metal:macro define-macro="page"
-                         tal:define="view_macro nocall:context/@@featured-view;
+                         tal:define="global view_macro nocall:context/@@featured-view;
                                      path_macro  string:context/@@featured-view/macros/${view_macro/getKind}">
 
                 <metal:block tal:condition="path_macro"
@@ -19,68 +19,67 @@
         </metal:main>
     </body>
 </html>
+
 <metal:macro define-macro="alerta_normal"
-             tal:define="view_macro nocall:context/@@featured-view;
-                         items context/getItens;
-                         bullets_false string: bullets:false;;">
-
-    <h2 tal:content="context/Title">ANUNCIO</h2>
-    <div id="anuncio-normal">
-      <ul data-orbit tal:attributes="data-options python: len(items)==1 and bullets_false"
-                     id="tile-featured">
-        <tal:rep tal:repeat="item items">
-          <li>
-            <div tal:define="text item/Description">
-              <p tal:content="python: view_macro.limitTextSize(text)" >
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta,
-                inventore incidunt ullam eligendi laborum aliquid illum et non sunt praesentium!
-              </p>
-
-              <a tal:attributes="href item/absolute_url"
-                 tal:condition="python: view_macro.cont_text(text)"
-                 href="">Leia Mais</a>
-
-            </div>
-          </li>
-
-        </tal:rep>
-      </ul>
-    </div>
+             tal:condition="python:view_macro.getKind() == 'alerta_normal'">
+    <tal:def define="items context/getItens;
+                     bullets_false string: bullets:false;">
+        <h2 tal:content="context/Title">ANUNCIO</h2>
+        <div id="anuncio-normal">
+          <ul data-orbit tal:attributes="data-options python: len(items)==1 and bullets_false"
+                         id="tile-featured">
+            <tal:rep tal:repeat="item items">
+              <li>
+                <div tal:define="text item/Description">
+                  <p tal:content="python: view_macro.limitTextSize(text)" >
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta,
+                    inventore incidunt ullam eligendi laborum aliquid illum et non sunt praesentium!
+                  </p>
+    
+                  <a tal:attributes="href item/absolute_url"
+                     tal:condition="python: view_macro.cont_text(text)"
+                     href="">Leia Mais</a>
+    
+                </div>
+              </li>
+    
+            </tal:rep>
+          </ul>
+        </div>
+    </tal:def>
 </metal:macro>
+
 <metal:macro define-macro="alerta_importante"
-             tal:define="view_macro nocall:context/@@featured-view;
-                         items context/getItens;
-                         bullets_false string: bullets:false;;">
-
-    <h2 tal:content="context/Title">ANUNCIO</h2>
-
-    <ul data-orbit tal:attributes="data-options python: len(items)==1 and bullets_false"
-                   id="tile-featured">
-      <tal:rep tal:repeat="item items">
-        <li>
-          <div tal:define="text item/Description">
-            <p tal:content="python: view_macro.limitTextSize(text)" >
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta,
-              inventore incidunt ullam eligendi laborum aliquid illum et non sunt praesentium!
-            </p>
-
-            <a tal:attributes="href item/absolute_url"
-               tal:condition="python: view_macro.cont_text(text)"
-               href="">Leia Mais</a>
-
-          </div>
-        </li>
-
-      </tal:rep>
-    </ul>">
-
+             tal:condition="python:view_macro.getKind() == 'alerta_importante'">
+    <tal:def define="items context/getItens;
+                     bullets_false string: bullets:false;">
+        <h2 tal:content="context/Title">ANUNCIO</h2>
+        <ul data-orbit tal:attributes="data-options python: len(items)==1 and bullets_false"
+                       id="tile-featured">
+          <tal:rep tal:repeat="item items">
+            <li>
+              <div tal:define="text item/Description">
+                <p tal:content="python: view_macro.limitTextSize(text)" >
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta,
+                  inventore incidunt ullam eligendi laborum aliquid illum et non sunt praesentium!
+                </p>
+    
+                <a tal:attributes="href item/absolute_url"
+                   tal:condition="python: view_macro.cont_text(text)"
+                   href="">Leia Mais</a>
+    
+              </div>
+            </li>
+          </tal:rep>
+        </ul>
+    </tal:def>
 </metal:macro>
-<metal:macro define-macro="destaque"
-             tal:define="view_macro nocall:context/@@featured-view;
-                                     items context/getItens;
-                                     bullets_false string: bullets:false;;">
 
-    <div class="columns small-12" id="tile-featured">
+<metal:macro define-macro="destaque"
+             tal:condition="python:view_macro.getKind() == 'destaque'">
+    <div class="columns small-12" id="tile-featured"
+         tal:define="items context/getItens;
+                     bullets_false string: bullets:false;">
         <div class="row">
             <div class="columns large-12 feature_text box-title">
                 <h4 tal:content="context/Title">ANUNCIO</h4>
@@ -114,11 +113,12 @@
         </div>
     </div>
 </metal:macro>
+
 <metal:macro define-macro="destaque_simples"
-             tal:define="view_macro nocall:context/@@featured-view;
-                         items context/getItens;"
-             tal:condition="items">
-   <div class="row">
+             tal:condition="python:view_macro.getKind() == 'destaque_simples'">
+   <div class="row"
+        tal:define="items context/getItens;"
+        tal:condition="items">
     <div class="columns large-12 main_featured" tal:define="item python:items[0];
                                              text item/Description">
         <div class="box-title">
@@ -141,5 +141,4 @@
                            title item/Title|nothing;">Continuar Lendo</a>
     </div>
   </div>
-
 </metal:macro>

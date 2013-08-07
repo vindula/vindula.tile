@@ -69,11 +69,6 @@
             </ul>
         </div>
     </div>
-
-
-
-
-
     </metal:macro>
 </metal:main>
 </body>

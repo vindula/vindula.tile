@@ -17,7 +17,7 @@
     <body>
         <metal:main fill-slot="content-core">
             <metal:macro define-macro="page"
-                         tal:define="view_macro nocall:context/@@newemployee-view;
+                         tal:define="global view_macro nocall:context/@@newemployee-view;
                                      path_macro  string:context/@@newemployee-view/macros/${view_macro/getKind}">
                 <metal:block tal:condition="path_macro"
                              metal:use-macro="python:path(path_macro)"/>
@@ -27,17 +27,16 @@
 </html>
 
 <metal:macro define-macro="padrao"
-             tal:define="view_macro nocall:context/@@newemployee-view;
-                         view_myvindula nocall:context/@@myvindula;
-                         itens view_macro/getItens;
-                         Batch python:modules['Products.CMFPlone'].Batch;
-                         b_size request/b_size|string:6;
-                         b_start python:0;
-                         b_start request/b_start | b_start;
-                         batch python:Batch(itens, int(b_size), int(b_start), pagerange=len(itens));"
-             tal:condition="batch">
-
-    <div class="row">
+             tal:condition="python:view_macro.getKind() == 'padrao'">
+    <div class="row"
+         tal:define="view_myvindula nocall:context/@@myvindula;
+                     itens view_macro/getItens;
+                     Batch python:modules['Products.CMFPlone'].Batch;
+                     b_size request/b_size|string:6;
+                     b_start python:0;
+                     b_start request/b_start | b_start;
+                     batch python:Batch(itens, int(b_size), int(b_start), pagerange=len(itens));"
+         tal:condition="batch">
         <div class="columns large-12">
             <div id="tile-more-acess-unity" class="row list_tile">
                 <div class="title columns large-12">

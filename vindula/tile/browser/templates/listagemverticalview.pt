@@ -9,8 +9,8 @@
     <body>
         <metal:main fill-slot="content-core">
             <metal:macro define-macro="page"
-                         tal:define="view nocall:context/@@listagemvertical-view;
-                                     path_macro string:context/@@listagemvertical-view/macros/${view/getKind}">
+                         tal:define="global view_macro nocall:context/@@listagemvertical-view;
+                                     path_macro string:context/@@listagemvertical-view/macros/${view_macro/getKind}">
                 <div class="row">
 
                   <metal:block tal:condition="path_macro"
@@ -22,7 +22,7 @@
 </html>
 
 <metal:macro define-macro="listagem_com_icones"
-             tal:define="view nocall:context/@@listagemvertical-view;">
+             tal:condition="python:view_macro.getKind() == 'listagem_com_icones'">
     <div class="box-title">
         <h4 tal:content="context/Title">Notícias</h4>
         <hr/>
@@ -34,7 +34,7 @@
 
 
     <div class="content_itens">
-      <p tal:repeat="item view/getItens">
+      <p tal:repeat="item view_macro/getItens">
         <tal:def tal:define="obj item/getObject">
          <img width="16" height="16" alt=""
               tal:condition="obj/getIcon"
@@ -49,7 +49,7 @@
 </metal:macro>
 
 <metal:macro define-macro="listagem_sem_icones"
-             tal:define="view nocall:context/@@listagemvertical-view;">
+             tal:condition="python:view_macro.getKind() == 'listagem_sem_icones'">
 	<div id="list-no-icon" class="clear">
 		 <div class="columns large-12">
 			<div class="row box-title">
@@ -71,7 +71,7 @@
 		    </select>
 		    <div class="content_itens">
 			<ul class="square">
-		      <li tal:repeat="item view/getItens">
+		      <li tal:repeat="item view_macro/getItens">
 		         <a tal:define="obj item/getObject"
 		            tal:attributes="href obj/absolute_url"
 		            tal:content="obj/Title">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a>
@@ -83,7 +83,7 @@
 </metal:macro>
 
 <metal:macro define-macro="listagem_com_imagem"
-             tal:define="view nocall:context/@@listagemvertical-view;">
+             tal:condition="python:view_macro.getKind() == 'listagem_com_imagem'">
 		<div id="box-listagem" class="clear">
               <div class="columns large-12 box-title">
                   <h4>
@@ -96,7 +96,7 @@
                   <option value="data">Data</option>
                   <option value="mais_acessados">Mais acessados</option>
               </select -->
-              <tal:rep repeat="item view/getItens">
+              <tal:rep repeat="item view_macro/getItens">
 
                 <div class="columns large-12 text_descricao" tal:define="obj item/getObject">
                     <div class="row">
@@ -120,9 +120,7 @@
 		</div>
 </metal:macro>
 <metal:macro define-macro="listagem_evento"
-             tal:define="view nocall:context/@@listagemvertical-view;">
-
-
+             tal:condition="python:view_macro.getKind() == 'listagem_evento'">
   <div class="columns large-12 box-title">
       <h4>
           <tal:cont tal:content="context/Title">Proximos eventos</tal:cont>
@@ -132,7 +130,7 @@
 
   <div class="columns large-12" id="tile-events">
       <div class="row">
-        <tal:rep repeat="item view/getItens">
+        <tal:rep repeat="item view_macro/getItens">
           <div class="event clear" tal:define="obj item/getObject">
             <div class="columns small-3 date-box">
                 <div class="box-date">
@@ -186,7 +184,7 @@
 
 </metal:macro>
 <metal:macro define-macro="listagem_agenda"
-             tal:define="view nocall:context/@@listagemvertical-view;">
+             tal:condition="python:view_macro.getKind() == 'listagem_agenda'">
 <div class="columns large-12 agenda_main">
 
     <div class="box-title">
@@ -202,7 +200,7 @@
     </select>
 
     <div class="content_itens">
-      <tal:rep repeat="item view/getItens">
+      <tal:rep repeat="item view_macro/getItens">
         <div class="main_text clear" tal:define="obj item/getObject">
 
           <a tal:attributes="href obj/absolute_url"
@@ -223,44 +221,42 @@
     </div>
 </div>
 </metal:macro>
-<metal:macro define-macro="listagem_tabular">
-
-<div class="columns large-12">
-  <h5>
-      <tal:cont tal:content="context/Title">UNIDADES ORGANIZACIONAIS</tal:cont>
-      <hr/>
-  </h5>
-</div>
-<div class="columns large-12">
-  <div class="conteiner" id="documento">
-
-      <tal:def define="not_filter python:False">
-        <metal:block metal:use-macro="context/macro_filter_file/macros/tabular" />
-      </tal:def>
-      
-      <div id="itens">
-          <tal:def define="portal_type python: (context.getListTypes(),);
-                           fields python:[{'label':  ''     , 'attribute': 'getImageIcone', 'is_image':  'True', 'width':  '65',},
-                                          {'label': 'Nome'  , 'attribute': 'getSigla_and_Title'},
-                                          {'label': 'Contato','attribute': 'getContatoInfo'},
-                                          {'label': 'Gestor', 'attribute': 'getGestorInfo'}]; "
-                   condition="python: not 'Pessoas' in portal_type">
-              <metal:block metal:use-macro="context/macro_tabular_file/macros/view" />
+<metal:macro define-macro="listagem_tabular"
+             tal:condition="python:view_macro.getKind() == 'listagem_tabular'">
+    <div class="columns large-12">
+      <h5>
+          <tal:cont tal:content="context/Title">UNIDADES ORGANIZACIONAIS</tal:cont>
+          <hr/>
+      </h5>
+    </div>
+    <div class="columns large-12">
+      <div class="conteiner" id="documento">
+    
+          <tal:def define="not_filter python:False">
+            <metal:block metal:use-macro="context/macro_filter_file/macros/tabular" />
           </tal:def>
-
-
-          <tal:def define="portal_type python: (context.getListTypes(),);
-                           fields python:[{'label':  ''     , 'attribute': 'getImageIcone', 'is_image':  'True', 'width':  '65',},
-                                          {'label': 'Nome'  , 'attribute': 'name'},
-                                          {'label': 'Unidade','attribute': 'get_sigla_unidadeprincipal'},
-                                          {'label': 'Contato','attribute': 'getContato'},
-                                          ]; "
-                   condition="python: 'Pessoas' in portal_type">
-              <metal:block metal:use-macro="context/macro_tabular_file/macros/personal_view" />
-          </tal:def>
+          
+          <div id="itens">
+              <tal:def define="portal_type python: (context.getListTypes(),);
+                               fields python:[{'label':  ''     , 'attribute': 'getImageIcone', 'is_image':  'True', 'width':  '65',},
+                                              {'label': 'Nome'  , 'attribute': 'getSigla_and_Title'},
+                                              {'label': 'Contato','attribute': 'getContatoInfo'},
+                                              {'label': 'Gestor', 'attribute': 'getGestorInfo'}]; "
+                       condition="python: not 'Pessoas' in portal_type">
+                  <metal:block metal:use-macro="context/macro_tabular_file/macros/view" />
+              </tal:def>
+    
+    
+              <tal:def define="portal_type python: (context.getListTypes(),);
+                               fields python:[{'label':  ''     , 'attribute': 'getImageIcone', 'is_image':  'True', 'width':  '65',},
+                                              {'label': 'Nome'  , 'attribute': 'name'},
+                                              {'label': 'Unidade','attribute': 'get_sigla_unidadeprincipal'},
+                                              {'label': 'Contato','attribute': 'getContato'},
+                                              ]; "
+                       condition="python: 'Pessoas' in portal_type">
+                  <metal:block metal:use-macro="context/macro_tabular_file/macros/personal_view" />
+              </tal:def>
+          </div>
       </div>
-  </div>
-</div>
-
-
+    </div>
 </metal:macro>

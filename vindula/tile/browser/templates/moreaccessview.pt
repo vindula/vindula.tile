@@ -17,7 +17,7 @@
     <body>
         <metal:main fill-slot="content-core">
             <metal:macro define-macro="page"
-                         tal:define="view_macro nocall:context/@@moreaccess-view;
+                         tal:define="global view_macro nocall:context/@@moreaccess-view;
                                      path_macro  string:context/@@moreaccess-view/macros/${view_macro/getKind}">
                 <metal:block tal:condition="path_macro"
                              metal:use-macro="python:path(path_macro)"/>
@@ -25,8 +25,9 @@
         </metal:main>
     </body>
 </html>
+
 <metal:macro define-macro="padrao"
-             tal:define="view_macro nocall:context/@@moreaccess-view;">
+             tal:condition="python:view_macro.getKind() == 'padrao'">
     <div id="tile-more-access" class="clear">
         <div class="columns large-12 colunas">
             <div class="row box-title">
@@ -73,9 +74,9 @@
         </div>
     </div>
 </metal:macro>
-<metal:macro define-macro="unidade"
-             tal:define="view_macro nocall:context/@@moreaccess-view;">
 
+<metal:macro define-macro="unidade"
+             tal:condition="python:view_macro.getKind() == 'unidade'">
     <div id="tile-more-access" class="clear">
         <div class="columns large-12">
             <div class="row box-title">
@@ -123,12 +124,10 @@
           </tal:rep>
         </div>
     </div>
-
 </metal:macro>
+
 <metal:macro define-macro="lista_ver"
-             tal:define="view_macro nocall:context/@@moreaccess-view;">
-
-
+             tal:condition="python:view_macro.getKind() == 'lista_ver'">
     <div id="tile-more-access" class="clear">
         <div class="columns large-12">
             <div class="row box-title">
@@ -172,21 +171,19 @@
           </tal:rep>
         </div>
     </div>
-
 </metal:macro>
+
 <metal:macro define-macro="two_columns"
-             tal:define="view_macro nocall:context/@@moreaccess-view;
-                         itens view_macro/getItens;
-
-                         Batch python:modules['Products.CMFPlone'].Batch;
-                         b_size request/b_size|string:8;
-                         b_start python:0;
-                         b_start request/b_start | b_start;
-
-                         batch python:Batch(itens, int(b_size), int(b_start), pagerange=len(itens));"
-             tal:condition="batch">
-    
-    <div class="row">
+             tal:condition="python:view_macro.getKind() == 'two_columns'">
+    <div class="row"
+         tal:define="itens view_macro/getItens;
+                     Batch python:modules['Products.CMFPlone'].Batch;
+                     b_size request/b_size|string:8;
+                     b_start python:0;
+                     b_start request/b_start | b_start;
+                     batch python:Batch(itens, int(b_size), int(b_start), pagerange=len(itens));"
+         tal:condition="batch">
+         
         <div class="columns large-12">
             <div id="tile-more-acess-unity" class="row list_tile">
                 <div class="title columns large-12 box-title">
@@ -241,9 +238,8 @@
     </div>
     
 </metal:macro>
-<metal:macro define-macro="mais_itens"
-             tal:define="view_macro nocall:context/@@moreaccess-view;">
 
+<metal:macro define-macro="mais_itens">
     <div class="box-more-items box-hidden">
       <div class="seta-box">
         <img tal:attributes="src string:${context/portal_url}/++resource++vindula.tile/images/seta-box.png" />

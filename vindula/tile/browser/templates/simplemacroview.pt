@@ -12,20 +12,13 @@
             <metal:macro define-macro="page"
                          tal:define="view_macro nocall:context/@@simplemacro-view;
                                      path_macro view_macro/getMacro">
-
-              <!--
-              <h2 tal:content="context/Title"></h2>
-              <hr />
-              -->
               <div class="row">
-
                 <tal:cod tal:condition="path_macro"
                          tal:on-error="string: Erro ao carregar o bloco ${context/Title}, macro ${path_macro}">
 
                   <metal:block metal:use-macro="python:path(path_macro)"/>
 
                 </tal:cod>
-
               </div>
             </metal:macro>
         </metal:main>
