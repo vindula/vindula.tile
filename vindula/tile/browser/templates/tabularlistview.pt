@@ -51,13 +51,13 @@
         <metal:block metal:use-macro="context/macro_filter_file/macros/unit-tabular"/>
         <div id="itens">
             <tal:def define="portal_type context/getObject_type;
-                             structures nocall:view_macro/getStructure|nothing;">
-                <tal:def define="structures python:(structures == None) and None or structures().UID();
-                                 fields python:[{'label':  ''     , 'attribute': 'getImageIcone', 'is_image':  'True', 'width':  '65',},
-                                          {'label': 'Nome'  , 'attribute': 'getSigla_and_Title'},
-                                          {'label': 'Contato','attribute': 'getContatoInfo'},
-                                          {'label': 'Gestor', 'attribute': 'getGestorInfo'},
-                                          {'label': 'Açoes', 'attribute': '', 'is_action':  'True', 'width':  '40',}];">
+                             structures nocall:view_macro/getStructure|nothing;
+                             structures python:structures() and structures().UID() or None;">
+                <tal:def define="fields python:[{'label':  ''     , 'attribute': 'getImageIcone', 'is_image':  'True', 'width':  '65',},
+                                                {'label': 'Nome'  , 'attribute': 'getSigla_and_Title'},
+                                                {'label': 'Contato','attribute': 'getContatoInfo'},
+                                                {'label': 'Gestor', 'attribute': 'getGestorInfo'},
+                                                {'label': 'Açoes', 'attribute': '', 'is_action':  'True', 'width':  '40',}];">
                     <metal:block metal:use-macro="context/macro_tabular_file/macros/view" />
                 </tal:def>
             </tal:def>
