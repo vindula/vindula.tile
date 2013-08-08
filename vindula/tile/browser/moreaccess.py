@@ -49,11 +49,13 @@ class MoreAccessView(BaseView):
                                         )
         else:
             itens = self.portal_catalog(portal_type = portal_type,
-                                        review_state = ['Published'],
+                                        review_state = ['published'],
                                         path={'query':'/'.join(path.getPhysicalPath()),'depth':99},
                                         sort_on='effective',
                                         sort_order='descending',
                                         )
+            #Forcar itens = published
+            itens = [i for i in itens if i.review_state == 'published']
 
 
         return itens
