@@ -92,10 +92,11 @@ class MoreAccessView(BaseView):
         for i in self.alphabet():
             letras[i] = []
 
-        for item in self.list_more():
-            obj = item.getObject()
-            title = self.getTitle(obj)
+        for item in self.list_more():            
+            #Todo: remover isso, colocado apenas para teste            
             try:
+                obj = item.getObject()
+                title = self.getTitle(obj)
                 letras[title[0]].append(item)
             except KeyError:
                 pass
