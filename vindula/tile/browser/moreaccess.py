@@ -39,12 +39,22 @@ class MoreAccessView(BaseView):
 
         portal_type = context.getObject_type_more()
 
-        itens = self.portal_catalog(portal_type = portal_type,
-                                    # review_state = states,
-                                    path={'query':'/'.join(path.getPhysicalPath()),'depth':99},
-                                    sort_on='effective',
-                                    sort_order='descending',
-                                    )
+        if portal_type == 'File':
+            #Quando portal_type == File nao tem review_state
+            itens = self.portal_catalog(portal_type = portal_type,
+                                        #review_state = states,
+                                        path={'query':'/'.join(path.getPhysicalPath()),'depth':99},
+                                        sort_on='effective',
+                                        sort_order='descending',
+                                        )
+        else:
+            itens = self.portal_catalog(portal_type = portal_type,
+                                        review_state = states,
+                                        path={'query':'/'.join(path.getPhysicalPath()),'depth':99},
+                                        sort_on='effective',
+                                        sort_order='descending',
+                                        )
+
 
         return itens
 
