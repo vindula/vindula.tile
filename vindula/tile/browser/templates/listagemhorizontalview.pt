@@ -154,7 +154,7 @@
 				            <div class="columns small-8">
 				            	<small tal:content="string: ${item/unidade|nothing} / ${item/date|nothing} ${item/hour|nothing}">
 			                			LORORO / 27/03/2013 14:30</small>
-			                	<strong><a href="#" tal:attributes="href item/url|nothing" tal:content="item/title|nothing">
+			                	<strong><br /><a href="#" tal:attributes="href item/url|nothing" tal:content="item/title|nothing">
 			                			Nova diretoria da Opas visita Bio</a></strong>
 				            </div>
                             <tal:cond condition="context/getActiveSocial">

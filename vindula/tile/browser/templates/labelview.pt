@@ -10,8 +10,9 @@
 <metal:main fill-slot="content-core">
     <metal:macro define-macro="page">
     
-        <h1 tal:content="context/Title|nothing"></h1>
-        <hr size="100%" />
+        <h5 tal:content="context/Title|nothing">
+           <hr />
+        </h5>
 
     </metal:macro>
 </metal:main>
