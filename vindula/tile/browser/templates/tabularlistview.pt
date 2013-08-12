@@ -17,8 +17,8 @@
 <body>
     <metal:main fill-slot="content-core">
         <metal:macro define-macro="page"
-                     tal:define="global view_macro nocall:context/@@tabularlist-view;
-                                 path_macro  string:context/@@tabularlist-view/macros/${view_macro/getKind}">
+                     tal:define="global view_macro_tabular nocall:context/@@tabularlist-view;
+                                 path_macro  string:context/@@tabularlist-view/macros/${view_macro_tabular/getKind}">
             <metal:block tal:condition="path_macro"
                          metal:use-macro="python:path(path_macro)"/>
         </metal:macro>
@@ -27,13 +27,15 @@
 </html>
 
 <metal:macro define-macro="padrao"
-             tal:condition="python:view_macro.getKind() == 'padrao'">
+             tal:condition="python:view_macro_tabular.getKind() == 'padrao'"
+             tal:define="view_macro_tabular nocall:context/@@tabularlist-view;">
     <metal:macro define-macro="body">
         <div id="tile-tabular-list">
-            <metal:block metal:use-macro="context/macro_filter_file/macros/tabular"/>
+            
             <div id="itens">
                 <tal:def define="portal_type context/getObject_type;
-                                 structures nocall:view_macro/getStructure;">
+                                 view_macro_tabular nocall:context/@@tabularlist-view;
+                                 structures nocall:view_macro_tabular/getStructure;">
                     <tal:def define="structures python:(structures == None) and None or structures().UID();
                                      fields python:[{'label': 'Título', 'attribute': 'Title'},
                                                     {'label': 'Criação', 'attribute': 'getRawCreation_date'},];">
@@ -46,12 +48,13 @@
 </metal:macro>
 
 <metal:macro define-macro="unidade"
-             tal:condition="python:view_macro.getKind() == 'unidade'">
+             tal:condition="python:view_macro_tabular.getKind() == 'unidade'">
     <div id="tile-tabular-list">
         <metal:block metal:use-macro="context/macro_filter_file/macros/unit-tabular"/>
         <div id="itens">
             <tal:def define="portal_type context/getObject_type;
-                             structures nocall:view_macro/getStructure|nothing;
+                             view_macro_tabular nocall:context/@@tabularlist-view;
+                             structures nocall:view_macro_tabular/getStructure|nothing;
                              structures python:structures() and structures().UID() or None;">
                 <tal:def define="fields python:[{'label':  ''     , 'attribute': 'getImageIcone', 'is_image':  'True', 'width':  '65',},
                                                 {'label': 'Nome'  , 'attribute': 'getSigla_and_Title'},
@@ -66,7 +69,7 @@
 </metal:macro>
 
 <metal:macro define-macro="pessoas"
-             tal:condition="python:view_macro.getKind() == 'pessoas'">
+             tal:condition="python:view_macro_tabular.getKind() == 'pessoas'">
     <div id="tile-tabular-list">
         <metal:block metal:use-macro="context/macro_filter_file/macros/person-tabular"/>
         <div id="itens">
