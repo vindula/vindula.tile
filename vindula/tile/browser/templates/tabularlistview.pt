@@ -34,7 +34,7 @@
             <div id="itens">
                 <tal:def define="portal_type context/getObject_type;
                                  view_macro_tabular nocall:context/@@tabularlist-view;
-                                 structures nocall:view_macro_tabular/getStructure;>
+                                 structures nocall:view_macro_tabular/getStructure;">
                     <tal:def define="structures python:(structures == None) and None or structures().UID();
                                      dummy python:request.set('macro', 'default');
                                      fields python:[{'label': 'Título', 'attribute': 'Title'},
