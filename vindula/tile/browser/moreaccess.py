@@ -97,7 +97,8 @@ class MoreAccessView(BaseView):
             try:
                 obj = item.getObject()
                 title = self.getTitle(obj)
-                letras[title[0]].append(item)
+                if len(title) > 0:
+                    letras[title[0]].append(item)
             except KeyError:
                 pass
 
