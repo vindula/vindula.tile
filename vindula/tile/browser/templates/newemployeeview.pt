@@ -56,7 +56,8 @@
                   <input type="hidden" id="absolute_url" tal:attributes="value string:${context/absolute_url}" />
 
                   <tal:rep repeat="item batch">
-                      <div class="large-6 columns item" tal:define="username item/username|nothing">
+                      <div class="large-6 columns item" tal:define="item python:view_macro.getItem(item);
+                                                                    username item/username|nothing">
                         
                         <div class="left image">
                             <img width="60" tal:attributes="src python:view_macro.getURLFotoUser(username);

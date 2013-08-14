@@ -14,7 +14,9 @@ def por_admicao(item):
 class NewEmployeeView(BaseView, UtilMyvindula):
     grok.name('newemployee-view')
 
+    def getItem(self,username):
+    	return FuncDetails(username)
+
     def getItens(self,):
-        dados_users = FuncDetails.get_AllFuncDetails()
-        result = sorted(dados_users, key=por_admicao)
-        return result
+        dados_users = FuncDetails.get_AllFuncUsernameList(sorted_by=por_admicao)
+        return dados_users
