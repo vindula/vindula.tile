@@ -12,8 +12,14 @@ from vindula.tile import MessageFactory as _
 from vindula.tile.config import *
 
 TileLabel_schema = BaseTile.schema.copy() + Schema((
-
-
+    BooleanField(
+        name='line',
+        default=True,
+        widget=BooleanWidget(
+            label="Mostrar linha abaixo o título",
+            description='Caso selecionado mostrará uma linha abaixo o título.',
+        ),
+    ),
 ))
 
 #Oculta o campo padrao 'description'
