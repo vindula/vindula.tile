@@ -19,9 +19,10 @@ from zope.component import queryUtility
 
 TileHowDo_schema = BaseTile.schema.copy() + Schema((
 
-    StringField(
+    LinesField(
         name='objectType',
-        widget=SelectionWidget(
+        multiValued=1,
+        widget=MultiSelectionWidget(
             label=_(u"Tipo de conteudo"),
             description=_(u"Selecione o tipo de conteúdo que sera apresentado."),
             format = 'select',
