@@ -78,6 +78,6 @@ class TileHowDo(BaseTile):
     columns = 12
 
     #Scripts js
-#    scripts_js = ['button-more.js','ajax_boll_batch.js']
+    scripts_js = ['button-more.js']
 
 registerType(TileHowDo, PROJECTNAME)

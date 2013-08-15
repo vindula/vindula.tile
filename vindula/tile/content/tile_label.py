@@ -38,7 +38,7 @@ class TileLabel(BaseTile):
     schema = TileLabel_schema
 
     #tamanho do tile
-    columns = 6
+    columns = 12
 
 
 registerType(TileLabel, PROJECTNAME)

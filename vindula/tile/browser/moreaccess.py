@@ -36,7 +36,7 @@ class MoreAccessView(BaseView):
     def list_more(self):
         context = self.context
         path = context.portal_url.getPortalObject()
-
+        
         portal_type = context.getObject_type_more()
 
         if portal_type == 'File':

@@ -19,8 +19,13 @@
             <metal:macro define-macro="page"
                          tal:define="global view_macro nocall:context/@@moreaccess-view;
                                      path_macro  string:context/@@moreaccess-view/macros/${view_macro/getKind}">
+                
+                <input type="hidden" value="moreaccess-view" name="macro-name" id="macro-name" />
+                <input type="hidden" tal:attributes="value string:${context/absolute_url}" name="url-context" id="url-context" />                         
+                
                 <metal:block tal:condition="path_macro"
                              metal:use-macro="python:path(path_macro)"/>
+                             
             </metal:macro>
         </metal:main>
     </body>
@@ -37,11 +42,11 @@
                         <hr/>
                     </h4>
                 </div>
-                <div class="columns small-2 icon-moreaccess show-box-hidden">
+                <div class="columns small-2 icon-moreaccess more-items">
                     <a href="#" class="right more">
                         <h1 class="subheader vindula-icon-plus-sign"></h1>
                     </a>
-                    <metal:block metal:use-macro="context/@@moreaccess-view/macros/mais_itens" />
+                    <!--metal:block metal:use-macro="context/@@moreaccess-view/macros/mais_itens" /-->
                 </div>
             </div>
         </div>
@@ -86,11 +91,11 @@
                         <hr/>
                     </h4>
                 </div>
-                <div class="columns small-2 icon-moreaccess show-box-hidden">
+                <div class="columns small-2 icon-moreaccess more-items">
                     <a href="#" class="right more">
                         <h1 class="subheader vindula-icon-plus-sign"></h1>
                     </a>
-                    <metal:block metal:use-macro="context/@@moreaccess-view/macros/mais_itens" />
+                    <!--metal:block metal:use-macro="context/@@moreaccess-view/macros/mais_itens" /-->
                 </div>
             </div>
         </div>
@@ -137,11 +142,11 @@
                         <hr/>
                     </h4>
                 </div>
-                <div class="columns small-2 icon-moreaccess show-box-hidden">
+                <div class="columns small-2 icon-moreaccess more-items">
                     <a href="#" class="right more">
                         <h1 class="subheader vindula-icon-plus-sign"></h1>
                     </a>
-                    <metal:block metal:use-macro="context/@@moreaccess-view/macros/mais_itens" />
+                    <!--metal:block metal:use-macro="context/@@moreaccess-view/macros/mais_itens" /-->
                 </div>
             </div>
         </div>
@@ -239,7 +244,7 @@
     
 </metal:macro>
 
-<metal:macro define-macro="mais_itens">
+<!--metal:macro define-macro="mais_itens">
     <div class="box-more-items box-hidden">
       <div class="seta-box">
         <img tal:attributes="src string:${context/portal_url}/++resource++vindula.tile/images/seta-box.png" />
@@ -268,4 +273,4 @@
         </tal:rep>
       </ul>
     </div>
-</metal:macro>
+</metal:macro-->
