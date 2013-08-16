@@ -10,12 +10,15 @@ from vindula.myvindula.models.funcdetails import FuncDetails
 from DateTime.DateTime import DateTime
 from datetime import datetime, date, timedelta
 import calendar
+from vindula.myvindula.cache import *
 
 grok.templatedir('templates')
 
 class BirthdaysView(BaseView, UtilMyvindula):
     grok.name('birthdays-view')
 
+    def getItem(self,username):
+        return FuncDetails(username)
 
     def parse_data(self, str_data):
         D={'day':'','month':''}
@@ -96,12 +99,13 @@ class BirthdaysView(BaseView, UtilMyvindula):
         if filtro_OU:
             results_OU = []
             for user in results:
-                unidade_user = user.get_unidadeprincipal()
+                unidade_user = user.get('UO','')
+                import pdb;pdb.set_trace()
                 if filtro_OU == unidade_user:
-                    results_OU.append(user)
+                    results_OU.append(FuncDetails(user))
 
             return results_OU
-
+        
         return results
 
 

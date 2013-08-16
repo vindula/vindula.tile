@@ -27,7 +27,8 @@
 
                 <li tal:condition="results">
                     <tal:results tal:repeat="item python:results[:quant]">
-                        <div class="row" tal:define="username item/username">
+                        <div class="row" tal:define="item python:view_birthdays.getItem(item.get('username'));
+                                                     username item/username">
                             <div class="columns small-12">
                                 <div class="left box-date" tal:define="data item/date_birth;
                                                                        data_brithdays python:view_birthdays.parse_data(data)">
