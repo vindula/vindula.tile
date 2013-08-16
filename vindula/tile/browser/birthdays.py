@@ -99,13 +99,12 @@ class BirthdaysView(BaseView, UtilMyvindula):
         if filtro_OU:
             results_OU = []
             for user in results:
-                unidade_user = user.get('UO','')
-                import pdb;pdb.set_trace()
+                unidade_user = user.get('UO','')                
                 if filtro_OU == unidade_user:
                     results_OU.append(FuncDetails(user))
 
             return results_OU
-        
+
         return results
 
 
