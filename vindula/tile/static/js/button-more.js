@@ -1,7 +1,7 @@
 function activeLetters($context){
-    $j('ul.letters > li > h6 > a', $context).click(function(){
-        event.preventDefault();
-        event.stopPropagation();
+    $j('ul.letters > li > h6 > a', $context).click(function(e){
+        e.preventDefault();
+        e.stopPropagation();
         
         $j('.letters > li')
         .each(function(){
@@ -12,9 +12,9 @@ function activeLetters($context){
 }
 
 $j(document).ready(function(){ 
-    $j('.more-items > a').click(function(){
-        event.preventDefault();
-        event.stopPropagation();
+    $j('.more-items > a').click(function(e){
+        e.preventDefault();
+        e.stopPropagation();
         
         var $this = $(this);
         

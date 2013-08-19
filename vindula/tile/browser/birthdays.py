@@ -48,21 +48,18 @@ class BirthdaysView(BaseView, UtilMyvindula):
                         dado = dado_user.get(line[1])
                         dado = dado.split('/')
                         D['content'] = '/'.join(dado[:-1])
-
                     elif line[1] == 'unidadeprincipal':
                         structure = dado_user.get_unidadeprincipal()
                         result = ''
                         if structure:
                             result = structure.getSiglaOrTitle()
                         D['content'] = result
-
                     elif line[1] == 'departamento':
                         texto = ''
                         for item in dado_user.get_department():
                             texto += ' %s /' % item.get('title')
 
                         D['content'] = texto
-
                     else:
                         D['content'] = dado_user.get(line[1])
                     L.append(D)
