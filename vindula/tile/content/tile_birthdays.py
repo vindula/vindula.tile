@@ -96,7 +96,14 @@ TileBirthdays_schema = BaseTile.schema.copy() + Schema((
         default=u'[] | [departamento]',
         required=True,
     ),
-
+    
+    BooleanField(
+        name='show_structure',
+        widget=BooleanWidget(
+            label="Mostrar unidade principal",
+            description='Se selecionado mostrar a unidade principal do usuário no bloco de aniversariantes.',
+        ),
+    ),
 
 ))
 
