@@ -12,7 +12,7 @@
                 <strong>Grupo:</strong><span>Aberto</span>
             </li-->
             <li>
-                <strong>email:</strong>
+                <strong>Email:</strong>
                 <a href="#" tal:define="email orgstruc/email|string: "
                             tal:attributes="href python: 'mailto:'+ email"
                             tal:content="orgstruc/getEmail|string: ">contato@empresa.com</a>
@@ -21,10 +21,19 @@
                 <strong>Tel.:</strong>
                 <span tal:content="orgstruc/getPhone_number|string:">(00) 3332-3334</span>
             </li>
+            <li tal:define="campus orgstruc/getUnits"
+                tal:condition="campus">
+                <strong>Campus:</strong>
+                <a href="#" tal:content="campus/title"
+                   tal:attributes="href campus/absolute_url;
+                                   alt campus/title;">
+                </a>
+            </li>
             <li>
                 <strong>Localização:</strong>
                 <span tal:content="orgstruc/getLocation|string:">Lorem Ipsum, Ed. Sodeles, Amete daram 232</span>
             </li>
+            <!-- TODO: Verificar o que seriam esses projetos. -->
             <li>
                 <strong>Projetos:</strong><span>12</span>
             </li>
