@@ -68,7 +68,6 @@
                 </li>
                 <li tal:condition="not: results">
                     Não há aniversariantes
-
                 </li>
             </ul>
         </div>
