@@ -64,14 +64,13 @@
 
 
 			                <tal:cond condition="context/getActiveSocial">
-					    <div class="vd-social-left" tal:define="context nocall: item/obj">
-	                                    <div metal:use-macro="context/macro-comboStandard-content/macros/view" />
-	                                    </div>
+        					    <div class="vd-social-left" tal:define="context nocall: item/obj">
+                                    <div metal:use-macro="context/macro-comboStandard-content/macros/view" />
+                                </div>
 			                </tal:cond>
-
+                            
 	                        </div>
 	                    </div>
-
 	                </li>
 	            </ul>
 	        </div>

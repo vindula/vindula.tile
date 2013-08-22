@@ -20,9 +20,10 @@
                 <tal:block  tal:define="canVote poll/can_vote;">
         
                     <div class="columns large-12">
-                        <p class="discrete" tal:content="poll/question">
+                        <span tal:content="poll/question">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit?
-                        </p>
+                        </span>
+                        <br />
                     </div>
         
                     <div class="columns large-12">
