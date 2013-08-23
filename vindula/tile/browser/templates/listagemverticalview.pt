@@ -101,8 +101,10 @@
                 <div class="columns large-12 text_descricao" tal:define="obj item/getObject">
                     <div class="row">
                         <div class="columns small-4 " id="image_tile">
-                            <img src="++theme++vindula.themedefault/images/demos/demo1-th.png"
-                                 tal:attributes="src obj/getImageIcone|nothing;" />
+                            <div>
+                                <img src="++theme++vindula.themedefault/images/demos/demo1-th.png"
+                                     tal:attributes="src python:obj.getImageSize('thumb');" />
+                            </div>
                         </div>
                         <div class="columns small-8">
                             <small>LORORO /
