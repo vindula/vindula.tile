@@ -10,7 +10,7 @@
 <metal:main fill-slot="content-core">
     <metal:macro define-macro="page"
                  tal:define="view_birthdays nocall:context/@@birthdays-view;
-                             bullets_false string: bullets:false;">
+                             bullets_false python:'bullets:false;;timer_speed:0;;navigation_arrows:false';">
 
     <div class="row" id="tile-birthday">
         <div class="columns large-12 box-title">

@@ -34,7 +34,7 @@
 <metal:macro define-macro="destaque_unico"
              tal:condition="python:context.getListTemplates() == 'destaque_unico'">
 	<div class="columns large-12"  tal:define="itens view_macro/getItens;
-                        				       bullets_false string: bullets:false;">
+                        				       bullets_false python:'bullets:false;;timer_speed:0;;navigation_arrows:false';">
 	    <div class="row main_row">
 	        <div class="columns large-12 listagem_horizontal_text box-title">
 	            <h4>
@@ -81,8 +81,7 @@
 
 <metal:macro define-macro="destaque_multipla"
              tal:condition="python:context.getListTemplates() == 'destaque_multipla'">
-	<div class="columns large-12"  tal:define="itens view_macro/getItens;
-                             				   bullets_false string: bullets:false;">
+	<div class="columns large-12"  tal:define="itens view_macro/getItens;">
 	    <div class="row">
 	        <div class="columns large-12" tal:repeat="item itens">
 	            <small tal:content="string: ${item/unidade|nothing} / ${item/date|nothing} ${item/hour|nothing}">ASCOM / 27/03/2013 14:30</small>
@@ -118,7 +117,6 @@
 	<div class="columns large-12">
 	 	<div id="tile-listagem-horizontal-two-columns" class="row list_tile"
 			 tal:define="itens view_macro/getItens;
-	                     bullets_false string: bullets:false;
 
 						 Batch python:modules['Products.CMFPlone'].Batch;
 	                     b_size request/b_size|string:2;

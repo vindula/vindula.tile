@@ -23,7 +23,7 @@
 <metal:macro define-macro="alerta_normal"
              tal:condition="python:view_macro.getKind() == 'alerta_normal'">
     <tal:def define="items context/getItens;
-                     bullets_false string: bullets:false;">
+                     bullets_false python:'bullets:false;;timer_speed:0;;navigation_arrows:false';">
         <h2 tal:content="context/Title">ANUNCIO</h2>
         <div id="anuncio-normal">
           <ul data-orbit tal:attributes="data-options python: len(items)==1 and bullets_false"
@@ -52,7 +52,7 @@
 <metal:macro define-macro="alerta_importante"
              tal:condition="python:view_macro.getKind() == 'alerta_importante'">
     <tal:def define="items context/getItens;
-                     bullets_false string: bullets:false;">
+                     bullets_false python:'bullets:false;;timer_speed:0;;navigation_arrows:false';">
         <h2 tal:content="context/Title">ANUNCIO</h2>
         <ul data-orbit tal:attributes="data-options python: len(items)==1 and bullets_false"
                        id="tile-featured">
@@ -78,8 +78,7 @@
 <metal:macro define-macro="destaque"
              tal:condition="python:view_macro.getKind() == 'destaque'">
     <div class="columns small-12" id="tile-featured"
-         tal:define="items context/getItens;
-                     bullets_false string: bullets:false;">
+         tal:define="items context/getItens;">
         <div class="row">
             <div class="columns large-12 feature_text box-title">
                 <h4 tal:content="context/Title">ANUNCIO</h4>
