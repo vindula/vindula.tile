@@ -69,12 +69,14 @@
                                 <span tal:content="python:'('+str(len(members))+')'">(132)</span>
                             </div>
 
-                            <div class="columns large-12">
+                            <div class="columns large-12"
+                                 tal:define="blocks python:view_macro.format_members(members) or [];
+                                             bullets_false python:'bullets:false;;timer_speed:0;;navigation_arrows:%s' % ((blocks and (len(blocks) > 1)) and 'true' or 'false');">
                                 <div class="row">
                                     <ul data-orbit
-                                        data-options="bullets:false;"
+                                        tal:attributes="data-options bullets_false;"
                                         class="orbit-slides-container">
-                                        <tal:rep repeat="block python: view_macro.format_members(members)">
+                                        <tal:rep repeat="block blocks">
                                             <li>
                                                 <ul class="small-block-grid-9 large-block-grid-9 members-team">
                                                     <tal:rep repeat="member block">
