@@ -9,8 +9,7 @@
 
 <metal:main fill-slot="content-core">
     <metal:macro define-macro="page"
-                 tal:define="view_birthdays nocall:context/@@birthdays-view;
-                             bullets_false python:'bullets:false;;timer_speed:0;;navigation_arrows:false';">
+                 tal:define="view_birthdays nocall:context/@@birthdays-view;">
 
     <div class="row" id="tile-birthday">
         <div class="columns large-12 box-title">
@@ -22,9 +21,7 @@
         <div class="columns large-12 main_birthday">
             <ul id="birthdays"
                 tal:define="quant context/numb_items;
-                            results view_birthdays/birthdaysToday;"
-                tal:attributes="data-options python: len(view_birthdays.birthdaysToday())==1 and bullets_false;">
-
+                            results view_birthdays/birthdaysToday;">
                 <li tal:condition="results">
                     <tal:results tal:repeat="item python:results[:quant]">
                         <div class="row" tal:define="item python:view_birthdays.getItem(item.get('username'));
