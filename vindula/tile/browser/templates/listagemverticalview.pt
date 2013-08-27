@@ -107,9 +107,9 @@
                             </div>
                         </div>
                         <div class="columns small-8"
-                             tal:define="structure obj/getStructures">
-                            <small><tal:rep tal:condition="structure"
-                                            tal:content="string:${structure/getSiglaOrTitle} /">LORORO /</tal:rep>
+                             tal:define="structure python:obj.getStructures">
+                            <small><tal:rep tal:condition="python:structure()"
+                                            tal:content="python:structure().getSiglaOrTitle()+' /'">LORORO /</tal:rep>
                                   <tal:cont content="python: obj.creation_date.strftime('%d/%m/%Y %H:%M')"> 27/03/2013 14:30 </tal:cont> </small><br />
                             <strong><a href="#" tal:attributes="href obj/absolute_url"
                                                 tal:content="obj/Title">Nova diretoria da Opas visita Bio</a></strong>
