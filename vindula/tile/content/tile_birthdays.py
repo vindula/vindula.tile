@@ -20,9 +20,10 @@ TileBirthdays_schema = BaseTile.schema.copy() + Schema((
         name='numb_items',
         widget = IntegerWidget(
             label = 'Quantidade',
-            description='Quantidade maxima de items.',
+            description='Quantidade de aniversarintes por página.',
         ),
         default=5,
+        required=True
     ),
 
     ReferenceField('structures',

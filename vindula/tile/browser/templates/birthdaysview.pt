@@ -10,6 +10,8 @@
 <metal:main fill-slot="content-core">
     <metal:macro define-macro="page"
                  tal:define="view_birthdays nocall:context/@@birthdays-view;">
+    <script type="text/javascript" src=""
+            tal:attributes="src string:${context/absolute_url|nothing}/++resource++vindula.content/js/ajax_list_file.js"></script>
 
     <div class="row" id="tile-birthday">
         <div class="columns large-12 box-title">
@@ -18,55 +20,77 @@
                 <hr/>
             </h4>
         </div>
-        <div class="columns large-12 main_birthday">
-            <ul id="birthdays"
-                tal:define="quant context/numb_items;
-                            results view_birthdays/birthdaysToday;">
-                <li tal:condition="results">
-                    <tal:results tal:repeat="item python:results[:quant]">
-                        <div class="row" tal:define="item python:view_birthdays.getItem(item.get('username'));
-                                                     username item/username">
-                            <div class="columns small-12">
-                                <div class="left box-date" tal:define="data item/date_birth;
-                                                                       data_brithdays python:view_birthdays.parse_data(data)">
-                                    <h2 tal:content="data_brithdays/day">17</h2>
-                                    <h6 tal:content="data_brithdays/month">MAR</h6>
+        
+        <div class="columns large-12 main_birthday"
+             tal:define="quant context/numb_items;
+                         results view_birthdays/birthdaysToday;
+                         
+                         Batch python:modules['Products.CMFPlone'].Batch;
+                         b_size request/b_size|b_size|quant|string:5;
+                         b_start python:0;
+                         b_start request/b_start|b_start;
+                         batch python:Batch(results, int(b_size), int(b_start), pagerange=len(results));">
+            
+            <div class="list_file" id="main_birthday">
+                <div class="container">
+                    <input type="hidden" id="b_size" tal:attributes="value b_size" />
+                    <input type="hidden" id="b_start" tal:attributes="value b_start" />
+                    <input type="hidden" id="absolute_url" tal:attributes="value string:${context/absolute_url}" >
+                    
+                    <ul id="birthdays" class="no-bullet">
+                        <li tal:condition="results">
+                            <tal:results tal:repeat="item batch">
+                                <div class="row" tal:define="item python:view_birthdays.getItem(item.get('username'));
+                                                             username item/username">
+                                    <div class="columns small-12">
+                                        <div class="left box-date" tal:define="data item/date_birth;
+                                                                               data_brithdays python:view_birthdays.parse_data(data)">
+                                            <h2 tal:content="data_brithdays/day">17</h2>
+                                            <h6 tal:content="data_brithdays/month">MAR</h6>
+                                        </div>
+                                        <div class="left box-image">
+                                            <img src="++theme++vindula.themedefault/images/demos/demo-photo.png"
+                                                 tal:attributes="src item/getImageIcone;
+                                                                 alt item/name|nothing;
+                                                                 title item/name|nothing;" />
+        
+                                        </div>
+                                        <div class="left box-data"
+                                             tal:define="structure item/get_unidadeprincipal">
+                                            <a href="#" class="profile-link"
+                                               tal:attributes="href item/getUrlPerfil;
+                                                               data-username username|nothing;"
+                                                        tal:content="python: item.get(context.getPrincipal_user(),'')">Paulo Sobral</a>
+                                            
+                                            <tal:cond condition="context/getShow_structure">
+                                                <p class="discrete"
+                                                   tal:condition="python: structure != None"
+                                                   tal:content="structure/getSiglaOrTitle">DITIN</p>
+                                            </tal:cond>
+        
+                                            <tal:rep repeat="detail python: view_birthdays.get_details_user(item)">
+                                                <span tal:condition="python: detail['label'] and detail['content']"
+                                                      tal:content="string: ${detail/label}: "> </span>
+                                                <span tal:condition="detail/content" tal:content="detail/content"> </span>
+                                                <br tal:condition="python: detail['label'] or detail['content']">
+                                            </tal:rep>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="left box-image">
-                                    <img src="++theme++vindula.themedefault/images/demos/demo-photo.png"
-                                         tal:attributes="src item/getImageIcone;
-                                                         alt item/name|nothing;
-                                                         title item/name|nothing;" />
-
-                                </div>
-                                <div class="left box-data"
-                                     tal:define="structure item/get_unidadeprincipal">
-                                    <a href="#" class="profile-link"
-                                       tal:attributes="href item/getUrlPerfil;
-                                                       data-username username|nothing;"
-                                                tal:content="python: item.get(context.getPrincipal_user(),'')">Paulo Sobral</a>
-                                    
-                                    <tal:cond condition="context/getShow_structure">
-                                        <p class="discrete"
-                                           tal:condition="python: structure != None"
-                                           tal:content="structure/getSiglaOrTitle">DITIN</p>
-                                    </tal:cond>
-
-                                    <tal:rep repeat="detail python: view_birthdays.get_details_user(item)">
-                                        <span tal:condition="python: detail['label'] and detail['content']"
-                                              tal:content="string: ${detail/label}: "> </span>
-                                        <span tal:condition="detail/content" tal:content="detail/content"> </span>
-                                        <br tal:condition="python: detail['label'] or detail['content']">
-                                    </tal:rep>
-                                </div>
-                            </div>
-                        </div>
-                    </tal:results>
-                </li>
-                <li tal:condition="not: results">
-                    Não há aniversariantes
-                </li>
-            </ul>
+                            </tal:results>
+                        </li>
+                        
+                        <li tal:condition="not: results">
+                            Não há aniversariantes
+                        </li>
+                    </ul>
+                    
+                    <div class="right ajax_pagination" id="pag-nav">
+                        <metal:block metal:use-macro="context/boll_batch/macros/navigation" />
+                    </div>
+                    
+                </div>
+            </div>
         </div>
     </div>
     </metal:macro>

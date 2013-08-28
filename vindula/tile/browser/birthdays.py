@@ -77,9 +77,11 @@ class BirthdaysView(BaseView, UtilMyvindula):
             date_start = date_end = today
 
         elif type_filter == '7':
-
             day_of_weekday = Z_now.dow()
-            date_start = (Z_now + 1 - day_of_weekday).asdatetime().date()
+#            date_start = (Z_now + 1 - day_of_weekday).asdatetime().date()
+            #Pega os aniversariantes da semana a partir de HOJE!
+            #Acho que nao faz sentido listar os que ja passaram
+            date_start = today
             date_end = (Z_now + 1 - day_of_weekday + 6).asdatetime().date()
 
         elif type_filter == '30':
@@ -111,3 +113,21 @@ class BirthdaysView(BaseView, UtilMyvindula):
 
         results = self.get_birthdaysToday(type_filter,filtro_OU)
         return results
+
+
+    def format_members(self,qtd_itens, obj_list):
+        lista = []
+        L = None
+        
+        for count, obj in enumerate(obj_list):
+            if count == 0 or count % qtd_itens == 0:
+                L = []
+            L.append(obj)
+
+            if (count + 1) % qtd_itens == 0:
+                lista.append(L)
+                L = None
+        if L:
+            lista.append(L)
+
+        return lista
