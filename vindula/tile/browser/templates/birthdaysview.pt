@@ -59,7 +59,8 @@
                                              tal:define="structure item/get_unidadeprincipal">
                                             <a href="#" class="profile-link"
                                                tal:attributes="href item/getUrlPerfil;
-                                                               data-username username|nothing;"
+                                                               data-type string:UserObject;
+                                                               data-value username|nothing;"
                                                         tal:content="python: item.get(context.getPrincipal_user(),'')">Paulo Sobral</a>
                                             
                                             <tal:cond condition="context/getShow_structure">

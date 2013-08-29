@@ -66,8 +66,10 @@
                         </div>
                         <div class="left content"
                              tal:define="structure item/get_unidadeprincipal">
-                            <a class="block profile-link" href="#" tal:attributes="href item/getUrlPerfil|nothing;
-                                                                      data-username item/username|nothing;"
+                            <a class="block profile-link" href="#" 
+                               tal:attributes="href item/getUrlPerfil|nothing;
+                                               data-type string:UserObject;
+                                               data-value item/username|nothing;"
                                              tal:content="python:view_myvindula.name_user_top(item.get('name',' '))">Pedro Miranda Prado</a>
                             <span class="block"
                                   tal:condition="python: structure != None"
