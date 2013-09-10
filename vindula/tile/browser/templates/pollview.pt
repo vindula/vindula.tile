@@ -23,7 +23,7 @@
                         <span tal:content="poll/question">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit?
                         </span>
-                        <br />
+                        <br /><br />
                     </div>
         
                     <div class="columns large-12">
