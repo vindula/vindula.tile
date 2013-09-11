@@ -52,7 +52,9 @@ TileListagemHorizontal_schema = BaseTile.schema.copy() + Schema((
          ),
          vocabulary=[("destaque_unico",_(u"Listagem com um único Destaque")),
                     ("destaque_multipla", _(u"Listagem Múltipla")),
-                    ('destaque_two_columns', _(u"Listagem de duas colunas"))],
+                    ('destaque_two_columns', _(u"Listagem de duas colunas")),
+                    ('destaque_duplo', _(u"Listagem em duplas"))
+                    ],
          default='destaque_unico',
          required=True,
      ),

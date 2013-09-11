@@ -13,7 +13,8 @@
 
       <metal:macro define-macro="page"
                    tal:define="view nocall:context/@@layout-view;
-                               tiles view/getItensTiles;
+                               size_global size_global|python:False;
+                               tiles python:view.getItensTiles(size_global);
                                scripts view/getScripts_js;
                                columns_accessory columns_accessory|python:False;
                                size_large python: columns_accessory and '12' or '6'">

@@ -28,8 +28,11 @@ class LayoutView(BaseView):
 
 
 
-    def getItensTiles(self):
+    def getItensTiles(self, size_global=False):
         """
+        @size_global = Forsa retornar sempre um tile por linha, usado no carrega tile de
+                        layout padrao
+
         Esse metodo retorna uma lista de listas, com os tiles
         organizados pelo numero de colunas que ocupa.
 
@@ -59,7 +62,7 @@ class LayoutView(BaseView):
 
             tile = tiles[posicao]
 
-            if tile.get_columns() == 12:
+            if tile.get_columns() == 12 or size_global :
                 tiles_posicionados.append([tile])
                 posicionados += 1
                 posicao+=1

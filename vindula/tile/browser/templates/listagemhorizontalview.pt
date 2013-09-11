@@ -174,3 +174,40 @@
 		</div>
 	</div>
 </metal:macro>
+<metal:macro define-macro="destaque_duplo"
+             tal:condition="python:context.getListTemplates() == 'destaque_duplo'">
+
+	<div class="columns large-12 listagem_horizontal_main" tal:define="itens view_macro/getItens;
+																	   bullets_false python:'bullets:false;;timer_speed:0;;navigation_arrows:false';">
+		<ul data-orbit id="tile-news" tal:attributes="data-options python: len(itens)==1 and bullets_false;">
+			
+			<tal:rep repeat="item itens">
+				<tal:cond condition="python:repeat['item'].even() or repeat['item'].start">
+ 					<tal:structure content="structure python: '<li >\n<div class=\'row\' >'"></tal:structure>
+				</tal:cond>
+
+				<div class="columns large-6 listagem_horizontal_duas_colunas">
+					<div class="image-noticia-duas-colunas">
+						<img tal:attributes="src item/image"
+							  src="++theme++vindula.themedefault/images/demos/demo2-th.gif" />
+					</div>
+					<div class="conteudo-noticia-duas-colunas">
+						<small tal:content="string: ${item/date|nothing} ${item/hour|nothing}">27/03/2013 14:30</small>
+
+	                    <h5><a href="#" tal:attributes="href item/url|nothing"
+	                               	    tal:content="item/title|nothing">Nova diretoria da Opas visita Bio</a></h5>
+
+	                    <p tal:content="item/description|nothing">Lorem ipsum dolor sit amet,
+	                    	consectetur adipiscing elit. In ornare placerat leo,
+	                    	non scelerisque sem mollis ut.</p>
+					</div>
+				</div>
+		
+				<tal:cond condition="python:repeat['item'].odd() or repeat['item'].end" >	
+					 <tal:structure content="structure python:'</li>\n</div>\n'"></tal:structure>
+				</tal:cond>
+			</tal:rep>
+		
+		</ul>
+	</div>
+</metal:macro>
