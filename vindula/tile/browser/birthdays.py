@@ -95,10 +95,10 @@ class BirthdaysView(BaseView, UtilMyvindula):
 
         results = FuncDetails.get_FuncBirthdays(date_start,date_end)
 
-        if not isinstance(filtro_OU, str):
-            filtro_OU = filtro_OU.UID()
- 
         if filtro_OU:
+            if not isinstance(filtro_OU, str):
+                filtro_OU = filtro_OU.UID()
+                
             results_OU = []
             for user in results:
                 unidade_user = user.get('UO','')          
