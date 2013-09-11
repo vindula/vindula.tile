@@ -21,7 +21,7 @@
                     <tal:rep repeat="valor content_itens">
                         <li tal:define="obj valor/getObject">
                             <a tal:attributes="href string:${obj/absolute_url|nothing}${context/getPath_link|nothing}"
-                            tal:content="obj/Title">UNIDADE</a>
+                            tal:content="python:view_macro.getTitle(obj)">UNIDADE</a>
                         </li>
                     </tal:rep>
                 </ul>
