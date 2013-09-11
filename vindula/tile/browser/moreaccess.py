@@ -71,11 +71,9 @@ class MoreAccessView(BaseView):
     def getTitle(self,obj):
         str = ''
         if hasattr(obj, 'getSiglaunidade'):
-            str = obj.getSiglaunidade().upper()
-
+            str = obj.getSiglaunidade()
         if not str:
-            str = obj.Title().upper()
-
+            str = obj.Title()
         # print str
         return str
 
@@ -98,7 +96,7 @@ class MoreAccessView(BaseView):
                 obj = item.getObject()
                 title = self.getTitle(obj)
                 if len(title) > 0:
-                    letras[title[0]].append(item)
+                    letras[title[0].upper()].append(item)
             except KeyError:
                 pass
 
