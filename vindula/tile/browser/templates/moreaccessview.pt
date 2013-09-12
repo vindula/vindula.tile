@@ -116,13 +116,14 @@
                 </div>
 
                 <div class="columns small-8 ">
-                  <a href="" tal:attributes="href string:${obj/absolute_url}/view;
-                                             alt obj/Title;
-                                             title obj/Title;"
-                             tal:content="obj/getSiglaunidade|obj/Title">Lorem ipsum.</a>
-
-                  <!--span tal:content="obj/getSiglaunidade|nothing">Lorem ipsum.</span> <br />
-                  <span tal:content="obj/manager|nothing">Gestor</span-->
+                    <a href="" class="structure-link"
+                       tal:content="obj/getSiglaunidade|obj/Title"
+                       tal:attributes="href string:${obj/absolute_url}/view;
+                                       alt obj/Title;
+                                       title obj/Title;
+                                       data-type string:Structure;
+                                       data-value obj/UID;">
+                    </a> 
                 </div>
             </div>
           </tal:rep>
@@ -215,8 +216,11 @@
                                                  alt obj/Title; title obj/Title;" />
                         </div>
                         <div class="left content">
-                            <a class="block" href="#" tal:attributes="href string:${obj/absolute_url}/view;"
-                                             tal:content="obj/getSiglaunidade|obj/Title" >DIBOP</a>
+                            <a class="structure-link block"
+                               tal:content="obj/getSiglaunidade|obj/Title"
+                               tal:attributes="data-type string:Structure;
+                                               data-value obj/UID;" 
+                                               href string:${obj/absolute_url}/view;">DIBOP</a>
                             <span class="block" tal:content="obj/Title">Divisao de Boas Praticas</span>
     
                             <tal:def define="gestor obj/getManager|string: ;
