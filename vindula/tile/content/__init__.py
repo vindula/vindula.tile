@@ -21,3 +21,4 @@ import tile_referencelist
 import tile_infostructure
 import tile_tabularlist
 import tile_howdo
+import tile_bannercompost

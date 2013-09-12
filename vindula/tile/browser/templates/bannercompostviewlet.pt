@@ -1,0 +1,13 @@
+<div id="viewlet-header-portal" >
+	<tal:cond condition="viewlet/check_context">
+      
+        <div tal:define="context python:viewlet.get_tile_banner()"
+             tal:condition="python: context != None" >
+                
+            <tal:error tal:on-error="string: Erro ao carregar a capa ${context/Title}">
+                <metal:block metal:use-macro="context/@@bannercompost-view/macros/page"/>
+            </tal:error>
+        </div>
+
+	</tal:cond>
+</div>

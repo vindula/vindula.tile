@@ -72,3 +72,7 @@ class ITileTabularList(Interface):
 
 class ITileHowDo(Interface):
     """ Interface for TileHowDo content type """
+
+class ITileBannerCompost(Interface):
+    """ Interface for TileBannerCompost content type """
+
