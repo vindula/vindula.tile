@@ -42,7 +42,7 @@
 			                              src="++theme++vindula.themedefault/images/demos/demo2-th.gif" />
 			                        </div>
 			                        <div class="columns small-4 listagem_horizontal_text">
-			                            <h5><a tal:attributes="href item/link|nothing"
+			                            <h5><a tal:attributes="href item/url|nothing"
 			                                   tal:content="item/title|nothing"
 			                                   href="#">Nova diretoria da Opas visita Bio</a></h5>
 		
@@ -65,7 +65,7 @@
 					
 					<div class="columns large-3 icones-laterais-header" tal:define="banners view_banner/getBanner">
 						<ul class="lista-laterais">
-							<li class="itens-laterais" tal:repeat="banner banners">
+							<li class="itens-laterais clear" tal:repeat="banner banners">
 								<div class="conteudo-itens-laterais">
 									<img src="++resource++vindula.themedefault/images/icons/chat.png"
 										 tal:attributes="src banner/image">
