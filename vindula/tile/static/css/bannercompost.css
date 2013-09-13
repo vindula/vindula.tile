@@ -108,3 +108,7 @@ li.itens-laterais {
 .desc-itens-laterais a:hover {
 	text-decoration:underline;
 }
+
+.listagem_horizontal_text a:hover {
+	text-decoration:underline;
+}
