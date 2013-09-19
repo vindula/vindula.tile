@@ -141,7 +141,7 @@
                     <h2 tal:condition="obj/startDate|nothing"
                         tal:content="python: obj.startDate.strftime('%d')">21</h2>
                     <h6 tal:condition="obj/startDate|nothing"
-                        tal:content="python: obj.startDate.aMonth()">MAR</h6>
+                        tal:content="python: obj.startDate.strftime('%b')">MAR</h6>
                 </div>
             </div>
             <div class="columns small-9 box-title">

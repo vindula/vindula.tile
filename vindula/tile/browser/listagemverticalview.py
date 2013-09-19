@@ -22,8 +22,7 @@ class ListagemVerticalView(BaseView):
         itens = self.portal_catalog(portal_type = types,
                                     # review_state = states,
                                     path={'query':'/'.join(path.getPhysicalPath()),'depth':99},
-                                    sort_on='effective',
+                                    sort_on='getObjPositionInParent',
                                     sort_order='descending',
                                     )
-
         return itens[:numbers]
