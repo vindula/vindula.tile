@@ -18,5 +18,8 @@ class NewEmployeeView(BaseView, UtilMyvindula):
     	return FuncDetails(username)
 
     def getItens(self,):
-        dados_users = FuncDetails.get_AllFuncUsernameList(sorted_by=por_admicao)
+        qtd = 20
+        if self.context.getQtdMembers():
+            qtd = self.context.getQtdMembers()
+        dados_users = FuncDetails.get_AllFuncUsernameList(sorted_by=por_admicao)[:qtd]
         return dados_users
