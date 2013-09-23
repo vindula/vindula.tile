@@ -134,7 +134,7 @@
 
   <div class="columns large-12" id="tile-events">
       <div class="row">
-        <tal:rep repeat="item view_macro/getItens">
+        <tal:rep repeat="item python:view_macro.getItens(is_date=True)">
           <div class="event clear" tal:define="obj item/getObject">
             <div class="columns small-3 date-box">
                 <div class="box-date">
