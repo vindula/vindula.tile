@@ -1,0 +1,102 @@
+div.organograma * {
+	position:relative;
+	display:block;
+    -webkit-box-sizing: initial;
+    box-sizing: initial;
+}
+div.organograma strong {
+	display:inline;	
+}
+div.organograma ul {
+	margin:0;
+	padding:0;
+	text-align:center;
+}
+div.organograma>ul {
+	overflow:auto;
+}
+div.organograma ul li {
+	background-repeat:no-repeat;
+	list-style:none;
+	margin:auto;
+}
+div.organograma>ul>li {
+	background:url(/++resource++vindula.tile/images/org-tree/contornos3.gif) repeat-y center 120px;
+	padding-bottom:220px;
+	text-align:center;
+}
+div.organograma>ul>li>ul {
+	margin:auto;
+}
+div.organograma>ul>li>ul>li {
+	background:url(/++resource++vindula.tile/images/org-tree/contornos2.gif) -180px -10px no-repeat;
+	float:left;
+	margin:217px 30px 20px -125px;
+	padding:20px 0 0 120px;
+	width:165px;
+	z-index:999;
+}
+div.organograma li>div.content {
+	background:#fff;
+	background: -webkit-gradient(linear, 0 0, 0 bottom, from(#ffffff), to(#ededed));
+	background: -webkit-linear-gradient(#ffffff, #ededed);
+	background: -moz-linear-gradient(#ffffff, #ededed);
+	background: -ms-linear-gradient(#ffffff, #ededed);
+	background: -o-linear-gradient(#ffffff, #ededed);
+	background: linear-gradient(#ffffff, #ededed);
+	-pie-background: linear-gradient(#ffffff, #ededed);
+	box-shadow: 0 0 0 2px #ffffff inset;
+	border:1px solid #999;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	margin:auto;
+	padding: 7px;
+	text-align:left;
+	text-decoration:none;
+	width:160px;
+}
+div.organograma li.dashed>div.content { border-style: dashed; }
+
+div.organograma div.content p, div.organograma div.content span.org-title {
+	margin:0 0 .5em;
+}
+div.organograma div.content span.org-title {
+	color:#94ABCF;
+	font-size:1em;
+}
+div.organograma>ul>li>ul>li>ul>li {
+	background-image:url(/++resource++vindula.tile/images/org-tree/contornos1.gif);
+	background-repeat:repeat;
+	padding-left:10px;
+	background-position: -95px -570px;
+	width:165px;
+	margin-bottom:-4px;
+	overflow:auto;
+	z-index:999;
+}
+div.organograma>ul>li>ul>li>ul>li div.content {
+	background:none #fff!important;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	float:right;
+	overflow:auto;
+	margin:20px 0 0 -30px;
+	width:140px;
+}
+div.organograma #as,
+div.organograma #sa {
+	background:url(/++resource++vindula.tile/images/org-tree/contornos2.gif) center 12px no-repeat;
+	float:none;
+	margin:0;
+	padding:0;
+	position:absolute;
+	top:20px;
+}
+div.organograma #sa {
+	padding-right:100px;
+}
+div.organograma #as {
+	padding-left:100px;
+}
