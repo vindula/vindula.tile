@@ -12,11 +12,8 @@
 
 <body>
     <metal:main fill-slot="content-core">
-        <metal:macro define-macro="page" 
-                     tal:define="global view_macro nocall:context/@@organogram-view;
-                                 path_macro string:context/organogram-view/macros/${view_macro/getKind};">
+        <metal:macro define-macro="page">
             <div class="row">
-                
                 <div class="columns large-12 box-title">
                     <h5>
                         <tal:cont content="context/Title|nothing">
@@ -25,10 +22,16 @@
                         <hr/>
                     </h5>
                 </div>
-                
-                <metal:block tal:condition="path_macro"
-                             metal:use-macro="python:path(path_macro)"/>
             </div>
+            <metal:macro define-macro="body"
+                         tal:define="global view_macro nocall:context/@@organogram-view;
+                                     path_macro string:context/organogram-view/macros/${view_macro/getKind};">
+                <div class="row">
+    
+                    <metal:block tal:condition="path_macro"
+                                 metal:use-macro="python:path(path_macro)"/>
+                </div>
+            </metal:macro>
         </metal:macro>
     </metal:main>
 </body>
@@ -70,10 +73,10 @@
     <link rel="stylesheet" type="text/css" href="" 
           tal:attributes="href string:${context/portal_url}/++resource++vindula.tile/css/org-tree.css" />
     
-    <tal:cond condition="python: not request.get('org-tree-horiz')">
+    <tal:cond condition="python: not request.get('org-tree-horiz.js')">
         <script type="text/javascript" src="" 
                 tal:attributes="src string:${context/portal_url}/++resource++vindula.tile/js/org-tree-horiz.js" />
-        <tal:dummy tal:define="use_js_list python:request.set('org-tree-horiz', 1);" />
+        <tal:dummy tal:define="use_js_list python:request.set('org-tree-horiz.js', 1);" />
     </tal:cond>
     
     <div class="columns large-12">
@@ -85,7 +88,7 @@
                         tal:attributes="class python:view_macro.def_class(estrutura(),estruturas_filho) +' open'">
                         <div class="content clear">
                             <span class="left org-title" tal:content="python:estrutura().getSiglaOrTitle()"></span>
-                            <a href='' tal:attributes="href python:estrutura().absolute_url() or None" 
+                            <a href='' tal:attributes="href python:estrutura().absolute_url or None" 
                                        tal:define="username  estrutura/manager|nothing">
                                 <img src="" alt="" height="30" width="30" class="right" 
                                      tal:attributes="src string:/vindula-api/myvindula/user-picture/photograph/${username}/True" />
@@ -109,7 +112,7 @@
               define="view_macro nocall:context/@@organogram-view;
                       estrutura estrutura_filho|nothing;">
         <li class="tree-item" tal:define="estruturas_filho python:view_macro.get_estruturas_filho(estrutura.getSourceObject())"
-                              tal:attributes="class python:view_macro.def_class(estrutura.getSourceObject(),estruturas_filho)">
+                              tal:attributes="class python:view_macro.def_class(estrutura.getSourceObject(), estruturas_filho)">
             <div class="content clear">
                 <span class="left org-title" tal:content="estrutura/getSiglaOrTitle">Concelho de Assesoria Poilico Estratégico</span>
                 <a href=''  tal:attributes="href python:estrutura.getSourceObject().absolute_url() or None"
