@@ -88,7 +88,7 @@
                                                 <ul class="small-block-grid-9 large-block-grid-9 members-team">
                                                     <tal:rep repeat="member block">
                                                         <li tal:define="dados_member python:view_macro.get_prefs_user(member)">
-                                                            <a href="#" tal:attributes="href python: here.portal_url() + '/myvindulaprefs?user=' + view_macro.encodeUser(member);
+                                                            <a href="#" tal:attributes="href python: here.portal_url() + '/myvindulalistuser?user=' + member;
                                                                                         alt dados_member/name|string:''; title dados_member/name|string:'';">
                                                                 <img tal:attributes="src python:view_macro.getURLFotoUser(member);" />
                                                             </a>

@@ -28,6 +28,16 @@ TileNewEmployee_schema = BaseTile.schema.copy() + Schema((
         default='padrao',
         required=True,
     ),
+    
+    IntegerField(
+        name='qtdMembers',
+        widget = IntegerWidget(
+            label = 'Quantidade de membros',
+            description='Quantidade máxima de membros que vai aparecer no bloco.',
+        ),
+        default=20,
+        required=True,
+    ),
 
     IntegerField(
         name='columns',

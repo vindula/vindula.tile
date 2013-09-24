@@ -78,27 +78,30 @@ class MoreAccessView(BaseView):
         return str
 
     def alphabet(self):
-        #ABCDEFGHIJKLMNOPQRSTUVWYXZ
+        #ABCDEFGHIJKLMNOPQRSTUVWYXZ + NUMBERS
         L = []
         for i in string.ascii_uppercase:
             L.append(i)
+        
+        for i in range(0,10):
+            L.append(str(i))
 
         return L
 
     def constructor(self):
-        letras = {}
+        letras_numeros = {}
         for i in self.alphabet():
-            letras[i] = []
-
+            letras_numeros[i] = []
+        
         for item in self.list_more():            
             #Todo: remover isso, colocado apenas para teste            
             try:
                 obj = item.getObject()
                 title = self.getTitle(obj)
                 if len(title) > 0:
-                    letras[title[0].upper()].append(item)
+                    letras_numeros[title[0].upper()].append(item)
             except KeyError:
                 pass
 
 
-        return letras
+        return letras_numeros

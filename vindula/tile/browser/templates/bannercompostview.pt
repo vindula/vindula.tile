@@ -65,7 +65,7 @@
 					
 					<div class="columns large-3 icones-laterais-header" tal:define="banners view_banner/getBanner">
 						<ul class="lista-laterais">
-							<li class="itens-laterais clear" tal:repeat="banner banners">
+							<li class="itens-laterais clear" tal:repeat="banner python:banners[:4]">
 								<div class="conteudo-itens-laterais">
 									<img src="++resource++vindula.themedefault/images/icons/chat.png"
 										 tal:attributes="src banner/image">
