@@ -88,8 +88,9 @@
                         tal:attributes="class python:view_macro.def_class(estrutura(),estruturas_filho) +' open'">
                         <div class="content clear">
                             <span class="left org-title" tal:content="python:estrutura().getSiglaOrTitle()"></span>
-                            <a href='' tal:attributes="href python:estrutura().absolute_url or None" 
-                                       tal:define="username  estrutura/manager|nothing">
+                            <a href='' class="clear" 
+                               tal:attributes="href python:estrutura().absolute_url() or None"
+                               tal:define="username  estrutura/manager|nothing">
                                 <img src="" alt="" height="30" width="30" class="right" 
                                      tal:attributes="src string:/vindula-api/myvindula/user-picture/photograph/${username}/True" />
                             </a>
@@ -115,8 +116,9 @@
                               tal:attributes="class python:view_macro.def_class(estrutura.getSourceObject(), estruturas_filho)">
             <div class="content clear">
                 <span class="left org-title" tal:content="estrutura/getSiglaOrTitle">Concelho de Assesoria Poilico Estratégico</span>
-                <a href=''  tal:attributes="href python:estrutura.getSourceObject().absolute_url() or None"
-                            tal:define="username  estrutura/manager|nothing">
+                <a href='' class="clear" 
+                   tal:attributes="href python:estrutura.getSourceObject().absolute_url() or None"
+                   tal:define="username  estrutura/manager|nothing">
                     <img src="" alt="" height="30" width="30" class="right"
                          tal:attributes="src string:/vindula-api/myvindula/user-picture/photograph/${username}/True"  />
                 </a>
