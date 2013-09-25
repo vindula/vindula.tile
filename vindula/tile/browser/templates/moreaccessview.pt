@@ -219,7 +219,7 @@
                             <a class="structure-link block"
                                tal:content="obj/getSiglaunidade|obj/Title"
                                tal:attributes="data-type string:Structure;
-                                               data-value obj/UID;" 
+                                               data-value obj/UID;
                                                href string:${obj/absolute_url}/view;">DIBOP</a>
                             <span class="block" tal:content="obj/Title">Divisao de Boas Praticas</span>
     
