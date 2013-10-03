@@ -102,7 +102,7 @@
 
 	        <div class="columns large-12">
 	            <div class="more-news">
-	                <a href="#">
+	                <a href="#" tal:attributes="href string:${context/absolute_url}/outras-noticias">
 	                    <h1 class="subheader vindula-icon-plus-sign left"></h1>
 	                    <p class="left">Notícias</p>
 	                </a>

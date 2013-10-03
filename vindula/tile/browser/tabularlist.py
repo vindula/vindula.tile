@@ -26,3 +26,35 @@ class TabularListView(BaseView):
             item = self.getSuperStructure(self.context)
             
         return item
+
+
+    def getItens(self, is_date=False):
+        context = self.context
+        numbers = context.getNumb_items()
+    
+        types = context.getListTypes()
+        # states = context.getTypesWorkflow()
+    
+        path = context.getPath()
+        import pdb;pdb.set_trace()
+        if not path:
+            path = context.portal_url.getPortalObject()
+            
+        query = {'portal_type': types,
+                # review_state : states,
+                'path':{'query':'/'.join(path.getPhysicalPath()),'depth':99},
+                'sort_on':'getObjPositionInParent',
+                'sort_order':'descending',}
+        
+        if is_date:
+            start = DateTime.DateTime() - 1  # ONTEM
+            end = DateTime.DateTime() + 120   # Até quato meses no futuro
+            date_range_query = {'query': (start, end), 'range': 'min:max'}
+            
+            query['start'] = date_range_query
+            query['sort_on'] = 'start'
+            query['sort_order'] ='ascending'
+        
+        itens = self.portal_catalog(query)
+        
+        return itens[:numbers]

@@ -35,7 +35,10 @@
                 <tal:def define="portal_type context/getObject_type;
                                  view_macro_tabular nocall:context/@@tabularlist-view;
                                  structures nocall:view_macro_tabular/getStructure;
-                                 structures python:structures() and structures().UID() or None;">
+                                 structures python:structures() and structures().UID() or None;
+								 path nocall:context/getPath_search;
+								 path python: path() and '/'.join(path().getPhysicalPath()) or None;">
+
                     <tal:def define="dummy python:request.set('macro', 'default');
                                      fields python:[{'label':  ''     , 'attribute': 'getImageIcone', 'is_image': 'True', 'width':  '65',},
 													{'label': 'Nome', 'attribute': 'Title'},

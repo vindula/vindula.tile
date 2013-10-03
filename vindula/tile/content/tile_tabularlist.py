@@ -57,6 +57,18 @@ TileTabularList_schema = BaseTile.schema.copy() + Schema((
         default='padrao',
         required=True,
     ),
+                                                          
+    ReferenceField('path_search',
+            multiValued=0,
+            allowed_types=('VindulaFolder','Folder'),
+            label=_(u"Pastas"),
+            relationship='path_search',
+            widget=VindulaReferenceSelectionWidget(
+                label=_(u"Pastas"),
+                description='Selecione a Pasta que deseja buscar os itens.'
+            ),
+            review_state = ('published', 'internal','external')
+        ),
 
 ))
 
