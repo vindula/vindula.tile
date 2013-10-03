@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from five import grok
 from vindula.tile.browser.baseview import BaseView
-import DateTime
+import DateTime, random
 
 grok.templatedir('templates')
 
@@ -36,5 +36,20 @@ class ListagemVerticalView(BaseView):
             query['sort_order'] ='ascending'
         
         itens = self.portal_catalog(query)
-        
-        return itens[:numbers]
+
+        if context.getActiveAutoReload():
+            L = []
+            L_tmp = []
+
+            if len(itens) < numbers:
+                numbers = len(itens)
+
+            while len(L) <= numbers:
+                chosen = random.choice(itens)
+                if not chosen.UID in L_tmp:
+                    L_tmp.append(chosen.UID)
+                    L.append(chosen)
+
+            return L
+        else:
+            return itens[:numbers]

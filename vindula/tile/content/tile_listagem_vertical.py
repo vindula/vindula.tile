@@ -75,6 +75,18 @@ TileListagemVertical_schema = BaseTile.schema.copy() + Schema((
           )
     ),
 
+    BooleanField(
+        name='activeAutoReload',
+        default=False,
+        widget=BooleanWidget(
+            label=_(u"Ativa o menamismo de atualização automatica"),
+            description=_(u"Ativa a opção de atualizar altomaticamente os itens da visualização e com ordenação randomica"),
+            label_msgid='vindula_tile_label_activeAutoReload',
+            description_msgid='vindula_tile_activeAutoReload',
+            i18n_domain='vindula_tile',
+          )
+    ),
+
     StringField(
         name='listTypes',
         widget=SelectionWidget(
@@ -140,5 +152,14 @@ class TileListagemVertical(BaseTile):
 
     #tamanho do tile
     columns = 6
+
+    #Scripts js
+    @property
+    def scripts_js(self):
+        L = []
+        if self.getActiveAutoReload():
+            L.append('ajax_auto_reload.js')
+
+        return L
 
 registerType(TileListagemVertical, PROJECTNAME)
