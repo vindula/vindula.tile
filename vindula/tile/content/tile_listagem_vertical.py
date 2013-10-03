@@ -26,6 +26,7 @@ TileListagemVertical_schema = BaseTile.schema.copy() + Schema((
             format = 'select',
          ),
          vocabulary=[("listagem_com_imagem",_(u"Listagem com imagem")),
+                    ("listagem_sem_imagem",_(u"Listagem sem imagem")),
                     ("listagem_com_icones", _(u"Listagem com ícones e sem imagem")),
                     ("listagem_sem_icones", _(u"Destaque sem ícones e sem imagem")),
                     ("listagem_evento", _(u"Lista de Eventos")),
@@ -70,6 +71,18 @@ TileListagemVertical_schema = BaseTile.schema.copy() + Schema((
             description=_(u"Ativa a opção de ordenar os conteúdos por data e mais acessados"),
             label_msgid='vindula_tile_label_activeSort',
             description_msgid='vindula_tile_help_activeSort',
+            i18n_domain='vindula_tile',
+          )
+    ),
+
+    BooleanField(
+        name='activeAutoReload',
+        default=False,
+        widget=BooleanWidget(
+            label=_(u"Ativa o menamismo de atualização automatica"),
+            description=_(u"Ativa a opção de atualizar altomaticamente os itens da visualização e com ordenação randomica"),
+            label_msgid='vindula_tile_label_activeAutoReload',
+            description_msgid='vindula_tile_activeAutoReload',
             i18n_domain='vindula_tile',
           )
     ),
@@ -139,5 +152,14 @@ class TileListagemVertical(BaseTile):
 
     #tamanho do tile
     columns = 6
+
+    #Scripts js
+    @property
+    def scripts_js(self):
+        L = []
+        if self.getActiveAutoReload():
+            L.append('ajax_auto_reload.js')
+
+        return L
 
 registerType(TileListagemVertical, PROJECTNAME)
