@@ -29,28 +29,33 @@ class HowDoView(BaseView):
         return itens[:numbers]
 
     def alphabet(self):
-        #ABCDEFGHIJKLMNOPQRSTUVWYXZ
+        #ABCDEFGHIJKLMNOPQRSTUVWYXZ + NUMBERS
         L = []
         for i in string.ascii_uppercase:
             L.append(i)
+        
+        for i in range(0,10):
+            L.append(str(i))
 
         return L
 
     def constructor(self):
-        letras = {}
+        letras_numeros = {}
         for i in self.alphabet():
-            letras[i] = []
-
-        for item in self.list_more():
-            obj = item.getObject()
-            title = self.getTitle(obj)
+            letras_numeros[i] = []
+        
+        for item in self.list_more():            
+            #Todo: remover isso, colocado apenas para teste            
             try:
-                letras[title[0].upper()].append(item)
+                obj = item.getObject()
+                title = self.getTitle(obj)
+                if len(title) > 0:
+                    letras_numeros[title[0].upper()].append(item)
             except KeyError:
                 pass
 
 
-        return letras
+        return letras_numeros
 
     def list_more(self):
         context = self.context

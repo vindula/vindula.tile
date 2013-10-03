@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from five import grok
 from zope.interface import Interface
-
+from Products.CMFCore.utils import getToolByName
 from vindula.myvindula.tools.utils import UtilMyvindula
 
 grok.templatedir('templates')
@@ -41,3 +41,13 @@ class InfoStructureView(grok.View, UtilMyvindula):
             lista.append(L)
 
         return lista
+    
+    def textToHTML(self, text=''):
+        # Transform plain text description with ASCII newlines
+        # to one with
+        portal_transforms = getToolByName(self.context, 'portal_transforms')
+
+        # Output here is a single <p> which contains <br /> for newline
+        data = portal_transforms.convertTo('text/html', text, mimetype='text/-x-web-intelligent')
+        html = data.getData()
+        return html

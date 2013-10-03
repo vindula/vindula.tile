@@ -25,6 +25,21 @@ TileOrganogram_schema = BaseTile.schema.copy() + Schema((
         ),
         required=False,
     ),
+    
+    StringField(
+        name='kind',
+        widget=SelectionWidget(
+            label=_(u"Lista de Templates"),
+            description=_(u"Selecione qual template deseja utilizar."),
+            label_msgid='vindula_tile_label_layout',
+            description_msgid='vindula_tile_help_layout',
+            i18n_domain='vindula_tile',
+            format = 'select',
+         ),
+         vocabulary=[("organogram_vertical",_(u"Organograma vertical")),
+                     ("organogram_horizontal", _(u"Organograma horizontal")),],
+         default='organogram_vertical',
+     ),
 
 ))
 
@@ -43,7 +58,7 @@ class TileOrganogram(BaseTile):
     columns = 12
 
     #Scripts js
-    scripts_js = ['org-tree.js']
+    scripts_js = ['org-tree.js', 'org-tree-horiz.js']
 
 
 registerType(TileOrganogram, PROJECTNAME)

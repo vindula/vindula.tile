@@ -26,6 +26,12 @@ class BannerCompostView(BaseView):
             return itens_news.absolute_url()
         return ''
 
+
+    def getLayout(self):
+        context = self.context
+        return context.getLayout()
+    
+    
     def getNoticiasBanner(self):
         L = []
         obj = self.context
@@ -53,23 +59,33 @@ class BannerCompostView(BaseView):
 
         return L
 
-    def getBanner(self):
+    def getBanner(self, itens_Banners=None, image_full=False):
         L = []
         obj = self.context
-        itens_Banners = obj.getBanner()
+        if not itens_Banners:
+            itens_Banners = obj.getBanner()
+            
         if itens_Banners != None or itens_Banners != '':
             for banner in itens_Banners:
                 D = {}
                 D['title'] = banner.Title()
                 D['text'] = banner.Description()
-                D['image'] = banner.absolute_url() + '/imagem_banner_thumb'
+                if image_full:
+                    D['image'] = banner.absolute_url() + '/imagem_banner'
+                else:
+                    D['image'] = banner.absolute_url() + '/imagem_banner_thumb'
+                    
                 D['target'] = banner.getTarget()
                 D['url'] = banner.getLink()
                 D['date'] = banner.creation_date.strftime('%d/%m/%Y')
                 D['author'] = banner.getOwner().getUserName()
+                
                 # D['obj'] = banner
                 L.append(D)
 
         return L
-
-
+    
+    def getDestaqueBanner(self):
+        obj = self.context
+        itens_Banners = obj.getDestaqueBanner()
+        return self.getBanner(itens_Banners, True)

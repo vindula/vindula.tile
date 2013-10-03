@@ -21,10 +21,22 @@ TileBannerCompost_schema = BaseTile.schema.copy() + Schema((
         label=_(u"Notícias"),
         relationship='featured_news',
         widget=VindulaReferenceSelectionWidget(
-            label=_(u"Notícias"),
+            label=_(u"Destaque Notícia"),
             description='Selecione as notícias.'),
             review_state = ('published','internal','external'),
-        required=True,
+        required=False,
+    ),
+                                                            
+    ReferenceField('destaqueBanner',
+        multiValued=1,
+        allowed_types=('Banner'),
+        label=_(u"Banner"),
+        relationship='destaqueBanner',
+        widget=VindulaReferenceSelectionWidget(
+            label=_(u"Destaque Banner"),
+            description='Selecione os Destaques Banners Principais.'),
+            review_state = ('published','internal','external'),
+        required=False,
     ),
 
     IntegerField(
@@ -49,8 +61,8 @@ TileBannerCompost_schema = BaseTile.schema.copy() + Schema((
         label=_(u"Banner"),
         relationship='Banner',
         widget=VindulaReferenceSelectionWidget(
-            label=_(u"Banners"),
-            description='Selecione os banners.'),
+            label=_(u"Banners Laterais"),
+            description='Selecione os Banners Laterais.'),
             review_state = ('published','internal','external'),
         required=True,
     ),
@@ -65,8 +77,28 @@ TileBannerCompost_schema = BaseTile.schema.copy() + Schema((
             description='Selecione a imagem de fundo do Bloco.'),
         required=False,
     ),
+                                                            
+    StringField(
+        name='layout',
+        widget=SelectionWidget(
+            label=_(u"Selecione o layout"),
+            description=_(u"Selecione o layout desejado para esta areas."),
+            label_msgid='vindula_tile_label_layout',
+            description_msgid='vindula_tile_help_layout',
+            i18n_domain='vindula_tile',
+            format='select',
+        ),
+        vocabulary=[("destaque_noticia",_(u"Destaque Notícia")),
+                    ("destaque_banner", _(u"Destaque Banner")),
+                   ],
+        default='destaque_noticia',
+        required=True,
+    ),
 
 ))
+
+
+
 
 
 finalizeATCTSchema(TileBannerCompost_schema, folderish=False)

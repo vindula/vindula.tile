@@ -29,12 +29,14 @@
                                 <img width="150" tal:attributes="src python:orgstruc().getImageSize('mini') or None" />
                             </div>
                             <div class="columns large-8">
-                                <div>
-                                    <span tal:content="structure python:orgstruc().Description() or None">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                        Nam ut imperdiet urna. Nullam a lacus velit, id sollicitudin nisi.
-                                        Curabitur at justo eget nulla pellentesque vestibulum.
-                                    </span>
+                                <div tal:define="description python:orgstruc().Description() or None;">
+                                    <tal:cond condition="description">
+                                        <span tal:replace="structure python:view_macro.textToHTML(description)">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                            Nam ut imperdiet urna. Nullam a lacus velit, id sollicitudin nisi.
+                                            Curabitur at justo eget nulla pellentesque vestibulum.
+                                        </span>
+                                    </tal:cond>
                                 </div>
 
                                 <div class="container-manager">
@@ -88,7 +90,7 @@
                                                 <ul class="small-block-grid-9 large-block-grid-9 members-team">
                                                     <tal:rep repeat="member block">
                                                         <li tal:define="dados_member python:view_macro.get_prefs_user(member)">
-                                                            <a href="#" tal:attributes="href python: here.portal_url() + '/myvindulaprefs?user=' + view_macro.encodeUser(member);
+                                                            <a href="#" tal:attributes="href python: here.portal_url() + '/myvindulalistuser?user=' + member;
                                                                                         alt dados_member/name|string:''; title dados_member/name|string:'';">
                                                                 <img tal:attributes="src python:view_macro.getURLFotoUser(member);" />
                                                             </a>

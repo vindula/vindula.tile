@@ -47,6 +47,23 @@ TileAccordionContent_schema = ATFolder.schema.copy() + BaseTile.schema.copy() + 
         vocabulary='voc_coluna',
         schemata = 'Settings'
     ),
+    
+    IntegerField(
+        name='columns',
+        widget=SelectionWidget(
+            label=_(u"Tamanho do tile"),
+            description=_(u"Selecione o tamanho do tile."),
+            label_msgid='vindula_tile_label_columns',
+            description_msgid='vindula_tile_help_columns',
+            i18n_domain='vindula_tile',
+            format='select',
+        ),
+        vocabulary=[('6',_(u"6 Colunas")),
+                    ('12', _(u"12 Colunas")),
+                    ],
+        default=6,
+        required=True,
+    ),
 
 ))
 
