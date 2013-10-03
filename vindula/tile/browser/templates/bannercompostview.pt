@@ -24,7 +24,7 @@
 		<link rel="stylesheet" type="text/css" href="" tal:attributes="href string:${view_banner/get_static}css/bannercompost.css" />
 
 		<style type="text/css" 
-			   tal:content="python: '''#viewlet-header-portal {background: url('%s');}''' %(view_banner.get_image_backgroud())">
+			   tal:content="python: '''#viewlet-header-portal {background: url('%s') no-repeat;}''' %(view_banner.get_image_backgroud())">
 		</style>
 
 		<!-- <div id="viewlet-header-portal"> -->
