@@ -10,7 +10,16 @@
 <metal:main fill-slot="content-core">
     <metal:macro define-macro="page">
     
-        <h5> <ta:cont tal:content="context/Title|nothing"></ta:cont><hr tal:condition="context/getLine" /></h5>
+        <h5> 
+        	<ta:cont tal:content="context/Title|nothing">TITULO</ta:cont>
+        	<hr tal:condition="context/getLine" />
+        </h5>
+        <div class="row" tal:condition="context/getText|nothing">
+        	<div class="columns large-12" tal:content="structure context/getText|string: ">
+        		Sed tincidunt velit et diam fermentum varius. Mauris vulputate dui sem, et venenatis enim malesuada quis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla blandit purus non felis imperdiet, sed fermentum tortor consectetur. Fusce id elit ultrices, egestas elit quis, tincidunt erat. Suspendisse ac nisl felis. Ut elementum porttitor arcu, non ultrices odio auctor nec. Vestibulum eu nisi ut augue rhoncus pretium quis eget nibh. Fusce aliquet id nibh sit amet dignissim.
+        	</div>
+        	
+        </div>
         
     </metal:macro>
 </metal:main>

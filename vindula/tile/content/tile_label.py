@@ -12,6 +12,23 @@ from vindula.tile import MessageFactory as _
 from vindula.tile.config import *
 
 TileLabel_schema = BaseTile.schema.copy() + Schema((
+
+    TextField(
+            name='text',
+            default_content_type = 'text/html',
+            default_output_type = 'text/x-html-safe',
+            searchable = True,
+            widget=RichWidget(
+                label=_(u"Conteúdo"),
+                description=_(u"Campo de preenchimento livre, seu conteúdo ficará posicionado abaixo da linha do titulo."),
+                rows=10,
+                label_msgid='vindula_themedefault_label_text',
+                description_msgid='vindula_themedefault_help_text',
+                i18n_domain='vindula_themedefault',
+            ),
+            required=False,
+    ),
+
     BooleanField(
         name='line',
         default=True,
@@ -20,6 +37,7 @@ TileLabel_schema = BaseTile.schema.copy() + Schema((
             description='Caso selecionado mostrará uma linha abaixo o título.',
         ),
     ),
+
 ))
 
 #Oculta o campo padrao 'description'
