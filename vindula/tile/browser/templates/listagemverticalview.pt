@@ -31,14 +31,14 @@
 	                <metal:block tal:condition="path_macro"
 	                             metal:use-macro="python:path(path_macro)"/>
 
-					<div class="columns large-12" tal:condition="python:view_macro.getKind() != 'listagem_evento'">
-			            <div class="more-news">
-			                <a href="#" tal:attributes="href string:${context/absolute_url}/outras-noticias?portal_type=${context/getListTypes}">
-			                    <h1 class="subheader vindula-icon-plus-sign left"></h1>
-			                    <p class="left">Itens</p>
-			                </a>
-			            </div>
-			        </div>
+        					<div class="columns large-12" tal:condition="python:view_macro.getKind() != 'listagem_evento'">
+    			            <div class="more-news">
+    			                <a href="#" tal:attributes="href string:${context/absolute_url}/outras-noticias?portal_type=${context/getListTypes}">
+    			                    <h1 class="subheader vindula-icon-plus-sign left"></h1>
+    			                    <p class="left" tal:content="context/Title|string: " >Itens</p>
+    			                </a>
+    			            </div>
+    			        </div>
 
                 </div>
             </metal:macro>
