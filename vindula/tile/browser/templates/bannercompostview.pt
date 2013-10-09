@@ -113,7 +113,7 @@
 	                           <a href="#" tal:attributes="href item/url"><img tal:attributes="src item/image"
 	                              src="++theme++vindula.themedefault/images/demos/demo2-th.gif" /></a>
 								<div class="descricao-destaque-banner">
-									<p class="conteudo-descricao-destaque-banner">
+									<p tal:content="item/text" class="conteudo-descricao-destaque-banner">
 									</p>
 								</div>
 	                        </div>
