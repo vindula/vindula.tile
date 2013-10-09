@@ -30,7 +30,10 @@
              tal:condition="python:view_macro_tabular.getKind() == 'padrao'">
     <metal:macro define-macro="body">
         <div id="tile-tabular-list">
-            <metal:block metal:use-macro="context/macro_filter_file/macros/unit-tabular"/>
+            <tal:cond tal:condition="context/show_search|python:False">
+                <metal:block metal:use-macro="context/macro_filter_file/macros/unit-tabular"/>    
+            </tal:cond>
+
             <div id="itens">
                 <tal:def define="portal_type context/getObject_type;
                                  view_macro_tabular nocall:context/@@tabularlist-view;
@@ -55,7 +58,10 @@
 <metal:macro define-macro="unidade"
              tal:condition="python:view_macro_tabular.getKind() == 'unidade'">
     <div id="tile-tabular-list">
-        <metal:block metal:use-macro="context/macro_filter_file/macros/unit-tabular"/>
+        <tal:cond tal:condition="context/show_search|python:False">
+            <metal:block metal:use-macro="context/macro_filter_file/macros/unit-tabular"/>    
+        </tal:cond>          
+
         <div id="itens">
             <tal:def define="portal_type context/getObject_type;
                              view_macro_tabular nocall:context/@@tabularlist-view;
@@ -77,7 +83,10 @@
 <metal:macro define-macro="pessoas"
              tal:condition="python:view_macro_tabular.getKind() == 'pessoas'">
     <div id="tile-tabular-list">
-        <metal:block metal:use-macro="context/macro_filter_file/macros/person-tabular"/>
+        <tal:cond tal:condition="context/show_search|python:False">
+            <metal:block metal:use-macro="context/macro_filter_file/macros/unit-tabular"/>    
+        </tal:cond>
+        
         <div id="itens">
             <tal:def define="portal_type context/getObject_type;">
                 <tal:def define="dummy python:request.set('macro', 'personal');
