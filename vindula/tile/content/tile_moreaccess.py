@@ -81,7 +81,7 @@ TileMoreAccess_schema = BaseTile.schema.copy() + Schema((
         required=True,
     ),
 
-    IntegerField(
+    StringField(
         name='columns',
         widget=SelectionWidget(
             label=_(u"Tamanho do tile"),
@@ -94,7 +94,7 @@ TileMoreAccess_schema = BaseTile.schema.copy() + Schema((
         vocabulary=[('6',_(u"6 Colunas")),
                     ('12', _(u"12 Colunas")),
                     ],
-        default=6,
+        default='6',
         required=True,
     ),
 

@@ -29,6 +29,12 @@
 <metal:macro define-macro="padrao"
              tal:condition="python:view_macro_tabular.getKind() == 'padrao'">
     <metal:macro define-macro="body">
+
+        <h5 tal:condition="context/getShow_title|python:False"> 
+          <ta:cont tal:content="context/Title|nothing">TITULO</ta:cont>
+          <hr />
+        </h5>
+
         <div id="tile-tabular-list">
             <tal:cond tal:condition="context/show_search|python:False">
                 <metal:block metal:use-macro="context/macro_filter_file/macros/unit-tabular"/>    
@@ -57,6 +63,12 @@
 
 <metal:macro define-macro="unidade"
              tal:condition="python:view_macro_tabular.getKind() == 'unidade'">
+
+    <h5 tal:condition="context/getShow_title|python:False"> 
+      <ta:cont tal:content="context/Title|nothing">TITULO</ta:cont>
+      <hr />
+    </h5>
+
     <div id="tile-tabular-list">
         <tal:cond tal:condition="context/show_search|python:False">
             <metal:block metal:use-macro="context/macro_filter_file/macros/unit-tabular"/>    
@@ -82,6 +94,12 @@
 
 <metal:macro define-macro="pessoas"
              tal:condition="python:view_macro_tabular.getKind() == 'pessoas'">
+
+    <h5 tal:condition="context/getShow_title|python:False"> 
+      <ta:cont tal:content="context/Title|nothing">TITULO</ta:cont>
+      <hr />
+    </h5>    
+
     <div id="tile-tabular-list">
         <tal:cond tal:condition="context/show_search|python:False">
             <metal:block metal:use-macro="context/macro_filter_file/macros/unit-tabular"/>    
