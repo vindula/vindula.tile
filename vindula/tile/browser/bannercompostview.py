@@ -71,7 +71,7 @@ class BannerCompostView(BaseView):
                 D['title'] = banner.Title()
                 D['text'] = banner.Description()
                 if image_full:
-                    D['image'] = banner.absolute_url() + '/imagem_banner'
+                    D['image'] = banner.absolute_url() + '/imagem_banner_large'
                 else:
                     D['image'] = banner.absolute_url() + '/imagem_banner_thumb'
                     
