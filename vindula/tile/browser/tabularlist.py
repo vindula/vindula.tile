@@ -36,7 +36,6 @@ class TabularListView(BaseView):
         # states = context.getTypesWorkflow()
     
         path = context.getPath()
-        import pdb;pdb.set_trace()
         if not path:
             path = context.portal_url.getPortalObject()
             

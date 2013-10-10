@@ -3,10 +3,10 @@
                         orgstruc view_macro/get_structure;">
 
     <div class="columns large-12 main_information ">
-        <h4>
+<!--         <h4>
             Informações
             <hr/>
-        </h4>
+        </h4> -->
         <ul class="no-bullet">
             <!--li>
                 <strong>Grupo:</strong><span>Aberto</span>
@@ -21,7 +21,7 @@
                 <strong>Tel.:</strong>
                 <span tal:content="orgstruc/getPhone_number|string:">(00) 3332-3334</span>
             </li>
-            <li tal:define="campus orgstruc/getUnits"
+            <li tal:define="campus orgstruc/getUnits|nothing"
                 tal:condition="campus">
                 <strong>Campus:</strong>
                 <a href="#" tal:content="campus/title"

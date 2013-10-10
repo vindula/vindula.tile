@@ -70,6 +70,15 @@ TileTabularList_schema = BaseTile.schema.copy() + Schema((
             review_state = ('published', 'internal','external')
         ),
 
+    BooleanField(
+        name='show_search',
+        widget=BooleanWidget(
+            label="Mostrar busca",
+            description='Se selecionado mostrar a busca avançada no bloco.',
+        ),
+        default=False
+    ),
+
 ))
 
 finalizeATCTSchema(TileTabularList_schema, folderish=False)

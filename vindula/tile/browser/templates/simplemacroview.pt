@@ -13,6 +13,13 @@
                          tal:define="view_macro nocall:context/@@simplemacro-view;
                                      path_macro view_macro/getMacro">
               <div class="row">
+
+                <div class="columns large-12 box-title">
+                  <h4>
+                      <tal:cont content="context/Title">Macro</tal:cont>
+                      <hr/>
+                  </h4>
+                </div>
                 <tal:cod tal:condition="path_macro"
                          tal:on-error="string: Erro ao carregar o bloco ${context/Title}, macro ${path_macro}">
 
