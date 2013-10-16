@@ -37,9 +37,11 @@
             <li>
                 <strong>Projetos:</strong><span>12</span>
             </li-->
+            <!--
             <li tal:define="members orgstruc/getEmployees|python:[];">
                 <strong>Equipe:</strong><span tal:content="python:len(members)">200</span>
             </li>
+            -->
 
         </ul>
     </div>

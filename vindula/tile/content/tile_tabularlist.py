@@ -79,6 +79,15 @@ TileTabularList_schema = BaseTile.schema.copy() + Schema((
         default=False
     ),
 
+    BooleanField(
+        name='show_title',
+        widget=BooleanWidget(
+            label="Mostrar Título",
+            description='Se selecionado mostrar o título no bloco.',
+        ),
+        default=False
+    ),    
+
 ))
 
 finalizeATCTSchema(TileTabularList_schema, folderish=False)

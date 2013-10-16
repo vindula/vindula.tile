@@ -70,7 +70,7 @@
                                tal:attributes="href item/getUrlPerfil|nothing;
                                                data-type string:UserObject;
                                                data-value item/username|nothing;"
-                                             tal:content="python:view_myvindula.name_user_top(item.get('name',' '))">Pedro Miranda Prado</a>
+                                             tal:content="item/name|string: ">Pedro Miranda Prado</a>
                             <span class="block"
                                   tal:condition="python: structure != None"
                                   tal:content="structure/getSiglaOrTitle">ASCON</span>

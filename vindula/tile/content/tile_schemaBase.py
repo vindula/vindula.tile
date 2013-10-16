@@ -78,7 +78,7 @@ class BaseTile(ATCTContent):
 
     def get_columns(self):
         if hasattr(self, 'getColumns'):
-            return self.getColumns()
+            return int(self.getColumns())
         else:
             return self.columns
 

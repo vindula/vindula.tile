@@ -33,7 +33,7 @@
                             <ul class="small-block-grid-5 large-block-grid-5">
                                 <tal:rep repeat="member members">
                                     <li tal:define="dados_member python:view_team.get_prefs_user(member)">
-                                        <a href="#" tal:attributes="href python: here.portal_url() + '/myvindulaprefs?user=' + view_team.encodeUser(member);
+                                        <a href="#" tal:attributes="href python:here.portal_url()+'/myvindulalistuser?user='+member;
                                                                     alt dados_member/name|string:'';  title dados_member/name|string:'';">
                                             <img width="140" height="140" tal:attributes="src python:view_team.getURLFotoUser(member);" />
                                         </a>
