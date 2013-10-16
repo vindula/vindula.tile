@@ -79,13 +79,26 @@ TileListagemVertical_schema = BaseTile.schema.copy() + Schema((
         name='activeAutoReload',
         default=False,
         widget=BooleanWidget(
-            label=_(u"Ativa o menamismo de atualização automatica"),
+            label=_(u"Ativa o mecanismo de atualização automática"),
             description=_(u"Ativa a opção de atualizar altomaticamente os itens da visualização e com ordenação randomica"),
             label_msgid='vindula_tile_label_activeAutoReload',
             description_msgid='vindula_tile_activeAutoReload',
             i18n_domain='vindula_tile',
           )
     ),
+                                                               
+    BooleanField(
+        name='activeListagemContexto',
+        default=False,
+        widget=BooleanWidget(
+            label=_(u"Ativa Listagem de 'Mais Notícias' somente do contexto"),
+            description=_(u"Ativa a opção de listar apenas os itens que estão dentro da pasta selecionada"),
+            label_msgid='vindula_tile_label_activeListagemContexto',
+            description_msgid='vindula_tile_activeListagemContexto',
+            i18n_domain='vindula_tile',
+          )
+    ),
+                                                               
 
     StringField(
         name='listTypes',

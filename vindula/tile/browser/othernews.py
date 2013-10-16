@@ -23,10 +23,11 @@ class OtherNewsView(BaseView):
         
         
         if 'path' in form.keys():
-            query.update({'path': form.get('path', '')})
-            
-        else:
-            query.update({'path': {'query':'/'.join(path) } })
+            path = form.get('path', '')
+            if path:
+                path = eval(path)
+        
+        query.update({'path': {'query':'/'.join(path) } })
         
         
         if 'portal_type' in form.keys():
