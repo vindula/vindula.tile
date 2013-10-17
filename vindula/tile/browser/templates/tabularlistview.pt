@@ -102,7 +102,7 @@
 
     <div id="tile-tabular-list">
         <tal:cond tal:condition="context/show_search|python:False">
-            <metal:block metal:use-macro="context/macro_filter_file/macros/unit-tabular"/>    
+            <metal:block metal:use-macro="context/macro_filter_file/macros/person-tabular"/>    
         </tal:cond>
         
         <div id="itens">
