@@ -97,7 +97,17 @@ TileMoreAccess_schema = BaseTile.schema.copy() + Schema((
         default='6',
         required=True,
     ),
-
+    
+    BooleanField(
+        name='activeMoreButton',
+        default=True,
+        widget=BooleanWidget(
+            label="Botão mais items.",
+            description='Caso selecionado, ativa o botão de mais items na visão do bloco.',
+            label_msgid='vindula_tile_label_activeMoreButton',
+            description_msgid='vindula_tile_help_activeMoreButton',
+        ),
+    ),
 
 ))
 

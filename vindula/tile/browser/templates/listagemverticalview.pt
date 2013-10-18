@@ -33,8 +33,9 @@
 
         					<div class="columns large-12" tal:condition="python:view_macro.getKind() != 'listagem_evento'">
     			            <div class="more-news"
-								  tal:define="path context/getPath|nothing;
-											  path python: str(path.getPhysicalPath()) or '';">
+                                 tal:condition="context/getActiveMoreButton"
+								 tal:define="path context/getPath|nothing;
+											 path python: str(path.getPhysicalPath()) or '';">
     			                <a href="#" tal:attributes="href python:'%s/outras-noticias?portal_type=%s%s' % (context.absolute_url(), context.getListTypes(), (context.getActiveListagemContexto()) and '&path='+path or '' )">
     			                    <h1 class="subheader vindula-icon-plus-sign left"></h1>
     			                    <p class="left" tal:content="context/Title|string: " >Itens</p>
@@ -85,7 +86,8 @@
                     <hr/>
                 </div>
                 <div class="columns small-2 sub_header">
-                    <a href="#" class="right more">
+                    <a href="#" class="right more"
+                       tal:condition="context/getActiveMoreButton">
                         <h1 class="subheader vindula-icon-plus-sign"></h1>
                     </a>
                 </div>
@@ -243,7 +245,8 @@
         </tal:rep>
 
         <div class="columns large-12">
-            <div class="more-news">
+            <div class="more-news"
+                 tal:condition="context/getActiveMoreButton">
               <tal:cond condition="python:context.getPath() != None">
                 <a href="#" tal:attributes="href python:context.getPath().absolute_url()">
                     <h1 class="subheader vindula-icon-plus-sign left"></h1>

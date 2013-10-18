@@ -42,7 +42,8 @@
                         <hr/>
                     </h4>
                 </div>
-                <div class="columns small-2 icon-moreaccess more-items">
+                <div class="columns small-2 icon-moreaccess more-items"
+                     tal:condition="context/getActiveMoreButton">
                     <a href="#" class="right more">
                         <h1 class="subheader vindula-icon-plus-sign"></h1>
                     </a>
@@ -91,7 +92,8 @@
                         <hr/>
                     </h4>
                 </div>
-                <div class="columns small-2 icon-moreaccess more-items">
+                <div class="columns small-2 icon-moreaccess more-items"
+                     tal:condition="context/getActiveMoreButton">
                     <a href="#" class="right more">
                         <h1 class="subheader vindula-icon-plus-sign"></h1>
                     </a>
@@ -142,7 +144,8 @@
                         <hr/>
                     </h4>
                 </div>
-                <div class="columns small-2 icon-moreaccess more-items">
+                <div class="columns small-2 icon-moreaccess more-items"
+                     tal:condition="context/getActiveMoreButton">
                     <a href="#" class="right more">
                         <h1 class="subheader vindula-icon-plus-sign"></h1>
                     </a>

@@ -138,6 +138,17 @@ TileListagemVertical_schema = BaseTile.schema.copy() + Schema((
     #      vocabulary='voc_list_workflow',
     #      required=False,
     #  ),
+    
+    BooleanField(
+        name='activeMoreButton',
+        default=True,
+        widget=BooleanWidget(
+            label="Botão mais items.",
+            description='Caso selecionado, ativa o botão de mais items na visão do bloco.',
+            label_msgid='vindula_tile_label_activeMoreButton',
+            description_msgid='vindula_tile_help_activeMoreButton',
+        ),
+    ),
 
 
 

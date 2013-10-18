@@ -22,7 +22,8 @@
                                     <h4 tal:content="context/Title">Notícias</h4>
                                     <hr/>
                                 </div>
-                                <div class="columns small-2 icon-moreaccess more-items">
+                                <div class="columns small-2 icon-moreaccess more-items"
+                                     tal:condition="context/getActiveMoreButton">
                                     <a href="#" class="right more">
                                         <h1 class="subheader vindula-icon-plus-sign"></h1>
                                     </a>
@@ -33,12 +34,11 @@
                         <div class="columns large-12">
                             <div class="content_itens">
                             <ul class="square">
-                              <li tal:repeat="item view/getItens">
-                                 <a tal:define="obj item/getObject"
-                                    tal:attributes="href python:'%s%s' % (obj.absolute_url(), obj.portal_type == 'File' and '/file_view' or '/view')"
-                                    tal:content="obj/Title">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a>
-
-</li>
+                                <li tal:repeat="item view/getItens">
+                                   <a tal:define="obj item/getObject"
+                                      tal:attributes="href python:'%s%s' % (obj.absolute_url(), obj.portal_type == 'File' and '/file_view' or '/view')"
+                                      tal:content="obj/Title">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a>
+                                </li>
                             </ul>
                             </div>
                         </div>
