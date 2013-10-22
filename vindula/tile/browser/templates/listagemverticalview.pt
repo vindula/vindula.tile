@@ -132,15 +132,13 @@
                       <div class="row">
                           <div class="columns small-4 " id="image_tile">
                               <div>
-
                                   <img src="++theme++vindula.themedefault/images/demos/demo1-th.png"
-                                       tal:condition="python: context.getColumns()==12"
+                                       tal:condition="python: context.getColumns()=='12'"
                                        tal:attributes="src python:obj.getImageSize('thumb');" />
                                   
                                   <img src="++theme++vindula.themedefault/images/demos/demo1-th.png"
-                                       tal:condition="python: context.getColumns()==6"
+                                       tal:condition="python: context.getColumns()=='6'"
                                        tal:attributes="src python:obj.getImageSize('tile');" />
-
                               </div>
                           </div>
                           <div class="columns small-8"
