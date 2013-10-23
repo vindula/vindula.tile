@@ -28,23 +28,33 @@
                                      
                      <div id="tile-org-info">
                         <div class="row manager">
-                            <div class="columns large-4 org-info_image">
-                                <img width="150" tal:attributes="src python:orgstruc().getImageSize('mini') or None" />
+                            
+                            <div class="columns large-12">
+                                <div class="org-info_image left">
+                                    <img width="150" tal:attributes="src python:orgstruc().getImageSize('mini') or None" />
+                                </div>
+                                
+                                <div class="org-info-description"
+                                     tal:define="description python:orgstruc().Description() or None;">
+                                    <tal:cond condition="description">
+                                        <span tal:replace="structure python:view_macro.textToHTML(description)">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                            Nam ut imperdiet urna. Nullam a lacus velit, id sollicitudin nisi.
+                                            Curabitur at justo eget nulla pellentesque vestibulum.
+                                        </span>
+                                    </tal:cond>
+                                </div>
                             </div>
-                            <div class="columns large-8 org-info-description">
-                                <div class="row">
-                                    <div tal:define="description python:orgstruc().Description() or None;" class="columns large-12">
-                                        <tal:cond condition="description">
-                                            <span tal:replace="structure python:view_macro.textToHTML(description)">
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                                Nam ut imperdiet urna. Nullam a lacus velit, id sollicitudin nisi.
-                                                Curabitur at justo eget nulla pellentesque vestibulum.
-                                            </span>
-                                        </tal:cond>
+                            
+                            <div class="columns large-12">
+                                <div class="row manager-row">
+                                    <div class="columns large-12 title-manager">
+                                        <strong>Gestor</strong>
                                     </div>
+                                    
                                     <div tal:attributes="class python:'container-manager columns large-%s' % (sub_gestor and '6' or '12')">
                                         <div>
-                                            <strong tal:content="python: (tipo_unidade.lower() == 'comissão') and 'Presidente' or 'Gestor'">Gestor</strong>
+                                            <strong tal:content="python: (tipo_unidade.lower() == 'comissão') and 'Presidente' or 'Principal'">Gestor</strong>
                                         </div>
                                         
                                         <div tal:define="dados_gestor python:view_macro.get_prefs_user(gestor)">
@@ -77,7 +87,7 @@
                                     <div class="container-manager columns large-6"
                                          tal:condition="sub_gestor">
                                         <div>
-                                            <strong tal:content="python: (tipo_unidade.lower() == 'comissão') and 'Vice-Presidente' or 'Gestor Substituto'">Gestor Substituto</strong>
+                                            <strong tal:content="python: (tipo_unidade.lower() == 'comissão') and 'Vice-Presidente' or 'Substituto'">Substituto</strong>
                                         </div>
                                         
                                         <div tal:define="dados_gestor python:view_macro.get_prefs_user(sub_gestor)">
