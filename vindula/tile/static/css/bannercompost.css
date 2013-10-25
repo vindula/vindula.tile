@@ -115,7 +115,13 @@ padding: 15px 0px 15px 15px;
 .destaque-banner {
 	position:relative;
 	border:2px solid #fff;
+	height:300px;
 	
+}
+
+.destaque-banner img {
+	width:100%;
+	height:100%;
 }
 
 .descricao-destaque-banner .conteudo-descricao-destaque-banner {
