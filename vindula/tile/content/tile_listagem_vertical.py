@@ -86,19 +86,7 @@ TileListagemVertical_schema = BaseTile.schema.copy() + Schema((
             i18n_domain='vindula_tile',
           )
     ),
-                                                               
-    BooleanField(
-        name='activeListagemContexto',
-        default=False,
-        widget=BooleanWidget(
-            label=_(u"Ativa Listagem de 'Mais Notícias' somente do contexto"),
-            description=_(u"Ativa a opção de listar apenas os itens que estão dentro da pasta selecionada"),
-            label_msgid='vindula_tile_label_activeListagemContexto',
-            description_msgid='vindula_tile_activeListagemContexto',
-            i18n_domain='vindula_tile',
-          )
-    ),
-                                                               
+                                                                                                                     
 
     StringField(
         name='listTypes',
@@ -118,10 +106,22 @@ TileListagemVertical_schema = BaseTile.schema.copy() + Schema((
             multiValued=0,
             allowed_types=('VindulaFolder','Folder'),
             label=_(u"Pastas"),
-            relationship='VindulaFolder',
+            relationship='path',
             widget=VindulaReferenceSelectionWidget(
                 label=_(u"Pastas"),
                 description='Selecione a Pasta que deseja buscar os itens.'
+            ),
+            review_state = ('published', 'internal','external')
+        ),
+                                                               
+    ReferenceField('path_othernews',
+            multiValued=0,
+            allowed_types=('VindulaFolder','Folder'),
+            label=_(u"Pastas"),
+            relationship='path_othernews',
+            widget=VindulaReferenceSelectionWidget(
+                label=_(u"Listagem mais notícias"),
+                description='Selecione a Pasta que deseja listar os mais notícias'
             ),
             review_state = ('published', 'internal','external')
         ),
