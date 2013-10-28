@@ -120,8 +120,8 @@ TileListagemVertical_schema = BaseTile.schema.copy() + Schema((
             label=_(u"Pastas"),
             relationship='path_othernews',
             widget=VindulaReferenceSelectionWidget(
-                label=_(u"Listagem mais notícias"),
-                description='Selecione a Pasta que deseja listar os mais notícias'
+                label=_(u"Listagem mais itens"),
+                description='Selecione a Pasta que deseja listar a visão dos "mais itens"'
             ),
             review_state = ('published', 'internal','external')
         ),

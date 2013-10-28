@@ -36,7 +36,6 @@
                                  tal:condition="context/getActiveMoreButton"
 								 tal:define="path_othernews context/getPath_othernews|nothing;
 											 path python: str(path_othernews.getPhysicalPath()) or '';">
-								<h1 tal:content="path"></h1>
     			                <a href="#" tal:attributes="href python:'%s/outras-noticias?portal_type=%s%s' % (context.absolute_url(), context.getListTypes(), (path) and '&path='+path or '' )">
     			                    <h1 class="subheader vindula-icon-plus-sign left"></h1>
     			                    <p class="left" tal:content="context/Title|string: " >Itens</p>
