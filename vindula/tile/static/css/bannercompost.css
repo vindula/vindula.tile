@@ -129,3 +129,28 @@ padding: 15px 0px 15px 15px;
 	font-weight:bold;
 	margin-bottom:0;
 }
+
+/* MOBILE ANESP */
+
+@media only screen and (max-width: 768px) {
+	.desc-itens-laterais a {
+		color:#187cc1;
+	}
+	.separador {
+	display:none;
+	}
+	.icones-laterais-header {
+	margin-top:60px;
+	}
+	
+	.desc-itens-laterais {
+	margin-top:25px;
+	}
+	
+	.icones-laterais-header .lista-laterais img {
+		border:1px solid #c7c7c7;
+	}
+	
+	
+	
+}
