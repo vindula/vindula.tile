@@ -43,7 +43,7 @@ class TileInfoStructure(BaseTile):
     columns = 12
 
     #Scripts js
-#    scripts_js = ['org-info.js']
+    scripts_js = ['++resource++vindula.myvindula.views/js/follow-cycle.js']
 
 
 registerType(TileInfoStructure, PROJECTNAME)

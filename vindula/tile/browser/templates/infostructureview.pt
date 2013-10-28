@@ -129,21 +129,24 @@
                                  tal:define="blocks python:view_macro.format_members(members) or [];
                                              bullets_false python:'bullets:false;;timer_speed:0;;navigation_arrows:%s' % ((blocks and (len(blocks) > 1)) and 'true' or 'false');">
                                              
-                                <div tal:condition="not: members/count" class="label-team">
+                                <div tal:condition="not: members" class="label-team">
                                     <strong> Não possui nenhum membro</strong>
                                 </div>
                                 
                                 <div class="row">
                                     <div tal:condition="members" class="follow-cycle-container">
                                         <ul class="no-bullet">
-                                            <tal:rep repeat="bloco_follow blocks">
-                                                <li tal:attributes="class python:'cycle-block %s' % ((repeat['bloco_follow'].start) and 'active' or '');
-                                                                    style python:(repeat['bloco_follow'].start) and 'display:block;;' or ''">
+                                            <tal:rep repeat="block blocks">
+                                                <li tal:attributes="class python:'cycle-block %s' % ((repeat['block'].start) and 'active' or '');
+                                                                    style python:(repeat['block'].start) and 'display:block;;' or ''">
                                                     <ul class="small-block-grid-9 large-block-grid-9 members-team">
                                                          <tal:rep repeat="member block">
                                                             <li tal:define="dados_member python:view_macro.get_prefs_user(member)">
-                                                                <a href="#" tal:attributes="href python: here.portal_url() + '/myvindulalistuser?user=' + member;
-                                                                                            alt dados_member/name|string:''; title dados_member/name|string:'';">
+                                                                <a href="#" class="profile-link"
+                                                                   tal:attributes="href python: here.portal_url() + '/myvindulalistuser?user=' + member;
+                                                                                   alt dados_member/name|string:''; title dados_member/name|string:'';
+                                                                                   data-type string:UserObject;
+                                                                                   data-value member;">
                                                                     <img tal:attributes="src python:view_macro.getURLFotoUser(member);" />
                                                                 </a>
                                                             </li>
