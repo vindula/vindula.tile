@@ -128,8 +128,37 @@
                             <div class="columns large-12"
                                  tal:define="blocks python:view_macro.format_members(members) or [];
                                              bullets_false python:'bullets:false;;timer_speed:0;;navigation_arrows:%s' % ((blocks and (len(blocks) > 1)) and 'true' or 'false');">
+                                             
+                                <div tal:condition="not: members/count" class="label-team">
+                                    <strong> Não possui nenhum membro</strong>
+                                </div>
+                                
                                 <div class="row">
-                                    <ul data-orbit
+                                    <div tal:condition="members" class="follow-cycle-container">
+                                        <ul class="no-bullet">
+                                            <tal:rep repeat="bloco_follow blocks">
+                                                <li tal:attributes="class python:'cycle-block %s' % ((repeat['bloco_follow'].start) and 'active' or '');
+                                                                    style python:(repeat['bloco_follow'].start) and 'display:block;;' or ''">
+                                                    <ul class="small-block-grid-9 large-block-grid-9 members-team">
+                                                         <tal:rep repeat="member block">
+                                                            <li tal:define="dados_member python:view_macro.get_prefs_user(member)">
+                                                                <a href="#" tal:attributes="href python: here.portal_url() + '/myvindulalistuser?user=' + member;
+                                                                                            alt dados_member/name|string:''; title dados_member/name|string:'';">
+                                                                    <img tal:attributes="src python:view_macro.getURLFotoUser(member);" />
+                                                                </a>
+                                                            </li>
+                                                         </tal:rep>
+                                                     </ul>
+                                                </li>
+                                            </tal:rep>
+                                            <a href="#" class="orbit-prev cycle-prev disabled">Prev <span></span></a>
+                                            <a href="#" tal:attributes="class python:'orbit-next cycle-next %s' % ((len(blocks) <= 1) and 'disabled' or '')">
+                                                Next <span></span>
+                                            </a>
+                                        </ul>
+                                    </div>
+                                    
+                                    <!--ul data-orbit
                                         tal:attributes="data-options bullets_false;"
                                         class="orbit-slides-container">
                                         <tal:rep repeat="block blocks">
@@ -146,7 +175,7 @@
                                                 </ul>
                                             </li>
                                         </tal:rep>
-                                    </ul>
+                                    </ul-->
                                 </div>
                             </div>
                         </div>
