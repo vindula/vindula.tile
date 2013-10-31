@@ -37,7 +37,7 @@
                                 <div class="org-info-description"
                                      tal:define="description python:orgstruc().Description() or None;">
                                     <tal:cond condition="description">
-                                        <h6 class="title-description">Apresentação</h6>
+                                        <h6>Apresentação</h6>
                                         
                                         <span tal:replace="structure python:view_macro.textToHTML(description)">
                                             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
