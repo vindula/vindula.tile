@@ -37,6 +37,8 @@
                                 <div class="org-info-description"
                                      tal:define="description python:orgstruc().Description() or None;">
                                     <tal:cond condition="description">
+                                        <h6 class="title-description">Apresentação</h6>
+                                        
                                         <span tal:replace="structure python:view_macro.textToHTML(description)">
                                             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                             Nam ut imperdiet urna. Nullam a lacus velit, id sollicitudin nisi.
@@ -53,10 +55,6 @@
                                     </div>
                                     
                                     <div tal:attributes="class python:'container-manager columns large-%s' % (sub_gestor and '6' or '12')">
-                                        <div>
-                                            <strong tal:content="python: (tipo_unidade.lower() == 'comissão') and 'Presidente' or 'Principal'">Gestor</strong>
-                                        </div>
-                                        
                                         <div tal:define="dados_gestor python:view_macro.get_prefs_user(gestor)">
                                             <div class="left manager-pic">
                                                 <a href="#" class="profile-link"
@@ -67,12 +65,17 @@
                                                 </a>
                                             </div>
                                             <div class="left manager-info">
-                                                <a href="#" class="profile-link"
-                                                   tal:attributes="href python: here.portal_url() + '/myvindulalistuser?user='+gestor;
-                                                                   data-type string:UserObject;
-                                                                   data-value gestor|nothing;"
-                                                   tal:content="dados_gestor/name|string: ">Alfredo Macedo</a>
-                                                <p tal:content="dados_gestor/position|string: ">Diretor</p>
+                                                <div class="clear">
+                                                    <strong tal:content="python: (tipo_unidade.lower() == 'comissão') and 'Presidente' or 'Principal'">Gestor</strong>
+                                                </div>
+                                                <div class="clear">
+                                                    <a href="#" class="profile-link"
+                                                       tal:attributes="href python: here.portal_url() + '/myvindulalistuser?user='+gestor;
+                                                                       data-type string:UserObject;
+                                                                       data-value gestor|nothing;"
+                                                       tal:content="dados_gestor/name|string: ">Alfredo Macedo</a>
+                                                    <p tal:content="dados_gestor/position|string: ">Diretor</p>
+                                                </div>
                                             </div>
                                             <div class="left manager-contact">
                                                 <a href="#" tal:attributes="href python: 'mailto:'+ str(dados_gestor.get('email',''))"
@@ -86,10 +89,6 @@
                                     
                                     <div class="container-manager columns large-6"
                                          tal:condition="sub_gestor">
-                                        <div>
-                                            <strong tal:content="python: (tipo_unidade.lower() == 'comissão') and 'Vice-Presidente' or 'Substituto'">Substituto</strong>
-                                        </div>
-                                        
                                         <div tal:define="dados_gestor python:view_macro.get_prefs_user(sub_gestor)">
                                             <div class="left manager-pic">
                                                 <a href="#" class="profile-link"
@@ -100,12 +99,17 @@
                                                 </a>
                                             </div>
                                             <div class="left manager-info">
-                                                <a href="#" class="profile-link"
-                                                   tal:attributes="href python: here.portal_url() + '/myvindulalistuser?user='+sub_gestor;
-                                                                   data-type string:UserObject;
-                                                                   data-value sub_gestor|nothing;"
-                                                   tal:content="dados_gestor/name|string: ">Alfredo Macedo</a>
-                                                <p tal:content="dados_gestor/position|string: ">Diretor</p>
+                                                <div class="clear">
+                                                    <strong tal:content="python: (tipo_unidade.lower() == 'comissão') and 'Vice-Presidente' or 'Substituto'">Substituto</strong>
+                                                </div>
+                                                <div class="clear">
+                                                    <a href="#" class="profile-link"
+                                                       tal:attributes="href python: here.portal_url() + '/myvindulalistuser?user='+sub_gestor;
+                                                                       data-type string:UserObject;
+                                                                       data-value sub_gestor|nothing;"
+                                                       tal:content="dados_gestor/name|string: ">Alfredo Macedo</a>
+                                                    <p tal:content="dados_gestor/position|string: ">Diretor</p>
+                                                </div>
                                             </div>
                                             <div class="left manager-contact">
                                                 <a href="#" tal:attributes="href python: 'mailto:'+ str(dados_gestor.get('email',''))"
@@ -117,12 +121,14 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="columns large-12 label-team">
-                                <strong>
-                                    <a href="">Equipe</a>
-                                </strong>
-                                <span tal:content="python:'('+str(len(members))+')'">(132)</span>
+                            
+                            <div class="columns large-12 label-team manager-row">
+                                <div class="title-manager">
+                                    <strong>
+                                        Equipe
+                                    </strong>
+                                    <span tal:content="python:'('+str(len(members))+')'">(132)</span>
+                                </div>
                             </div>
 
                             <div class="columns large-12"
