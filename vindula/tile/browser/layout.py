@@ -4,6 +4,8 @@ from vindula.tile.browser.baseview import BaseView
 
 from vindula.tile.content.interfaces import ILayout
 
+from zope.security import checkPermission
+
 grok.templatedir('templates')
 
 class LayoutView(BaseView):
@@ -11,8 +13,18 @@ class LayoutView(BaseView):
     grok.name('layout-view')
 
 
+    def can_manage_tile(self,obj_tile):
+        return checkPermission('cmf.ModifyPortalContent', obj_tile)
+
+
     def getScripts_js(self):
         scripts_js = []
+
+        #Adição do js de edição dos blocos via modal
+        scripts_js.append('tile-edit.js')
+        #Adição do js de drag n drop dos blocos
+        scripts_js.append('tile-sortable.js')
+
 
         #Coleta dos Script js dos tiles
         context = self.context
@@ -93,10 +105,3 @@ class LayoutView(BaseView):
         macro = 'context/%s/macros/page' %(obj.getLayout())
 
         return macro
-
-
-class LoadLayoutView(BaseView):
-    grok.name('layout_load-view')
-
-
-

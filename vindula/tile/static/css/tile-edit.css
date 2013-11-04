@@ -1,0 +1,41 @@
+.manageTileLink{
+	float: right;
+}
+
+#content .manageTileLink{
+	top:-20px;
+	position: relative;
+}
+
+
+/*BLOCO DE BANNER*/
+#content .TileBanner .manageTileLink{
+	top:-12px;
+}
+
+/*BLOCO DE Listagem Vertical*/
+#content .TileListagemVertical .manageTileLink{
+	top:-45px;
+}
+
+/*BLOCO DE Destaque*/
+#content .TileFeatured .manageTileLink{
+	top:-45px;
+}
+
+
+
+
+.manage-tile{
+	float: left;
+	/*margin-right: 20px;
+	margin-top: -39px;*/
+	height:24px;
+	width:24px;
+	background:url('/++resource++vindula.tile/images/pencil-icon.png') 50% 50% no-repeat;
+	z-index: 9999;
+}
+
+.manage-tile:hover{
+	background:url('/++resource++vindula.tile/images/pencil-icon-hover.png') 50% 50% no-repeat;
+}

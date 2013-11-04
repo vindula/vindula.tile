@@ -15,6 +15,8 @@ from plone.app.form.widgets.uberselectionwidget import UberSelectionWidget, Uber
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from vindula.tile import MessageFactory as _
 
+from zope.security import checkPermission
+
 class ITileLoads(IPortletDataProvider):
 
     """A portlet
@@ -91,6 +93,9 @@ class Renderer(base.Renderer):
         macro = 'context/%s/macros/page' %(obj.getLayout())
 
         return macro
+
+    def can_manage_tile(self,obj_tile):
+        return checkPermission('cmf.ModifyPortalContent', obj_tile)
 
 
 class AddForm(base.AddForm):
