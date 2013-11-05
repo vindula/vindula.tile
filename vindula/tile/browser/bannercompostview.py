@@ -74,7 +74,6 @@ class BannerCompostView(BaseView):
                     D['image'] = banner.absolute_url() + '/imagem_banner_large'
                 else:
                     D['image'] = banner.absolute_url() + '/imagem_banner_thumb'
-                    
                 D['target'] = banner.getTarget()
                 D['url'] = banner.getLink()
                 D['date'] = banner.creation_date.strftime('%d/%m/%Y')

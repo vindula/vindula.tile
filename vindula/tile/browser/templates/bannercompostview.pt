@@ -110,8 +110,10 @@
 	                tal:attributes="data-options python: len(itens)==1 and bullets_false;">
 	                <li tal:repeat="item itens">
 	                    <div class="destaque-banner">
-	                           <a href="#" tal:attributes="href item/url"><img tal:attributes="src item/image"
-	                              src="++theme++vindula.themedefault/images/demos/demo2-th.gif" /></a>
+	                           <a href="#" tal:attributes="href item/url;
+														   ">
+									<img tal:attributes="src item/image"
+	                              		 src="++theme++vindula.themedefault/images/demos/demo2-th.gif" /></a>
 								<div class="descricao-destaque-banner">
 									<p tal:content="item/text" class="conteudo-descricao-destaque-banner">
 									</p>
@@ -137,7 +139,8 @@
 								 tal:attributes="src banner/image">
 							<div class="desc-itens-laterais">
 								<h6><a href="#" tal:content="banner/title" 
-												tal:attributes="href banner/url">Rede Socioprofissional</a></h6>
+												tal:attributes="href banner/url; target banner/target"
+																>Rede Socioprofissional</a></h6>
 									<p class="desc-listagem-horizontal" tal:content="banner/text">Lorem ipsum dolor sit amet.</p>
 							</div>
 						</div>
