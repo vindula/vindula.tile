@@ -9,7 +9,7 @@ $j(function () {
                           update: function(event, ui) {
                                     var mod_list_tiles = [],
                                         list_tiles = $j(this).sortable('toArray', {attribute:'data-name'}),
-                                        base_url = $j('base').val() + '/sortable-view'
+                                        base_url = $j('base').val() + '/sortable-view',
                                         context_UID = $j('#context_UID', $j(this)).val();
 
 
