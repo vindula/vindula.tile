@@ -13,3 +13,15 @@
 .moveTileLink{
 	cursor:move;
 }
+
+.cleft, .cright{
+	min-height: 100px;
+}
+
+
+#portal-column-one .moveTileLink,
+#portal-column-two .moveTileLink{
+	position: relative;
+	top:-15px;
+	left: -15px;
+}

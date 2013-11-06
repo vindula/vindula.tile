@@ -41,11 +41,11 @@
                 <div class="columns large-12" tal:define="item python: itens[0];
                                                           portal_type item/portal_type|string: ">
                     <div class="item-tile item-tile" 
-                         id="" 
+                         id="macro-tile" 
                          tal:define="path_macro python:view.getMacro(item);
                                      context nocall:item"
                          tal:attributes="class python:item.getIs_accessory() and 'is_accessory  %s %s' %(portal_type,class_defaut) or '%s %s' %(portal_type,class_defaut);
-                                         id item/getId|string: ">
+                                         data-name item/getId|string: ">
 
                         <tal:cod tal:condition="path_macro"
                                  tal:on-error="string: Erro ao carregar o bloco ${context/Title}">
@@ -73,12 +73,12 @@
                     tal:attributes="class string: columns large-${size_large} cleft">
                     <tal:rep_even tal:repeat="item python: itens[0]">
                         
-                        <div class="macro-tile item-tile" id=""
+                        <div class="item-tile" id="macro-tile"
                             tal:define="portal_type item/portal_type|string: ;
                                         path_macro python:view.getMacro(item);
                                         context nocall:item"
                             tal:attributes="class python:item.getIs_accessory() and 'is_accessory %s %s' %(portal_type,class_defaut) or '%s %s' %(portal_type,class_defaut);
-                                            id item/getId|string: ">
+                                            data-name item/getId|string: ">
 
                           <tal:cod tal:condition="path_macro"
                                    tal:on-error="string: Erro ao carregar o bloco ${context/Title}">
@@ -102,12 +102,12 @@
                 <div class="columns large-6" id="odd"
                      tal:attributes="class string: columns large-${size_large} cright">
                     <tal:rep_odd tal:repeat="item python: itens[1]">
-                        <div class="macro-tile item-tile" id=""
+                        <div class="item-tile" id="macro-tile"
                              tal:define="portal_type item/portal_type|string: ;
                                          path_macro python:view.getMacro(item);
                                          context nocall:item"
                              tal:attributes="class python:item.getIs_accessory() and 'is_accessory item-tile %s %s' %(portal_type,class_defaut) or '%s %s' %(portal_type,class_defaut);
-                                             id item/getId|string: ">
+                                             data-name item/getId|string: ">
 
                             <tal:cod tal:condition="path_macro"
                                      tal:on-error="string: Erro ao carregar o bloco ${context/Title}">

@@ -61,7 +61,7 @@ class Renderer(base.Renderer):
     def available(self):
         return True
 
-    def getTiles(self):
+    def _getTiles_list(self):
         context = self.context
         portal = context.portal_url.getPortalObject()
         catalog = portal.portal_catalog
@@ -71,6 +71,14 @@ class Renderer(base.Renderer):
         rid = catalog.getrid(portal_path + data.tiles_list)
         brain = catalog._catalog[rid]
         obj = brain.getObject()
+        return obj
+
+    def getObjContext(self):
+        return self._getTiles_list()
+
+
+    def getTiles(self):
+        obj = self._getTiles_list()
         return obj.values()
 
 
