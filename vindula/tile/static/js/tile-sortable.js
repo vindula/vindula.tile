@@ -4,12 +4,12 @@ $j(function () {
                           forcePlaceholderSize: true,
                           items: '.item-tile',
                           handle: ".moveTileLink",
-                          // cancel:'div',
+                          cancel:'.visualClear',
                           cursor: "move",
                           update: function(event, ui) {
                                     var mod_list_tiles = [],
                                         list_tiles = $j(this).sortable('toArray', {attribute:'data-name'}),
-                                        base_url = $j('base').val() + '/sortable-view',
+                                        base_url = $j('base').val() + '/sortable-view';
                                         context_UID = $j('#context_UID', $j(this)).val();
 
 
@@ -30,36 +30,41 @@ $j(function () {
                                       mod_list_tiles.push(valor);
                                     }
 
-
                                     $j.post(base_url,{'list_tiles': mod_list_tiles,
-                                                      'context_UID': context_UID
+                                                      'context_UID': context_UID,
                                                       },function(data){
                                                           console.log(data);
                                     });
 
-                                    // console.log(list_tiles);
-                                    // console.log(mod_list_tiles);
+                                    //Adição da Class 'portletWrapper' ao tile se ele foi
+                                    // movido do meio para a esquerda
+                                    var tile_portle = ui.item.parents('.tileportletWrapper');
+                                    if (tile_portle.length){
+                                      ui.item.addClass('portletWrapper');
+                                      ui.item.after("<div class='visualClear'></div>");
+                                    }
+                                    //remoção da Class 'portletWrapper' ao tile se ele foi
+                                    // movido da esquerda para o meio
+                                    var tile_portle = ui.item.parents('#content');
+                                    if (tile_portle.length){
+                                      ui.item.removeClass('portletWrapper');
+                                    }                                   
+
+                                   
+                                    console.log(mod_list_tiles);
 
 
                                   }
                         };
 
-
-    // $j("#content .cleft").sortable($j.extend(config_global, {
-    //   connectWith: "#content > div,  #content .cright",
-    // })).disableSelection();      
-
-    
-
-
     $j("#content > div").sortable($j.extend(config_global, {
-        // connectWith: ".tileportletWrapper",
+        connectWith: ".tileportletWrapper",
 
     })).disableSelection();
 
     $j(".tileportletWrapper").sortable($j.extend(config_global, {
 
-        // connectWith: "#content > div",
+        connectWith: "#content > div",
     })).disableSelection();
 
 

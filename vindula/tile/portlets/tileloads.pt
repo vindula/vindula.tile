@@ -18,7 +18,7 @@
              id="macro-tile" class="portletWrapper" tal:define="path_macro python:view.getMacro(tile);
                                                                 context nocall:tile" style="float:left"
                                                     tal:attributes="class string:portletWrapper ${tile/portal_type} ${tile/getKind|nothing} item-tile;
-                                                                    data-name tile/getId|string: " >
+                                                                    data-name string:${tile/getId}|${tile/UID}|${context_obj/UID};" >
 
             <tal:error tal:on-error="string: Erro ao carregar a capa ${tile/Title}">
 

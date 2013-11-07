@@ -11,12 +11,20 @@ class SortableView(BaseView):
 
 	retorno = {}
 
+	def split_tile(self,string_tile):
+		text = string_tile.split('|')
+		# ID , UID, CONTEXTO
+		return text[0], text[1], text[2]
+
+
 	def update(self):
 		self.retorno = {}
 		form = self.request.form
 		context_UID = form.get('context_UID','')
 		list_tiles = form.get('list_tiles[]', [])
-
+		list_uids = form.get('list_uids[]', [])
+		list_content = form.get('list_content[]', [])
+		
 		man_list = []
 		even_list = []
 		odd_list = []
@@ -41,12 +49,25 @@ class SortableView(BaseView):
 
 				except IndexError: pass
 
-		context = self.reference_catalog.lookupObject(context_UID)
-		if context:
+		context_global = self.reference_catalog.lookupObject(context_UID)
+		
+		if context_global:
 			for ordem, id_tile in enumerate(man_list):
-				context.moveObjectToPosition(id_tile,ordem)
+				title, uid, context_uid = self.split_tile(id_tile)
 
-			context.plone_utils.reindexOnReorder(context)
+				if context_uid == context_UID:
+					context_global.moveObjectToPosition(title,ordem)
+
+				else:
+					context_oring = self.reference_catalog.lookupObject(context_uid)
+
+					if context_oring:
+						clipboard = context_oring.manage_cutObjects([title])
+						context_global.manage_pasteObjects(clipboard)
+						context_global.moveObjectToPosition(title,ordem)
+
+			context_global.plone_utils.reindexOnReorder(context_global)
+
 			self.retorno['response'] = 'Objetos atualizados...'
 		else:
 			self.retorno['response'] = 'Erro ao obter o contexto dos Tiles'

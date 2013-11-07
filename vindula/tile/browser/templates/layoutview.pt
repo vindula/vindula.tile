@@ -20,12 +20,6 @@
                                size_large python: columns_accessory and '12' or '6';
                                class_defaut string: macro-tile item-tile">
         
-        <link rel="stylesheet" type="text/css" href="" 
-              tal:attributes="href string:${context/portal_url}/++resource++vindula.tile/css/tile-sortable.css" />
-        
-        <link rel="stylesheet" type="text/css" href="" 
-              tal:attributes="href string:${context/portal_url}/++resource++vindula.tile/css/tile-edit.css" />
-        
         <tal:rep_js repeat="name_script scripts">
             <tal:cond condition="python: not request.get(name_script)">
                 <script type="text/javascript"
@@ -45,7 +39,7 @@
                          tal:define="path_macro python:view.getMacro(item);
                                      context nocall:item"
                          tal:attributes="class python:item.getIs_accessory() and 'is_accessory  %s %s' %(portal_type,class_defaut) or '%s %s' %(portal_type,class_defaut);
-                                         data-name item/getId|string: ">
+                                         data-name string:${item/getId}|${item/UID}|${view/context/UID};">
 
                         <tal:cod tal:condition="path_macro"
                                  tal:on-error="string: Erro ao carregar o bloco ${context/Title}">
@@ -78,7 +72,7 @@
                                         path_macro python:view.getMacro(item);
                                         context nocall:item"
                             tal:attributes="class python:item.getIs_accessory() and 'is_accessory %s %s' %(portal_type,class_defaut) or '%s %s' %(portal_type,class_defaut);
-                                            data-name item/getId|string: ">
+                                            data-name string:${item/getId}|${item/UID}|${view/context/UID};">
 
                           <tal:cod tal:condition="path_macro"
                                    tal:on-error="string: Erro ao carregar o bloco ${context/Title}">
@@ -107,7 +101,7 @@
                                          path_macro python:view.getMacro(item);
                                          context nocall:item"
                              tal:attributes="class python:item.getIs_accessory() and 'is_accessory item-tile %s %s' %(portal_type,class_defaut) or '%s %s' %(portal_type,class_defaut);
-                                             data-name item/getId|string: ">
+                                             data-name string:${item/getId}|${item/UID}|${view/context/UID};">
 
                             <tal:cod tal:condition="path_macro"
                                      tal:on-error="string: Erro ao carregar o bloco ${context/Title}">
