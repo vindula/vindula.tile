@@ -41,13 +41,17 @@ class SortableView(BaseView):
 			if not "even|" in i and not "odd|" in i:
 				man_list.append(i)
 			else:
-				try:
-					i_even = even_list.pop(0)
-					i_odd = odd_list.pop(0)
-					man_list.append(i_even.replace('even|',''))
-					man_list.append(i_odd.replace('odd|',''))
 
-				except IndexError: pass
+				try:i_even = even_list.pop(0)
+				except IndexError: i_even = None
+
+				try:i_odd = odd_list.pop(0)
+				except IndexError: i_odd = None				
+
+				if i_even:
+					man_list.append(i_even.replace('even|',''))
+				if i_odd:
+					man_list.append(i_odd.replace('odd|',''))
 
 		context_global = self.reference_catalog.lookupObject(context_UID)
 		

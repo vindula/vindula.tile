@@ -57,14 +57,14 @@ $j(function () {
                                   }
                         };
 
-    $j("#content > div").sortable($j.extend(config_global, {
+    $j("#content .sortable-tiles").sortable($j.extend(config_global, {
         connectWith: ".tileportletWrapper",
 
     })).disableSelection();
 
     $j(".tileportletWrapper").sortable($j.extend(config_global, {
 
-        connectWith: "#content > div",
+        connectWith: "#content .sortable-tiles",
     })).disableSelection();
 
 

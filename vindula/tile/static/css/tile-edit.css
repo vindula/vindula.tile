@@ -39,3 +39,13 @@
 .manage-tile:hover{
 	background:url('/++resource++vindula.tile/images/pencil-icon-hover.png') 50% 50% no-repeat;
 }
+
+
+
+#addtilesviewlet{
+	position: absolute;
+	top:0;
+	left: -545px;
+	border: solid 1px #000;
+
+}
