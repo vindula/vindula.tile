@@ -86,7 +86,16 @@ TileTabularList_schema = BaseTile.schema.copy() + Schema((
             description='Se selecionado mostrar o título no bloco.',
         ),
         default=False
-    ),    
+    ),
+    
+    BooleanField(
+        name='hide_table',
+        widget=BooleanWidget(
+            label="Esconder a tabela",
+            description='Se selecionado não mostra a tabela quando a página for carregada, os usuários só serão mostrados quando efetuada a busca.',
+        ),
+        default=False
+    ),  
 
 ))
 
