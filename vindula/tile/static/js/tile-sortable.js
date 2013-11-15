@@ -41,18 +41,19 @@ $j(function () {
                                     var tile_portle = ui.item.parents('.tileportletWrapper');
                                     if (tile_portle.length){
                                       ui.item.addClass('portletWrapper');
+                                      ui.item.css('float','left');
                                       ui.item.after("<div class='visualClear'></div>");
+
                                     }
                                     //remoção da Class 'portletWrapper' ao tile se ele foi
                                     // movido da esquerda para o meio
                                     var tile_portle = ui.item.parents('#content');
                                     if (tile_portle.length){
                                       ui.item.removeClass('portletWrapper');
+                                      ui.item.css('float','');
                                     }                                   
-
                                    
                                     console.log(mod_list_tiles);
-
 
                                   }
                         };

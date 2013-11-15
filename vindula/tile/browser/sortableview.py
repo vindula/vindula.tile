@@ -2,6 +2,8 @@
 from five import grok
 from vindula.tile.browser.baseview import BaseView
 
+from plone.app.uuid.utils import uuidToObject
+
 import json
 
 grok.templatedir('templates')
@@ -53,8 +55,8 @@ class SortableView(BaseView):
 				if i_odd:
 					man_list.append(i_odd.replace('odd|',''))
 
-		context_global = self.reference_catalog.lookupObject(context_UID)
-		
+		context_global = uuidToObject(context_UID)
+	
 		if context_global:
 			for ordem, id_tile in enumerate(man_list):
 				title, uid, context_uid = self.split_tile(id_tile)
@@ -63,7 +65,7 @@ class SortableView(BaseView):
 					context_global.moveObjectToPosition(title,ordem)
 
 				else:
-					context_oring = self.reference_catalog.lookupObject(context_uid)
+					context_oring = uuidToObject(context_uid)
 
 					if context_oring:
 						clipboard = context_oring.manage_cutObjects([title])

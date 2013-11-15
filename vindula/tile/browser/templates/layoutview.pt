@@ -19,60 +19,28 @@
                                columns_accessory columns_accessory|python:False;
                                size_large python: columns_accessory and '12' or '6';
                                class_defaut string: macro-tile item-tile">
-        
-        <tal:rep_js repeat="name_script scripts">
-            <tal:cond condition="python: not request.get(name_script)">
-                <script type="text/javascript"
-                        tal:attributes="src string:${context/portal_url}/++resource++vindula.tile/js/${name_script}" />
-                <tal:dummy tal:define="use_js_list python:request.set(name_script, 1);" />
-            </tal:cond>
-        </tal:rep_js>
 
-        <input type="hidden" name="context_UID" id="context_UID" tal:attributes="value context/UID|string: " />
+        <div class="sortable-tiles">
+          <tal:rep_js repeat="name_script scripts">
+              <tal:cond condition="python: not request.get(name_script)">
+                  <script type="text/javascript"
+                          tal:attributes="src string:${context/portal_url}/++resource++vindula.tile/js/${name_script}" />
+                  <tal:dummy tal:define="use_js_list python:request.set(name_script, 1);" />
+              </tal:cond>
+          </tal:rep_js>
 
-        <div tal:repeat="itens tiles" class="row sortable-tiles">
-            <tal:cond_12 condition="python: len(itens) == 1 ">
-                <div class="columns large-12" tal:define="item python: itens[0];
-                                                          portal_type item/portal_type|string: ">
-                    <div class="item-tile item-tile" 
-                         id="macro-tile" 
-                         tal:define="path_macro python:view.getMacro(item);
-                                     context nocall:item"
-                         tal:attributes="class python:item.getIs_accessory() and 'is_accessory  %s %s' %(portal_type,class_defaut) or '%s %s' %(portal_type,class_defaut);
-                                         data-name string:${item/getId}|${item/UID}|${view/context/UID};">
+          <input type="hidden" name="context_UID" id="context_UID" tal:attributes="value context/UID|string: " />
 
-                        <tal:cod tal:condition="path_macro"
-                                 tal:on-error="string: Erro ao carregar o bloco ${context/Title}">
-
-                          <div class="moveTileLink" tal:condition="python: view.can_manage_tile(context)">
-                            <a class="draggingHook" >⣿</a>
-                          </div>  
-
-                          <metal:block metal:use-macro="python:path(path_macro)"/>
-
-                          <div class="manageTileLink clear" tal:condition="python: view.can_manage_tile(context)">
-                            <a  alt="Editar o Bloco" title="Editar o Bloco"
-                                class="manage-tile"
-                                tal:attributes="href string:${context/absolute_url}/edit" ></a>  
-                          </div>
-
-                        </tal:cod>
-
-                    </div>
-                </div>
-            </tal:cond_12>
-
-            <tal:cond_6 condition="python: len(itens) == 2 ">
-                <div class="columns large-6" id="even"
-                    tal:attributes="class string: columns large-${size_large} cleft">
-                    <tal:rep_even tal:repeat="item python: itens[0]">
-                        
-                        <div class="item-tile" id="macro-tile"
-                            tal:define="portal_type item/portal_type|string: ;
-                                        path_macro python:view.getMacro(item);
-                                        context nocall:item"
-                            tal:attributes="class python:item.getIs_accessory() and 'is_accessory %s %s' %(portal_type,class_defaut) or '%s %s' %(portal_type,class_defaut);
-                                            data-name string:${item/getId}|${item/UID}|${view/context/UID};">
+          <div tal:repeat="itens tiles" class="row ">
+              <tal:cond_12 condition="python: len(itens) == 1 ">
+                  <div class="columns large-12" tal:define="item python: itens[0];
+                                                            portal_type item/portal_type|string: ">
+                      <div class="item-tile item-tile" 
+                           id="macro-tile" 
+                           tal:define="path_macro python:view.getMacro(item);
+                                       context nocall:item"
+                           tal:attributes="class python:item.getIs_accessory() and 'is_accessory  %s %s' %(portal_type,class_defaut) or '%s %s' %(portal_type,class_defaut);
+                                           data-name string:${item/getId}|${item/UID}|${view/context/UID};">
 
                           <tal:cod tal:condition="path_macro"
                                    tal:on-error="string: Erro ao carregar o bloco ${context/Title}">
@@ -88,20 +56,24 @@
                                   class="manage-tile"
                                   tal:attributes="href string:${context/absolute_url}/edit" ></a>  
                             </div>
+
                           </tal:cod>
 
-                        </div>
-                    </tal:rep_even>
-                </div>
-                <div class="columns large-6" id="odd"
-                     tal:attributes="class string: columns large-${size_large} cright">
-                    <tal:rep_odd tal:repeat="item python: itens[1]">
-                        <div class="item-tile" id="macro-tile"
-                             tal:define="portal_type item/portal_type|string: ;
-                                         path_macro python:view.getMacro(item);
-                                         context nocall:item"
-                             tal:attributes="class python:item.getIs_accessory() and 'is_accessory item-tile %s %s' %(portal_type,class_defaut) or '%s %s' %(portal_type,class_defaut);
-                                             data-name string:${item/getId}|${item/UID}|${view/context/UID};">
+                      </div>
+                  </div>
+              </tal:cond_12>
+
+              <tal:cond_6 condition="python: len(itens) == 2 ">
+                  <div class="columns large-6" id="even"
+                      tal:attributes="class string: columns large-${size_large} cleft">
+                      <tal:rep_even tal:repeat="item python: itens[0]">
+                          
+                          <div class="item-tile" id="macro-tile"
+                              tal:define="portal_type item/portal_type|string: ;
+                                          path_macro python:view.getMacro(item);
+                                          context nocall:item"
+                              tal:attributes="class python:item.getIs_accessory() and 'is_accessory %s %s' %(portal_type,class_defaut) or '%s %s' %(portal_type,class_defaut);
+                                              data-name string:${item/getId}|${item/UID}|${view/context/UID};">
 
                             <tal:cod tal:condition="path_macro"
                                      tal:on-error="string: Erro ao carregar o bloco ${context/Title}">
@@ -117,13 +89,43 @@
                                     class="manage-tile"
                                     tal:attributes="href string:${context/absolute_url}/edit" ></a>  
                               </div>
-
                             </tal:cod>
 
-                        </div>
-                    </tal:rep_odd>
-                </div>
-            </tal:cond_6>
+                          </div>
+                      </tal:rep_even>
+                  </div>
+                  <div class="columns large-6" id="odd"
+                       tal:attributes="class string: columns large-${size_large} cright">
+                      <tal:rep_odd tal:repeat="item python: itens[1]">
+                          <div class="item-tile" id="macro-tile"
+                               tal:define="portal_type item/portal_type|string: ;
+                                           path_macro python:view.getMacro(item);
+                                           context nocall:item"
+                               tal:attributes="class python:item.getIs_accessory() and 'is_accessory item-tile %s %s' %(portal_type,class_defaut) or '%s %s' %(portal_type,class_defaut);
+                                               data-name string:${item/getId}|${item/UID}|${view/context/UID};">
+
+                              <tal:cod tal:condition="path_macro"
+                                       tal:on-error="string: Erro ao carregar o bloco ${context/Title}">
+
+                                <div class="moveTileLink" tal:condition="python: view.can_manage_tile(context)">
+                                  <a class="draggingHook" >⣿</a>
+                                </div>  
+
+                                <metal:block metal:use-macro="python:path(path_macro)"/>
+
+                                <div class="manageTileLink clear" tal:condition="python: view.can_manage_tile(context)">
+                                  <a  alt="Editar o Bloco" title="Editar o Bloco"
+                                      class="manage-tile"
+                                      tal:attributes="href string:${context/absolute_url}/edit" ></a>  
+                                </div>
+
+                              </tal:cod>
+
+                          </div>
+                      </tal:rep_odd>
+                  </div>
+              </tal:cond_6>
+          </div>
         </div>
       </metal:macro>
     </metal:main>
