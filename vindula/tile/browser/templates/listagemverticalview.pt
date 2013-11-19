@@ -59,10 +59,12 @@
         <hr/>
     </div>
     
-    <select id="sort_on" class="columns large-12" tal:condition="context/getActiveSort|python:True">
-        <option value="data">Data</option>
-        <option value="mais_acessados">Mais acessados</option>
-    </select>
+    <div class="columns large-12">
+        <select id="sort_on" tal:condition="context/getActiveSort|python:True">
+            <option value="data">Data</option>
+            <option value="mais_acessados">Mais acessados</option>
+        </select>
+    </div>
 
 
     <div class="content_itens columns large-12">
