@@ -61,6 +61,7 @@ TileListagemVertical_schema = BaseTile.schema.copy() + Schema((
             description='Quantidade maxima de items.',
         ),
         default=5,
+        required=True,
     ),
 
     BooleanField(
