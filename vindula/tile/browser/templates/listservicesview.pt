@@ -1,0 +1,75 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="context/main_template/macros/master"
+      lang="en"
+      i18n:domain="vindula.tile">
+
+<head>
+    <metal:js fill-slot="javascript_head_slot">
+      <!--script type="text/javascript" src=""
+              tal:attributes="src string:${context/absolute_url|nothing}/++resource++vindula.tile/js/org-tree.js"></script-->
+    </metal:js>
+</head>
+<body>
+    <metal:main fill-slot="content-core">
+        <metal:macro define-macro="page">
+
+            <metal:macro define-macro="body"
+                         tal:define="view_macro nocall:context/@@listservices-view;
+                                     categories view_macro/getServicesCategory|nothing;">
+                                         
+                <div tal:condition="categories">
+                    <tal:rep repeat="categorie categories">
+                        <div class="container-services">
+                            <h5 class="accordion"
+                                tal:attributes="id categorie/id">
+                                <span tal:replace="categorie/Title"></span>
+                                <hr/>
+                            </h5>
+                            
+                            <div tal:attributes="accordion-id categorie/id;
+                                                 accordion-collapse string:true;"
+                                 tal:define="Batch python:modules['Products.CMFPlone'].Batch;
+                                             b_size request/b_size|string:1;
+                                             b_start python:0;
+                                             b_start request/b_start | b_start;
+                                             services python:categories[categorie];
+                                             batch python:Batch(services, int(b_size), int(b_start));">
+                                                 
+                                <div class="container clear">
+                                    
+                                    <input type="hidden" id="b_size" tal:attributes="value b_size" />
+                                    <input type="hidden" id="b_start" tal:attributes="value b_start" />
+                                    
+                                    <div class="columns small-12">
+                                        <div class="row">
+                                            <div tal:repeat="item batch" class="large-3 columns item-service"
+                                                 tal:attributes="class python:'large-%s columns item-service' % (int(12/len(services)))">
+                                                <img class="left" tal:attributes="src item/getImageIcone;
+                                                                                  title item/Title;
+                                                                                  alt item/Title;">
+                                                <a class="left" tal:attributes="href item/absolute_url" tal:content="item/Title"></a>
+                                            </div>
+                                            <div class="right ajax_pagination" id="pag-nav">
+                                                <metal:block metal:use-macro="context/boll_batch/macros/navigation" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </tal:rep>
+                </div>
+                
+                <div tal:condition="not:categories">
+                    <span>Nao existem categorias</span>
+                </div>
+                
+            </metal:macro>
+        </metal:macro>
+    </metal:main>
+</body>
+</html>

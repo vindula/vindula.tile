@@ -51,7 +51,7 @@ class ListagemVerticalView(BaseView):
             if len(itens) < numbers:
                 numbers = len(itens)
 
-            while len(L) <= numbers:
+            while len(L) < numbers:
                 chosen = random.choice(itens)
                 if not chosen.UID in L_tmp:
                     L_tmp.append(chosen.UID)

@@ -69,7 +69,8 @@ class TileNewEmployee(BaseTile):
     portal_type = 'TileNewEmployee'
     _at_rename_after_creation = True
     schema = TileNewEmployee_schema
-
-
+    
+    #Scripts js
+    scripts_js = ['ajax_boll_batch.js']
 
 registerType(TileNewEmployee, PROJECTNAME)

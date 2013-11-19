@@ -32,18 +32,20 @@
 	                             metal:use-macro="python:path(path_macro)"/>
 
         					<div class="columns large-12" tal:condition="python:view_macro.getKind() != 'listagem_evento'">
-    			            <div class="more-news"
-                           tal:condition="context/getActiveMoreButton"
-							             tal:define="path_othernews context/getPath_othernews|nothing;
-											                 path path_othernews/getPhysicalPath|nothing;">
+        					 
+    			            <div class="more-news" tal:condition="context/getActiveMoreButton"
+					             tal:define="path_othernews context/getPath_othernews|nothing;">
+    			                <a href="#" tal:condition="not:path_othernews" tal:attributes="href python:'%s/outras-noticias?portal_type=%s' % (context.absolute_url(), context.getListTypes())">
+    			                    <h1 class="subheader vindula-icon-plus-sign left"></h1>
+    			                    <p class="left" tal:content="context/Title|string: " >Itens</p>
+    			                </a>
 
-    			                <a href="#" tal:attributes="href python:'%s/outras-noticias?portal_type=%s%s' % (context.absolute_url(), context.getListTypes(), (path) and '&path='+str(path) or '' )">
+   								<a href="#" tal:condition="path_othernews" tal:attributes="href path_othernews/absolute_url|nothing">
     			                    <h1 class="subheader vindula-icon-plus-sign left"></h1>
     			                    <p class="left" tal:content="context/Title|string: " >Itens</p>
     			                </a>
     			            </div>
     			        </div>
-
                 </div>
             </metal:macro>
         </metal:main>
