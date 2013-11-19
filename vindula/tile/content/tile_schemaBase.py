@@ -61,6 +61,15 @@ BaseTile_schema = ATContentTypeSchema + Schema((
 ))
 
 schemata.finalizeATCTSchema(BaseTile_schema, folderish=False)
+invisivel = {'view':'invisible','edit':'invisible',}
+
+
+hiddem = ['allowDiscussion','creators','contributors','rights','effectiveDate',\
+          'expirationDate','subject','relatedItems','location','language',]
+
+for i in hiddem:
+    BaseTile_schema[i].widget.visible = invisivel
+
 
 class BaseTile(ATCTContent):
     """ Reserve Content for BaseTile"""

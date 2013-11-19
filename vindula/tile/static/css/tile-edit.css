@@ -43,9 +43,9 @@
 
 
 #addtilesviewlet{
-	position: absolute;
+/*	position: absolute;
 	top:0;
-	left: -545px;
+	left: -545px;*/
 	border: solid 1px #000;
 	background: #FFF;
 }

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from five import grok
 from zope.interface import Interface
-from plone.app.layout.viewlets.interfaces import IBelowContentBody
+from plone.app.layout.viewlets.interfaces import IAboveContentBody #IBelowContentBody
 from Products.CMFCore.utils import getToolByName
 
 from zope.security import checkPermission
@@ -12,7 +12,7 @@ grok.templatedir('templates')
 class AddTilesViewlet(grok.Viewlet):
 	grok.name('vindula.tile.addtiles')
 	grok.require('zope2.View')
-	grok.viewletmanager(IBelowContentBody)
+	grok.viewletmanager(IAboveContentBody)
 
 	list_tiles = ['TileAccordionContent',
 				  # 'TileAccordionItem',

@@ -6,10 +6,11 @@
     margin-bottom: 5px;
 }
 
-.item-tile{
+/*.item-tile{
 	border: 2px solid #000;
 	/*float: left;*/
 }
+*/
 .moveTileLink{
 	cursor:move;
 }

@@ -21,6 +21,10 @@
 <metal:main fill-slot="main">
   <metal:macro define-macro="page-view">
 
+    <div id="viewlet-above-content-body"
+         tal:content="structure provider:plone.abovecontentbody" />
+
+
     <tal:cond tal:condition="python: context.getType_layouts() == 'padrao'">
         <div tal:define="context python:context.getObj_layout()">
           <tal:error tal:on-error="string: Erro ao carregar a capa ${context/Title}">

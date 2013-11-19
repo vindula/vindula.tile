@@ -1,27 +1,50 @@
 <div id="addtilesviewlet" tal:condition="viewlet/isEnableViewlet|python:False">
 	
-	<div class="row">
-		<div class="columns large-12">
-			<h3>Adicionar novo Bloco</h3>
-		</div>
-		
-		<div class="colmuns large-12" tal:define="list_tiles viewlet/get_types|python:[]">
-			<tal:rep repeat="item list_tiles">
-				<div class="clear">
-					<div class="columns small-3 padrao_image">
-						<img src="" alt="" tal:attributes="src item/icone|string: " />
-					</div>
-					<div class="columns small-9">
-						<span><a href="" class="add-tile"
-							   tal:attributes="href item/url_add|string: ;
-								  			   alt item/description|string: ;
-											   title item/description|string: ;"
-							   tal:content="item/title|string: ">Tile</a>
-						</span>
-					</div>
-				</div>
-			</tal:rep>
+	<script type="text/javascript">
+		$j(document).ready(function(){ 
+			$j("#dialog_addtiles").dialog({resizable: false,
+				       					   open: function(){
+            								var closeBtn = $j('.ui-dialog-titlebar-close');
+											closeBtn.hide();},
+	            							position: { my: "left top", at: "left top", of: $j("#portal-columns") },
+            							    width: 275
 
+			});
+
+
+
+		});
+		
+	</script>
+	
+	<div id="dialog_addtiles" title="Adicionar novo Bloco">
+	
+		<div class="row">
+<!-- 			<div class="columns large-12">
+				<h3>Adicionar novo Bloco</h3>
+			</div> -->
+			
+			<div class="colmuns large-12" tal:define="list_tiles viewlet/get_types|python:[]">
+				<tal:rep repeat="item list_tiles">
+					<div class="clear">
+						<div class="columns small-2 padrao_image">
+							<img src="" alt="" tal:attributes="src item/icone|string: " style="height: 20px;width: 20px;" />
+						</div>
+						<div class="columns small-10">
+							<span><a href="" class="add-tile"
+								   tal:attributes="href item/url_add|string: ;
+									  			   alt item/description|string: ;
+												   title item/description|string: ;"
+								   tal:content="item/title|string: ">Tile</a>
+							</span>
+						</div>
+					</div>
+				</tal:rep>
+
+			</div>
 		</div>
+
 	</div>
+
+	
 </div>
