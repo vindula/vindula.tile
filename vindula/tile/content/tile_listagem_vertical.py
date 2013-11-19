@@ -150,6 +150,16 @@ TileListagemVertical_schema = BaseTile.schema.copy() + Schema((
         ),
     ),
 
+    BooleanField(
+        name='activeSarchEvents',
+        default=False,
+        widget=BooleanWidget(
+            label="Ativar busca de eventos.",
+            description='Caso selecionado, ativa a busca de eventos que estão acontecendo.',
+            label_msgid='vindula_tile_label_activeSarchEvents',
+            description_msgid='vindula_tile_help_activeSarchEvents',
+        ),
+    ),
 
 
 ))
