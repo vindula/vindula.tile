@@ -23,3 +23,4 @@ import tile_tabularlist
 import tile_howdo
 import tile_bannercompost
 import tile_list_services
+import tile_joboffer

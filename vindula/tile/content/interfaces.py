@@ -78,3 +78,6 @@ class ITileBannerCompost(Interface):
 
 class ITileListServices(Interface):
     """ Interface for ITileListServices content type """
+
+class ITileJobOffer(Interface):
+    """ Interface for ITileJobOffer content type """
