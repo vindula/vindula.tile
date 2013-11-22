@@ -36,6 +36,17 @@ TileAccordionContent_schema = ATFolder.schema.copy() + BaseTile.schema.copy() + 
         required=False,
         schemata = 'Settings'
     ),
+    
+    BooleanField(
+        name='load_open',
+        default=False,
+        widget=BooleanWidget(
+            label="Carregar os itens sempre abertos",
+            description="Selecione esta opção caso queira que os itens do accordion carreguem sempre abertos.",
+        ),
+        required=False,
+        schemata = 'Settings'
+    ),
 
     StringField(
         name='coluna',

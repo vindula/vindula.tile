@@ -21,7 +21,8 @@
             </div>
             <div class="tile-section-container">
                 <tal:rep repeat="item context/values">
-                    <section>
+                    <section tal:define="all_open context/getLoad_open|nothing"
+                             tal:attributes="class python:all_open and 'active' or ''">
                         <h6 class="title">
                             <a tal:content="item/Title">Accordion</a>
                         </h6>
