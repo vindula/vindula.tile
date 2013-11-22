@@ -33,19 +33,23 @@
 
         					<div class="columns large-12" tal:condition="python:view_macro.getKind() != 'listagem_evento'">
         					 
-    			            <div class="more-news" tal:condition="context/getActiveMoreButton"
-					             tal:define="path_othernews context/getPath_othernews|nothing;">
-    			                <a href="#" tal:condition="not:path_othernews" tal:attributes="href python:'%s/outras-noticias?portal_type=%s' % (context.absolute_url(), context.getListTypes())">
-    			                    <h1 class="subheader vindula-icon-plus-sign left"></h1>
-    			                    <p class="left" tal:content="context/Title|string: " >Itens</p>
-    			                </a>
+                      <div class="more-news" tal:condition="context/getActiveMoreButton"
+                       tal:define="path_othernews view_macro/get_path_other_new|nothing;">
+                          <a href="#" tal:condition="not:path_othernews"
+                                      tal:attributes="href python:'%s/outras-noticias?portal_type=%s' % (context.absolute_url(), context.getListTypes())">
+                              
+                              <h1 class="subheader vindula-icon-plus-sign left"></h1>
+                              
+                          </a>
 
-   								<a href="#" tal:condition="path_othernews" tal:attributes="href path_othernews/absolute_url|nothing">
-    			                    <h1 class="subheader vindula-icon-plus-sign left"></h1>
-    			                    <p class="left" tal:content="context/Title|string: " >Itens</p>
-    			                </a>
-    			            </div>
-    			        </div>
+                          <a href="#" tal:condition="path_othernews"
+                                      tal:attributes="href path_othernews|nothing">
+                              <h1 class="subheader vindula-icon-plus-sign left"></h1>
+                              <p class="left" tal:content="context/Title|string: " >Itens</p>
+                          </a>
+
+                      </div>
+                    </div>
                 </div>
             </metal:macro>
         </metal:main>

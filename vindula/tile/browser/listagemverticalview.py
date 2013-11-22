@@ -62,3 +62,9 @@ class ListagemVerticalView(BaseView):
             return itens[:numbers]
 
 
+    def get_path_other_new(self):
+        path = self.context.getPath_othernews()
+        if path:
+            return path.absolute_url()
+
+        return None
