@@ -1,14 +1,14 @@
 
 .placeholder {
-    border: 1px dotted red;
+    border: 3px dotted red;
     height: 200px;
-    padding: 2px;
+    padding: 5px;
     margin-bottom: 5px;
 }
 
 /*.item-tile{
 	border: 2px solid #000;
-	/*float: left;*/
+	float: left;
 }
 */
 .moveTileLink{

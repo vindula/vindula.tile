@@ -55,7 +55,10 @@ $j(function () {
                                    
                                     console.log(mod_list_tiles);
 
-                                  }
+                          },
+                          start: function(e, ui){
+                              ui.placeholder.height(ui.item.height());
+                          }
                         };
 
     $j("#content .sortable-tiles").sortable($j.extend(config_global, {

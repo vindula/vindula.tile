@@ -1,3 +1,4 @@
+
 .manageTileLink{
 	float: right;
 }
@@ -23,23 +24,31 @@
 	top:-45px;
 }
 
-
-
-
-.manage-tile{
+.manage{
 	float: left;
 	/*margin-right: 20px;
 	margin-top: -39px;*/
 	height:24px;
 	width:24px;
-	background:url('/++resource++vindula.tile/images/pencil-icon.png') 50% 50% no-repeat;
 	z-index: 9999;
+}
+
+
+.manage-tile{
+	background:url('/++resource++vindula.tile/images/pencil-icon.png') 50% 50% no-repeat;
 }
 
 .manage-tile:hover{
 	background:url('/++resource++vindula.tile/images/pencil-icon-hover.png') 50% 50% no-repeat;
 }
 
+.exclude-tile{
+	background:url('/++resource++vindula.tile/images/remove-icon.png') 50% 50% no-repeat;
+}
+
+.exclude-tile:hover{
+	background:url('/++resource++vindula.tile/images/remove-icon-hover.png') 50% 50% no-repeat;
+}
 
 
 #addtilesviewlet{

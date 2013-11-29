@@ -52,8 +52,12 @@
                             <metal:block metal:use-macro="python:path(path_macro)"/>
 
                             <div class="manageTileLink clear" tal:condition="python: view.can_manage_tile(context)">
+                              <a  alt="Excluir o Bloco" title="Excluir o Bloco"
+                                  class="exclude-tile manage"
+                                  tal:attributes="href string:${context/absolute_url}/delete_confirmation" ></a>  
+                            
                               <a  alt="Editar o Bloco" title="Editar o Bloco"
-                                  class="manage-tile"
+                                  class="manage-tile manage"
                                   tal:attributes="href string:${context/absolute_url}/edit" ></a>  
                             </div>
 
@@ -85,8 +89,12 @@
                               <metal:block metal:use-macro="python:path(path_macro)"/>
 
                               <div class="manageTileLink clear" tal:condition="python: view.can_manage_tile(context)">
+                                <a  alt="Excluir o Bloco" title="Excluir o Bloco"
+                                    class="exclude-tile manage"
+                                    tal:attributes="href string:${context/absolute_url}/delete_confirmation" ></a>  
+                              
                                 <a  alt="Editar o Bloco" title="Editar o Bloco"
-                                    class="manage-tile"
+                                    class="manage-tile manage"
                                     tal:attributes="href string:${context/absolute_url}/edit" ></a>  
                               </div>
                             </tal:cod>
@@ -114,8 +122,12 @@
                                 <metal:block metal:use-macro="python:path(path_macro)"/>
 
                                 <div class="manageTileLink clear" tal:condition="python: view.can_manage_tile(context)">
+                                  <a  alt="Excluir o Bloco" title="Excluir o Bloco"
+                                      class="exclude-tile manage"
+                                      tal:attributes="href string:${context/absolute_url}/delete_confirmation" ></a>  
+                                
                                   <a  alt="Editar o Bloco" title="Editar o Bloco"
-                                      class="manage-tile"
+                                      class="manage-tile manage"
                                       tal:attributes="href string:${context/absolute_url}/edit" ></a>  
                                 </div>
 

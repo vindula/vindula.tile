@@ -13,8 +13,8 @@ $j(document).ready(function(){
     var config_modal = {
         subtype: 'ajax',
         filter: common_content_filter,
-        closeselector: '[name=form.button.cancel],[name=form.actions.cancel]',
-        formselector: '[name=edit_form]',
+        closeselector: '[name=form.button.cancel],[name=form.actions.cancel],[name=form.button.Cancel]',
+        formselector: '[name=edit_form],[id=delete_confirmation]',
         noform:'reload',
         width: '50%',
         config: common_jqt_config
@@ -25,6 +25,9 @@ $j(document).ready(function(){
     $j('a.manage-tile').prepOverlay(config_modal);
 
     $j('a.add-tile').prepOverlay(config_modal);
+
+
+    $j('a.exclude-tile').prepOverlay(config_modal);
 
 
 
