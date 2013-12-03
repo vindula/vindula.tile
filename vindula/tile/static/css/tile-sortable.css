@@ -18,7 +18,9 @@
 .cleft, .cright{
 	min-height: 100px;
 }
-
+.column-empty{
+	height: 10px;
+}
 
 #portal-column-one .moveTileLink,
 #portal-column-two .moveTileLink{

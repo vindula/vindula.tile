@@ -31,11 +31,11 @@
                             
                 <div class="excludeTileLink clear" tal:condition="python: view.can_manage_tile(context)">
                   <a  alt="Excluir o Bloco" title="Excluir o Bloco"
-                      class="manage-tile manage"
+                      class="exclude-tile manage"
                       tal:attributes="href string:${context/absolute_url}/delete_confirmation" ></a>  
                 
                   <a  alt="Editar o Bloco" title="Editar o Bloco"
-                      class="exclude-tile manage"
+                      class="manage-tile manage"
                       tal:attributes="href string:${context/absolute_url}/edit" ></a>  
                 </div>
 

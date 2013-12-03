@@ -3,22 +3,27 @@
 	<script type="text/javascript">
 		$j(document).ready(function(){ 
 			$j("#dialog_addtiles").dialog({resizable: false,
-				       					   open: function(){
-            								var closeBtn = $j('.ui-dialog-titlebar-close');
-											closeBtn.hide();},
-	            							position: { my: "left top", at: "left top", of: $j("#portal-columns") },
+            								position: { my: "left top", at: "left top", of: $j("#portal-columns") },
             							    width: 275
 
 			});
 
-
+			$j("#opener" ).click(function() {
+			  $j( "#dialog_addtiles" ).dialog( "open" );
+			  $j(this).addClass('hide');
+			});
+			$j('.ui-dialog-titlebar-close').click(function() {
+				$j("#opener" ).removeClass('hide');
+			});
 
 		});
 		
 	</script>
 	
+	<div>
+		<button id="opener" class="hide tiny button radius" >Adicionar bloco</button>
+	</div>
 	<div id="dialog_addtiles" title="Adicionar novo Bloco">
-	
 		<div class="row">
 <!-- 			<div class="columns large-12">
 				<h3>Adicionar novo Bloco</h3>

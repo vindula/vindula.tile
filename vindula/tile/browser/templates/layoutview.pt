@@ -101,6 +101,8 @@
 
                           </div>
                       </tal:rep_even>
+                      <div class="item-tile column-empty" ></div>
+
                   </div>
                   <div class="columns large-6" id="odd"
                        tal:attributes="class string: columns large-${size_large} cright">
@@ -135,6 +137,7 @@
 
                           </div>
                       </tal:rep_odd>
+                      <div class="item-tile column-empty" ></div>
                   </div>
               </tal:cond_6>
           </div>

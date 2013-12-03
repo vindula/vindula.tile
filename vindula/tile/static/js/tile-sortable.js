@@ -2,10 +2,15 @@ $j(function () {
 
     var config_global = { placeholder: "placeholder",
                           forcePlaceholderSize: true,
+                          forceHelperSize: true,
                           items: '.item-tile',
                           handle: ".moveTileLink",
                           cancel:'.visualClear',
                           cursor: "move",
+                          tolerance: 'pointer',
+                          opacity: 0.7,
+                          scroll: true,
+                          revert: true,
                           update: function(event, ui) {
                                     var mod_list_tiles = [],
                                         list_tiles = $j(this).sortable('toArray', {attribute:'data-name'}),
@@ -58,7 +63,8 @@ $j(function () {
                           },
                           start: function(e, ui){
                               ui.placeholder.height(ui.item.height());
-                          }
+                          },
+
                         };
 
     $j("#content .sortable-tiles").sortable($j.extend(config_global, {
