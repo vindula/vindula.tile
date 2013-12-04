@@ -87,6 +87,18 @@ TileListagemVertical_schema = BaseTile.schema.copy() + Schema((
             i18n_domain='vindula_tile',
           )
     ),
+
+    ReferenceField('fixed_featured',
+            multiValued=1,
+            # allowed_types=('VindulaFolder','Folder', 'VindulaClipping'),
+            label=_(u"Destaques Fixos"),
+            relationship='fixed_featured',
+            widget=VindulaReferenceSelectionWidget(
+                label=_(u"Destaques Fixos"),
+                description='Selecione os itens que ficaram em destaque na listagem do bloco'
+            ),
+            review_state = ('published', 'internal','external')
+    ),    
                                                                                                                      
 
     StringField(

@@ -48,8 +48,10 @@ class ListagemVerticalView(BaseView):
             L = []
             L_tmp = []
 
-            if len(itens) < numbers:
-                numbers = len(itens)
+            L.extend(context.getFixed_featured() or [])
+
+            if len(itens) + len(L) < numbers:
+                numbers = len(itens) + len(L)
 
             while len(L) < numbers:
                 chosen = random.choice(itens)

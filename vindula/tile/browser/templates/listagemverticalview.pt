@@ -73,7 +73,7 @@
 
     <div class="content_itens columns large-12">
       <p tal:repeat="item view_macro/getItens">
-        <tal:def tal:define="obj item/getObject">
+        <tal:def tal:define="obj item/getObject|nocall:item">
          <img width="16" height="16" alt=""
               tal:condition="obj/getIcon"
               tal:attributes="src obj/getIcon;"  />
@@ -111,7 +111,7 @@
 		    <div class="content_itens">
 			<ul class="square">
 		      <li tal:repeat="item view_macro/getItens">
-		         <a tal:define="obj item/getObject"
+		         <a tal:define="obj item/getObject|nocall:item"
 		            tal:attributes="href python:'%s%s' % (obj.absolute_url(), obj.portal_type == 'File' and '/file_view' or '/view')"
 		            tal:content="obj/Title">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a>
 		      </li>
@@ -138,7 +138,7 @@
               <div class="content_itens">
                 <tal:rep repeat="item view_macro/getItens">
 
-                  <div class="columns large-12 text_descricao" tal:define="obj item/getObject">
+                  <div class="columns large-12 text_descricao" tal:define="obj item/getObject|nocall:item">
                       <div class="row">
                           <div class="columns small-4 " id="image_tile">
                               <div>
@@ -187,7 +187,7 @@
               <div class="content_itens">
                 <tal:rep repeat="item view_macro/getItens">
 
-                  <div class="columns large-12 text_descricao" tal:define="obj item/getObject">
+                  <div class="columns large-12 text_descricao" tal:define="obj item/getObject|nocall:item">
                       <div class="row">
                           <div class="columns small-12"
                                tal:define="structure python:obj.getStructures">
@@ -221,7 +221,7 @@
   <div class="columns large-12" id="tile-events">
       <div class="row content_itens">
         <tal:rep repeat="item python:view_macro.getItens(is_date=True)">
-          <div class="event clear" tal:define="obj item/getObject">
+          <div class="event clear" tal:define="obj item/getObject|nocall:item">
             <div class="columns small-3 date-box">
                 <div class="box-date">
                     <h2 tal:condition="obj/startDate|nothing"
@@ -292,7 +292,7 @@
 
     <div class="content_itens">
       <tal:rep repeat="item view_macro/getItens">
-        <div class="main_text clear" tal:define="obj item/getObject">
+        <div class="main_text clear" tal:define="obj item/getObject|nocall:item">
 
           <a tal:attributes="href obj/absolute_url"
             tal:content="obj/Title">Lorem ipsum dolor sit amet </a>
