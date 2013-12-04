@@ -16,7 +16,10 @@ class SortableView(BaseView):
 	def split_tile(self,string_tile):
 		text = string_tile.split('|')
 		# ID , UID, CONTEXTO
-		return text[0], text[1], text[2]
+		try:
+			return text[0], text[1], text[2]
+		except:
+			return '','',''
 
 
 	def update(self):
