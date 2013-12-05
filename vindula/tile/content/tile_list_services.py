@@ -43,7 +43,7 @@ class TileListServices(BaseTile):
     columns = 12
 
     #Scripts js
-#    scripts_js = ['++resource++vindula.myvindula.views/js/follow-cycle.js']
+    scripts_js = ['++resource++vindula.content/js/ajax_list_file.js']
 
 
 registerType(TileListServices, PROJECTNAME)
