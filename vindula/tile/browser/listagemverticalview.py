@@ -48,7 +48,9 @@ class ListagemVerticalView(BaseView):
             L = []
             L_tmp = []
 
-            L.extend(context.getFixed_featured() or [])
+            for fix in context.getFixed_featured():
+                L.append(fix)
+                L_tmp.append(fix.UID())
 
             if len(itens) + len(L) < numbers:
                 numbers = len(itens) + len(L)
