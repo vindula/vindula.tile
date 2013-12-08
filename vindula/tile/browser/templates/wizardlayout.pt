@@ -1,0 +1,33 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="context/main_template/macros/master"
+      lang="en"
+      i18n:domain="vindula.tile">
+<body>
+
+<metal:main fill-slot="content">
+    <div id="content">
+    
+      <h5 tal:condition="not: request/layout|nothing">  
+      	<a href="?layout=1" tal:attributes="href string:${context/absolute_url}/wizard-view?layout=1">Layout Classico</a>
+      	<br/>
+      	<a href="?layout=2" tal:attributes="href string:${context/absolute_url}/wizard-view?layout=2">Layout Padrão</a>
+      </h5>
+        
+		<form action="" tal:condition="request/layout|nothing" method="post">
+			<input type="hidden" name="layout" tal:attributes="value request/layout|nothing"/>
+			
+			<input type="checkbox" name="defaut_view" />
+				<label for="defaut_view">Utilizar essa caba como visão padrão</label>
+
+      <div id="buttom">
+          <input class="save button small radius" type="submit" name="submitted" value="Criar capa" />
+      </div>
+		</form>
+
+    </div>
+</metal:main>
+</body>
+</html> 

@@ -34,11 +34,7 @@ class AddTilesViewlet(grok.Viewlet):
 				  'TileReferenceList']
 
 	def get_types(self):
-
-		context = self.context
-		if context.portal_type == 'LayoutLoad':
-			context = context.getObj_layout()
-
+		context = self.get_context()
 		portal_types = getToolByName(context, "portal_types")
 		
 		L = []
@@ -53,12 +49,35 @@ class AddTilesViewlet(grok.Viewlet):
 
 		return L
 
-	def isEnableViewlet(self):
+	def get_context(self):
 		context = self.context
-		if (context.portal_type == 'LayoutLoad' or\
-		   context.portal_type == 'layout') and self.can_add_tile(context):
+		context_local = None
+		if context.portal_type == 'OrganizationalStructure':
+			default_value = context.get('home_principal')
+			context_local = default_value or context.getLayout_content()
+
+		elif context.portal_type == 'LayoutLoad':
+			context_local = context.getObj_layout()
+
+		if context_local:
+			return context_local
+		else:
+			return context
+
+
+	def isEnableViewlet(self):
+		context = self.get_context()
+		if context.portal_type == 'Layout' and\
+			self.can_add_tile(context):
 		   return True
 		return False
+
+	def isEnableLayout(self):
+		context = self.get_context()
+		if context.portal_type in ['VindulaFolder', 'Folder', 'OrganizationalStructure'] and\
+			self.can_add_tile(context):
+		   return True
+		return False	
 
 
 	def can_add_tile(self,obj_tile):

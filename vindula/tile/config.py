@@ -25,3 +25,5 @@ setDefaultRoles(DEFAULT_ADD_CONTENT_PERMISSION, ('Manager', 'Owner'))
 
 product_globals = globals()
 
+import os
+ROOT_PATH = os.path.dirname(os.path.abspath(__file__))
