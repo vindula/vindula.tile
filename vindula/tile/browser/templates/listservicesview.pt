@@ -24,9 +24,10 @@
                     <div class="container-services">
                         <div class="title-no-margin">
                             <h5 class="left">
-                                <span tal:replace="categorie/Title"></span>
+                                <a class="arrow arrow-left left"></a>
+                                <a class="accordion" tal:attributes="id categorie/id" tal:content="categorie/Title"></a>
                             </h5>
-                            <h1 class="accordion vindula-icon-plus-sign right" tal:attributes="id categorie/id"></h1>
+                            <!--h1 class="accordion vindula-icon-plus-sign right" tal:attributes="id categorie/id"></h1-->
                             <hr/>
                         </div>
                         
@@ -38,7 +39,7 @@
                                          b_start request/b_start | b_start;
                                          services python:categories[categorie];
                                          batch python:Batch(services, int(b_size), int(b_start));">
-                            <div class="list_file" id="services">
+                            <div class="list_file" tal:attributes="id categorie/id;">
                                 <input type="hidden" id="b_size" tal:attributes="value b_size" />
                                 <input type="hidden" id="b_start" tal:attributes="value b_start" />
                                 <input type="hidden" id="absolute_url" tal:attributes="value context/absolute_url" >
@@ -59,8 +60,10 @@
                                         <tal:rep condition="python:(repeat['item'].end or ((repeat['item'].index+1)%4==0))" replace="structure string:</div></div>"></tal:rep>
                                     </tal:rep>
                                 </div>
-                                <div class="right ajax_pagination" id="pag-nav">
-                                    <metal:block metal:use-macro="context/boll_batch/macros/navigation" />
+                                <div class="clear">
+                                    <div class="right ajax_pagination" id="pag-nav">
+                                        <metal:block metal:use-macro="context/boll_batch/macros/navigation" />
+                                    </div
                                 </div>
                             </div> 
                         </div>

@@ -28,9 +28,7 @@ class ListServicesView(BaseView, UtilMyvindula):
         items = self.p_catalog(path={"query": path, "depth": 3},
                                review_state=['published', 'internally_published', 'external'],
                                sort_on="getObjPositionInParent",
-#                               sort_order="reverse",
                                portal_type=['ServicosCategory'])
-#        result = {}
         result = OrderedDict()
         for item in items:
             item = item.getObject()
