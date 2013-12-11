@@ -4,6 +4,7 @@ from vindula.tile.browser.baseview import BaseView
 from zope.interface import Interface
 from Products.CMFCore.utils import getToolByName
 from vindula.myvindula.tools.utils import UtilMyvindula
+from collections import OrderedDict
 
 grok.templatedir('templates')
 
@@ -27,9 +28,10 @@ class ListServicesView(BaseView, UtilMyvindula):
         items = self.p_catalog(path={"query": path, "depth": 3},
                                review_state=['published', 'internally_published', 'external'],
                                sort_on="getObjPositionInParent",
-                               sort_order="reverse",
+#                               sort_order="reverse",
                                portal_type=['ServicosCategory'])
-        result = {}
+#        result = {}
+        result = OrderedDict()
         for item in items:
             item = item.getObject()
             services = self.getServicesFormCategory(current_user, item)
