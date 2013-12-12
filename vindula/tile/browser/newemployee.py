@@ -6,10 +6,12 @@ from vindula.myvindula.models.funcdetails import FuncDetails
 
 from vindula.myvindula.tools.utils import UtilMyvindula
 
+from datetime import datetime
+
 grok.templatedir('templates')
 
 def por_admicao(item):
-    return item.get('admission_date','')
+    return datetime.strptime(item.get('admission_date','01/01/1500'), '%d/%m/%Y')
 
 class NewEmployeeView(BaseView, UtilMyvindula):
     grok.name('newemployee-view')
