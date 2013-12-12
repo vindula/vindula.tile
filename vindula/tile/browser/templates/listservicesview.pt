@@ -27,7 +27,6 @@
                                 <a tal:attributes="id categorie/id" class="accordion arrow arrow-left left"></a>
                                 <a class="accordion" tal:attributes="id categorie/id" tal:content="categorie/Title"></a>
                             </h5>
-                            <!--h1 class="accordion vindula-icon-plus-sign right" tal:attributes="id categorie/id"></h1-->
                             <hr/>
                         </div>
                         

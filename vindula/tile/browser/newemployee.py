@@ -21,5 +21,6 @@ class NewEmployeeView(BaseView, UtilMyvindula):
         qtd = 20
         if self.context.getQtdMembers():
             qtd = self.context.getQtdMembers()
-        dados_users = FuncDetails.get_AllFuncUsernameList(sorted_by=por_admicao)[:qtd]
+        
+        dados_users = FuncDetails.get_AllFuncUsernameList(sorted_by=por_admicao,reverse=True)[:qtd]
         return dados_users
