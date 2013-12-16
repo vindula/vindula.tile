@@ -45,4 +45,5 @@
 
         <div class="visualClear"></div>
     </tal:rep>
+    <div class="item-tile column-empty" ></div>
 </tal:def>

@@ -74,7 +74,7 @@ $j(function () {
 
     $j(".tileportletWrapper").sortable($j.extend(config_global, {
 
-        connectWith: "#content .sortable-tiles",
+        connectWith: "#content .sortable-tiles, .tileportletWrapper",
     })).disableSelection();
 
 });

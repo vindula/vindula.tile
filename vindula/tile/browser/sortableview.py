@@ -27,8 +27,8 @@ class SortableView(BaseView):
 		form = self.request.form
 		context_UID = form.get('context_UID','')
 		list_tiles = form.get('list_tiles[]', [])
-		list_uids = form.get('list_uids[]', [])
-		list_content = form.get('list_content[]', [])
+		# list_uids = form.get('list_uids[]', [])
+		# list_content = form.get('list_content[]', [])
 		
 		man_list = []
 		even_list = []
