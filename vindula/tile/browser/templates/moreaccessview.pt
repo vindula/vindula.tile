@@ -53,7 +53,7 @@
         </div>
         <div>
             <h6 class="subheader">
-                Mais Acessadas:
+               <!-- Mais Acessadas:-->
             </h6>
         </div>
         <div class="columns large-12 moreaccess_text">
