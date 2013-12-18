@@ -23,6 +23,7 @@ class ListagemHorizontalView(BaseView):
             D['title'] = self.limitTextSize(item.Title(),50)
             D['description'] = self.limitTextSize(item.Description(),120)
             D['url'] = item.absolute_url()
+            D['subtitulo'] = item.getSub_titulo()
 
             if item.getActive_date():
                 D['date'] = item.creation_date.strftime('%d/%m/%Y')
