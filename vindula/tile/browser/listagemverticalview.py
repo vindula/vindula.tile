@@ -42,29 +42,32 @@ class ListagemVerticalView(BaseView):
             query['sort_order'] ='ascending'
         
         itens = self.portal_catalog(query)
+        L = []
+        L_tmp = []
 
+        for fix in context.getFixed_featured():
+            L.append(fix)
+            L_tmp.append(fix.UID())
+
+        if len(itens) + len(L) < numbers:
+            numbers = len(itens) + len(L)
 
         if context.getActiveAutoReload():
-            L = []
-            L_tmp = []
-
-            for fix in context.getFixed_featured():
-                L.append(fix)
-                L_tmp.append(fix.UID())
-
-            if len(itens) + len(L) < numbers:
-                numbers = len(itens) + len(L)
-
             while len(L) < numbers:
                 chosen = random.choice(itens)
                 if not chosen.UID in L_tmp:
                     L_tmp.append(chosen.UID)
                     L.append(chosen)
-
-            return L
+           
         else:
-            return itens[:numbers]
-
+            for item in itens:
+                if len(L) < numbers:
+                    L_tmp.append(item.UID)
+                    L.append(item)
+                else:
+                    break
+       
+        return L
 
     def get_path_other_new(self):
         path = self.context.getPath_othernews()

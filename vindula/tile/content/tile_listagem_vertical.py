@@ -32,7 +32,9 @@ TileListagemVertical_schema = BaseTile.schema.copy() + Schema((
                     ("listagem_evento", _(u"Lista de Eventos")),
                     ("listagem_agenda", _(u"Lista da Agenda")),
                     ("listagem_tabular", _(u"Lista de Tabela")),
-                     ],
+                    ("listagem_com_imagem_sem_compartilhamento", _(u"Lista com imagem e sem compartilhamento")),
+                    ],
+
          default='listagem_com_imagem',
          required=True,
      ),
