@@ -77,9 +77,9 @@ class SortableView(BaseView):
 
 			context_global.plone_utils.reindexOnReorder(context_global)
 
-			self.retorno['response'] = 'Objetos atualizados...'
+			self.retorno['response'] = {'msg':'Objetos atualizados...', 'uid':context_UID}
 		else:
-			self.retorno['response'] = 'Erro ao obter o contexto dos Tiles'
+			self.retorno['response'] = {'msg':'Erro ao obter o contexto dos Tiles', 'uid':''}
 
 
 	def render(self):

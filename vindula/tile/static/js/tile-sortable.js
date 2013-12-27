@@ -14,8 +14,9 @@ $j(function () {
                           update: function(event, ui) {
                                     var mod_list_tiles = [],
                                         list_tiles = $j(this).sortable('toArray', {attribute:'data-name'}),
-                                        base_url = $j('base').val() + '/sortable-view';
+                                        base_url = $j('base').val() + '/sortable-view',
                                         context_UID = $j('#context_UID', $j(this)).val();
+                                    obj_item = ui.item;
 
 
                                     for (var i=0;i<list_tiles.length;i++){ 
@@ -38,7 +39,14 @@ $j(function () {
                                     $j.post(base_url,{'list_tiles': mod_list_tiles,
                                                       'context_UID': context_UID,
                                                       },function(data){
-                                                          console.log(data);
+
+                                                        var msg = data.response.msg,
+                                                            UID = data.response.uid,
+                                                            data_name = obj_item.attr('data-name'),
+                                                            list_data_name = data_name.split('|');
+
+                                                        obj_item.attr('data-name', list_data_name[0]+'|'+list_data_name[1]+'|'+UID);
+                                                        console.log(msg);
                                     });
 
                                     //Adição da Class 'portletWrapper' ao tile se ele foi
