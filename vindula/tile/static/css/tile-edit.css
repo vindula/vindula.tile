@@ -55,3 +55,6 @@
 	display: none !important;	
 
 }
+#select_layout label{
+	display: inline;
+}

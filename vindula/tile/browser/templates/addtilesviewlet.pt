@@ -3,10 +3,10 @@
 	<script type="text/javascript" tal:condition="enable_add">
 		$j(document).ready(function(){ 
 			$j("#dialog_addtiles").dialog({resizable: false,
-											autoOpen:false,
-            								position: { my: "left top", at: "left top", of: $j("#portal-columns") },
-            							    width: 275
-										  });
+				autoOpen:false,
+				position: { my: "left top", at: "left top", of: $j("#portal-columns") },
+				width: 275
+			});
 			$j("#opener" ).click(function() {
 			  $j( "#dialog_addtiles" ).dialog( "open" );
 			  $j(this).addClass('hide');
@@ -16,10 +16,23 @@
 			});
 		});
 	</script>
-	
+	<script type="text/javascript">
+		$j(document).ready(function(){ 			
+		    $j('a.wizard-layout').prepOverlay({
+		        subtype: 'ajax',
+		        filter: '#content=*,dl.portalMessage.error,dl.portalMessage.info',
+		        closeselector: '[name=cancel]',
+		        formselector: '[name=wizardlayout]',
+		        noform:'reload',
+		        width: '50%',
+		        config: {fixed:false,speed:'fast',mask:{color:'#000',opacity: 0.4,loadSpeed:0,closeSpeed:0}}
+		    });
+		});
+	</script>
+
 	<div>
 		<button id="opener" class="tiny button radius" tal:condition="enable_add">Adicionar bloco</button>
-		<a class="hide tiny button radius" href="" tal:condition="viewlet/isEnableLayout|python:False"
+		<a class="hide tiny button radius wizard-layout" href="" tal:condition="viewlet/isEnableLayout|python:False"
 		   tal:attributes="href string:${context/absolute_url}/wizard-view">Adicionar Capa</a>
 	</div>
 	<div id="dialog_addtiles" title="Adicionar novo Bloco" tal:condition="enable_add">
