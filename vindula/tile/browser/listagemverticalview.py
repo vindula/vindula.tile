@@ -75,3 +75,10 @@ class ListagemVerticalView(BaseView):
             return path.absolute_url()
 
         return None
+
+
+    def has_organization(self, obj):
+        if hasattr(obj, 'getStructures'):
+            return True
+        return False
+

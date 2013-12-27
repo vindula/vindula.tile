@@ -152,13 +152,22 @@
                               </div>
                           </div>
 
-                          <div class="columns small-8"
-                               tal:define="structure python:obj.getStructures">
-                              <small><tal:rep tal:condition="python:structure()"
-                                              tal:content="python:structure().getSiglaOrTitle()+' /'">LORORO /</tal:rep>
-                                    <tal:cont content="python: obj.creation_date.strftime('%d/%m/%Y %H:%M')"> 27/03/2013 14:30 </tal:cont> </small><br />
-                              <strong><a href="#" tal:attributes="href python:'%s%s' % (obj.absolute_url(), obj.portal_type == 'File' and '/file_view' or '/view')"
-                                                  tal:content="obj/Title">Nova diretoria da Opas visita Bio</a></strong>
+                          <div class="columns small-8">
+                              
+                              <small>
+                                <tal:cond tal:condition="python:view_macro.has_organization(obj)">
+                                  <tal:def tal:define="structure python:obj.getStructures">
+                                    <tal:rep tal:condition="python:structure()"
+                                             tal:content="python:structure().getSiglaOrTitle()+' /'">LORORO /</tal:rep>
+                                  </tal:def>
+                                </tal:cond>
+                                <tal:cont content="python: obj.creation_date.strftime('%d/%m/%Y %H:%M')"> 27/03/2013 14:30 </tal:cont>  
+                                
+                              </small><br />
+                              <strong>
+                                <a href="#" tal:attributes="href python:'%s%s' % (obj.absolute_url(), obj.portal_type == 'File' and '/file_view' or '/view')"
+                                            tal:content="obj/Title">Nova diretoria da Opas visita Bio</a>
+                              </strong>
                           </div>
                           <div class="vd-social-left columns small-12" tal:define="context nocall: obj">
                               <div metal:use-macro="context/macro-comboStandard-content/macros/view" />
@@ -202,11 +211,17 @@
                                        tal:attributes="src python:obj.getImageSize('tile');" />
                               </div>
                           </div>
-                          <div class="columns small-8"
-                               tal:define="structure python:obj.getStructures">
-                              <small><tal:rep tal:condition="python:structure()"
-                                              tal:content="python:structure().getSiglaOrTitle()+' /'">LORORO /</tal:rep>
-                                    <tal:cont content="python: obj.creation_date.strftime('%d/%m/%Y %H:%M')"> 27/03/2013 14:30 </tal:cont> </small><br />
+                          <div class="columns small-8">
+                              <small>
+                                <tal:cond tal:condition="python:view_macro.has_organization(obj)">
+                                  <tal:def tal:define="structure python:obj.getStructures">
+                                    <tal:rep tal:condition="python:structure()"
+                                             tal:content="python:structure().getSiglaOrTitle()+' /'">LORORO /</tal:rep>
+                                  </tal:def>
+                                </tal:cond>
+
+                                <tal:cont content="python: obj.creation_date.strftime('%d/%m/%Y %H:%M')"> 27/03/2013 14:30 </tal:cont>
+                              </small><br />
                               <strong><a href="#" tal:attributes="href python:'%s%s' % (obj.absolute_url(), obj.portal_type == 'File' and '/file_view' or '/view')"
                                                   tal:content="obj/Title">Nova diretoria da Opas visita Bio</a></strong>
                           </div>
@@ -237,11 +252,18 @@
 
                   <div class="columns large-12 text_descricao" tal:define="obj item/getObject|nocall:item">
                       <div class="row">
-                          <div class="columns small-12"
-                               tal:define="structure python:obj.getStructures">
-                              <small><tal:rep tal:condition="python:structure()"
-                                              tal:content="python:structure().getSiglaOrTitle()+' /'">LORORO /</tal:rep>
-                                    <tal:cont content="python: obj.creation_date.strftime('%d/%m/%Y %H:%M')"> 27/03/2013 14:30 </tal:cont> </small><br />
+                          <div class="columns small-12">
+                              
+                              <small>
+                                <tal:cond tal:condition="python:view_macro.has_organization(obj)">
+                                  <tal:def tal:define="structure python:obj.getStructures">
+                                    <tal:rep tal:condition="python:structure()"
+                                             tal:content="python:structure().getSiglaOrTitle()+' /'">LORORO /</tal:rep>    
+                                  </tal:def>
+                                </tal:cond>  
+                                <tal:cont content="python: obj.creation_date.strftime('%d/%m/%Y %H:%M')"> 27/03/2013 14:30 </tal:cont>
+                              </small><br />
+
                               <strong><a href="#" tal:attributes="href python:'%s%s' % (obj.absolute_url(), obj.portal_type == 'File' and '/file_view' or '/view')"
                                                   tal:content="obj/Title">Nova diretoria da Opas visita Bio</a></strong>
                           </div>
