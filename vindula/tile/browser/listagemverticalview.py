@@ -27,15 +27,22 @@ class ListagemVerticalView(BaseView):
                 'sort_order':'descending',}
         
         if is_date:
-            start = DateTime.DateTime() - 1  # ONTEM
-            end = DateTime.DateTime() + 120   # Até quato meses no futuro
-            date_range_query = {'query': (start, end), 'range': 'min:max'}
-            
-            query['start'] = date_range_query
+            activeSarchEvents = context.getActiveSarchEvents()
+
+            if activeSarchEvents:
+                today = DateTime.DateTime()
+                query['start'] = {'query': today, 'range': 'max'}
+                query['end'] = {'query': today, 'range': 'min'}
+            else:
+                start = DateTime.DateTime() - 1 # ONTEM
+                end = DateTime.DateTime() + 120 # Até quato meses no futuro
+                query['start'] = {'query': (start, end), 'range': 'min:max'}
+
             query['sort_on'] = 'start'
             query['sort_order'] ='ascending'
         
         itens = self.portal_catalog(query)
+
 
         if context.getActiveAutoReload():
             L = []
@@ -44,7 +51,7 @@ class ListagemVerticalView(BaseView):
             if len(itens) < numbers:
                 numbers = len(itens)
 
-            while len(L) <= numbers:
+            while len(L) < numbers:
                 chosen = random.choice(itens)
                 if not chosen.UID in L_tmp:
                     L_tmp.append(chosen.UID)
@@ -53,3 +60,11 @@ class ListagemVerticalView(BaseView):
             return L
         else:
             return itens[:numbers]
+
+
+    def get_path_other_new(self):
+        path = self.context.getPath_othernews()
+        if path:
+            return path.absolute_url()
+
+        return None

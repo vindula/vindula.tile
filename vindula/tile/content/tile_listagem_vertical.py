@@ -61,6 +61,7 @@ TileListagemVertical_schema = BaseTile.schema.copy() + Schema((
             description='Quantidade maxima de items.',
         ),
         default=5,
+        required=True,
     ),
 
     BooleanField(
@@ -104,7 +105,7 @@ TileListagemVertical_schema = BaseTile.schema.copy() + Schema((
 
     ReferenceField('path',
             multiValued=0,
-            allowed_types=('VindulaFolder','Folder'),
+            allowed_types=('VindulaFolder','Folder', 'VindulaClipping'),
             label=_(u"Pastas"),
             relationship='path',
             widget=VindulaReferenceSelectionWidget(
@@ -116,7 +117,7 @@ TileListagemVertical_schema = BaseTile.schema.copy() + Schema((
                                                                
     ReferenceField('path_othernews',
             multiValued=0,
-            allowed_types=('VindulaFolder','Folder'),
+            allowed_types=('VindulaFolder','Folder', 'VindulaClipping'),
             label=_(u"Pastas"),
             relationship='path_othernews',
             widget=VindulaReferenceSelectionWidget(
@@ -150,6 +151,16 @@ TileListagemVertical_schema = BaseTile.schema.copy() + Schema((
         ),
     ),
 
+    BooleanField(
+        name='activeSarchEvents',
+        default=False,
+        widget=BooleanWidget(
+            label="Ativar busca de eventos.",
+            description='Caso selecionado, ativa a busca de eventos que estão acontecendo.',
+            label_msgid='vindula_tile_label_activeSarchEvents',
+            description_msgid='vindula_tile_help_activeSarchEvents',
+        ),
+    ),
 
 
 ))

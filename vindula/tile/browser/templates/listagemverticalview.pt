@@ -32,18 +32,24 @@
 	                             metal:use-macro="python:path(path_macro)"/>
 
         					<div class="columns large-12" tal:condition="python:view_macro.getKind() != 'listagem_evento'">
-    			            <div class="more-news"
-                           tal:condition="context/getActiveMoreButton"
-							             tal:define="path_othernews context/getPath_othernews|nothing;
-											                 path path_othernews/getPhysicalPath|nothing;">
+        					 
+                      <div class="more-news" tal:condition="context/getActiveMoreButton"
+                       tal:define="path_othernews view_macro/get_path_other_new|nothing;">
+                          <a href="#" tal:condition="not:path_othernews"
+                                      tal:attributes="href python:'%s/outras-noticias?portal_type=%s' % (context.absolute_url(), context.getListTypes())">
+                              
+                              <h1 class="subheader vindula-icon-plus-sign left"></h1>
+                              
+                          </a>
 
-    			                <a href="#" tal:attributes="href python:'%s/outras-noticias?portal_type=%s%s' % (context.absolute_url(), context.getListTypes(), (path) and '&path='+str(path) or '' )">
-    			                    <h1 class="subheader vindula-icon-plus-sign left"></h1>
-    			                    <p class="left" tal:content="context/Title|string: " >Itens</p>
-    			                </a>
-    			            </div>
-    			        </div>
+                          <a href="#" tal:condition="path_othernews"
+                                      tal:attributes="href path_othernews|nothing">
+                              <h1 class="subheader vindula-icon-plus-sign left"></h1>
+                              <p class="left" tal:content="context/Title|string: " >Itens</p>
+                          </a>
 
+                      </div>
+                    </div>
                 </div>
             </metal:macro>
         </metal:main>
@@ -52,17 +58,20 @@
 
 <metal:macro define-macro="listagem_com_icones"
              tal:condition="python:view_macro.getKind() == 'listagem_com_icones'">
-    <div class="box-title">
+    <div class="box-title columns large-12">
         <h4 tal:content="context/Title">Notícias</h4>
         <hr/>
     </div>
-    <select id="sort_on"  tal:condition="context/getActiveSort|python:True">
-        <option value="data">Data</option>
-        <option value="mais_acessados">Mais acessados</option>
-    </select>
+    
+    <div class="columns large-12">
+        <select id="sort_on" tal:condition="context/getActiveSort|python:True">
+            <option value="data">Data</option>
+            <option value="mais_acessados">Mais acessados</option>
+        </select>
+    </div>
 
 
-    <div class="content_itens">
+    <div class="content_itens columns large-12">
       <p tal:repeat="item view_macro/getItens">
         <tal:def tal:define="obj item/getObject">
          <img width="16" height="16" alt=""

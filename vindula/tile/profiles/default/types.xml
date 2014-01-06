@@ -80,5 +80,11 @@
 
     <object name="TileBannerCompost"
             meta_type="Factory-based Type Information with dynamic views"/>
+            
+    <object name="TileListServices"
+            meta_type="Factory-based Type Information with dynamic views"/>
+            
+    <object name="TileJobOffer"
+            meta_type="Factory-based Type Information with dynamic views"/>
 
 </object>

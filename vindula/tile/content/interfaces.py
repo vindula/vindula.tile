@@ -76,3 +76,8 @@ class ITileHowDo(Interface):
 class ITileBannerCompost(Interface):
     """ Interface for TileBannerCompost content type """
 
+class ITileListServices(Interface):
+    """ Interface for ITileListServices content type """
+
+class ITileJobOffer(Interface):
+    """ Interface for ITileJobOffer content type """

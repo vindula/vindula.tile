@@ -108,6 +108,7 @@
         <div id="itens">
             <tal:def define="portal_type context/getObject_type;">
                 <tal:def define="dummy python:request.set('macro', 'personal');
+                                 hide_result context/getHide_table|nothing;
                                  fields python:[{'label':  ''     , 'attribute': 'getImageIcone', 'is_image':  'True', 'width':  '65',},
                                                 {'label': 'Nome'  , 'attribute': 'name'},
                                                 {'label': 'Unidade','attribute': 'get_sigla_unidadeprincipal'},
