@@ -6,7 +6,7 @@ from Products.Archetypes.public import *
 
 from Products.ATContentTypes.content.base import ATCTContent, ATContentTypeSchema
 from Products.ATContentTypes.content import schemata
-
+from plone.contentrules.engine.interfaces import IRuleAssignable
 
 from vindula.tile.content.interfaces import IBaseTile
 from vindula.tile import MessageFactory as _
@@ -66,7 +66,7 @@ class BaseTile(ATCTContent):
     """ Reserve Content for BaseTile"""
     security = ClassSecurityInfo()
 
-    implements(IBaseTile)
+    implements(IBaseTile, IRuleAssignable)
     portal_type = 'BaseTile'
     _at_rename_after_creation = True
     schema = BaseTile_schema
