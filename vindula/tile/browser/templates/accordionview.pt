@@ -20,7 +20,8 @@
                 </h4>
             </div>
             <div class="tile-section-container">
-                <tal:rep repeat="item context/values">
+                <tal:rep repeat="item view_accordion/get_itens_abas">
+                    
                     <section tal:define="all_open context/getLoad_open|nothing"
                              tal:attributes="class python:all_open and 'active' or ''">
                         <h6 class="title">
@@ -31,6 +32,7 @@
                         </div>
                     </section>
                 </tal:rep>
+                
             </div>
         </div>
     </metal:main>
