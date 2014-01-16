@@ -16,8 +16,6 @@ class ListServicesView(BaseView, UtilMyvindula):
     def getServicesCategory(self):
         context = self.context
         self.p_catalog = getToolByName(context, 'portal_catalog')
-        self.p_workflow = getToolByName(context, "portal_workflow")
-        self.p_membership = getToolByName(context, 'portal_membership')
         
         current_user = self.p_membership.getAuthenticatedMember()
         container = context.getServicesFolder()
@@ -56,10 +54,10 @@ class ListServicesView(BaseView, UtilMyvindula):
                     continue
         return result
     
-    def hasPermission(self, user, obj):
-        user_roles = user.getRolesInContext(obj)
-        if 'Reader' in user_roles or \
-            'Manager' in user_roles:
-            return True
+    # def hasPermission(self, user, obj):
+    #     user_roles = user.getRolesInContext(obj)
+    #     if 'Reader' in user_roles or \
+    #         'Manager' in user_roles:
+    #         return True
         
-        return False
+    #     return False

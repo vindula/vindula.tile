@@ -4,6 +4,7 @@ from vindula.tile.browser.baseview import BaseView
 
 from vindula.tile.content.interfaces import ILayout
 
+
 grok.templatedir('templates')
 
 class LayoutView(BaseView):
@@ -25,6 +26,48 @@ class LayoutView(BaseView):
                         scripts_js.append(i)
 
         return scripts_js
+
+
+    def _get_catalog_tiles(self):
+        context = self.context
+        current_user = self.p_membership.getAuthenticatedMember()
+        tiles = []
+
+        itens = self.portal_catalog(**{'sort_on': 'getObjPositionInParent',
+                                   'portal_type':['TileAccordionContent',
+                                                  'TileBanner',
+                                                  'TileBannerCompost',
+                                                  'TileBirthdays',
+                                                  'TileCalendar',
+                                                  'TileFeatured',
+                                                  'TileFood',
+                                                  'TileHowDo',
+                                                  'TileInfoStructure',
+                                                  'TileJobOffer',
+                                                  'TileLabel',
+                                                  'TileListServices',
+                                                  'TileListagemHorizontal',
+                                                  'TileListagemVertical',
+                                                  'TileMacroList',
+                                                  'TileMoreAccess',
+                                                  'TileNewEmployee',
+                                                  'TileOrganogram',
+                                                  'TilePoll',
+                                                  'TileReferenceList',
+                                                  'TileSimpleMacro',
+                                                  'TileTabularList',
+                                                  'TileTeam'],  
+                                   # 'review_state':['published', 'internally_published', 'external'],
+                                   'path':{'query':'/'.join(context.getPhysicalPath()), 'depth': 5}
+                                })
+
+        for t in itens:
+            t = t.getObject()
+            if not t.getExcludeFromNav() and\
+                self.has_public_or_permission(current_user, t):
+                tiles.append(t)
+
+        return tiles
 
 
 
@@ -53,7 +96,10 @@ class LayoutView(BaseView):
 
         posicionados = 0
         posicao = 0
-        tiles = [ t for t in context.values() if t.portal_type != 'VindulaFolder' and not t.getExcludeFromNav()]
+        
+        tiles = self._get_catalog_tiles()
+        # tiles = [ t for t in context.values() if t.portal_type != 'VindulaFolder' and not t.getExcludeFromNav()]
+
         tiles_posicionados = []
         for i in range(len(tiles)):
 

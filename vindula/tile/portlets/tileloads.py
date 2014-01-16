@@ -15,6 +15,8 @@ from plone.app.form.widgets.uberselectionwidget import UberSelectionWidget, Uber
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from vindula.tile import MessageFactory as _
 
+from vindula.tile.browser.layout import LayoutView
+
 class ITileLoads(IPortletDataProvider):
 
     """A portlet
@@ -68,8 +70,10 @@ class Renderer(base.Renderer):
         data = self.data
         rid = catalog.getrid(portal_path + data.tiles_list)
         brain = catalog._catalog[rid]
-        obj = brain.getObject()
-        return obj.values()
+        obj_layout = brain.getObject()
+
+        layout_view = LayoutView(obj_layout, self.request)
+        return layout_view._get_catalog_tiles()
 
 
     def getScripts_js(self):
