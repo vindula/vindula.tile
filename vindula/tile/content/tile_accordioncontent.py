@@ -95,10 +95,4 @@ class TileAccordionContent(ATFolder, BaseTile):
     #Scripts js
     scripts_js = ['tile-accordion.js']
 
-    def get_columns(self):
-        if hasattr(self, 'getColumns'):
-            return self.getColumns()
-        else:
-            return self.columns
-
 registerType(TileAccordionContent, PROJECTNAME)
