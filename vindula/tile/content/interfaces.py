@@ -81,3 +81,6 @@ class ITileListServices(Interface):
 
 class ITileJobOffer(Interface):
     """ Interface for ITileJobOffer content type """
+
+class ITilePoiTracker(Interface):
+    """ Interface for TilePoiTracker content type """

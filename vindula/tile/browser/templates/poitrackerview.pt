@@ -1,0 +1,87 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="context/main_template/macros/master"
+      lang="en"
+      i18n:domain="vindula.tile">
+<body>
+
+<metal:main fill-slot="content-core">
+    <metal:macro define-macro="page">
+    
+        <h5> 
+        	<ta:cont tal:content="context/Title|nothing">TITULO</ta:cont>
+        </h5>
+        <div class="row" tal:define="view_macro nocall:context/@@poitracker-view;
+        							 ignoredStates python:['new'];
+									 basicOpenStates python:['open', 'in-progress'];
+                  					 openStates python:['unconfirmed'] + basicOpenStates;
+								
+									 member python:context.portal_membership.getAuthenticatedMember();
+					  				 altenticado python:str(member)!='Anonymous User';
+        							 tracker_obj view_macro/get_tracker">
+			
+			<div class="columns large-12">
+	            <p tal:replace="structure context/Description"></p>
+	        </div>
+	        <div class="columns large-12">
+	        	<br />
+				<p>Clique no botão abaixo para criar uma nova requisição</p>		
+				
+				<form id="poi-submit-new-issue-form" method="post" enctype="multipart/form-data"
+					  tal:attributes="action string:${tracker_obj/absolute_url|nothing}/createObject">
+					
+					<input type="hidden" value="PoiIssue" name="type_name">
+					<div class="formControls">
+						<input type="submit" value="Submeter nova requisição " class="context" style="width: 180px;">
+					</div>
+					
+				</form>
+		
+				<tal:def define="issueQueryString python:'%s/poi_issue_search?state=%s&creator=%s' %
+		                  								 (tracker_obj.absolute_url(), '&amp;state='.join(openStates),member.getId(),);
+								issuefolder tracker_obj/@@issuefolder;
+								issueStates tracker_obj/getIssueWorkflowStates;
+								ussuesContent python:issuefolder.getMyIssues_Creators(openStates=openStates)">
+						  	
+				    <div id="open-issues-by-state" 
+				         tal:define="issueStates tracker_obj/getIssueWorkflowStates;"
+						 tal:condition="python: ussuesContent and altenticado">
+				      <br />
+					  <h3>Status das requisições</h3>
+				      <ul>
+				        <li tal:define="issues python:issuefolder.getMyIssues_Creators(openStates=openStates)">
+				          <a tal:attributes="href string:${issueQueryString}"
+				             i18n:translate="poi_all_pending_issues">All pending issues</a> (<span tal:replace="python:len(issues)" />)
+				        </li>
+				        <tal:releases repeat="state issueStates">
+				          <tal:block condition="python:state not in ignoredStates">
+				            <li tal:define="issues python:issuefolder.getMyIssues_Creators(openStates=state);
+											cont_issues python:len(issues) or 0"
+								tal:condition="python: cont_issues !=0">
+				              <a tal:attributes="href string:${tracker_obj/absolute_url}/poi_issue_search?state=${state}&creator=${member/getId}"
+				                 i18n:translate=""
+				                 i18n:domain="plone"
+				                 tal:content="python:issueStates.getValue(state)" /> (<span tal:replace="python:len(issues)" />)
+				            </li>
+				          </tal:block>
+				        </tal:releases>
+				      </ul>
+				    </div>
+
+					<div id="open-issues-by-state"
+						 tal:condition="python: not ussuesContent and altenticado">
+				      <br />
+					  <h3>Não há requisições em aberto </h3>
+				      
+				    </div>
+					
+				</tal:def>
+			</div>
+        </div>
+        
+    </metal:macro>
+</metal:main>
+</body>
+</html> 
