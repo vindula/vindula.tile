@@ -69,11 +69,16 @@ class Renderer(base.Renderer):
 
         data = self.data
         rid = catalog.getrid(portal_path + data.tiles_list)
-        brain = catalog._catalog[rid]
-        obj_layout = brain.getObject()
 
-        layout_view = LayoutView(obj_layout, self.request)
-        return layout_view._get_catalog_tiles()
+        if rid:
+            brain = catalog._catalog[rid]
+            obj_layout = brain.getObject()
+
+            layout_view = LayoutView(obj_layout, self.request)
+            return layout_view._get_catalog_tiles()
+        
+        else:
+            return []
 
 
     def getScripts_js(self):

@@ -74,6 +74,9 @@
                             <span class="block"
                                   tal:condition="python: structure != None"
                                   tal:content="structure/getSiglaOrTitle">ASCON</span>
+                            
+                            <span class="block"
+                                  tal:content="item/admission_date|string: ">10/10/10</span>                                  
                         </div>
 
                       </div>
