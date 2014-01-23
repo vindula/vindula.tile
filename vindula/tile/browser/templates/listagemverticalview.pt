@@ -291,13 +291,15 @@
   <div class="columns large-12" id="tile-events">
       <div class="row content_itens">
         <tal:rep repeat="item python:view_macro.getItens(is_date=True)">
-          <div class="event clear" tal:define="obj item/getObject|nocall:item">
+          <div class="event clear" tal:define="obj item/getObject|nocall:item;
+											    data_month python: obj.startDate.strftime('%d/%m/%Y')">
+												
             <div class="columns small-3 date-box">
                 <div class="box-date">
                     <h2 tal:condition="obj/startDate|nothing"
                         tal:content="python: obj.startDate.strftime('%d')">21</h2>
                     <h6 tal:condition="obj/startDate|nothing"
-                        tal:content="python: obj.startDate.strftime('%b')">MAR</h6>
+                        tal:content="python: view_macro.get_convert_data(data_month)">MAR</h6>
                 </div>
             </div>
             <div class="columns small-9 box-title">
