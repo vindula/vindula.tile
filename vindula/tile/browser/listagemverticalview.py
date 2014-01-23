@@ -2,6 +2,8 @@
 from five import grok
 from vindula.tile.browser.baseview import BaseView
 import DateTime, random
+from datetime import datetime, date, timedelta
+
 
 grok.templatedir('templates')
 
@@ -68,6 +70,15 @@ class ListagemVerticalView(BaseView):
                     break
        
         return L
+    
+    def get_convert_data(self, str_data):
+        months = ['XX','Jan','Fev','Mar','Abr','Maio','Jun',\
+                       'Jul','Ago','Set', 'Out', 'Nov','Dez']
+
+        list_date = str_data.split('/')
+        obj_date = date(int(list_date[2]),int(list_date[1]),int(list_date[0]))
+        mes = months[obj_date.month]
+        return mes
 
     def get_path_other_new(self):
         path = self.context.getPath_othernews()
