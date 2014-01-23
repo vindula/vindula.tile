@@ -30,14 +30,16 @@
                             <hr/>
                         </div>
                         
-                        <div tal:attributes="accordion-id categorie/id;
-                                             accordion-collapse string:true;"
-                             tal:define="Batch python:modules['Products.CMFPlone'].Batch;
+                        <div tal:define="Batch python:modules['Products.CMFPlone'].Batch;
                                          b_size request/b_size|string:12;
                                          b_start python:0;
                                          b_start request/b_start | b_start;
                                          services python:categories[categorie];
-                                         batch python:Batch(services, int(b_size), int(b_start));">
+                                         batch python:Batch(services, int(b_size), int(b_start));
+                                         is_open python: categorie.getIs_open_aba() and 'false' or 'true'"
+                             tal:attributes="accordion-id categorie/id;
+                                             accordion-collapse is_open">
+
                             <div class="list_file" tal:attributes="id categorie/id;">
                                 <input type="hidden" id="b_size" tal:attributes="value b_size" />
                                 <input type="hidden" id="b_start" tal:attributes="value b_start" />
