@@ -24,8 +24,13 @@
                     <div class="container-services">
                         <div class="title-no-margin">
                             <h5 class="left">
-                                <a tal:attributes="id categorie/id" class="accordion arrow arrow-left left"></a>
-                                <a class="accordion" tal:attributes="id categorie/id" tal:content="categorie/Title"></a>
+								<tal:arrow condition="python: categorie.getIs_open_aba() == True">
+                                	<a tal:attributes="id categorie/id" class="accordion arrow arrow-top left"></a>
+								</tal:arrow>
+								<tal:arrow condition="python: categorie.getIs_open_aba() == False">
+                                	<a tal:attributes="id categorie/id" class="accordion arrow arrow-left left"></a>
+								</tal:arrow>
+                                	<a class="accordion" tal:attributes="id categorie/id" tal:content="categorie/Title"></a>
                             </h5>
                             <hr/>
                         </div>
