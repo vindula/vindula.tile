@@ -23,6 +23,7 @@
         <type portal_type="TileTabularList"/>
         <type portal_type="TileReferenceList"/>
         <type portal_type="TilePoiTracker"/>
+        <type portal_type="TileLibrary"/>
         
     </factorytypes>
 </object>
