@@ -13,8 +13,8 @@
       </metal:css>
       
       <metal:js fill-slot="javascript_head_slot">
-        <!--script type="text/javascript" src=""
-                tal:attributes="src string:${context/absolute_url|nothing}/++resource++vindula.tile/js/ajax_boll_batch.js"></script-->
+          <script type="text/javascript" src=""
+                    tal:attributes="src string:${context/absolute_url|nothing}/++resource++vindula.tile/js/ajax_boll_batch.js"></script>
       </metal:js>
     </head>
     <body>
@@ -27,40 +27,55 @@
                                                        data_type context/portal_type|nothing">
                 </div>
                 <metal:macro define-macro="page"
-                         tal:define="themes view/getThemes">
+                         tal:define="themes view/getThemes;
+                                     Batch python:modules['Products.CMFPlone'].Batch;
+                                     b_size request/b_size|string:10;
+                                     b_start python:0;
+                                     b_start request/b_start | b_start;
+                                     batch python:Batch(themes, int(b_size), int(b_start), pagerange=len(themes));">
                     <div>
                         <h3>Temas
                             <hr />
                         </h3>
                     </div>
                     
-                    <tal:rep repeat="theme themes">
-                        <tal:repl condition="python: repeat['theme'].start or (repeat['theme'].index % 2 == 0)" 
-                                  replace="structure python: '<div class=\'columns large-12 small-12\'> <div class=\'row\'>'"></tal:repl>
-                            
-                            <div class="block-theme columns large-6 small-6">
-                                <div class="image-theme left">
-                                    <img width="60"
-                                         tal:attributes="src theme/getUrlIcon;
-                                                         alt theme/value;
-                                                         title theme/value;" />
-                                </div>
+                    <div class="list_tile" id="all-themes">
+                        <input type="hidden" id="b_size" class="b_size" tal:attributes="value b_size" />
+                        <input type="hidden" id="b_start" class="b_start" tal:attributes="value b_start" />
+                        <input type="hidden" id="absolute_url" class="absolute_url" tal:attributes="value context/absolute_url" />
+
+                        <tal:rep repeat="theme batch">
+                            <tal:repl condition="python: repeat['theme'].start or (repeat['theme'].index % 2 == 0)" 
+                                      replace="structure python: '<div class=\'columns large-12 small-12\'> <div class=\'row\'>'"></tal:repl>
                                 
-                                <div class="content-theme left">
-                                    <div class="title">
-                                        <a tal:content="theme/value"
-                                           tal:attributes="href string:${context/absolute_url}/theme-contents?theme=${theme/id}"></a>
+                                <div class="block-theme columns large-6 small-6">
+                                    <div class="image-theme left">
+                                        <img width="60"
+                                             tal:attributes="src theme/getUrlIcon;
+                                                             alt theme/value;
+                                                             title theme/value;" />
                                     </div>
                                     
-                                    <div class="description">
-                                        <p tal:content="theme/description"></p>
+                                    <div class="content-theme left">
+                                        <div class="title">
+                                            <a tal:content="theme/value"
+                                               tal:attributes="href string:${context/absolute_url}/theme-contents?theme=${theme/id}"></a>
+                                        </div>
+                                        
+                                        <div class="description">
+                                            <p tal:content="theme/description"></p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            
-                        <tal:repl condition="python: repeat['theme'].end or (repeat['theme'].number() % 2 == 0)" 
-                                  replace="structure python: '</div></div>'"></tal:repl>
-                    </tal:rep>
+                                
+                            <tal:repl condition="python: repeat['theme'].end or (repeat['theme'].number() % 2 == 0)" 
+                                      replace="structure python: '</div></div>'"></tal:repl>
+                        </tal:rep>
+                        
+                        <div class="ajax_pagination right" id="pag-nav">
+                            <metal:block metal:use-macro="context/boll_batch/macros/navigation" />
+                        </div>
+                    </div>
                 </metal:macro>
             </metal:macro>
         </metal:main>

@@ -17,8 +17,13 @@ class LibraryView(BaseView):
     
     def getThemes(self):
         rs_themes = TagContent.getAllTagsByType('themesNews')
+        themes = []
         
-        return rs_themes
+        if rs_themes.count():
+            for theme in  rs_themes:
+                themes.append(theme)
+                
+        return themes
     
 class ThemeContentsView(BaseView):
     grok.context(ITileLibrary)
