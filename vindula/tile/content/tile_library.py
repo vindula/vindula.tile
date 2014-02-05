@@ -67,9 +67,11 @@ class TileLibrary(BaseTile):
     portal_type = 'TileLibrary'
     _at_rename_after_creation = True
     schema = TileLibrary_schema
-
+    
+    #tamanho do tile
+    columns = 12
 
     #Scripts js
-#     scripts_js = ['button-more.js','ajax_boll_batch.js']
+    scripts_js = ['ajax_boll_batch.js']
 
 registerType(TileLibrary, PROJECTNAME)

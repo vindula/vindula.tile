@@ -46,6 +46,7 @@ class LayoutView(BaseView):
                                                   'TileJobOffer',
                                                   'TileLabel',
                                                   'TileListServices',
+                                                  'TileLibrary',
                                                   'TileListagemHorizontal',
                                                   'TileListagemVertical',
                                                   'TileMacroList',

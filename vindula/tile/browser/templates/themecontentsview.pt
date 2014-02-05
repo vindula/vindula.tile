@@ -29,7 +29,8 @@
                                                        data_type context/portal_type|nothing">
                 </div>
                 <metal:macro define-macro="page"
-                         tal:define="theme view/theme;">
+                         tal:define="view_macro nocall:context/@@theme-contents;
+                                     theme view/theme;">
 
                     <tal:cond condition="theme">
                         <div class="clear">
@@ -47,7 +48,7 @@
                         
                         <div class="container-typologies"
                              id="tile-library"
-                             tal:define="typologies view/getTypologies;">
+                             tal:define="typologies view_macro/getTypologies;">
                              
                             <tal:rep condition="typologies"
                                      repeat="typology typologies">
@@ -87,7 +88,7 @@
                                                 <div class="columns large-4 small-4 content-container">
                                                     <div tal:attributes="class python:'container-image left %s' % (content.portal_type in ['VindulaPhotoAlbum', 'VindulaVideo'] and (content.portal_type == 'VindulaVideo' and 'vindula-video' or 'vindula-album') or 'default-image');">
                                                         <a tal:attributes="href content/absolute_url;">
-                                                            <img tal:attributes="src python: view.getImageUrlByType(content);" />
+                                                            <img tal:attributes="src python: view_macro.getImageUrlByType(content);" />
                                                             <i></i>
                                                         </a>
                                                     </div>

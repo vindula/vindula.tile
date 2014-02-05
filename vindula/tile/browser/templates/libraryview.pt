@@ -27,12 +27,13 @@
                                                        data_type context/portal_type|nothing">
                 </div>
                 <metal:macro define-macro="page"
-                         tal:define="themes view/getThemes;
-                                     Batch python:modules['Products.CMFPlone'].Batch;
-                                     b_size request/b_size|string:10;
-                                     b_start python:0;
-                                     b_start request/b_start | b_start;
-                                     batch python:Batch(themes, int(b_size), int(b_start), pagerange=len(themes));">
+                             tal:define="view_macro nocall:context/@@library-view;
+                                         themes view_macro/getThemes;
+                                         Batch python:modules['Products.CMFPlone'].Batch;
+                                         b_size request/b_size|string:10;
+                                         b_start python:0;
+                                         b_start request/b_start | b_start;
+                                         batch python:Batch(themes, int(b_size), int(b_start), pagerange=len(themes));">
                     <div>
                         <h3>Temas
                             <hr />
