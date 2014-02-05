@@ -73,5 +73,8 @@ class TileLibrary(BaseTile):
 
     #Scripts js
     scripts_js = ['ajax_boll_batch.js']
+    
+    #Folhas de estilo css
+    style_sheets = ['library-tile.css']
 
 registerType(TileLibrary, PROJECTNAME)

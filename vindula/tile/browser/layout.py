@@ -26,6 +26,21 @@ class LayoutView(BaseView):
                         scripts_js.append(i)
 
         return scripts_js
+    
+    def getStyleSheets_css(self):
+        style_sheets = []
+
+        #Coleta das folhas de estilo css dos tiles
+        context = self.context
+        tiles = context.values()
+
+        for tile in tiles:
+            if hasattr(tile, 'style_sheets'):
+                for i in tile.style_sheets:
+                    if not i in style_sheets:
+                        style_sheets.append(i)
+
+        return style_sheets
 
 
     def _get_catalog_tiles(self):
