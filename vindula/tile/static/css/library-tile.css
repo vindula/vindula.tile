@@ -12,7 +12,10 @@
     
 .content-container { padding-top: 2px; }
   
-.container-typologies .content-container .title { padding: 10px 0 0 10px; }
+.container-typologies .content-container .title { 
+    padding: 10px 0 0 10px;
+    max-width: 80%;
+}
   
 .container-image.vindula-video img,
 .container-image.vindula-album img { 
