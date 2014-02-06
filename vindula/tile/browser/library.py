@@ -38,7 +38,6 @@ class ThemeContentsView(BaseView):
     def getTypologies(self, theme):
         p_catalog = getToolByName(self.context, 'portal_catalog')
         typologies = {}
-        import pdb;pdb.set_trace()
         if theme:
             value = theme.value
 
