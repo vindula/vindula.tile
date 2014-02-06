@@ -16,17 +16,18 @@
         <div id="select_layout" tal:condition="not: request/layout|nothing">
           <h4>Selecione o Layout</h4>
           <ul>
-            <li>
+            <li tal:repeat="item view/get_list_modelos" class="item_lista">
               <h5>
-                <label for="layout">Layout Classico</label>
-                  <input type="radio" value="1" name="layout" checked='checked'/> 
+                <label for="layout" tal:content="item/name|string: ">Layout Classico</label>
+                  <input type="radio" value="1" name="layout" checked='checked'
+                         tal:attributes="value item/id|string: ;
+                                        checked python: repeat['item'].start and 'checked' or '';"/> 
               </h5>  
-            </li>
-            <li>
-              <h5>
-                <label for="layout">Layout Padrão</label>
-                  <input type="radio" value="2" name="layout" /> 
-              </h5>
+              <a class="delete-modelo vindula-icon-cross-2" tal:condition="item/can_delete|python:False"
+                 tal:attributes="href string: ${context/portal_url}/removemodel-view;
+                                 data-id_model item/id|string: ;">XX
+              </a>
+
             </li>
           </ul>
           <input class="save button small radius" type="submit" name="select_layout" value="Selecionar Layout" /> 

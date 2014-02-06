@@ -29,11 +29,17 @@
 		    });
 		});
 	</script>
-
+	<script type="text/javascript" src=""
+            tal:attributes="src string:${context/absolute_url|nothing}/++resource++vindula.tile/js/ajax_modelo.js"></script>
 	<div>
 		<button id="opener" class="tiny button radius" tal:condition="enable_add">Adicionar bloco</button>
+		
 		<a class="hide tiny button radius wizard-layout" href="" tal:condition="viewlet/isEnableLayout|python:False"
 		   tal:attributes="href string:${context/absolute_url}/wizard-view">Adicionar Capa</a>
+		
+		<a class="hide tiny button radius save-modelo" href="" tal:condition="enable_add"
+		   tal:attributes="href string:${context/absolute_url}/savemodel-view">Salvar Modelo</a>
+
 	</div>
 	<div id="dialog_addtiles" title="Adicionar novo Bloco" tal:condition="enable_add">
 		<div class="row">
