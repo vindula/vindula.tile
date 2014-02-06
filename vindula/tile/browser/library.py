@@ -35,12 +35,12 @@ class ThemeContentsView(BaseView):
         if self.request.form.get('theme'):
             self.theme = TagContent.getTagById(self.request.form.get('theme'))
             
-    def getTypologies(self):
+    def getTypologies(self, theme):
         p_catalog = getToolByName(self.context, 'portal_catalog')
         typologies = {}
-        
-        if self.theme:
-            value = self.theme.value
+        import pdb;pdb.set_trace()
+        if theme:
+            value = theme.value
 
             brains = p_catalog(ThemeNews=value)
             for brain in brains:

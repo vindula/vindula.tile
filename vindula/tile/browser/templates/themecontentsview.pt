@@ -48,7 +48,7 @@
                         
                         <div class="container-typologies"
                              id="tile-library"
-                             tal:define="typologies view_macro/getTypologies;">
+                             tal:define="typologies python:view_macro.getTypologies(theme);">
                              
                             <tal:rep condition="typologies"
                                      repeat="typology typologies">
