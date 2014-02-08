@@ -8,7 +8,7 @@ from Products.statusmessages.interfaces import IStatusMessage
 
 from zope.interface import Interface
 from vindula.tile.config import ROOT_PATH
-import os
+import os, json
 
 grok.templatedir('templates')
 
@@ -35,9 +35,12 @@ class RemoveModel(BaseView):
 	grok.context(Interface)
 	grok.name('removemodel-view')
 
+	retorno = {}
 
 	def render(self):
-		return '--OK--'
+		self.request.response.setHeader("Content-type","application/json")
+		self.request.response.setHeader("charset", "UTF-8")
+		return json.dumps(self.retorno,ensure_ascii=False)
 
 	def update(self):
 		context = self.context
@@ -49,9 +52,9 @@ class RemoveModel(BaseView):
 
 			f = os.path.join(path_zexp, id_model)
 			os.remove(f)
-		
-
-	 	# 	IStatusMessage(self.request).addStatusMessage(_(u'Modelo remevido com sucesso.'),"info")
-			# self.request.response.redirect(context.absolute_url())
+		 	self.retorno['status'] = True
+ 		
+ 		else:
+ 			self.retorno['status'] = False
 
 

@@ -24,21 +24,21 @@
 		        closeselector: '[name=cancel]',
 		        formselector: '[name=wizardlayout]',
 		        noform:'reload',
-		        width: '50%',
+		        width: '30%',
 		        config: {fixed:false,speed:'fast',mask:{color:'#000',opacity: 0.4,loadSpeed:0,closeSpeed:0}}
 		    });
 		});
 	</script>
 	<script type="text/javascript" src=""
             tal:attributes="src string:${context/absolute_url|nothing}/++resource++vindula.tile/js/ajax_modelo.js"></script>
-	<div>
+	<div tal:define="context_item viewlet/get_context|context">
 		<button id="opener" class="tiny button radius" tal:condition="enable_add">Adicionar bloco</button>
 		
 		<a class="hide tiny button radius wizard-layout" href="" tal:condition="viewlet/isEnableLayout|python:False"
 		   tal:attributes="href string:${context/absolute_url}/wizard-view">Adicionar Capa</a>
 		
 		<a class="hide tiny button radius save-modelo" href="" tal:condition="enable_add"
-		   tal:attributes="href string:${context/absolute_url}/savemodel-view">Salvar Modelo</a>
+		   tal:attributes="href string:${context_item/absolute_url}/savemodel-view">Salvar Modelo</a>
 
 	</div>
 	<div id="dialog_addtiles" title="Adicionar novo Bloco" tal:condition="enable_add">

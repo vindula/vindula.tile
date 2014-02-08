@@ -1,14 +1,16 @@
 $j = jQuery.noConflict();
 
 $j(document).ready(function(){
-    $j('.delete-modelo').live('click', function(){
+    $j('.delete-modelo').live('click', function(ev){
+        ev.preventDefault();
+        ev.stopPropagation();
         
         if (confirm('Realmente deseja remover esse modelo?')) {
             var $super_this = $j(this),
                 id_model = $super_this.attr('data-id_model'),
                 url = this.href;
                 
-            if(hash.length) {
+            if(id_model.length) {
                 $j.ajax({   
                     type: "GET",
                     url: url,
@@ -19,11 +21,13 @@ $j(document).ready(function(){
                             $item_ele.hide();
                         }else{
                             alert('Não foi possível remover o modelo.');
+                            return false;
                         }
                     }
                 });
             }else {
-                alert('Não foi possível remover o modelo.');
+                alert('Não foi possível remover o modelo.'); 
+                return false;
             }
         }
         

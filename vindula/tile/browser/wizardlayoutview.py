@@ -45,9 +45,8 @@ class WizardLayout(BaseView):
 
             if context.portal_type in ['VindulaFolder', 'Folder', 'OrganizationalStructure']:
 
-                path_zexp = ROOT_PATH + '/../../docs/zexp'
+                path_zexp = ROOT_PATH + '/../../docs/zexp/'
                
-
                 if layout == '1':
                     context._importObjectFromFile(filepath=path_zexp+'capa-principal.zexp')
                     context._importObjectFromFile(filepath=path_zexp+'capa-esquerda.zexp')                
