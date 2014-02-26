@@ -23,7 +23,7 @@
             <tal:error tal:on-error="string: Erro ao carregar a capa ${tile/Title}">
 
                 <div class="moveTileLink" tal:condition="python: view.can_manage_tile(context)">
-                  <a class="draggingHook" >⣿</a>
+                  <a class="draggingHook" ><img src="++resource++vindula.tile/images/move_icon.png"/></a>
                 </div>  
 
                 <metal:block tal:condition="path_macro"

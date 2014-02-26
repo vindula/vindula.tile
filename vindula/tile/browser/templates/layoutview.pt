@@ -46,7 +46,7 @@
                                    tal:on-error="string: Erro ao carregar o bloco ${context/Title}">
 
                             <div class="moveTileLink" tal:condition="python: view.can_manage_tile(context)">
-                              <a class="draggingHook" >⣿</a>
+                              <a class="draggingHook" ><img src="++resource++vindula.tile/images/move_icon.png"/></a>
                             </div>  
 
                             <metal:block metal:use-macro="python:path(path_macro)"/>
@@ -83,7 +83,7 @@
                                      tal:on-error="string: Erro ao carregar o bloco ${context/Title}">
 
                               <div class="moveTileLink" tal:condition="python: view.can_manage_tile(context)">
-                                <a class="draggingHook" >⣿</a>
+                                <a class="draggingHook" ><img src="++resource++vindula.tile/images/move_icon.png"/></a>
                               </div>  
 
                               <metal:block metal:use-macro="python:path(path_macro)"/>
@@ -118,7 +118,7 @@
                                        tal:on-error="string: Erro ao carregar o bloco ${context/Title}">
 
                                 <div class="moveTileLink" tal:condition="python: view.can_manage_tile(context)">
-                                  <a class="draggingHook" >⣿</a>
+                                  <a class="draggingHook" ><img src="++resource++vindula.tile/images/move_icon.png"/></a>
                                 </div>  
 
                                 <metal:block metal:use-macro="python:path(path_macro)"/>
