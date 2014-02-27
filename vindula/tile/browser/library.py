@@ -19,7 +19,7 @@ class LibraryView(BaseView):
         rs_themes = TagContent.getAllTagsByType('themesNews')
         themes = []
         
-        if rs_themes.count():
+        if rs_themes and rs_themes.count():
             for theme in  rs_themes:
                 themes.append(theme)
                 
