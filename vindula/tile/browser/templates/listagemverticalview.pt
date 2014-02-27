@@ -78,7 +78,7 @@
               tal:condition="obj/getIcon"
               tal:attributes="src obj/getIcon;"  />
          <a
-          tal:attributes="href python:'%s%s' % (obj.absolute_url(), obj.portal_type == 'File' and '/file_view' or '/view')"
+          tal:attributes="href python:'%s%s' % (obj.absolute_url(),  '/view')"
             tal:content="obj/Title">Lorem ipsum dolor sit amet </a>
         </tal:def>
       </p>
@@ -112,7 +112,7 @@
 			<ul class="square">
 		      <li tal:repeat="item view_macro/getItens">
 		         <a tal:define="obj item/getObject|nocall:item"
-		            tal:attributes="href python:'%s%s' % (obj.absolute_url(), obj.portal_type == 'File' and '/file_view' or '/view')"
+		            tal:attributes="href python:'%s%s' % (obj.absolute_url(),  '/view')"
 		            tal:content="obj/Title">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a>
 		      </li>
 			</ul>
@@ -165,7 +165,7 @@
                                 
                               </small><br />
                               <strong>
-                                <a href="#" tal:attributes="href python:'%s%s' % (obj.absolute_url(), obj.portal_type == 'File' and '/file_view' or '/view')"
+                                <a href="#" tal:attributes="href python:'%s%s' % (obj.absolute_url(),  '/view')"
                                             tal:content="obj/Title">Nova diretoria da Opas visita Bio</a>
                               </strong>
                           </div>
@@ -222,7 +222,7 @@
 
                                 <tal:cont content="python: obj.creation_date.strftime('%d/%m/%Y %H:%M')"> 27/03/2013 14:30 </tal:cont>
                               </small><br />
-                              <strong><a href="#" tal:attributes="href python:'%s%s' % (obj.absolute_url(), obj.portal_type == 'File' and '/file_view' or '/view')"
+                              <strong><a href="#" tal:attributes="href python:'%s%s' % (obj.absolute_url(),  '/view')"
                                                   tal:content="obj/Title">Nova diretoria da Opas visita Bio</a></strong>
                           </div>
                       </div>
@@ -264,7 +264,7 @@
                                 <tal:cont content="python: obj.creation_date.strftime('%d/%m/%Y %H:%M')"> 27/03/2013 14:30 </tal:cont>
                               </small><br />
 
-                              <strong><a href="#" tal:attributes="href python:'%s%s' % (obj.absolute_url(), obj.portal_type == 'File' and '/file_view' or '/view')"
+                              <strong><a href="#" tal:attributes="href python:'%s%s' % (obj.absolute_url(),  '/view')"
                                                   tal:content="obj/Title">Nova diretoria da Opas visita Bio</a></strong>
                           </div>
 

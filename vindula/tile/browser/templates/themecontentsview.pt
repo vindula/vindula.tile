@@ -95,7 +95,7 @@
                                                     
                                                     <div class="title left">
                                                         <a tal:content="content/Title" 
-                                                           tal:attributes="href content/absolute_url;">
+                                                           tal:attributes="href string:${content/absolute_url}/view;">
                                                         </a>
                                                     </div>
                                                 </div>
