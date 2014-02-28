@@ -7,6 +7,7 @@ from Products.ATContentTypes.content.schemata import finalizeATCTSchema
 from Products.ATContentTypes.content import schemata, base
 
 from vindula.tile.content.interfaces import ILayoutLoad
+from plone.contentrules.engine.interfaces import IRuleAssignable
 
 from vindula.tile import MessageFactory as _
 from vindula.tile.config import *
@@ -97,7 +98,7 @@ class LayoutLoad(base.ATCTContent):
     """ Reserve Content for LayoutLoad"""
     security = ClassSecurityInfo()
 
-    implements(ILayoutLoad)
+    implements(ILayoutLoad,IRuleAssignable)
     portal_type = 'LayoutLoad'
     _at_rename_after_creation = True
     schema = LayoutLoad_schema

@@ -31,6 +31,17 @@
 	</script>
 	<script type="text/javascript" src=""
             tal:attributes="src string:${context/absolute_url|nothing}/++resource++vindula.tile/js/ajax_modelo.js"></script>
+	
+	<script type="text/javascript"
+            tal:attributes="src string:${context/portal_url}/datagridwidget.js" />
+	<script type="text/javascript"
+            tal:attributes="src string:${context/portal_url}/referencedatagridwidget.js" />
+
+    <link rel="stylesheet" type="text/css" id="new-theme"
+          tal:attributes="href string:${context/portal_url|nothing}/datagridwidget.css" />
+    <link rel="stylesheet" type="text/css" id="new-theme"
+          tal:attributes="href string:${context/portal_url|nothing}/referencedatagridwidget.css" />
+
 	<div tal:define="context_item viewlet/get_context|context">
 		<button id="opener" class="tiny button radius" tal:condition="enable_add">Adicionar bloco</button>
 		

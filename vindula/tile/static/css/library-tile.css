@@ -1,0 +1,42 @@
+.block-theme { margin-bottom: 15px; }
+  
+  .block-theme .image-theme { width: 15%; }
+  
+  .block-theme .content-theme {
+      padding-top: 15px;
+	  margin-left: 10px;
+	  width: 80%;
+  }
+    .block-theme .content-theme .description { padding-top: 5px; }
+    .block-theme .content-theme .description p { padding-bottom: 0; }
+    
+.content-container { padding-top: 2px; }
+  
+.container-typologies .content-container .title { 
+    padding: 10px 0 0 10px;
+    max-width: 80%;
+}
+  
+.container-image.vindula-video img,
+.container-image.vindula-album img { 
+    max-width: 100px;
+    border: 1px solid #FFF;
+    box-shadow: 0px 0px 2px 1px #CFCFCF;
+} 
+
+.container-image.vindula-video i { 
+    background: url('/vindula-api/static/img/icons/play_video.png') no-repeat;
+	height: 25px;
+	width: 35px;
+	position: absolute;
+	left: 18%;
+	bottom: 35%;
+} 
+
+.accordion.arrow { 
+	margin-top: 7px; 
+    margin-right: 3px;	
+}
+
+#tile-library .container { padding: 15px 0; }
+#tile-library { margin-top: 20px; }

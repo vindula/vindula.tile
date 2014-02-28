@@ -15,6 +15,16 @@ from vindula.tile.config import *
 
 TileJobOffer_schema = BaseTile.schema.copy() + Schema((
 
+    StringField(
+        name='link_cadastro',
+        widget=StringWidget(
+            label=_(u"Link para Cadastro"),
+            description=_(u"Adicione o link para o formulario de cadastro do usuário."),
+        ),
+        required=True,
+    ),
+
+
 ))
 
 finalizeATCTSchema(TileJobOffer_schema, folderish=False)

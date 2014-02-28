@@ -52,6 +52,11 @@
 	                              src="++theme++vindula.themedefault/images/demos/demo2-th.gif" />
 	                        </div>
 	                        <div class="columns small-8 listagem_horizontal_text">
+
+								<h4 tal:condition="context/getActiveSubTitulo|python:False"
+								    tal:content="item/subtitulo|string: ">
+								    Lorem ipsum dolor sit amet / Consectetur adipiscing elit.</h4>
+
 	                            <small tal:content="string: ${item/unidade|nothing} / ${item/date|nothing} ${item/hour|nothing}">ASCOM / 27/03/2013 14:30</small>
 
 	                            <h5><a tal:attributes="href item/url|nothing"
@@ -84,6 +89,11 @@
 	<div class="columns large-12"  tal:define="itens view_macro/getItens;">
 	    <div class="row">
 	        <div class="columns large-12" tal:repeat="item itens">
+
+	        	<h4 tal:condition="context/getActiveSubTitulo|python:False"
+				    tal:content="item/subtitulo|string: ">
+				    Lorem ipsum dolor sit amet / Consectetur adipiscing elit.</h4>
+
 	            <small tal:content="string: ${item/unidade|nothing} / ${item/date|nothing} ${item/hour|nothing}">ASCOM / 27/03/2013 14:30</small>
 	            <h5><a tal:attributes="href item/url|nothing"
 	                   tal:content="item/title|nothing"
@@ -150,6 +160,11 @@
 				                	 tal:attributes="src item/image"/>
 				            </div>
 				            <div class="columns small-8">
+								
+								<h4 tal:condition="context/getActiveSubTitulo|python:False"
+								    tal:content="item/subtitulo|string: ">
+								    Lorem ipsum dolor sit amet / Consectetur adipiscing elit.</h4>
+
 				            	<small tal:content="string: ${item/unidade|nothing} / ${item/date|nothing} ${item/hour|nothing}">
 			                			LORORO / 27/03/2013 14:30</small>
 			                	<strong><br /><a href="#" tal:attributes="href item/url|nothing" tal:content="item/title|nothing">
@@ -193,6 +208,11 @@
 							  src="++theme++vindula.themedefault/images/demos/demo2-th.gif" />
 					</div>
 					<div class="conteudo-noticia-duas-colunas">
+
+						<h4 tal:condition="context/getActiveSubTitulo|python:False"
+						    tal:content="item/subtitulo|string: ">
+						    Lorem ipsum dolor sit amet / Consectetur adipiscing elit.</h4>
+
 						<small tal:content="string: ${item/date|nothing} ${item/hour|nothing}">27/03/2013 14:30</small>
 
 	                    <h5><a href="#" tal:attributes="href item/url|nothing"

@@ -11,12 +11,16 @@
             <metal:macro define-macro="page"
                          tal:define="view_macro nocall:context/@@outras-noticias;">
 
+              <input type="hidden" id="url_search" tal:attributes="value string:${context/absolute_url}/outras-noticias"/>
+              <input type="hidden" id="portal_type" tal:attributes="value request/portal_type|nothing"/>
+                  
       				<tal:def define="com_image python:True; 
-                               size_image_width string:98px;
-                               size_image_height string:73px;
-                               itens view_macro/getQuery;
-                               habilita_pesquisa python: False;
-                               habilita_descricao python: False">
+      	                       size_image_width string:98px;
+      	                       size_image_height string:73px;
+      							 	         itens view_macro/getQuery;
+      							           habilita_pesquisa python: False;
+      								         habilita_descricao python: False">
+
       					<metal:block metal:use-macro="context/vindula_folder_summary_imgBig_view/macros/principal" />      
       				</tal:def>
             </metal:macro>

@@ -28,8 +28,14 @@
                                      
                      <div id="tile-org-info">
                         <div class="row manager">
-                            
+                            <div class="clear alert-vindula error"
+                                 tal:define="orgstruc_db python:view_macro.getStructureFromDB(orgstruc().UID())"
+                                 tal:condition="orgstruc_db/deleted|nothing">
+                                Esta unidade encontra-se Inativa na Intranet
+                            </div>
+                                
                             <div class="columns large-12">
+                                
                                 <div class="org-info_image left">
                                     <img width="150" tal:attributes="src python:orgstruc().getImageSize('mini') or None" />
                                 </div>

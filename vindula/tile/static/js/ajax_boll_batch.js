@@ -3,7 +3,12 @@ function executaAjaxTile(ctx, b_start){
         b_size = parseInt(ctx.find('input#b_size').val()),
         params = {},
         ctx_id = "#"+ctx.attr('id');
-
+    
+    if (!url)
+		url = ctx[0].getElementsByClassName("absolute_url")[0].value;
+    
+    if (!b_size)
+    	b_size = ctx[0].getElementsByClassName("b_size")[0].value;
 
     if (b_start==null)
         b_start = parseInt(ctx.find('input#b_start').val())

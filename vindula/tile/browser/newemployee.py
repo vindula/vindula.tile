@@ -6,10 +6,12 @@ from vindula.myvindula.models.funcdetails import FuncDetails
 
 from vindula.myvindula.tools.utils import UtilMyvindula
 
+from datetime import datetime
+
 grok.templatedir('templates')
 
 def por_admicao(item):
-    return item.get('admission_date','')
+    return datetime.strptime(item.get('admission_date','01/01/1500'), '%d/%m/%Y')
 
 class NewEmployeeView(BaseView, UtilMyvindula):
     grok.name('newemployee-view')
@@ -21,5 +23,6 @@ class NewEmployeeView(BaseView, UtilMyvindula):
         qtd = 20
         if self.context.getQtdMembers():
             qtd = self.context.getQtdMembers()
-        dados_users = FuncDetails.get_AllFuncUsernameList(sorted_by=por_admicao)[:qtd]
+        
+        dados_users = FuncDetails.get_AllFuncUsernameList(sorted_by=por_admicao,reverse=True)[:qtd]
         return dados_users

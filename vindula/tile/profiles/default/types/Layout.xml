@@ -35,8 +35,10 @@
         <element value="TileInfoStructure" />
         <element value="TileTabularList" />
         <element value="TileHowDo" />
-        <!--element value="TileListServices" /-->
+        <element value="TileListServices" />
         <element value="TileJobOffer" />
+        <element value="TilePoiTracker" />
+        <element value="TileLibrary" />
     </property>
 
     <property name="immediate_view">layout-view</property>

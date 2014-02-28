@@ -8,7 +8,6 @@
 
     <head>
       <metal:js fill-slot="javascript_head_slot">
-
         <script type="text/javascript" src=""
                 tal:attributes="src string:${context/absolute_url|nothing}/++resource++vindula.tile/js/ajax_boll_batch.js"></script>
       </metal:js>
@@ -74,6 +73,9 @@
                             <span class="block"
                                   tal:condition="python: structure != None"
                                   tal:content="structure/getSiglaOrTitle">ASCON</span>
+                            
+                            <span class="block"
+                                  tal:content="item/admission_date|string: ">10/10/10</span>                                  
                         </div>
 
                       </div>

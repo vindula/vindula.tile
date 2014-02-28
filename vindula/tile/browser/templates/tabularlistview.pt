@@ -79,11 +79,18 @@
                              view_macro_tabular nocall:context/@@tabularlist-view;
                              structures nocall:view_macro_tabular/getStructure|nothing;
                              structures python:structures() and structures().UID() or None;">
+                <!--tal:def define="dummy python:request.set('macro', 'default');
+                                 fields python:[{'label':  ''     , 'attribute': 'getImageIcone', 'is_image': 'True', 'width':  '65',},
+                                                {'label': 'Nome'  , 'attribute': 'getSigla_and_Title'},
+                                                {'label': 'Tipo'  , 'attribute': 'getTipounidade'},
+                                                {'label': 'Contato','attribute': 'getContatoInfo', 'without_link': 'True',},
+                                                {'label': 'Açoes', 'attribute': '', 'is_action':  'True', 'width':  '40',}];">
+                    <metal:block metal:use-macro="context/macro_tabular_file/macros/view" />
+                </tal:def-->
                 <tal:def define="dummy python:request.set('macro', 'default');
                                  fields python:[{'label':  ''     , 'attribute': 'getImageIcone', 'is_image': 'True', 'width':  '65',},
                                                 {'label': 'Nome'  , 'attribute': 'getSigla_and_Title'},
-                                                {'label': 'Contato','attribute': 'getContatoInfo', 'without_link': 'True',},
-                                                {'label': 'Gestor', 'attribute': 'getGestorInfo', 'without_link': 'True',},
+                                                {'label': 'Tipo'  , 'attribute': 'getTipounidade'},
                                                 {'label': 'Açoes', 'attribute': '', 'is_action':  'True', 'width':  '40',}];">
                     <metal:block metal:use-macro="context/macro_tabular_file/macros/view" />
                 </tal:def>

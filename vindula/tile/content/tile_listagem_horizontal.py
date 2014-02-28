@@ -59,7 +59,7 @@ TileListagemHorizontal_schema = BaseTile.schema.copy() + Schema((
          required=True,
      ),
      
-     BooleanField(
+    BooleanField(
         name='activeMoreButton',
         default=True,
         widget=BooleanWidget(
@@ -69,6 +69,18 @@ TileListagemHorizontal_schema = BaseTile.schema.copy() + Schema((
             description_msgid='vindula_tile_help_activeMoreButton',
         ),
     ),
+    
+    BooleanField(
+        name='activeSubTitulo',
+        default=False,
+        widget=BooleanWidget(
+            label="Editoriais",
+            description='Caso selecionado, ativa o vição dos editorias das notícas ou pagínas.',
+            label_msgid='vindula_tile_label_activeSubTitulo',
+            description_msgid='vindula_tile_help_activeSubTitulo',
+        ),
+    ),
+
 
 ))
 
