@@ -14,8 +14,9 @@ class ListagemVerticalView(BaseView):
     def getItens(self, is_date=False):
         context = self.context
         numbers = context.getNumb_items()
-
+        
         types = context.getListTypes()
+        
         # states = context.getTypesWorkflow()
 
         path = context.getPath()
@@ -42,6 +43,10 @@ class ListagemVerticalView(BaseView):
 
             query['sort_on'] = 'start'
             query['sort_order'] ='ascending'
+            
+        if context.getKind() == 'listagem_mais_recentes':
+            query['sort_on'] = 'created'
+            query['sort_order'] ='reverse'
         
         itens = self.portal_catalog(query)
         L = []

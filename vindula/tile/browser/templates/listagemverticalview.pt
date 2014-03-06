@@ -28,10 +28,9 @@
                        tal:condition="auto_reload"
                        tal:attributes="value string:${context/absolute_url}/listagemvertical-view" />
 
-	                <metal:block tal:condition="path_macro"
-	                             metal:use-macro="python:path(path_macro)"/>
+	                <metal:block tal:condition="path_macro" metal:use-macro="python:path(path_macro)"/>
 
-        					<div class="columns large-12" tal:condition="python:view_macro.getKind() != 'listagem_evento'">
+					<div class="columns large-12" tal:condition="python:view_macro.getKind() != 'listagem_evento'">
         					 
                       <div class="more-news" tal:condition="context/getActiveMoreButton"
                        tal:define="path_othernews view_macro/get_path_other_new|nothing;">
@@ -39,7 +38,6 @@
                                       tal:attributes="href python:'%s/outras-noticias?portal_type=%s' % (context.absolute_url(), context.getListTypes())">
                               
                               <h1 class="subheader vindula-icon-plus-sign left"></h1>
-                              
                           </a>
 
                           <a href="#" tal:condition="path_othernews"
@@ -400,7 +398,7 @@
           </tal:def>
           
           <div id="itens">
-              <tal:def define="portal_type python: (context.getListTypes(),);
+              <tal:def define="portal_type python: context.getListTypes();
                                fields python:[{'label':  ''     , 'attribute': 'getImageIcone', 'is_image':  'True', 'width':  '65',},
                                               {'label': 'Nome'  , 'attribute': 'getSigla_and_Title'},
                                               {'label': 'Contato','attribute': 'getContatoInfo'},
@@ -410,7 +408,7 @@
               </tal:def>
     
     
-              <tal:def define="portal_type python: (context.getListTypes(),);
+              <tal:def define="portal_type python: context.getListTypes();
                                fields python:[{'label':  ''     , 'attribute': 'getImageIcone', 'is_image':  'True', 'width':  '65',},
                                               {'label': 'Nome'  , 'attribute': 'name'},
                                               {'label': 'Unidade','attribute': 'get_sigla_unidadeprincipal'},
@@ -422,4 +420,38 @@
           </div>
       </div>
     </div>
+</metal:macro>
+<metal:macro define-macro="listagem_mais_recentes"
+             tal:condition="python:view_macro.getKind() == 'listagem_mais_recentes'">
+    
+    <div class="columns large-12">
+      <h5>
+          <tal:cont tal:content="context/Title">UNIDADES ORGANIZACIONAIS</tal:cont>
+          <hr/>
+      </h5>
+    </div>
+    <div class="columns large-12">
+      <tal:rep repeat="item view_macro/getItens">
+          <div class="row news_access" 
+               tal:define="obj item/getObject">
+                <div class="columns small-3 padrao_image">
+
+                    <img tal:attributes="src obj/getImageIcone|nothing;
+                                         alt obj/Title; title obj/Title;">
+
+                </div>
+
+                <div class="columns small-9">
+                    <div id="text_tile">
+                        <a href="" tal:attributes="href string:${obj/absolute_url}/view;
+                                                   alt obj/Title;
+                                                   title obj/Title;"> 
+                            <span tal:content="obj/Title">Lorem ipsum.</span> 
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </tal:rep>
+    </div>
+    
 </metal:macro>

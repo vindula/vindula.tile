@@ -61,6 +61,7 @@ TileListagemVertical_schema = BaseTile.schema.copy() + Schema((
                     ("listagem_agenda", _(u"Lista da Agenda")),
                     ("listagem_tabular", _(u"Lista de Tabela")),
                     ("listagem_com_imagem_sem_compartilhamento", _(u"Lista com imagem e sem compartilhamento")),
+                    ("listagem_mais_recentes", _(u"Lista mais recentes")),
                     ],
 
          default='listagem_com_imagem',
@@ -131,9 +132,10 @@ TileListagemVertical_schema = BaseTile.schema.copy() + Schema((
     ),    
                                                                                                                      
 
-    StringField(
+    LinesField(
         name='listTypes',
-        widget=SelectionWidget(
+        multiValued=1,
+        widget=MultiSelectionWidget(
             label=_(u"Lista Tipos de Conteúdo"),
             description=_(u"Selecione o tipo de conteúdo que deseja buscar."),
             label_msgid='vindula_tile_label_listTypes',

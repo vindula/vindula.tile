@@ -10,8 +10,6 @@ grok.templatedir('templates')
 class OtherNewsView(BaseView):
     grok.name('outras-noticias')
     
-    
-    
     def getQuery(self):
         context = self.context
         query = {}
@@ -31,7 +29,18 @@ class OtherNewsView(BaseView):
         
         
         if 'portal_type' in form.keys():
-            query.update({'portal_type': form.get('portal_type', '')})
+            portal_types = form.get('portal_type', '')
+            
+            try:
+                portal_types = eval(portal_types)
+            #Significa que o valor veio vazio 
+            except SyntaxError: 
+                portal_types = ''
+            #Significa que nao veio uma tupla e sim um valor em string
+            except NameError: 
+                pass
+                
+            query.update({'portal_type': portal_types})
             
         else:
             query.update({'portal_type': ('VindulaNews', 'News Item') })
