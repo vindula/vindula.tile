@@ -1,4 +1,4 @@
-<div id="addtilesviewlet" tal:define="enable_add  viewlet/isEnableViewlet|python:False">
+<div id="addtilesviewlet" class="adm-vision hide" tal:define="enable_add  viewlet/isEnableViewlet|python:False">
 	
 	<script type="text/javascript" tal:condition="enable_add">
 		$j(document).ready(function(){ 
