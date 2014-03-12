@@ -3,6 +3,7 @@ from AccessControl import ClassSecurityInfo
 from zope.interface import implements
 from Products.Archetypes.atapi import *
 from plone.app.folder.folder import ATFolder
+from plone.contentrules.engine.interfaces import IRuleAssignable
 from Products.ATContentTypes.content.schemata import finalizeATCTSchema
 
 
@@ -22,7 +23,7 @@ class Layout(ATFolder):
     """ Reserve Content for Layout"""
     security = ClassSecurityInfo()
 
-    implements(ILayout)
+    implements(ILayout, IRuleAssignable)
     portal_type = 'Layout'
     _at_rename_after_creation = True
     schema = Layout_schema

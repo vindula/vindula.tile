@@ -135,7 +135,7 @@
         </p>
 
         <a class="button small radius"
-           tal:attributes="href item/aboslute_url|nothing;
+           tal:attributes="href item/absolute_url|nothing;
                            alt item/Title|nothing;
                            title item/Title|nothing;">Continuar Lendo</a>
     </div>

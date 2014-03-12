@@ -24,7 +24,8 @@
                         </h5>
                     </div>
                     <div class="columns large-12">
-                        <div class="vd_show_my_joboffers"></div>
+                        <div class="vd_show_my_joboffers" 
+                             tal:attributes="data_url_form context/getLink_cadastro|nothing;"></div>
                     </div>
                 </div>
             </div>

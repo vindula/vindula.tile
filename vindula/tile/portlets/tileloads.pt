@@ -14,17 +14,19 @@
     <input type="hidden" name="context_UID" id="context_UID" tal:attributes="value context_obj/UID|string: " />
 
     <tal:rep repeat="tile tiles">
-        <div tal:condition="python:tile.portal_type != 'VindulaFolder' or not tile.getExcludeFromNav()" 
-             id="macro-tile" class="portletWrapper" tal:define="path_macro python:view.getMacro(tile);
-                                                                context nocall:tile" style="float:left"
-                                                    tal:attributes="class string:portletWrapper ${tile/portal_type} ${tile/getKind|nothing} item-tile;
-                                                                    data-name string:${tile/getId}|${tile/UID}|${context_obj/UID};" >
+
+        <div id="macro-tile" class="portletWrapper" 
+             tal:define="path_macro python:view.getMacro(tile);
+                         context nocall:tile" style="float:left"
+             tal:attributes="class string:portletWrapper ${tile/portal_type} ${tile/getKind|nothing} item-tile;
+                             data-name string:${tile/getId}|${tile/UID}|${context_obj/UID};">
 
             <tal:error tal:on-error="string: Erro ao carregar a capa ${tile/Title}">
 
                 <div class="moveTileLink adm-vision hide"tal:condition="python: view.can_manage_tile(context)">
                   <a class="draggingHook" ><img src="++resource++vindula.tile/images/move_icon.png"/></a>
                 </div>  
+
 
                 <metal:block tal:condition="path_macro"
                              metal:use-macro="python:path(path_macro)" />

@@ -25,6 +25,10 @@ function auto_reload(){
             contents = dom.find('#content-core div.content_itens').contents();
 	        $itens.html(contents);    
 	        $itens.css('height', '100%');
+
+	        if (contents.find('.vd-social-left').length){
+                contents.find('.vd-social-left').vindula(null, {user_token: window.token});    
+            }
             
         });
 	});

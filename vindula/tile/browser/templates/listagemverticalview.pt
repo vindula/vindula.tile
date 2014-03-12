@@ -73,12 +73,12 @@
 
     <div class="content_itens columns large-12">
       <p tal:repeat="item view_macro/getItens">
-        <tal:def tal:define="obj item/getObject">
+        <tal:def tal:define="obj item/getObject|nocall:item">
          <img width="16" height="16" alt=""
               tal:condition="obj/getIcon"
               tal:attributes="src obj/getIcon;"  />
          <a
-          tal:attributes="href obj/absolute_url"
+          tal:attributes="href python:'%s%s' % (obj.absolute_url(),  '/view')"
             tal:content="obj/Title">Lorem ipsum dolor sit amet </a>
         </tal:def>
       </p>
@@ -111,8 +111,8 @@
 		    <div class="content_itens">
 			<ul class="square">
 		      <li tal:repeat="item view_macro/getItens">
-		         <a tal:define="obj item/getObject"
-		            tal:attributes="href obj/absolute_url"
+		         <a tal:define="obj item/getObject|nocall:item"
+		            tal:attributes="href python:'%s%s' % (obj.absolute_url(),  '/view')"
 		            tal:content="obj/Title">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a>
 		      </li>
 			</ul>
@@ -138,10 +138,10 @@
               <div class="content_itens">
                 <tal:rep repeat="item view_macro/getItens">
 
-                  <div class="columns large-12 text_descricao" tal:define="obj item/getObject">
+                  <div class="columns large-12 text_descricao" tal:define="obj item/getObject|nocall:item">
                       <div class="row">
                           <div class="columns small-4 " id="image_tile">
-                              <div>
+                              <div tal:condition="obj/getImageSize|nothing">
                                   <img src="++theme++vindula.themedefault/images/demos/demo1-th.png"
                                        tal:condition="python: context.getColumns()=='12'"
                                        tal:attributes="src python:obj.getImageSize('thumb');" />
@@ -151,13 +151,23 @@
                                        tal:attributes="src python:obj.getImageSize('tile');" />
                               </div>
                           </div>
-                          <div class="columns small-8"
-                               tal:define="structure python:obj.getStructures">
-                              <small><tal:rep tal:condition="python:structure()"
-                                              tal:content="python:structure().getSiglaOrTitle()+' /'">LORORO /</tal:rep>
-                                    <tal:cont content="python: obj.creation_date.strftime('%d/%m/%Y %H:%M')"> 27/03/2013 14:30 </tal:cont> </small><br />
-                              <strong><a href="#" tal:attributes="href obj/absolute_url"
-                                                  tal:content="obj/Title">Nova diretoria da Opas visita Bio</a></strong>
+
+                          <div class="columns small-8">
+                              
+                              <small>
+                                <tal:cond tal:condition="python:view_macro.has_organization(obj)">
+                                  <tal:def tal:define="structure python:obj.getStructures">
+                                    <tal:rep tal:condition="python:structure()"
+                                             tal:content="python:structure().getSiglaOrTitle()+' /'">LORORO /</tal:rep>
+                                  </tal:def>
+                                </tal:cond>
+                                <tal:cont content="python: obj.creation_date.strftime('%d/%m/%Y %H:%M')"> 27/03/2013 14:30 </tal:cont>  
+                                
+                              </small><br />
+                              <strong>
+                                <a href="#" tal:attributes="href python:'%s%s' % (obj.absolute_url(),  '/view')"
+                                            tal:content="obj/Title">Nova diretoria da Opas visita Bio</a>
+                              </strong>
                           </div>
                           <div class="vd-social-left columns small-12" tal:define="context nocall: obj">
                               <div metal:use-macro="context/macro-comboStandard-content/macros/view" />
@@ -168,6 +178,59 @@
                 </tal:rep>
               </div>
 		</div>
+</metal:macro>
+
+
+<metal:macro define-macro="listagem_com_imagem_sem_compartilhamento"
+             tal:condition="python:view_macro.getKind() == 'listagem_com_imagem_sem_compartilhamento'">
+    <div id="box-listagem" class="clear">
+              <div class="columns large-12 box-title">
+                  <h4>
+                      <tal:cont tal:content="context/Title">Mais Populares</tal:cont>
+                      <hr/>
+                  </h4>
+              </div>
+
+              <!-- select id="sort_on"  tal:condition="context/getActiveSort|python:True">
+                  <option value="data">Data</option>
+                  <option value="mais_acessados">Mais acessados</option>
+              </select -->
+              <div class="content_itens">
+                <tal:rep repeat="item view_macro/getItens">
+
+                  <div class="columns large-12 text_descricao" tal:define="obj item/getObject|nocall:item">
+                      <div class="row">
+                          <div class="columns small-4 " id="image_tile">
+                              <div tal:condition="obj/getImageSize|nothing">
+                                  <img src="++theme++vindula.themedefault/images/demos/demo1-th.png"
+                                       tal:condition="python: context.getColumns()=='12'"
+                                       tal:attributes="src python:obj.getImageSize('thumb');" />
+                                  
+                                  <img src="++theme++vindula.themedefault/images/demos/demo1-th.png"
+                                       tal:condition="python: context.getColumns()=='6'"
+                                       tal:attributes="src python:obj.getImageSize('tile');" />
+                              </div>
+                          </div>
+                          <div class="columns small-8">
+                              <small>
+                                <tal:cond tal:condition="python:view_macro.has_organization(obj)">
+                                  <tal:def tal:define="structure python:obj.getStructures">
+                                    <tal:rep tal:condition="python:structure()"
+                                             tal:content="python:structure().getSiglaOrTitle()+' /'">LORORO /</tal:rep>
+                                  </tal:def>
+                                </tal:cond>
+
+                                <tal:cont content="python: obj.creation_date.strftime('%d/%m/%Y %H:%M')"> 27/03/2013 14:30 </tal:cont>
+                              </small><br />
+                              <strong><a href="#" tal:attributes="href python:'%s%s' % (obj.absolute_url(),  '/view')"
+                                                  tal:content="obj/Title">Nova diretoria da Opas visita Bio</a></strong>
+                          </div>
+                      </div>
+                  </div>
+
+                </tal:rep>
+              </div>
+    </div>
 </metal:macro>
 
 <metal:macro define-macro="listagem_sem_imagem"
@@ -187,14 +250,21 @@
               <div class="content_itens">
                 <tal:rep repeat="item view_macro/getItens">
 
-                  <div class="columns large-12 text_descricao" tal:define="obj item/getObject">
+                  <div class="columns large-12 text_descricao" tal:define="obj item/getObject|nocall:item">
                       <div class="row">
-                          <div class="columns small-12"
-                               tal:define="structure python:obj.getStructures">
-                              <small><tal:rep tal:condition="python:structure()"
-                                              tal:content="python:structure().getSiglaOrTitle()+' /'">LORORO /</tal:rep>
-                                    <tal:cont content="python: obj.creation_date.strftime('%d/%m/%Y %H:%M')"> 27/03/2013 14:30 </tal:cont> </small><br />
-                              <strong><a href="#" tal:attributes="href obj/absolute_url"
+                          <div class="columns small-12">
+                              
+                              <small>
+                                <tal:cond tal:condition="python:view_macro.has_organization(obj)">
+                                  <tal:def tal:define="structure python:obj.getStructures">
+                                    <tal:rep tal:condition="python:structure()"
+                                             tal:content="python:structure().getSiglaOrTitle()+' /'">LORORO /</tal:rep>    
+                                  </tal:def>
+                                </tal:cond>  
+                                <tal:cont content="python: obj.creation_date.strftime('%d/%m/%Y %H:%M')"> 27/03/2013 14:30 </tal:cont>
+                              </small><br />
+
+                              <strong><a href="#" tal:attributes="href python:'%s%s' % (obj.absolute_url(),  '/view')"
                                                   tal:content="obj/Title">Nova diretoria da Opas visita Bio</a></strong>
                           </div>
 
@@ -221,13 +291,15 @@
   <div class="columns large-12" id="tile-events">
       <div class="row content_itens">
         <tal:rep repeat="item python:view_macro.getItens(is_date=True)">
-          <div class="event clear" tal:define="obj item/getObject">
+          <div class="event clear" tal:define="obj item/getObject|nocall:item;
+											    data_month python: obj.startDate.strftime('%d/%m/%Y')">
+												
             <div class="columns small-3 date-box">
                 <div class="box-date">
                     <h2 tal:condition="obj/startDate|nothing"
                         tal:content="python: obj.startDate.strftime('%d')">21</h2>
                     <h6 tal:condition="obj/startDate|nothing"
-                        tal:content="python: obj.startDate.strftime('%b')">MAR</h6>
+                        tal:content="python: view_macro.get_convert_data(data_month)">MAR</h6>
                 </div>
             </div>
             <div class="columns small-9 box-title">
@@ -292,7 +364,7 @@
 
     <div class="content_itens">
       <tal:rep repeat="item view_macro/getItens">
-        <div class="main_text clear" tal:define="obj item/getObject">
+        <div class="main_text clear" tal:define="obj item/getObject|nocall:item">
 
           <a tal:attributes="href obj/absolute_url"
             tal:content="obj/Title">Lorem ipsum dolor sit amet </a>

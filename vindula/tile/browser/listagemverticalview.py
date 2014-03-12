@@ -2,6 +2,8 @@
 from five import grok
 from vindula.tile.browser.baseview import BaseView
 import DateTime, random
+from datetime import datetime, date, timedelta
+
 
 grok.templatedir('templates')
 
@@ -42,25 +44,41 @@ class ListagemVerticalView(BaseView):
             query['sort_order'] ='ascending'
         
         itens = self.portal_catalog(query)
+        L = []
+        L_tmp = []
 
+        for fix in context.getFixed_featured():
+            L.append(fix)
+            L_tmp.append(fix.UID())
+
+        if len(itens) + len(L) < numbers:
+            numbers = len(itens) + len(L)
 
         if context.getActiveAutoReload():
-            L = []
-            L_tmp = []
-
-            if len(itens) < numbers:
-                numbers = len(itens)
-
             while len(L) < numbers:
                 chosen = random.choice(itens)
                 if not chosen.UID in L_tmp:
                     L_tmp.append(chosen.UID)
                     L.append(chosen)
-
-            return L
+           
         else:
-            return itens[:numbers]
+            for item in itens:
+                if len(L) < numbers:
+                    L_tmp.append(item.UID)
+                    L.append(item)
+                else:
+                    break
+       
+        return L
+    
+    def get_convert_data(self, str_data):
+        months = ['XX','Jan','Fev','Mar','Abr','Maio','Jun',\
+                       'Jul','Ago','Set', 'Out', 'Nov','Dez']
 
+        list_date = str_data.split('/')
+        obj_date = date(int(list_date[2]),int(list_date[1]),int(list_date[0]))
+        mes = months[obj_date.month]
+        return mes
 
     def get_path_other_new(self):
         path = self.context.getPath_othernews()
@@ -68,3 +86,10 @@ class ListagemVerticalView(BaseView):
             return path.absolute_url()
 
         return None
+
+
+    def has_organization(self, obj):
+        if hasattr(obj, 'getStructures'):
+            return True
+        return False
+

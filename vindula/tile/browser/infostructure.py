@@ -3,6 +3,7 @@ from five import grok
 from zope.interface import Interface
 from Products.CMFCore.utils import getToolByName
 from vindula.myvindula.tools.utils import UtilMyvindula
+from vindula.content.models.content import ModelsContent
 
 grok.templatedir('templates')
 
@@ -51,3 +52,13 @@ class InfoStructureView(grok.View, UtilMyvindula):
         data = portal_transforms.convertTo('text/html', text, mimetype='text/-x-web-intelligent')
         html = data.getData()
         return html
+    
+    def getStructureFromDB(self, uid):
+        return ModelsContent().getContent_by_uid(uid)
+        
+        
+        
+        
+        
+        
+        

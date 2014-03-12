@@ -3,8 +3,8 @@ from five import grok
 from vindula.tile.browser.baseview import BaseView
 
 from vindula.tile.content.interfaces import ILayout
-
 from zope.security import checkPermission
+
 
 grok.templatedir('templates')
 
@@ -37,6 +37,65 @@ class LayoutView(BaseView):
                         scripts_js.append(i)
 
         return scripts_js
+    
+    def getStyleSheets_css(self):
+        style_sheets = []
+
+        #Coleta das folhas de estilo css dos tiles
+        context = self.context
+        tiles = context.values()
+
+        for tile in tiles:
+            if hasattr(tile, 'style_sheets'):
+                for i in tile.style_sheets:
+                    if not i in style_sheets:
+                        style_sheets.append(i)
+
+        return style_sheets
+
+
+    def _get_catalog_tiles(self):
+        context = self.context
+        current_user = self.p_membership.getAuthenticatedMember()
+        tiles = []
+
+        itens = self.portal_catalog(**{'sort_on': 'getObjPositionInParent',
+                                   'portal_type':['TileAccordionContent',
+                                                  'TileBanner',
+                                                  'TileBannerCompost',
+                                                  'TileBirthdays',
+                                                  'TileCalendar',
+                                                  'TileFeatured',
+                                                  'TileFood',
+                                                  'TileHowDo',
+                                                  'TileInfoStructure',
+                                                  'TileJobOffer',
+                                                  'TileLabel',
+                                                  'TileListServices',
+                                                  'TileLibrary',
+                                                  'TileListagemHorizontal',
+                                                  'TileListagemVertical',
+                                                  'TileMacroList',
+                                                  'TileMoreAccess',
+                                                  'TileNewEmployee',
+                                                  'TileOrganogram',
+                                                  'TilePoll',
+                                                  'TileReferenceList',
+                                                  'TileSimpleMacro',
+                                                  'TileTabularList',
+                                                  'TileTeam',
+                                                  'TilePoiTracker'],  
+                                   # 'review_state':['published', 'internally_published', 'external'],
+                                   'path':{'query':'/'.join(context.getPhysicalPath()), 'depth': 5}
+                                })
+
+        for t in itens:
+            t = t.getObject()
+            if not t.getExcludeFromNav() and\
+                self.has_public_or_permission(current_user, t):
+                tiles.append(t)
+
+        return tiles
 
 
 
@@ -65,7 +124,10 @@ class LayoutView(BaseView):
 
         posicionados = 0
         posicao = 0
-        tiles = [ t for t in context.values() if t.portal_type != 'VindulaFolder' and not t.getExcludeFromNav()]
+        
+        tiles = self._get_catalog_tiles()
+        # tiles = [ t for t in context.values() if t.portal_type != 'VindulaFolder' and not t.getExcludeFromNav()]
+
         tiles_posicionados = []
         for i in range(len(tiles)):
 

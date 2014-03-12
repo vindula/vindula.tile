@@ -16,6 +16,8 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from vindula.tile import MessageFactory as _
 
 from zope.security import checkPermission
+from vindula.tile.browser.layout import LayoutView
+
 
 class ITileLoads(IPortletDataProvider):
 
@@ -69,9 +71,14 @@ class Renderer(base.Renderer):
 
         data = self.data
         rid = catalog.getrid(portal_path + data.tiles_list)
-        brain = catalog._catalog[rid]
-        obj = brain.getObject()
-        return obj
+        if rid:
+            brain = catalog._catalog[rid]
+            obj_layout = brain.getObject()
+
+            return obj_layout
+        
+        else:
+            return None
 
     def getObjContext(self):
         return self._getTiles_list()
@@ -80,7 +87,6 @@ class Renderer(base.Renderer):
     def getTiles(self):
         obj = self._getTiles_list()
         return obj.values()
-
 
     def getScripts_js(self):
         scripts_js = []
