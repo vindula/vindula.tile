@@ -83,11 +83,12 @@
                                                     <p tal:content="dados_gestor/position|string: ">Diretor</p>
                                                 </div>
                                             </div>
-                                            <div class="left manager-contact">
+                                            <div class="left manager-contact"
+                                                 tal:define="show_phone python: (dados_gestor.get('show_phone', False)) and ((dados_gestor.get('show_phone') == 'on') and True or False) or False">
                                                 <a href="#" tal:attributes="href python: 'mailto:'+ str(dados_gestor.get('email',''))"
                                                             tal:content="dados_gestor/email|string: " >alfredo.m@bio.fiocruz.br</a>
-                                                <p tal:content="dados_gestor/phone_number|string: " >(00) 3333-3333</p>
-                                                <p tal:content="dados_gestor/cell_phone|string: " >(00) 3333-3333</p>
+                                                <p tal:condition="python:show_phone and dados_gestor.get('phone_number', False)"
+                                                   tal:content="dados_gestor/phone_number|string: " >(00) 3333-3333</p>
                                             </div>
                                         </div>
                                     </div>
@@ -117,11 +118,12 @@
                                                     <p tal:content="dados_gestor/position|string: ">Diretor</p>
                                                 </div>
                                             </div>
-                                            <div class="left manager-contact">
+                                            <div class="left manager-contact"
+                                                 tal:define="show_phone python: (dados_gestor.get('show_phone', False)) and ((dados_gestor.get('show_phone') == 'on') and True or False) or False">
                                                 <a href="#" tal:attributes="href python: 'mailto:'+ str(dados_gestor.get('email',''))"
                                                             tal:content="dados_gestor/email|string: " >alfredo.m@bio.fiocruz.br</a>
-                                                <p tal:content="dados_gestor/phone_number|string: " >(00) 3333-3333</p>
-                                                <p tal:content="dados_gestor/cell_phone|string: " >(00) 3333-3333</p>
+                                                <p tal:condition="python:show_phone and dados_gestor.get('phone_number', False)"
+                                                   tal:content="dados_gestor/phone_number|string: " >(00) 3333-3333</p>
                                             </div>
                                         </div>
                                     </div>
