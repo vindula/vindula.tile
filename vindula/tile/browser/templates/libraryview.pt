@@ -50,7 +50,7 @@
                                 <tal:repl condition="python: repeat['theme'].start or (repeat['theme'].index % 2 == 0)" 
                                           replace="structure python: '<div class=\'columns large-12 small-12\'> <div class=\'row\'>'"></tal:repl>
                                     
-                                    <div class="block-theme columns large-6 small-6">
+                                    <div class="block-theme columns large-6">
                                         <div class="image-theme left">
                                             <img width="60"
                                                  tal:attributes="src theme/getUrlIcon;
