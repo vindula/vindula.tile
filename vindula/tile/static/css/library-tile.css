@@ -13,13 +13,30 @@
     }
     .block-theme .content-theme .description p { padding-bottom: 0; }
     
-.content-container { padding-top: 2px; }
+.content-container { 
+	padding-top: 2px;
+	margin-bottom: 5px;
+}
+
+.container-typologies .content-container .container-image { max-width: 80px; }
+.container-typologies .content-container .container-image img { 
+	width: 80px;
+	border-radius: 10px; 
+}
   
 .container-typologies .content-container .title { 
     padding: 10px 0 0 10px;
-    max-width: 80%;
+    max-width: 77%;
 }
-  
+
+@media screen and (min-width: 1145px), (max-width: 420px) {
+	.container-typologies .content-container .title { max-width: 67%; }
+}
+
+@media screen and (min-width: 877px) and (max-width: 1145px) {
+    .container-typologies .content-container .title {  max-width: 54%; }
+}
+
 .container-image.vindula-video img,
 .container-image.vindula-album img { 
     max-width: 100px;
