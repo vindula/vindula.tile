@@ -18,7 +18,16 @@
 	margin-bottom: 5px;
 }
 
-.container-typologies .content-container .container-image { max-width: 80px; }
+.container-typologies .content-container .container-image { 
+	max-width: 80px;
+	position: relative; 
+}
+
+.container-typologies .content-container .container-image i {
+	left: 28%;
+    bottom: 27%;
+}
+
 .container-typologies .content-container .container-image img { 
 	width: 80px;
 	border-radius: 10px; 
