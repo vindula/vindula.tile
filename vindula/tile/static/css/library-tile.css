@@ -28,9 +28,10 @@
     bottom: 27%;
 }
 
-.container-typologies .content-container .container-image img { 
+.container-typologies .content-container .container-image.vindula-video img,
+.container-typologies .content-container .container-image.vindula-album img { 
 	width: 80px;
-	border-radius: 10px; 
+	border-radius: 10px;
 }
   
 .container-typologies .content-container .title { 
