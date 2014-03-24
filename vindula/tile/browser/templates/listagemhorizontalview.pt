@@ -1,234 +1,243 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
-      xmlns:tal="http://xml.zope.org/namespaces/tal"
-      xmlns:metal="http://xml.zope.org/namespaces/metal"
-      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-      metal:use-macro="context/main_template/macros/master"
-      lang="en"
-      i18n:domain="vindula.tile">
+xmlns:tal="http://xml.zope.org/namespaces/tal"
+xmlns:metal="http://xml.zope.org/namespaces/metal"
+xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+metal:use-macro="context/main_template/macros/master"
+lang="en"
+i18n:domain="vindula.tile">
 
-<head>
+    <head>
 
-	<metal:js fill-slot="javascript_head_slot">
+        <metal:js fill-slot="javascript_head_slot">
 
-	  <script type="text/javascript" src=""
-	          tal:attributes="src string:${context/absolute_url|nothing}/++resource++vindula.tile/js/ajax_boll_batch.js"></script>
-	</metal:js>
+            <script type="text/javascript" src=""
+            tal:attributes="src string:${context/absolute_url|nothing}/++resource++vindula.tile/js/ajax_boll_batch.js"></script>
+        </metal:js>
 
-</head>
+    </head>
 
-<body>
-<metal:main fill-slot="content-core">
-    <metal:macro define-macro="page"
-                 tal:define="global view_macro nocall:context/@@listagemhorizontal-view;
-                             path_macro string:context/@@listagemhorizontal-view/macros/${context/getListTemplates}">
-        <div class="row">
-            <metal:block tal:condition="path_macro"
-                         metal:use-macro="python:path(path_macro)"/>
+    <body>
+        <metal:main fill-slot="content-core">
+            <metal:macro define-macro="page"
+            tal:define="global view_macro nocall:context/@@listagemhorizontal-view;
+            path_macro string:context/@@listagemhorizontal-view/macros/${context/getListTemplates}">
+                <div class="row">
+                    <metal:block tal:condition="path_macro"
+                           metal:use-macro="python:path(path_macro)"></metal:block>
 
-		</div>
-    </metal:macro>
-</metal:main>
-</body>
+                </div>
+            </metal:macro>
+        </metal:main>
+    </body>
 </html>
 
 <metal:macro define-macro="destaque_unico"
              tal:condition="python:context.getListTemplates() == 'destaque_unico'">
-	<div class="columns large-12"  tal:define="itens view_macro/getItens;
-                        				       bullets_false python:'bullets:false;;timer_speed:0;;navigation_arrows:false';">
-	    <div class="row main_row">
-	        <div class="columns large-12 listagem_horizontal_text box-title">
-	            <h4>
-	            	<tal:cont content="context/Title|nothing"> Notícias </tal:cont>
-	            	<hr />
-	            </h4>
-	        </div>
-	        <div class="columns large-12 listagem_horizontal_main">
-	            <ul data-orbit id="tile-news"
-	                tal:attributes="data-options python: len(itens)==1 and bullets_false;">
-	                <li tal:repeat="item itens">
-	                    <div class="row">
-	                        <div class="columns small-4 listagem_horizontal_image">
-	                            <img tal:attributes="src item/image"
-	                              src="++theme++vindula.themedefault/images/demos/demo2-th.gif" />
-	                        </div>
-	                        <div class="columns small-8 listagem_horizontal_text">
+    <div class="columns large-12"  tal:define="itens view_macro/getItens;
+                                               bullets_false python:'bullets:false;;timer_speed:0;;navigation_arrows:false';">
+        <div class="row main_row">
+            <div class="columns large-12 listagem_horizontal_text box-title">
+                <h4>
+                <tal:cont content="context/Title|nothing">
+                    Notícias
+                </tal:cont>
+                <hr />
+                </h4>
+            </div>
+            <div class="columns large-12 listagem_horizontal_main">
+                <ul data-orbit id="tile-news"
+                tal:attributes="data-options python: len(itens)==1 and bullets_false;">
+                    <li tal:repeat="item itens">
+                        <div class="row">
+                            <div class="columns small-4 listagem_horizontal_image">
+                                <img tal:attributes="src item/image"
+                                src="++theme++vindula.themedefault/images/demos/demo2-th.gif" />
+                            </div>
+                            <div class="columns small-8 listagem_horizontal_text">
 
-								<h4 tal:condition="context/getActiveSubTitulo|python:False"
-								    tal:content="item/subtitulo|string: ">
-								    Lorem ipsum dolor sit amet / Consectetur adipiscing elit.</h4>
+                                <h4 tal:condition="context/getActiveSubTitulo|python:False"
+                                tal:content="item/subtitulo|string: "> Lorem ipsum dolor sit amet / Consectetur adipiscing elit.</h4>
 
-	                            <small tal:content="string: ${item/unidade|nothing} / ${item/date|nothing} ${item/hour|nothing}">ASCOM / 27/03/2013 14:30</small>
+                                <small tal:content="string: ${item/unidade|nothing} / ${item/date|nothing} ${item/hour|nothing}">ASCOM / 27/03/2013 14:30</small>
 
-	                            <h5><a tal:attributes="href item/url|nothing"
-	                                   tal:content="item/title|nothing"
-	                                   href="#">Nova diretoria da Opas visita Bio</a></h5>
+                                <h5><a tal:attributes="href item/url|nothing"
+                                tal:content="item/title|nothing"
+                                href="#">Nova diretoria da Opas visita Bio</a></h5>
 
-	                            <p tal:content="item/description|nothing">Lorem ipsum dolor sit amet,
-	                            	consectetur adipiscing elit. In ornare placerat leo,
-	                            	non scelerisque sem mollis ut.</p>
+                                <p tal:content="item/description|nothing">
+                                    Lorem ipsum dolor sit amet,
+                                    consectetur adipiscing elit. In ornare placerat leo,
+                                    non scelerisque sem mollis ut.
+                                </p>
 
+                                <tal:cond condition="context/getActiveSocial">
+                                    <div class="vd-social-left"
+                                         tal:define="change_id context/id|nothing;
+                                                     context nocall: item/obj;">
+                                        <div metal:use-macro="context/macro-comboStandard-content/macros/view" />
+                                    </div>
+                                </tal:cond>
 
-			                <tal:cond condition="context/getActiveSocial">
-        					    <div class="vd-social-left" tal:define="context nocall: item/obj">
-                                    <div metal:use-macro="context/macro-comboStandard-content/macros/view" />
-                                </div>
-			                </tal:cond>
-                            
-	                        </div>
-	                    </div>
-	                </li>
-	            </ul>
-	        </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
 
-	    </div>
-	</div>
+        </div>
+    </div>
 </metal:macro>
 
 <metal:macro define-macro="destaque_multipla"
              tal:condition="python:context.getListTemplates() == 'destaque_multipla'">
-	<div class="columns large-12"  tal:define="itens view_macro/getItens;">
-	    <div class="row">
-	        <div class="columns large-12" tal:repeat="item itens">
+    <div class="columns large-12"  tal:define="itens view_macro/getItens;">
+        <div class="row">
+            <div class="columns large-12" tal:repeat="item itens">
 
-	        	<h4 tal:condition="context/getActiveSubTitulo|python:False"
-				    tal:content="item/subtitulo|string: ">
-				    Lorem ipsum dolor sit amet / Consectetur adipiscing elit.</h4>
+                <h4 tal:condition="context/getActiveSubTitulo|python:False"
+                    tal:content="item/subtitulo|string: "> Lorem ipsum dolor sit amet / Consectetur adipiscing elit.</h4>
 
-	            <small tal:content="string: ${item/unidade|nothing} / ${item/date|nothing} ${item/hour|nothing}">ASCOM / 27/03/2013 14:30</small>
-	            <h5><a tal:attributes="href item/url|nothing"
-	                   tal:content="item/title|nothing"
-	                   href="#">Nova diretoria da Opas visita Bio</a></h5>
-	                <p tal:content="item/description|nothing">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ornare placerat leo,
-	                non scelerisque sem mollis ut.</p>
+                <small tal:content="string: ${item/unidade|nothing} / ${item/date|nothing} ${item/hour|nothing}">ASCOM / 27/03/2013 14:30</small>
+                <h5>
+                    <a tal:attributes="href item/url|nothing"
+                       tal:content="item/title|nothing"
+                       href="#">Nova diretoria da Opas visita Bio</a>
+                </h5>
+                <p tal:content="item/description|nothing">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ornare placerat leo,
+                    non scelerisque sem mollis ut.
+                </p>
 
- 			<tal:cond condition="context/getActiveSocial">
-        		<div class="left" tal:define="context nocall:item/obj">
-                	<metal:use use-macro="context/macro-comboStandard-content/macros/view" />
-	                </div>
-			</tal:cond>
+                <tal:cond condition="context/getActiveSocial">
+                    <div class="left"
+                         tal:define="change_id context/id|nothing;
+                                     context nocall:item/obj;">
+                        <metal:use use-macro="context/macro-comboStandard-content/macros/view" />
+                    </div>
+                </tal:cond>
+            </div>
 
-
-	        </div>
-
-	        <div class="columns large-12">
-	            <div class="more-news"
+            <div class="columns large-12">
+                <div class="more-news"
                      tal:condition="context/getActiveMoreButton">
-	                <a href="#" tal:attributes="href string:${context/absolute_url}/outras-noticias">
-	                    <h1 class="subheader vindula-icon-plus-sign left"></h1>
-	                    <p class="left">Notícias</p>
-	                </a>
-	            </div>
-	        </div>
-	    </div>
-	</div>
+                    <a href="#" tal:attributes="href string:${context/absolute_url}/outras-noticias"> 
+                        <h1 class="subheader vindula-icon-plus-sign left"></h1>
+                        <p class="left">
+                            Notícias
+                        </p> 
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 </metal:macro>
 
 <metal:macro define-macro="destaque_two_columns"
              tal:condition="python:context.getListTemplates() == 'destaque_two_columns'">
-	<div class="columns large-12">
-	 	<div id="tile-listagem-horizontal-two-columns" class="row list_tile"
-			 tal:define="itens view_macro/getItens;
+    <div class="columns large-12">
+        <div id="tile-listagem-horizontal-two-columns" 
+             class="row list_tile"
+             tal:define="itens view_macro/getItens;
+                         Batch python:modules['Products.CMFPlone'].Batch;
+                         b_size request/b_size|string:2;
+                         b_start python:0;
+                         b_start request/b_start | b_start;
+                         batch python:Batch(itens, int(b_size), int(b_start), pagerange=len(itens));"
+             tal:condition="batch">
 
-						 Batch python:modules['Products.CMFPlone'].Batch;
-	                     b_size request/b_size|string:2;
-	                     b_start python:0;
-	                     b_start request/b_start | b_start;
+            <div class="columns large-12 box-title">
+                <div class="ajax_pagination right" id="pag-nav">
+                    <metal:block metal:use-macro="context/boll_batch/macros/navigation" />
+                </div>
 
-	                     batch python:Batch(itens, int(b_size), int(b_start), pagerange=len(itens));"
-	         tal:condition="batch">
+                <h5>
+                    <tal:cont content="context/Title|nothing">
+                        NOTÍCIAS INSTITUCIONAIS
+                    </tal:cont>
+                    <hr/>
+                </h5>
+            </div>
+            <div class="lista-news">
+                <input type="hidden" id="b_size" tal:attributes="value b_size" />
+                <input type="hidden" id="b_start" tal:attributes="value b_start" />
+                <input type="hidden" id="absolute_url" tal:attributes="value string:${context/absolute_url}" />
 
-		    <div class="columns large-12 box-title">
-		    	<div class="ajax_pagination right" id="pag-nav">
-	            	<metal:block metal:use-macro="context/boll_batch/macros/navigation" />
-	        	</div>
+                <tal:rep tal:repeat="item batch">
+                    <div class="columns large-6 lista-news-conteudo" >
+                        <div class="row">
+                            <div class="columns small-4 " id="image_tile">
+                                <img class="border-shadow" width="80" src=""
+                                     tal:attributes="src item/image"/>
+                            </div>
+                            <div class="columns small-8">
 
-		        <h5>
-		        	<tal:cont content="context/Title|nothing"> NOTÍCIAS INSTITUCIONAIS</tal:cont>
-		         <hr/>
-		        </h5>
-		    </div>
-			<div class="lista-news">
-				<input type="hidden" id="b_size" tal:attributes="value b_size" />
-	        	<input type="hidden" id="b_start" tal:attributes="value b_start" />
-	        	<input type="hidden" id="absolute_url" tal:attributes="value string:${context/absolute_url}" />
+                                <h4 tal:condition="context/getActiveSubTitulo|python:False"
+                                    tal:content="item/subtitulo|string: "> Lorem ipsum dolor sit amet / Consectetur adipiscing elit.</h4>
 
-				<tal:rep tal:repeat="item batch">
-			  		<div class="columns large-6 lista-news-conteudo" >
-				        <div class="row">
-				            <div class="columns small-4 " id="image_tile">
-				                <img class="border-shadow" width="80" src=""
-				                	 tal:attributes="src item/image"/>
-				            </div>
-				            <div class="columns small-8">
-								
-								<h4 tal:condition="context/getActiveSubTitulo|python:False"
-								    tal:content="item/subtitulo|string: ">
-								    Lorem ipsum dolor sit amet / Consectetur adipiscing elit.</h4>
-
-				            	<small tal:content="string: ${item/unidade|nothing} / ${item/date|nothing} ${item/hour|nothing}">
-			                			LORORO / 27/03/2013 14:30</small>
-			                	<strong><br /><a href="#" tal:attributes="href item/url|nothing" tal:content="item/title|nothing">
-			                			Nova diretoria da Opas visita Bio</a></strong>
-				            </div>
+                                <small tal:content="string: ${item/unidade|nothing} / ${item/date|nothing} ${item/hour|nothing}"> LORORO / 27/03/2013 14:30</small>
+                                <strong>
+                                <br />
+                                <a href="#" tal:attributes="href item/url|nothing" tal:content="item/title|nothing"> Nova diretoria da Opas visita Bio</a></strong>
+                            </div>
                             <tal:cond condition="context/getActiveSocial">
-			    <div class="vd-social-left columns small-12" tal:define="context nocall: item/obj">
-                                <div metal:use-macro="context/macro-comboStandard-content/macros/view" /></div>
 
-			    </tal:cond>
-			    </div>
-
-
-				    </div>
-
-				</tal:rep>
-			</div>
-
-			<!-- Spinner -->
-	        <div class="spinner display-none" style="text-align:center; margin: 30px;">
-	            <img src="" alt="spinner" align="center" tal:attributes="src string:${context/portal_url}/++resource++vindula.myvindula.views/ajaxLoader.gif" />
-	        </div>
-		</div>
-	</div>
+                                <div class="vd-social-left columns small-12"
+                                     tal:define="change_id context/id|nothing;
+                                                 context nocall: item/obj;">
+                                    <div metal:use-macro="context/macro-comboStandard-content/macros/view" />
+                                </div>
+                            </tal:cond>
+                        </div>
+                    </div>
+                </tal:rep>
+            </div>
+            <!-- Spinner -->
+            <div class="spinner display-none" style="text-align:center; margin: 30px;">
+                <img src="" alt="spinner" align="center" tal:attributes="src string:${context/portal_url}/++resource++vindula.myvindula.views/ajaxLoader.gif" />
+            </div>
+        </div>
+    </div>
 </metal:macro>
+
 <metal:macro define-macro="destaque_duplo"
              tal:condition="python:context.getListTemplates() == 'destaque_duplo'">
 
-	<div class="columns large-12 listagem_horizontal_main" tal:define="itens view_macro/getItens;
-																	   bullets_false python:'bullets:false;;timer_speed:0;;navigation_arrows:false';">
-		<ul data-orbit id="tile-news" tal:attributes="data-options python: len(itens)==1 and bullets_false;">
-			
-			<tal:rep repeat="item itens">
-				<tal:cond condition="python:repeat['item'].even() or repeat['item'].start">
- 					<tal:structure content="structure python: '<li >\n<div class=\'row\' >'"></tal:structure>
-				</tal:cond>
+    <div class="columns large-12 listagem_horizontal_main" 
+         tal:define="itens view_macro/getItens;
+                     bullets_false python:'bullets:false;;timer_speed:0;;navigation_arrows:false';">
+        <ul data-orbit id="tile-news" tal:attributes="data-options python: len(itens)==1 and bullets_false;">
 
-				<div class="columns large-6 listagem_horizontal_duas_colunas">
-					<div class="image-noticia-duas-colunas">
-						<img tal:attributes="src item/image"
-							  src="++theme++vindula.themedefault/images/demos/demo2-th.gif" />
-					</div>
-					<div class="conteudo-noticia-duas-colunas">
+            <tal:rep repeat="item itens">
+                <tal:cond condition="python:repeat['item'].even() or repeat['item'].start">
+                    <tal:structure content="structure python: '<li >\n<div class=\'row\' >'"></tal:structure>
+                </tal:cond>
 
-						<h4 tal:condition="context/getActiveSubTitulo|python:False"
-						    tal:content="item/subtitulo|string: ">
-						    Lorem ipsum dolor sit amet / Consectetur adipiscing elit.</h4>
+                <div class="columns large-6 listagem_horizontal_duas_colunas">
+                    <div class="image-noticia-duas-colunas">
+                        <img tal:attributes="src item/image"
+                        src="++theme++vindula.themedefault/images/demos/demo2-th.gif" />
+                    </div>
+                    <div class="conteudo-noticia-duas-colunas">
+                        <h4 tal:condition="context/getActiveSubTitulo|python:False"
+                        tal:content="item/subtitulo|string: "> Lorem ipsum dolor sit amet / Consectetur adipiscing elit.</h4>
 
-						<small tal:content="string: ${item/date|nothing} ${item/hour|nothing}">27/03/2013 14:30</small>
+                        <small tal:content="string: ${item/date|nothing} ${item/hour|nothing}">27/03/2013 14:30</small>
 
-	                    <h5><a href="#" tal:attributes="href item/url|nothing"
-	                               	    tal:content="item/title|nothing">Nova diretoria da Opas visita Bio</a></h5>
+                        <h5><a href="#" tal:attributes="href item/url|nothing"
+                                        tal:content="item/title|nothing">Nova diretoria da Opas visita Bio</a></h5>
 
-	                    <p tal:content="item/description|nothing">Lorem ipsum dolor sit amet,
-	                    	consectetur adipiscing elit. In ornare placerat leo,
-	                    	non scelerisque sem mollis ut.</p>
-					</div>
-				</div>
-		
-				<tal:cond condition="python:repeat['item'].odd() or repeat['item'].end" >	
-					 <tal:structure content="structure python:'</li>\n</div>\n'"></tal:structure>
-				</tal:cond>
-			</tal:rep>
-		
-		</ul>
-	</div>
+                        <p tal:content="item/description|nothing">
+                            Lorem ipsum dolor sit amet,
+                            consectetur adipiscing elit. In ornare placerat leo,
+                            non scelerisque sem mollis ut.
+                        </p>
+                    </div>
+                </div>
+
+                <tal:cond condition="python:repeat['item'].odd() or repeat['item'].end" >
+                    <tal:structure content="structure python:'</li>\n</div>\n'"></tal:structure>
+                </tal:cond>
+            </tal:rep>
+        </ul>
+    </div>
 </metal:macro>
