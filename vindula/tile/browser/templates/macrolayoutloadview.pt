@@ -1,0 +1,32 @@
+ <metal:macro define-macro="page">
+  <div class="item-tile" 
+     id="macro-tile" 
+     tal:define="portal_type item/portal_type|string: ;
+                 path_macro python:view.getMacro(item);
+                 context nocall:item"
+     tal:attributes="class python:item.getIs_accessory() and 'is_accessory  %s %s' %(portal_type,class_defaut) or '%s %s' %(portal_type,class_defaut);
+                     data-name string:${item/getId}|${item/UID}|${view/context/UID};">
+
+    <tal:cod tal:condition="path_macro"
+             tal:on-error="string: Erro ao carregar o bloco ${context/Title}">
+
+      <div class="moveTileLink adm-vision hide" tal:condition="python: view.can_manage_tile(context)">
+        <a class="draggingHook" ><img src="++resource++vindula.tile/images/move_icon.png"/></a>
+      </div>  
+
+      <metal:block metal:use-macro="python:path(path_macro)"/>
+
+      <div class="manageTileLink adm-vision hide clear" tal:condition="python: view.can_manage_tile(context)">
+        <a  alt="Excluir o Bloco" title="Excluir o Bloco"
+            class="exclude-tile manage"
+            tal:attributes="href string:${context/absolute_url}/delete_confirmation" ></a>  
+      
+        <a  alt="Editar o Bloco" title="Editar o Bloco"
+            class="manage-tile manage"
+            tal:attributes="href string:${context/absolute_url}/edit" ></a>  
+      </div>
+
+    </tal:cod>
+
+  </div>
+</metal:macro>

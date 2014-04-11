@@ -144,12 +144,13 @@ class LayoutView(BaseView):
                 even = []
                 odd = []
                 contador_temp = 1
+                # TILES DE 6 COLUNAS
                 for tile_6 in tiles[posicao:]:
 
                     if posicao >= len(tiles):
                         break
 
-                    if tile_6.get_columns() == 6:
+                    if tile_6.get_columns() == 6 :
                         if contador_temp%2 == 0:
                             odd.append(tile_6)
                         else:
@@ -158,8 +159,40 @@ class LayoutView(BaseView):
                         contador_temp+=1
                         posicionados+=1
                         posicao+=1
+
                     else:break
+
                 tiles_posicionados.append([even,odd])
+                
+                # TILES DE 4 COLUNAS
+                c_a = []
+                c_b = []
+                c_c = []
+                contador_temp = 1
+
+                for tile_4 in tiles[posicao:]:
+
+                    if posicao >= len(tiles):
+                        break
+
+                    if tile_4.get_columns() == 4:
+                        
+                        if contador_temp == 1:
+                            c_a.append(tile_4)
+                        elif contador_temp == 2:
+                            c_b.append(tile_4)
+                        else:
+                            c_c.append(tile_4)
+                            contador_temp=0
+                            
+
+                        contador_temp+=1
+                        posicionados+=1
+                        posicao+=1
+
+                    else:break
+
+                tiles_posicionados.append([c_a,c_b,c_c])
 
         return tiles_posicionados
 

@@ -58,6 +58,22 @@ BaseTile_schema = ATContentTypeSchema + Schema((
         schemata = 'Settings'
     ),
 
+    StringField(
+        name='columns',
+        widget=SelectionWidget(
+            label=_(u"Tamanho do tile"),
+            description=_(u"Selecione o tamanho do tile."),
+            label_msgid='vindula_tile_label_columns',
+            description_msgid='vindula_tile_help_columns',
+            i18n_domain='vindula_tile',
+            format='select',
+        ),
+        vocabulary=VOCABULARY_COLUNAS,
+        default='12',
+        required=True,
+    ),
+    
+
 ))
 
 schemata.finalizeATCTSchema(BaseTile_schema, folderish=False)
