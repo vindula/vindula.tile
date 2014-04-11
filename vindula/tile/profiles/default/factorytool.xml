@@ -7,6 +7,7 @@
         <type portal_type="TileAccordionContent"/>
         <type portal_type="TileAccordionItem"/>
         <type portal_type="TileBanner"/>
+        <type portal_type="TileHtml"/>
         <type portal_type="TileBirthdays"/>
         <type portal_type="TileFeatured"/>
         <type portal_type="TileLabel"/>

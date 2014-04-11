@@ -15,6 +15,9 @@
     <object name="TileBanner"
             meta_type="Factory-based Type Information with dynamic views"/>
 
+    <object name="TileHtml"
+            meta_type="Factory-based Type Information with dynamic views"/>
+
     <object name="TileListagemVertical"
             meta_type="Factory-based Type Information with dynamic views"/>
 
