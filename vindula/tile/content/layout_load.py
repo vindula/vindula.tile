@@ -56,6 +56,20 @@ LayoutLoad_schema = schemata.ATContentTypeSchema.copy() + Schema((
         ),
 
 
+        ReferenceField('obj_layout_topo',
+            multiValued=0,
+            allowed_types=('Layout',),
+            label=_(u"Layout - Topo"),
+            relationship='obj_layout_topo',
+            widget=VindulaReferenceSelectionWidget(
+                label=_(u"Layout - Topo"),
+                description='Selecione o objeto layout para o Topo, (Usado no layout Smart).'
+            ),
+            required=False,
+            # review_state = ('published', 'internal','external')
+        ),
+
+
         StringField(
             name='type_layouts',
             widget=SelectionWidget(
@@ -67,7 +81,8 @@ LayoutLoad_schema = schemata.ATContentTypeSchema.copy() + Schema((
                 format = 'select',
              ),
              vocabulary=[("padrao",_(u"Layout com uma coluna de capa")),
-                        ("classico", _(u"Layout com três colunas de capa")),],
+                        ("classico", _(u"Layout com três colunas de capa")),
+                        ("smart", _(u"Layout com três colunas de capa e uma no topo")),],
              default='padrao',
              required=True,
          ),

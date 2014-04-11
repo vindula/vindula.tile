@@ -42,114 +42,82 @@
           <input type="hidden" name="context_UID" id="context_UID" tal:attributes="value context/UID|string: " />
 
           <div tal:repeat="itens tiles" class="row ">
+
               <tal:cond_12 condition="python: len(itens) == 1 ">
                   <div class="columns large-12" tal:define="item python: itens[0];
                                                             portal_type item/portal_type|string: ">
-                      <div class="item-tile" 
-                           id="macro-tile" 
-                           tal:define="path_macro python:view.getMacro(item);
-                                       context nocall:item"
-                           tal:attributes="class python:item.getIs_accessory() and 'is_accessory  %s %s' %(portal_type,class_defaut) or '%s %s' %(portal_type,class_defaut);
-                                           data-name string:${item/getId}|${item/UID}|${view/context/UID};">
 
-                          <tal:cod tal:condition="path_macro"
-                                   tal:on-error="string: Erro ao carregar o bloco ${context/Title}">
-
-                            <div class="moveTileLink adm-vision hide" tal:condition="python: view.can_manage_tile(context)">
-                              <a class="draggingHook" ><img src="++resource++vindula.tile/images/move_icon.png"/></a>
-                            </div>  
-
-                            <metal:block metal:use-macro="python:path(path_macro)"/>
-
-                            <div class="manageTileLink adm-vision hide clear" tal:condition="python: view.can_manage_tile(context)">
-                              <a  alt="Excluir o Bloco" title="Excluir o Bloco"
-                                  class="exclude-tile manage"
-                                  tal:attributes="href string:${context/absolute_url}/delete_confirmation" ></a>  
-                            
-                              <a  alt="Editar o Bloco" title="Editar o Bloco"
-                                  class="manage-tile manage"
-                                  tal:attributes="href string:${context/absolute_url}/edit" ></a>  
-                            </div>
-
-                          </tal:cod>
-
-                      </div>
+                    <div metal:use-macro="context/macro_layout_load/macros/page" />
+                      
                   </div>
               </tal:cond_12>
 
               <tal:cond_6 condition="python: len(itens) == 2 ">
                   <div class="columns large-6" id="even"
                       tal:attributes="class string: columns large-${size_large} cleft">
-                      <tal:rep_even tal:repeat="item python: itens[0]">
+                      
+                        <tal:rep_even tal:repeat="item python: itens[0]">
                           
-                          <div class="item-tile" id="macro-tile"
-                              tal:define="portal_type item/portal_type|string: ;
-                                          path_macro python:view.getMacro(item);
-                                          context nocall:item"
-                              tal:attributes="class python:item.getIs_accessory() and 'is_accessory %s %s' %(portal_type,class_defaut) or '%s %s' %(portal_type,class_defaut);
-                                              data-name string:${item/getId}|${item/UID}|${view/context/UID};">
-
-                            <tal:cod tal:condition="path_macro"
-                                     tal:on-error="string: Erro ao carregar o bloco ${context/Title}">
-
-                              <div class="moveTileLink adm-vision hide" tal:condition="python: view.can_manage_tile(context)">
-                                <a class="draggingHook" ><img src="++resource++vindula.tile/images/move_icon.png"/></a>
-                              </div>  
-
-                              <metal:block metal:use-macro="python:path(path_macro)"/>
-
-                              <div class="manageTileLink adm-vision hide clear" tal:condition="python: view.can_manage_tile(context)">
-                                <a  alt="Excluir o Bloco" title="Excluir o Bloco"
-                                    class="exclude-tile manage"
-                                    tal:attributes="href string:${context/absolute_url}/delete_confirmation" ></a>  
-                              
-                                <a  alt="Editar o Bloco" title="Editar o Bloco"
-                                    class="manage-tile manage"
-                                    tal:attributes="href string:${context/absolute_url}/edit" ></a>  
-                              </div>
-                            </tal:cod>
-
-                          </div>
-                      </tal:rep_even>
+                          <div metal:use-macro="context/macro_layout_load/macros/page" />
+                            
+                        </tal:rep_even>
+                      
                       <div class="item-tile column-empty" ></div>
 
                   </div>
                   <div class="columns large-6" id="odd"
                        tal:attributes="class string: columns large-${size_large} cright">
+                       
                       <tal:rep_odd tal:repeat="item python: itens[1]">
-                          <div class="item-tile" id="macro-tile"
-                               tal:define="portal_type item/portal_type|string: ;
-                                           path_macro python:view.getMacro(item);
-                                           context nocall:item"
-                               tal:attributes="class python:item.getIs_accessory() and 'is_accessory item-tile %s %s' %(portal_type,class_defaut) or '%s %s' %(portal_type,class_defaut);
-                                               data-name string:${item/getId}|${item/UID}|${view/context/UID};">
 
-                              <tal:cod tal:condition="path_macro"
-                                       tal:on-error="string: Erro ao carregar o bloco ${context/Title}">
+                        <div metal:use-macro="context/macro_layout_load/macros/page" />
 
-                                <div class="moveTileLink adm-vision hide" tal:condition="python: view.can_manage_tile(context)">
-                                  <a class="draggingHook" ><img src="++resource++vindula.tile/images/move_icon.png"/></a>
-                                </div>  
-
-                                <metal:block metal:use-macro="python:path(path_macro)"/>
-
-                                <div class="manageTileLink adm-vision hide clear" tal:condition="python: view.can_manage_tile(context)">
-                                  <a  alt="Excluir o Bloco" title="Excluir o Bloco"
-                                      class="exclude-tile manage"
-                                      tal:attributes="href string:${context/absolute_url}/delete_confirmation" ></a>  
-                                
-                                  <a  alt="Editar o Bloco" title="Editar o Bloco"
-                                      class="manage-tile manage"
-                                      tal:attributes="href string:${context/absolute_url}/edit" ></a>  
-                                </div>
-
-                              </tal:cod>
-
-                          </div>
                       </tal:rep_odd>
+                    
                       <div class="item-tile column-empty" ></div>
                   </div>
               </tal:cond_6>
+
+              <tal:cond_4 condition="python: len(itens) == 3 "
+                          tal:define="size_large python:'4';">
+
+                  <div class="columns large-4" id="even"
+                      tal:attributes="class string: columns large-${size_large} cleft">
+                      
+                        <tal:rep_even tal:repeat="item python: itens[0]">
+                          
+                          <div metal:use-macro="context/macro_layout_load/macros/page" />
+                            
+                        </tal:rep_even>
+                      
+                      <div class="item-tile column-empty" ></div>
+
+                  </div>
+                  <div class="columns large-4" id="even"
+                       tal:attributes="class string: columns large-${size_large} cleft">
+                       
+                      <tal:rep_odd tal:repeat="item python: itens[1]">
+
+                        <div metal:use-macro="context/macro_layout_load/macros/page" />
+
+                      </tal:rep_odd>
+                    
+                      <div class="item-tile column-empty" ></div>
+                  </div>
+                  <div class="columns large-4" id="odd"
+                       tal:attributes="class string: columns large-${size_large} cright">
+                       
+                      <tal:rep_odd tal:repeat="item python: itens[2]">
+
+                        <div metal:use-macro="context/macro_layout_load/macros/page" />
+
+                      </tal:rep_odd>
+                    
+                      <div class="item-tile column-empty" ></div>
+                  </div>
+
+              </tal:cond_4>
+
           </div>
         </div>
       </metal:macro>
