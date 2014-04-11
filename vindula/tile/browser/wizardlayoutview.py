@@ -17,8 +17,9 @@ class WizardLayout(BaseView):
     def get_list_modelos(self):
         black_list = ['capa-principal.zexp','capa-esquerda.zexp','capa-direita.zexp']
 
-        L = [{'name':'Layout Padrão','id':'2','can_delete':False},
-             {'name':'Layout Classico','id':'1','can_delete':False},
+        L = [{'name':'Layout Padrão','id':'2','can_delete':False, 'path_img':'++resource++vindula.tile/images/miniatura-1.png'},
+             {'name':'Layout Classico','id':'1','can_delete':False, 'path_img':'++resource++vindula.tile/images/miniatura-2.png'},
+             {'name':'Layout Smart','id':'3','can_delete':False, 'path_img':'++resource++vindula.tile/images/miniatura-3.png'},
             ]   
         
         path_zexp = ROOT_PATH + '/../../docs/zexp'
@@ -30,7 +31,7 @@ class WizardLayout(BaseView):
                 for t in name.replace('-','|').replace('_','|').split('|'):
                     txt += '%s ' %(t.title())
 
-                L.append({'name':txt,'id':iten,'can_delete':True})
+                L.append({'name':txt,'id':iten,'can_delete':True, 'path_img':'++resource++vindula.tile/images/miniatura-4.png'})
 
         return L
 
