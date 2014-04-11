@@ -37,7 +37,7 @@
 
         <div id="tile-tabular-list">
             <tal:cond tal:condition="context/show_search|python:False">
-                <metal:block metal:use-macro="context/macro_filter_file/macros/unit-tabular"/>    
+                <metal:block metal:use-macro="context/macro_filter_file/macros/tabular"/>    
             </tal:cond>
 
             <div id="itens">
@@ -47,7 +47,6 @@
                                  structures python:structures() and structures().UID() or None;
 								 path nocall:context/getPath_search;
 								 path python: path() and '/'.join(path().getPhysicalPath()) or None;">
-
                     <tal:def define="dummy python:request.set('macro', 'default');
                                      fields python:[{'label':  ''     , 'attribute': 'getImageIcone', 'is_image': 'True', 'width':  '65',},
 													{'label': 'Nome', 'attribute': 'Title'},
