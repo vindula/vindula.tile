@@ -25,3 +25,4 @@ import tile_bannercompost
 import tile_list_services
 import tile_joboffer
 import tile_poitracker
+import tile_html

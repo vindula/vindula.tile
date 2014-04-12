@@ -16,18 +16,40 @@
         <div id="select_layout" tal:condition="not: request/layout|nothing">
           <h4>Selecione o Layout</h4>
           <ul>
-            <li tal:repeat="item view/get_list_modelos" class="item_lista">
-              <a class="delete-modelo vindula-icon-cross-2 right" tal:condition="item/can_delete|python:False"
-                               tal:attributes="href string: ${context/portal_url}/removemodel-view;
-                                               data-id_model item/id|string: ;"> </a>              
-              <h5>
-                <label for="layout" tal:content="item/name|string: ">Layout Classico</label>
-                  <input type="radio" value="1" name="layout" checked='checked'
-                         tal:attributes="value item/id|string: ;
-                                        checked python: repeat['item'].start and 'checked' or '';"/> 
-              </h5>  
-
-            </li>
+                <li tal:repeat="item view/get_list_modelos" class="item_lista">
+                    <tal:def define="itemnumber repeat/item/number">
+                        <tal:cond condition="python: itemnumber == 1 ">
+                          <div class="row">
+                            <div class="columns large-12 small-12">
+                                <h5>Capas Padrão Vindula</h5>
+                               </div>  
+                           </div>
+                        </tal:cond>
+                        <tal:condi condition="python: itemnumber == 4">
+                            <div class="row">
+                            <div class="columns large-12 small-12">
+                                <h5>Capas Custom</h5>
+                               </div>  
+                           </div> 
+                        </tal:condi>
+                   </tal:def>
+                 <div class="row">
+                  <a class="delete-modelo vindula-icon-cross-2 right" tal:condition="item/can_delete|python:False"
+                                   tal:attributes="href string: ${context/portal_url}/removemodel-view;
+                                                   data-id_model item/id|string: ;"> </a>
+                  <div class="columns large-6 small-6">
+                      <h5>
+                        <label for="layout" tal:content="item/name|string: ">Layout Classico</label>
+                          <input type="radio" value="1" name="layout" checked='checked'
+                                 tal:attributes="value item/id|string: ;
+                                                checked python: repeat['item'].start and 'checked' or '';"/> 
+                      </h5>
+                  </div>
+                  <div class="columns large-6 small-6">              
+                  <img tal:attributes="src item/path_img|string: ;"src="++resource++vindula.tile/images/miniatura-1.png/">
+                    </div>
+                </div>
+                    </li>
           </ul>
           <input class="save button small radius" type="submit" name="select_layout" value="Selecionar Layout" /> 
         </div>
