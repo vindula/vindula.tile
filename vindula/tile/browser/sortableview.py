@@ -25,38 +25,16 @@ class SortableView(BaseView):
 	def update(self):
 		self.retorno = {}
 		form = self.request.form
-		context_UID = form.get('context_UID','')
-		list_tiles = form.get('list_tiles[]', [])
-		# list_uids = form.get('list_uids[]', [])
-		# list_content = form.get('list_content[]', [])
-		
+		json_data = form.get('data','')
+		data = json.loads(json_data)
+		context_UID = data.get('context_UID','')
+		list_tiles = data.get('list_tiles', [])
+
 		man_list = []
-		even_list = []
-		odd_list = []
 
-		for i in list_tiles:
-
-			if 'even|' in i:
-				even_list.append(i)
-			elif 'odd|' in i:
-				odd_list.append(i)
-		
-		for i in list_tiles:
-
-			if not "even|" in i and not "odd|" in i:
-				man_list.append(i)
-			else:
-
-				try:i_even = even_list.pop(0)
-				except IndexError: i_even = None
-
-				try:i_odd = odd_list.pop(0)
-				except IndexError: i_odd = None				
-
-				if i_even:
-					man_list.append(i_even.replace('even|',''))
-				if i_odd:
-					man_list.append(i_odd.replace('odd|',''))
+		for linha_tile in list_tiles:
+			for columns_tile in linha_tile:
+				man_list.append(columns_tile)
 
 		context_global = uuidToObject(context_UID)
 	

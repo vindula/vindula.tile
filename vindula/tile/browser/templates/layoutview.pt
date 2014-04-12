@@ -41,10 +41,11 @@
 
           <input type="hidden" name="context_UID" id="context_UID" tal:attributes="value context/UID|string: " />
 
-          <div tal:repeat="itens tiles" class="row ">
+          <div tal:repeat="itens tiles" class="row linha_tiles">
 
               <tal:cond_12 condition="python: len(itens) == 1 ">
-                  <div class="columns large-12" tal:define="item python: itens[0];
+                  <div class="columns large-12" id="full"
+                                                tal:define="item python: itens[0];
                                                             portal_type item/portal_type|string: ">
 
                     <div metal:use-macro="context/macro_layout_load/macros/page" />
@@ -93,7 +94,7 @@
                       <div class="item-tile column-empty" ></div>
 
                   </div>
-                  <div class="columns large-4" id="even"
+                  <div class="columns large-4" id="middle"
                        tal:attributes="class string: columns large-${size_large} cleft">
                        
                       <tal:rep_odd tal:repeat="item python: itens[1]">

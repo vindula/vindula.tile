@@ -1,3 +1,15 @@
+
+function count_add_tile_list(list_itens,list_return){
+  if (list_itens.length){
+    for (var i=0;i<list_itens.length;i++){
+      var item = list_itens[i];
+      list_return.push($j(item).attr('data-name'));
+    };
+  };
+  return list_return;
+};
+
+
 $j(function () {
 
     var config_global = { placeholder: "placeholder",
@@ -13,33 +25,31 @@ $j(function () {
                           revert: true,
                           update: function(event, ui) {
                                     var mod_list_tiles = [],
-                                        list_tiles = $j(this).sortable('toArray', {attribute:'data-name'}),
+                                        // list_tiles = $j(this).sortable('toArray', {attribute:'data-name'}),
                                         base_url = $j('base').val() + '/sortable-view',
+                                        linhas_tiles = $j('div.linha_tiles',$j(this)),
                                         context_UID = $j('#context_UID', $j(this)).val();
+                                         
                                     obj_item = ui.item;
 
+                                    for (var i=0;i<linhas_tiles.length;i++){ 
+                                      var item = linhas_tiles[i],
+                                          list_tiles = [],
+                                          tiles_columns_even = $j('div#even div.item-tile:not(.column-empty)', $j(item)),
+                                          tiles_columns_middle = $j('div#middle div.item-tile:not(.column-empty)', $j(item)),
+                                          tiles_columns_odd = $j('div#odd div.item-tile:not(.column-empty)', $j(item));
+                                          tiles_columns_full = $j('div#full div.item-tile:not(.column-empty)', $j(item));
 
-                                    for (var i=0;i<list_tiles.length;i++){ 
-                                      var item = list_tiles[i],
-                                          valor = '',
-                                          div_parent_even = $j('[data-name='+item+']', $j(this)).parent('#even'),
-                                          div_parent_odd = $j('[data-name='+item+']', $j(this)).parent('#odd');
+                                          list_tiles = count_add_tile_list(tiles_columns_even,list_tiles);
+                                          list_tiles = count_add_tile_list(tiles_columns_middle,list_tiles);
+                                          list_tiles = count_add_tile_list(tiles_columns_odd,list_tiles);
+                                          list_tiles = count_add_tile_list(tiles_columns_full,list_tiles);
 
-                                          if (div_parent_even.length){
-                                            valor = 'even|'+item;
-                                          }else if (div_parent_odd.length){
-                                            valor = 'odd|'+item;
-                                          }else{
-                                            valor = item;
-                                          }
+                                      mod_list_tiles.push(list_tiles);
+                                    };
 
-                                      mod_list_tiles.push(valor);
-                                    }
-
-                                    $j.post(base_url,{'list_tiles': mod_list_tiles,
-                                                      'context_UID': context_UID,
-                                                      },function(data){
-
+                                    var data_request = JSON.stringify({'list_tiles': mod_list_tiles,'context_UID': context_UID})
+                                    $j.post(base_url,{'data':data_request},function(data){
                                                         var msg = data.response.msg,
                                                             UID = data.response.uid,
                                                             data_name = obj_item.attr('data-name'),
@@ -47,7 +57,8 @@ $j(function () {
 
                                                         obj_item.attr('data-name', list_data_name[0]+'|'+list_data_name[1]+'|'+UID);
                                                         console.log(msg);
-                                    });
+                                                      },'json'
+                                    );
 
                                     //Adição da Class 'portletWrapper' ao tile se ele foi
                                     // movido do meio para a esquerda

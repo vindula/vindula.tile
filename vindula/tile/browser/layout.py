@@ -141,58 +141,55 @@ class LayoutView(BaseView):
                 posicionados += 1
                 posicao+=1
             else:
-                even = []
-                odd = []
-                contador_temp = 1
                 # TILES DE 6 COLUNAS
-                for tile_6 in tiles[posicao:]:
+                tile_6 = tiles[posicao]
 
-                    if posicao >= len(tiles):
-                        break
+                if tile_6.get_columns() == 6 :
 
-                    if tile_6.get_columns() == 6 :
-                        if contador_temp%2 == 0:
-                            odd.append(tile_6)
+                    try: 
+                        next_tile = tiles[posicao+1]
+                        if next_tile.get_columns() == 6:
+                            tiles_posicionados.append([[tile_6],[next_tile]])
+                            posicao += 2
                         else:
-                            even.append(tile_6)
+                            tiles_posicionados.append([[tile_6],[]])
+                            posicao+=1
 
-                        contador_temp+=1
-                        posicionados+=1
+                    except:
+                        tiles_posicionados.append([[tile_6],[]])
                         posicao+=1
 
-                    else:break
+                    posicionados+=1
+                    
 
-                tiles_posicionados.append([even,odd])
-                
-                # TILES DE 4 COLUNAS
-                c_a = []
-                c_b = []
-                c_c = []
-                contador_temp = 1
-
-                for tile_4 in tiles[posicao:]:
-
-                    if posicao >= len(tiles):
-                        break
-
+                else: 
+               
+                    # TILES DE 4 COLUNAS
+                    tile_4 = tiles[posicao]
                     if tile_4.get_columns() == 4:
                         
-                        if contador_temp == 1:
-                            c_a.append(tile_4)
-                        elif contador_temp == 2:
-                            c_b.append(tile_4)
-                        else:
-                            c_c.append(tile_4)
-                            contador_temp=0
-                            
+                        try: 
+                            middle_tile = tiles[posicao+1]
 
-                        contador_temp+=1
+                            if middle_tile.get_columns() == 4:
+                                posicao += 2
+
+                                odd_tile = tiles[posicao]
+                                if odd_tile.get_columns() == 4:
+                                    tiles_posicionados.append([[tile_4],[middle_tile],[odd_tile]])
+                                    posicao += 1
+
+                                else:
+                                    tiles_posicionados.append([[tile_4],[middle_tile],[]])
+
+                            else:
+                                tiles_posicionados.append([[tile_4],[],[]])
+
+                        except:
+                            tiles_posicionados.append([[tile_4],[],[]])
+                            posicao+=1
+
                         posicionados+=1
-                        posicao+=1
-
-                    else:break
-
-                tiles_posicionados.append([c_a,c_b,c_c])
 
         return tiles_posicionados
 
