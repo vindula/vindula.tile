@@ -10,12 +10,16 @@
     	<div class="row main_poll" metal:define-macro="page"
                          tal:define="view_macro nocall:context/@@poll-view;
                                polls view_macro/polls">
-            <div class="columns large-12 box-title">
-                <h4>
-                    <tal:cont content="context/Title">Enquete</tal:cont>
-                    <hr/>
-                </h4>
-            </div>
+            
+            <tal:cond condition="not:context/getHide_title">
+                <div class="columns large-12 box-title">
+                    <h4>
+                        <tal:cont content="context/Title">Enquete</tal:cont>
+                        <hr/>
+                    </h4>
+                </div>
+            </tal:cond>
+            
             <tal:poll tal:repeat="poll polls">
                 <tal:block  tal:define="canVote poll/can_vote;">
         

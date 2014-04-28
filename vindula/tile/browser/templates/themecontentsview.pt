@@ -61,7 +61,7 @@
                                      
                                     <div class="clear">
                                         <h5>
-                                            <a tal:attributes="id typology;
+                                            <a tal:attributes="id id_typology;
                                                                class python: 'left accordion arrow arrow-%s' % (repeat['typology'].start and 'top' or 'left');"></a>
                                             <a class="accordion" tal:attributes="id id_typology" tal:content="typology"></a>
                                             <hr />

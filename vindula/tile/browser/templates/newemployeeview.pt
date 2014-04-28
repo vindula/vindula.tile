@@ -38,17 +38,19 @@
          tal:condition="batch">
         <div class="columns large-12">
             <div id="tile-more-acess-unity" class="row list_tile">
+                
                 <div class="title columns large-12">
-
-                  <div class="ajax_pagination right" id="pag-nav">
-                    <metal:block metal:use-macro="context/boll_batch/macros/navigation" />
-                  </div>
-
-                  <h5>
-                      <span tal:replace="context/Title">UNIDADES MAIS ACESSADAS</span>
-                      <hr/>
-                  </h5>
+                      <div class="ajax_pagination right" id="pag-nav">
+                        <metal:block metal:use-macro="context/boll_batch/macros/navigation" />
+                      </div>
+                      <tal:cond condition="not:context/getHide_title">
+                          <h4>
+                              <span tal:replace="context/Title">UNIDADES MAIS ACESSADAS</span>
+                              <hr/>
+                          </h4>
+                      </tal:cond>
                 </div>
+                
                 <div class="container lista-news">
                   <input type="hidden" id="b_size" tal:attributes="value b_size" />
                   <input type="hidden" id="b_start" tal:attributes="value b_start" />

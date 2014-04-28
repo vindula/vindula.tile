@@ -36,14 +36,18 @@ i18n:domain="vindula.tile">
     <div class="columns large-12"  tal:define="itens view_macro/getItens;
                                                bullets_false python:'bullets:false;;timer_speed:0;;navigation_arrows:false';">
         <div class="row main_row">
-            <div class="columns large-12 listagem_horizontal_text box-title">
-                <h4>
-                <tal:cont content="context/Title|nothing">
-                    Notícias
-                </tal:cont>
-                <hr />
-                </h4>
-            </div>
+            
+            <tal:cond condition="not:context/getHide_title">
+                <div class="columns large-12 listagem_horizontal_text box-title">
+                    <h4>
+                    <tal:cont content="context/Title|nothing">
+                        Notícias
+                    </tal:cont>
+                    <hr />
+                    </h4>
+                </div>
+            </tal:cond>
+            
             <div class="columns large-12 listagem_horizontal_main">
                 <ul data-orbit id="tile-news"
                 tal:attributes="data-options python: len(itens)==1 and bullets_false;">
@@ -92,6 +96,18 @@ i18n:domain="vindula.tile">
              tal:condition="python:context.getListTemplates() == 'destaque_multipla'">
     <div class="columns large-12"  tal:define="itens view_macro/getItens;">
         <div class="row">
+            
+            <tal:cond condition="not:context/getHide_title">
+                <div class="columns large-12 listagem_horizontal_text box-title">
+                    <h4>
+                    <tal:cont content="context/Title|nothing">
+                        Notícias
+                    </tal:cont>
+                    <hr />
+                    </h4>
+                </div>
+            </tal:cond>
+            
             <div class="columns large-12" tal:repeat="item itens">
 
                 <h4 tal:condition="context/getActiveSubTitulo|python:False"
@@ -144,18 +160,20 @@ i18n:domain="vindula.tile">
                          b_start request/b_start | b_start;
                          batch python:Batch(itens, int(b_size), int(b_start), pagerange=len(itens));"
              tal:condition="batch">
-
+            
             <div class="columns large-12 box-title">
                 <div class="ajax_pagination right" id="pag-nav">
                     <metal:block metal:use-macro="context/boll_batch/macros/navigation" />
                 </div>
-
-                <h5>
-                    <tal:cont content="context/Title|nothing">
-                        NOTÍCIAS INSTITUCIONAIS
-                    </tal:cont>
-                    <hr/>
-                </h5>
+    
+                <tal:cond condition="not:context/getHide_title">
+                    <h4>
+                        <tal:cont content="context/Title|nothing">
+                            NOTÍCIAS INSTITUCIONAIS
+                        </tal:cont>
+                        <hr/>
+                    </h4>
+                </tal:cond>
             </div>
             <div class="lista-news">
                 <input type="hidden" id="b_size" tal:attributes="value b_size" />
@@ -201,7 +219,17 @@ i18n:domain="vindula.tile">
 
 <metal:macro define-macro="destaque_duplo"
              tal:condition="python:context.getListTemplates() == 'destaque_duplo'">
-
+    <tal:cond condition="not:context/getHide_title">
+        <div class="columns large-12 listagem_horizontal_text box-title">
+            <h4>
+            <tal:cont content="context/Title|nothing">
+                Notícias
+            </tal:cont>
+            <hr />
+            </h4>
+        </div>
+    </tal:cond>
+    
     <div class="columns large-12 listagem_horizontal_main" 
          tal:define="itens view_macro/getItens;
                      bullets_false python:'bullets:false;;timer_speed:0;;navigation_arrows:false';">

@@ -24,7 +24,10 @@
              tal:condition="python:view_macro.getKind() == 'alerta_normal'">
     <tal:def define="items context/getItens;
                      bullets_false python:'bullets:false;;timer_speed:0;;navigation_arrows:false';">
-        <h2 tal:content="context/Title">ANUNCIO</h2>
+        <tal:cond condition="not:context/getHide_title">
+            <h4 tal:content="context/Title">ANUNCIO</h4>
+        </tal:cond>
+        
         <div id="anuncio-normal">
           <ul data-orbit tal:attributes="data-options python: len(items)==1 and bullets_false"
                          id="tile-featured">
@@ -53,7 +56,10 @@
              tal:condition="python:view_macro.getKind() == 'alerta_importante'">
     <tal:def define="items context/getItens;
                      bullets_false python:'bullets:false;;timer_speed:0;;navigation_arrows:false';">
-        <h2 tal:content="context/Title">ANUNCIO</h2>
+        <tal:cond condition="not:context/getHide_title">
+            <h4 tal:content="context/Title">ANUNCIO</h4>
+        </tal:cond>
+        
         <ul data-orbit tal:attributes="data-options python: len(items)==1 and bullets_false"
                        id="tile-featured">
           <tal:rep tal:repeat="item items">
@@ -80,9 +86,13 @@
     <div class="columns small-12" id="tile-featured"
          tal:define="items context/getItens;">
         <div class="row">
-            <div class="columns large-12 feature_text box-title">
-                <h4 tal:content="context/Title">ANUNCIO</h4>
-            </div>
+            
+            <tal:cond condition="not:context/getHide_title">
+                <div class="columns large-12 feature_text box-title">
+                    <h4 tal:content="context/Title">ANUNCIO</h4>
+                </div>  
+            </tal:cond>
+            
             <div class="columns large-12">
                 <ul data-orbit id="tile-news"
                     data-options="bullets:true;">
@@ -120,12 +130,15 @@
         tal:condition="items">
     <div class="columns large-12 main_featured" tal:define="item python:items[0];
                                              text item/Description">
-        <div class="box-title">
-            <h5>
-                <span tal:replace="context/Title">INFORMES</span>
-                <hr/>
-            </h5>
-        </div>
+        <tal:cond condition="not:context/getHide_title">
+            <div class="box-title">
+                <h4>
+                    <span tal:replace="context/Title">INFORMES</span>
+                    <hr/>
+                </h4>
+            </div>
+        </tal:cond>
+        
         <p tal:content="python: view_macro.limitTextSize(text,500)" >
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             Suspendisse feugiat, leo vitae consequat congue, orci dui mollis dui, ut lacinia felis lorem id augue.

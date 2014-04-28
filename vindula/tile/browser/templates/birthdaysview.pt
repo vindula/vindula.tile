@@ -17,12 +17,15 @@
     </tal:cond>
 
     <div class="row" id="tile-birthday">
-        <div class="columns large-12 box-title">
-            <h4>
-                <tal:cont tal:content="context/Title">Aniversariantes da semana</tal:cont>
-                <hr/>
-            </h4>
-        </div>
+        
+        <tal:cond condition="not:context/getHide_title">
+            <div class="columns large-12 box-title">
+                <h4>
+                    <tal:cont tal:content="context/Title">Aniversariantes da semana</tal:cont>
+                    <hr/>
+                </h4>
+            </div>
+        </tal:cond>
         
         <div class="columns large-12 main_birthday"
              tal:define="quant context/numb_items;
