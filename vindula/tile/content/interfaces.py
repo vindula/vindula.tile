@@ -87,3 +87,6 @@ class ITilePoiTracker(Interface):
 
 class ITileLibrary(Interface):
     """ Interface for TileLibrary content type """
+
+class ITileLoadReference(Interface):
+    """ Interface for TileLoadReference content type """

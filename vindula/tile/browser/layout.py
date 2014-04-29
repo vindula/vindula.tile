@@ -64,6 +64,7 @@ class LayoutView(BaseView):
                                                   'TileLibrary',
                                                   'TileListagemHorizontal',
                                                   'TileListagemVertical',
+                                                  'TileLoadReference',
                                                   'TileMacroList',
                                                   'TileMoreAccess',
                                                   'TileNewEmployee',
@@ -73,7 +74,7 @@ class LayoutView(BaseView):
                                                   'TileSimpleMacro',
                                                   'TileTabularList',
                                                   'TileTeam',
-                                                  'TilePoiTracker'],  
+                                                  'TilePoiTracker',],  
                                    # 'review_state':['published', 'internally_published', 'external'],
                                    'path':{'query':'/'.join(context.getPhysicalPath()), 'depth': 5}
                                 })
