@@ -17,12 +17,15 @@
         <metal:macro define-macro="page">
             <div id="tile-job-offer">
                 <div class="row">
-                    <div class="columns large-12">
-                        <h5>
-                            <span tal:replace="context/Title"></span>
-                            <hr/>
-                        </h5>
-                    </div>
+                    <tal:cond condition="not:context/getHide_title">
+                        <div class="columns large-12">
+                            <h4>
+                                <span tal:replace="context/Title"></span>
+                                <hr/>
+                            </h4>
+                        </div>
+                    </tal:cond>
+                    
                     <div class="columns large-12">
                         <div class="vd_show_my_joboffers" 
                              tal:attributes="data_url_form context/getLink_cadastro|nothing;"></div>

@@ -10,9 +10,12 @@
 <metal:main fill-slot="content-core">
     <metal:macro define-macro="page">
     
-        <h5> 
-        	<ta:cont tal:content="context/Title|nothing">TITULO</ta:cont>
-        </h5>
+        <tal:cond condition="not:context/getHide_title">
+            <h4> 
+            	<ta:cont tal:content="context/Title|nothing">TITULO</ta:cont>
+            </h4>
+        </tal:cond>
+        
         <div class="row" tal:define="view_macro nocall:context/@@poitracker-view;
         							 ignoredStates python:['new'];
 									 basicOpenStates python:['open', 'in-progress'];

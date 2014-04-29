@@ -12,12 +12,16 @@
                  tal:define="view nocall:context/@@food-view;">
 
 	<div class="row main_food">
-        <div class="columns large-12 title_events">
-          <h4>
-              <tal:cont tal:content="context/Title">Restaurantes</tal:cont>
-              <hr/>
-          </h4>
-        </div>
+	    
+	    <tal:cond condition="not:context/getHide_title">
+            <div class="columns large-12 title_events">
+              <h4>
+                  <tal:cont tal:content="context/Title">Restaurantes</tal:cont>
+                  <hr/>
+              </h4>
+            </div>
+        </tal:cond>
+        
         <div class="columns large-12">
           <div class="row">
 

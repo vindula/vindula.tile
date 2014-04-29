@@ -6,35 +6,40 @@
       lang="en"
       i18n:domain="vindula.tile">
 
-  <head>
-  </head>
-  <body>
-    <metal:main fill-slot="content-core">
-        
-        <div id="tile-accordion" metal:define-macro="page"
-             tal:define="view_accordion nocall:context/@@accordion-view;">
-            <div class="box-title">
-                <h4>
-                  <tal:cont tal:content="context/Title">Accordion</tal:cont>
-                  <hr/>
-                </h4>
-            </div>
-            <div class="tile-section-container">
-                <tal:rep repeat="item view_accordion/get_itens_abas">
-                    
-                    <section tal:define="all_open context/getLoad_open|nothing"
-                             tal:attributes="class python:all_open and 'active' or ''">
-                        <h6 class="title">
-                            <a tal:content="item/Title">Accordion</a>
-                        </h6>
-                        <div class="content">
-                            <p tal:content="structure item/getText">Content of section 1.</p>
-                        </div>
-                    </section>
-                </tal:rep>
+    <head></head>
+    
+    <body>
+        <metal:main fill-slot="content-core">
+            <div id="tile-accordion" metal:define-macro="page"
+                 tal:define="view_accordion nocall:context/@@accordion-view;">
                 
+                <tal:cond condition="not:context/getHide_title">
+                    <div class="box-title">
+                        <h4>
+                            <tal:cont tal:content="context/Title">
+                                Accordion
+                            </tal:cont>
+                            <hr/>
+                        </h4>
+                    </div>
+                </tal:cond>
+                
+                <div class="tile-section-container">
+                    <tal:rep repeat="item view_accordion/get_itens_abas">
+
+                        <section tal:define="all_open context/getLoad_open|nothing"
+                                 tal:attributes="class python:all_open and 'active' or ''">
+                            <h6 class="title"><a tal:content="item/Title">Accordion</a></h6>
+                            <div class="content">
+                                <p tal:content="structure item/getText">
+                                    Content of section 1.
+                                </p>
+                            </div>
+                        </section>
+                    </tal:rep>
+
+                </div>
             </div>
-        </div>
-    </metal:main>
-  </body>
+        </metal:main>
+    </body>
 </html>

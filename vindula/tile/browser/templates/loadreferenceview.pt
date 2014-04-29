@@ -1,0 +1,34 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="context/main_template/macros/master"
+      lang="en"
+      i18n:domain="vindula.tile">
+<body>
+
+<metal:main fill-slot="content-core">
+    <metal:macro define-macro="page"
+                 tal:define="view_macro nocall:context/@@load-reference-view;
+                             obj_related context/getContentToLoad;">
+        
+        <tal:cond condition="not:context/getHide_title">
+            <h4 tal:define="title python:context.getUseReferenceTitle() and obj_related.Title() or context.Title()"> 
+                <ta:cont tal:content="title|nothing">TITULO</ta:cont>
+                <hr/>
+            </h4>
+        </tal:cond>
+        
+        <div class="row">
+            <div class="columns large-12" tal:condition="path_macro" 
+                 tal:define="path_macro python:view_macro.getPathMacro(obj_related);
+                             context nocall:obj_related">
+                <tal:cond condition="path_macro">
+                    <metal:block use-macro="python:path(path_macro)"/>
+                </tal:cond>
+            </div>
+        </div>
+    </metal:macro>
+</metal:main>
+</body>
+</html> 
