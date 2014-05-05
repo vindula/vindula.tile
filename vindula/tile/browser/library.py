@@ -17,9 +17,13 @@ class LibraryView(BaseView):
     
     def getThemes(self):
         rs_themes = TagContent.getAllTagsByType('themesNews')
+
         themes = []
         
         if rs_themes and rs_themes.count():
+            if self.context.getQtdThemesGlobal() and self.context.getQtdThemesGlobal() > 0:
+                rs_themes = rs_themes[:self.context.getQtdThemesGlobal()]
+
             for theme in  rs_themes:
                 themes.append(theme)
                 

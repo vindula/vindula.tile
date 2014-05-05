@@ -36,12 +36,21 @@ TileLibrary_schema = BaseTile.schema.copy() + Schema((
     ),
 
     IntegerField(
-        name='qtdPagThemes',
+        name='qtdThemesGlobal',
         widget = IntegerWidget(
-            label = 'Quantidade de páginas de temas',
-            description='Quantidade máxima de páginas de temas a ser listada',
+            label = 'Quantidade de temas a ser exibido',
+            description='Quantidade máxima de temas a ser exibido no bloco',
         ),
-        default=5,
+        default=50,
+    ),
+                                                      
+    IntegerField(
+        name='qtdThemesPage',
+        widget = IntegerWidget(
+            label = 'Quantidade de temas por página',
+            description='Quantidade máxima de temas a ser exibido por página',
+        ),
+        default=10,
     ),
                                                       
     ReferenceField('iconFileDefault',
