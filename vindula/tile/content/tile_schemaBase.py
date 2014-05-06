@@ -22,7 +22,7 @@ BaseTile_schema = ATContentTypeSchema + Schema((
             description='Se selecionado, ativa a opção de recursividade do portlet em níveis inferiores.',
         ),
         required=False,
-        schemata = 'Settings'
+        schemata = 'settings'
     ),
 
     BooleanField(
@@ -30,10 +30,10 @@ BaseTile_schema = ATContentTypeSchema + Schema((
         default=False,
         widget=BooleanWidget(
             label="Bloquear Vindula Portlets dos níveis superiores",
-            description='Se selecionado, irá bloquear todos os portlets dos níveis superiores do portal.(Cautela para usar esta opção)',
+            description='Se selecionado, irá bloquear todos os portlets dos níveis superiores do portal.(Cautela para usar esta opção).',
         ),
         required=False,
-        schemata = 'Settings'
+        schemata = 'settings'
     ),
 
     StringField(
@@ -44,7 +44,7 @@ BaseTile_schema = ATContentTypeSchema + Schema((
                                ),
         required=True,
         vocabulary='voc_coluna',
-        schemata = 'Settings'
+        schemata = 'settings'
     ),
     
     BooleanField(
@@ -52,10 +52,21 @@ BaseTile_schema = ATContentTypeSchema + Schema((
         default=False,
         widget=BooleanWidget(
             label="Acessório",
-            description='Selecione caso o tile for um tile acessório (irá mudar o layout do tile)',
+            description='Selecione caso o tile for um tile acessório (irá mudar o layout do tile).',
         ),
         required=False,
-        schemata = 'Settings'
+        schemata = 'settings'
+    ),
+                                                
+    BooleanField(
+        name='hide_title',
+        default=False,
+        widget=BooleanWidget(
+            label="Ocultar título",
+            description='Oculta o título do bloco atual.',
+        ),
+        required=False,
+        schemata = 'settings'
     ),
 
     StringField(

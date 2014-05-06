@@ -6,148 +6,138 @@
       lang="en"
       i18n:domain="vindula.tile">
 
-<!-- <head>
-  <metal:block fill-slot="top_slot">
-      <tal:dummy tal:define="disable_column_one python:request.set('disable_plone.leftcolumn',1);"/>
-      <tal:dummy tal:define="disable_column_two python:request.set('disable_plone.rightcolumn',1);" />
+    <!-- <head>
+    <metal:block fill-slot="top_slot">
+    <tal:dummy tal:define="disable_column_one python:request.set('disable_plone.leftcolumn',1);"/>
+    <tal:dummy tal:define="disable_column_two python:request.set('disable_plone.rightcolumn',1);" />
 
-  </metal:block>  
-</head> -->
+    </metal:block>
+    </head> -->
 
-<body>
+    <body>
+        <metal:main fill-slot="content-core">
+            <metal:macro define-macro="page"
+                         tal:define="view_banner nocall:context/@@bannercompost-view;
+                                     path_macro  string:context/@@bannercompost-view/macros/${view_banner/getLayout};">
 
-<metal:main fill-slot="content-core">
-    <metal:macro define-macro="page"
-                 tal:define="view_banner nocall:context/@@bannercompost-view;
-				  			 path_macro  string:context/@@bannercompost-view/macros/${view_banner/getLayout};">
-	
-		<link rel="stylesheet" type="text/css" href="" tal:attributes="href string:${view_banner/get_static}css/bannercompost.css" />
+                <link rel="stylesheet" type="text/css" href="" tal:attributes="href string:${view_banner/get_static}css/bannercompost.css" />
 
-		<style type="text/css" 
-			   tal:content="python: '''#viewlet-header-portal {background: url('%s') no-repeat;}''' %(view_banner.get_image_backgroud())">
-		</style>
+                <style type="text/css" tal:content="python: '''#viewlet-header-portal {background: url('%s') no-repeat;}''' %(view_banner.get_image_backgroud())"></style>
 
-		<!-- <div id="viewlet-header-portal"> -->
+                <!-- <div id="viewlet-header-portal"> -->
 
                 <metal:block tal:condition="path_macro"
                              metal:use-macro="python:path(path_macro)"/>
-			
-		<!-- </div> -->
-	</metal:macro>
-</metal:main>
-</body>
+                <!-- </div> -->
+            </metal:macro>
+        </metal:main>
+    </body>
 </html>
 
-
 <metal:macro define-macro="destaque_noticia" tal:define="view_banner nocall:context/@@bannercompost-view;"
-											tal:condition="python:view_banner.getLayout() =='destaque_noticia'">
-	<div class="row">
-		<div class="columns large-12 content-viewlet" 
-			 tal:define="itens view_banner/getNoticiasBanner;
-		                 bullets_false python:'bullets:false;;timer_speed:0;;navigation_arrows:false';">
-	        
-	        <div class="columns large-8 listagem_horizontal_main">
-	            <ul data-orbit id="tile-news"
-	                tal:attributes="data-options python: len(itens)==1 and bullets_false;">
-	                <li tal:repeat="item itens">
-	                    <div class="row">
-	                        <div class="columns small-8 listagem_horizontal_image">
-	                            <img tal:attributes="src item/image"
-	                              src="++theme++vindula.themedefault/images/demos/demo2-th.gif" />
-	                        </div>
-	                        <div class="columns small-4 listagem_horizontal_text">
-	                            <h5><a tal:attributes="href item/url|nothing"
-	                                   tal:content="item/title|nothing"
-	                                   href="#">Nova diretoria da Opas visita Bio</a></h5>
+             tal:condition="python:view_banner.getLayout() =='destaque_noticia'">
+    <div class="row">
+        <div class="columns large-12 content-viewlet"
+             tal:define="itens view_banner/getNoticiasBanner;
+                         bullets_false python:'bullets:false;;timer_speed:0;;navigation_arrows:false';">
 
-	                            <p tal:content="item/text|nothing">Lorem ipsum dolor sit amet,
-	                            	consectetur adipiscing elit. In ornare placerat leo,
-	                            	non scelerisque sem mollis ut.</p>
+            <div class="columns large-8 listagem_horizontal_main">
+                <ul data-orbit id="tile-news" tal:attributes="data-options python: len(itens)==1 and bullets_false;">
+                    <li tal:repeat="item itens">
+                        <div class="row">
+                            <div class="columns small-8 listagem_horizontal_image">
+                                <img tal:attributes="src item/image"
+                                src="++theme++vindula.themedefault/images/demos/demo2-th.gif" />
+                            </div>
+                            <div class="columns small-4 listagem_horizontal_text">
+                                <h5><a tal:attributes="href item/url|nothing"
+                                tal:content="item/title|nothing"
+                                href="#">Nova diretoria da Opas visita Bio</a></h5>
 
-			               <!-- <tal:cond condition="context/getActiveSocial">
-        					    <div class="vd-social-left" tal:define="context nocall: item/obj">
-                                    <div metal:use-macro="context/macro-comboStandard-content/macros/view" />
+                                <p tal:content="item/text|nothing">
+                                    Lorem ipsum dolor sit amet,
+                                    consectetur adipiscing elit. In ornare placerat leo,
+                                    non scelerisque sem mollis ut.
+                                </p>
+
+                                <!-- <tal:cond condition="context/getActiveSocial">
+                                <div class="vd-social-left" tal:define="context nocall: item/obj">
+                                <div metal:use-macro="context/macro-comboStandard-content/macros/view" />
                                 </div>
-			                </tal:cond> -->
-	                        </div>
-	                    </div>
-	                </li>
-	            </ul> 
-	        </div>
-			
-			<div class="columns small-1 separador"></div>
-			
-			<div class="columns large-3 icones-laterais-header" tal:define="banners view_banner/getBanner">
-				<ul class="lista-laterais">
-					<li class="itens-laterais clear" tal:repeat="banner python:banners[:4]">
-						<div class="conteudo-itens-laterais">
-							<img src="++resource++vindula.themedefault/images/icons/chat.png"
-								 tal:attributes="src banner/image">
-							<div class="desc-itens-laterais">
-								<h6><a href="#" tal:content="banner/title" 
-												tal:attributes="href banner/url">Rede Socioprofissional</a></h6>
-									<p class="desc-listagem-horizontal" tal:content="banner/text">Lorem ipsum dolor sit amet.</p>
-							</div>
-						</div>
-					</li>
-				</ul>
-			</div>
+                                </tal:cond> -->
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
 
-		</div>
-	</div>
+            <div class="columns small-1 separador"></div>
+
+            <div class="columns large-3 icones-laterais-header" tal:define="banners view_banner/getBanner">
+                <ul class="lista-laterais">
+                    <li class="itens-laterais clear" tal:repeat="banner python:banners[:4]">
+                        <div class="conteudo-itens-laterais">
+                            <img src="++resource++vindula.themedefault/images/icons/chat.png"
+                            tal:attributes="src banner/image">
+                            <div class="desc-itens-laterais">
+                                <h6><a href="#" tal:content="banner/title"
+                                tal:attributes="href banner/url">Rede Socioprofissional</a></h6>
+                                <p class="desc-listagem-horizontal" tal:content="banner/text">
+                                    Lorem ipsum dolor sit amet.
+                                </p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </metal:macro>
 
-<metal:macro define-macro="destaque_banner" tal:define="view_banner nocall:context/@@bannercompost-view;" 
-											tal:condition="python:view_banner.getLayout() =='destaque_banner'">
+<metal:macro define-macro="destaque_banner" 
+             tal:define="view_banner nocall:context/@@bannercompost-view;"
+             tal:condition="python:view_banner.getLayout() =='destaque_banner'">
 
-	<div class="row">
-		<div class="columns large-12 content-viewlet" 
-			 tal:define="itens view_banner/getDestaqueBanner;
-		                 bullets_false python:'bullets:false;;timer_speed:0;;navigation_arrows:false';">
-	        
-	        <div class="columns large-8 listagem_horizontal_main banner-statico">
-	            <ul data-orbit id="tile-news"
-	                tal:attributes="data-options python: len(itens)==1 and bullets_false;">
-	                <li tal:repeat="item itens">
-	                    <div class="destaque-banner">
-	                           <a href="#" tal:attributes="href item/url;
-														   ">
-									<img tal:attributes="src item/image"
-	                              		 src="++theme++vindula.themedefault/images/demos/demo2-th.gif" /></a>
-								<div class="descricao-destaque-banner">
-									<p tal:content="item/text" class="conteudo-descricao-destaque-banner">
-									</p>
-								</div>
-	                        </div>
-							
-			               <!-- <tal:cond condition="context/getActiveSocial">
-        					    <div class="vd-social-left" tal:define="context nocall: item/obj">
-                                    <div metal:use-macro="context/macro-comboStandard-content/macros/view" />
-                                </div>
-			                </tal:cond> -->
-	                </li>
-	            </ul> 
-	        </div>
-			
-			<div class="columns small-1 separador"></div>
-			
-			<div class="columns large-3 icones-laterais-header" tal:define="banners view_banner/getBanner">
-				<ul class="lista-laterais">
-					<li class="itens-laterais clear" tal:repeat="banner python:banners[:4]">
-						<div class="conteudo-itens-laterais">
-							<img src="++resource++vindula.themedefault/images/icons/chat.png"
-								 tal:attributes="src banner/image">
-							<div class="desc-itens-laterais">
-								<h6><a href="#" tal:content="banner/title" 
-												tal:attributes="href banner/url; target banner/target"
-																>Rede Socioprofissional</a></h6>
-									<p class="desc-listagem-horizontal" tal:content="banner/text">Lorem ipsum dolor sit amet.</p>
-							</div>
-						</div>
-					</li>
-				</ul>
-			</div>
+    <div class="row">
+        <div class="columns large-12 content-viewlet"
+             tal:define="itens view_banner/getDestaqueBanner;
+                         bullets_false python:'bullets:false;;timer_speed:0;;navigation_arrows:false';">
 
-		</div>
-	</div>
+            <div class="columns large-8 listagem_horizontal_main banner-statico">
+                <ul data-orbit id="tile-news" tal:attributes="data-options python: len(itens)==1 and bullets_false;">
+                    <li tal:repeat="item itens">
+                        <div class="destaque-banner">
+                            <a href="#" tal:attributes="href item/url;"> 
+                                <img tal:attributes="src item/image" src="++theme++vindula.themedefault/images/demos/demo2-th.gif" />
+                            </a>
+                            <div class="descricao-destaque-banner">
+                                <p tal:content="item/text" class="conteudo-descricao-destaque-banner"></p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="columns small-1 separador"></div>
+
+            <div class="columns large-3 icones-laterais-header" tal:define="banners view_banner/getBanner">
+                <ul class="lista-laterais">
+                    <li class="itens-laterais clear" tal:repeat="banner python:banners[:4]">
+                        <div class="conteudo-itens-laterais">
+                            <img src="++resource++vindula.themedefault/images/icons/chat.png"
+                            tal:attributes="src banner/image">
+                            <div class="desc-itens-laterais">
+                                <h6>
+                                    <a href="#" tal:content="banner/title" tal:attributes="href banner/url; target banner/target">Rede Socioprofissional</a>
+                                </h6>
+                                <p class="desc-listagem-horizontal" tal:content="banner/text">
+                                    Lorem ipsum dolor sit amet.
+                                </p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </metal:macro>

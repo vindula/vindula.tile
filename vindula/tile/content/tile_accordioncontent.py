@@ -23,7 +23,7 @@ TileAccordionContent_schema = ATFolder.schema.copy() + BaseTile.schema.copy() + 
             description='Se selecionado, ativa a opção de recursividade do portlet em níveis inferiores.',
         ),
         required=False,
-        schemata = 'Settings'
+        schemata = 'settings'
     ),
 
     BooleanField(
@@ -34,7 +34,7 @@ TileAccordionContent_schema = ATFolder.schema.copy() + BaseTile.schema.copy() + 
             description='Se selecionado, irá bloquear todos os portlets dos níveis superiores do portal.(Cautela para usar esta opção)',
         ),
         required=False,
-        schemata = 'Settings'
+        schemata = 'settings'
     ),
     
     BooleanField(
@@ -45,9 +45,8 @@ TileAccordionContent_schema = ATFolder.schema.copy() + BaseTile.schema.copy() + 
             description="Selecione esta opção caso queira que os itens do accordion carreguem sempre abertos.",
         ),
         required=False,
-        schemata = 'Settings'
+        schemata = 'settings'
     ),
-
 ))
 
 finalizeATCTSchema(TileAccordionContent_schema, folderish=True)

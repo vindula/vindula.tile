@@ -16,12 +16,14 @@
     <metal:main fill-slot="content-core">
         <metal:macro define-macro="page">
             <div class="row">
-                <div class="columns large-12 box-title">
-                    <h5>
-                        <tal:cont content="context/Title|nothing">EQUIPE</tal:cont>
-                        <hr/>
-                    </h5>
-                </div>
+                <tal:cond condition="not:context/getHide_title">
+                    <div class="columns large-12 box-title">
+                        <h5>
+                            <tal:cont content="context/Title|nothing">EQUIPE</tal:cont>
+                            <hr/>
+                        </h5>
+                    </div>
+                <tal:cond>
                 <div class="columns large-12">
                     <metal:macro define-macro="body"
                                  tal:condition="structure"

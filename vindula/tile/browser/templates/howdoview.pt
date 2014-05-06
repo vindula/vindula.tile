@@ -16,21 +16,25 @@
                     <input type="hidden" tal:attributes="value string:${context/absolute_url}" name="url-context" id="url-context" />
                     
                     <div id="list-no-icon" class="clear">
-                        <div class="columns large-12">
-                            <div class="row box-title">
-                                <div class="columns small-10 text">
-                                    <h4 tal:content="context/Title">Notícias</h4>
-                                    <hr/>
-                                </div>
-                                <div class="columns small-2 icon-moreaccess more-items"
-                                     tal:condition="context/getActiveMoreButton">
-                                    <a href="#" class="right more">
-                                        <h1 class="subheader vindula-icon-plus-sign"></h1>
-                                    </a>
-                                    <!--metal:block metal:use-macro="context/@@howdo-view/macros/mais_itens" /-->
+                        
+                        <tal:cond condition="not:context/getHide_title">
+                            <div class="columns large-12">
+                                <div class="row box-title">
+                                    <div class="columns small-10 text">
+                                        <h4 tal:content="context/Title">Notícias</h4>
+                                        <hr/>
+                                    </div>
+                                    <div class="columns small-2 icon-moreaccess more-items"
+                                         tal:condition="context/getActiveMoreButton">
+                                        <a href="#" class="right more">
+                                            <h1 class="subheader vindula-icon-plus-sign"></h1>
+                                        </a>
+                                        <!--metal:block metal:use-macro="context/@@howdo-view/macros/mais_itens" /-->
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </tal:cond>
+                        
                         <div class="columns large-12">
                             <div class="content_itens">
                             <ul class="square">
@@ -50,38 +54,3 @@
         </metal:main>
     </body>
 </html>
-
-<!--metal:macro define-macro="mais_itens"
-             tal:define="view_macro nocall:context/@@howdo-view;">
-
-    <div class="box-more-items box-hidden">
-      <div class="seta-box">
-        <img tal:attributes="src string:${context/portal_url}/++resource++vindula.tile/images/seta-box.png" />
-      </div>
-      <ul class="letters no-bullet" tal:define="constructor view_macro/constructor">
-        <tal:rep repeat="item view_macro/alphabet">
-            <li class="active"
-                tal:define="content_itens python: constructor[item];
-                            has_content python: len(content_itens) == 0"
-                tal:attributes="class python:view_macro.is_first_active(has_content)" >
-
-                <h6 class="subheader" tal:attributes="class python: has_content and 'subheader' or '' ">
-                  <a href="#" tal:content="item" tal:condition="content_itens" ></a>
-                  <tal:cont  tal:content="item" tal:condition="not: content_itens"  />
-                </h6>
-                <ul tal:attributes="id item"
-                    tal:condition="content_itens" class="hide no-bullet">
-                    <tal:rep repeat="valor content_itens">
-                        <li tal:define="obj valor/getObject">
-                            <a tal:attributes="href string:${obj/absolute_url|nothing}"
-                            tal:content="python:view_macro.getTitle(obj)">UNIDADE</a>
-                        </li>
-                    </tal:rep>
-                </ul>
-            </li>
-        </tal:rep>
-      </ul>
-    </div>
-</metal:macro-->
-
-

@@ -40,6 +40,7 @@
         <element value="TileJobOffer" />
         <element value="TilePoiTracker" />
         <element value="TileLibrary" />
+        <element value="TileLoadReference" />
     </property>
 
     <property name="immediate_view">layout-view</property>

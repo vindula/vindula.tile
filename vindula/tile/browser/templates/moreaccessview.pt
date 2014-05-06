@@ -34,23 +34,25 @@
 <metal:macro define-macro="padrao"
              tal:condition="python:view_macro.getKind() == 'padrao'">
     <div id="tile-more-access" class="clear">
-        <div class="columns large-12 colunas">
-            <div class="row box-title">
-                <div class="columns small-10">
-                    <h4>
-                        <span tal:replace="context/Title"></span>
-                        <hr/>
-                    </h4>
-                </div>
-                <div class="columns small-2 icon-moreaccess more-items"
-                     tal:condition="context/getActiveMoreButton">
-                    <a href="#" class="right more">
-                        <h1 class="subheader vindula-icon-plus-sign"></h1>
-                    </a>
-                    <!--metal:block metal:use-macro="context/@@moreaccess-view/macros/mais_itens" /-->
+        <tal:cond condition="not:context/getHide_title">
+            <div class="columns large-12 colunas">
+                <div class="row box-title">
+                    <div class="columns small-10">
+                        <h4>
+                            <span tal:replace="context/Title"></span>
+                            <hr/>
+                        </h4>
+                    </div>
+                    <div class="columns small-2 icon-moreaccess more-items"
+                         tal:condition="context/getActiveMoreButton">
+                        <a href="#" class="right more">
+                            <h1 class="subheader vindula-icon-plus-sign"></h1>
+                        </a>
+                        <!--metal:block metal:use-macro="context/@@moreaccess-view/macros/mais_itens" /-->
+                    </div>
                 </div>
             </div>
-        </div>
+        </tal:cond>
         <div>
             <h6 class="subheader">
                <!-- Mais Acessadas:-->
@@ -84,25 +86,28 @@
 <metal:macro define-macro="unidade"
              tal:condition="python:view_macro.getKind() == 'unidade'">
     <div id="tile-more-access" class="clear">
-        <div class="columns large-12">
-            <div class="row box-title">
-                <div class="columns small-10">
-                    <h4>
-                        <span tal:replace="context/Title"></span>
-                        <hr/>
-                    </h4>
-                </div>
-                <div class="columns small-2 icon-moreaccess more-items"
-                     tal:condition="context/getActiveMoreButton">
-                    <a href="#" class="right more">
-                        <h1 class="subheader vindula-icon-plus-sign"></h1>
-                    </a>
-                    <!--metal:block metal:use-macro="context/@@moreaccess-view/macros/mais_itens" /-->
+        
+        <tal:cond condition="not:context/getHide_title">
+            <div class="columns large-12">
+                <div class="row box-title">
+                    <div class="columns small-10">
+                        <h4>
+                            <span tal:replace="context/Title"></span>
+                            <hr/>
+                        </h4>
+                    </div>
+                    <div class="columns small-2 icon-moreaccess more-items"
+                         tal:condition="context/getActiveMoreButton">
+                        <a href="#" class="right more">
+                            <h1 class="subheader vindula-icon-plus-sign"></h1>
+                        </a>
+                        <!--metal:block metal:use-macro="context/@@moreaccess-view/macros/mais_itens" /-->
+                    </div>
                 </div>
             </div>
-        </div>
+        </tal:cond>
 
-    <div>
+        <div>
             <h6 class="subheader">
                 Mais Acessadas:
             </h6>
@@ -136,23 +141,25 @@
 <metal:macro define-macro="lista_ver"
              tal:condition="python:view_macro.getKind() == 'lista_ver'">
     <div id="tile-more-access" class="clear">
-        <div class="columns large-12">
-            <div class="row box-title">
-                <div class="columns small-10">
-                    <h4>
-                        <span tal:replace="context/Title"></span>
-                        <hr/>
-                    </h4>
-                </div>
-                <div class="columns small-2 icon-moreaccess more-items"
-                     tal:condition="context/getActiveMoreButton">
-                    <a href="#" class="right more">
-                        <h1 class="subheader vindula-icon-plus-sign"></h1>
-                    </a>
-                    <!--metal:block metal:use-macro="context/@@moreaccess-view/macros/mais_itens" /-->
+        <tal:cond condition="not:context/getHide_title">
+            <div class="columns large-12">
+                <div class="row box-title">
+                    <div class="columns small-10">
+                        <h4>
+                            <span tal:replace="context/Title"></span>
+                            <hr/>
+                        </h4>
+                    </div>
+                    <div class="columns small-2 icon-moreaccess more-items"
+                         tal:condition="context/getActiveMoreButton">
+                        <a href="#" class="right more">
+                            <h1 class="subheader vindula-icon-plus-sign"></h1>
+                        </a>
+                        <!--metal:block metal:use-macro="context/@@moreaccess-view/macros/mais_itens" /-->
+                    </div>
                 </div>
             </div>
-        </div>
+        </tal:cond>
         <div>
             <h6 class="subheader">
                 Mais Acessadas:
@@ -194,17 +201,21 @@
          
         <div class="columns large-12">
             <div id="tile-more-acess-unity" class="row list_tile">
-                <div class="title columns large-12 box-title">
-    
-                  <div class="ajax_pagination right" id="pag-nav">
-                    <metal:block metal:use-macro="context/boll_batch/macros/navigation" />
-                  </div>
-    
-                  <h5>
-                      <span tal:replace="context/Title">UNIDADES MAIS ACESSADAS</span>
-                      <hr/>
-                  </h5>
-                </div>
+                
+                <tal:cond condition="not:context/getHide_title">
+                    <div class="title columns large-12 box-title">
+        
+                      <div class="ajax_pagination right" id="pag-nav">
+                        <metal:block metal:use-macro="context/boll_batch/macros/navigation" />
+                      </div>
+        
+                      <h4>
+                          <span tal:replace="context/Title">UNIDADES MAIS ACESSADAS</span>
+                          <hr/>
+                      </h4>
+                    </div>
+                </tal:cond>
+                
                 <div class="container lista-news">
                   <input type="hidden" id="b_size" tal:attributes="value b_size" />
                   <input type="hidden" id="b_start" tal:attributes="value b_start" />
@@ -247,36 +258,4 @@
             </div>
         </div>
     </div>
-    
 </metal:macro>
-
-<!--metal:macro define-macro="mais_itens">
-    <div class="box-more-items box-hidden">
-      <div class="seta-box">
-        <img tal:attributes="src string:${context/portal_url}/++resource++vindula.tile/images/seta-box.png" />
-      </div>
-      <ul class="letters no-bullet" tal:define="constructor view_macro/constructor">
-        <tal:rep repeat="item view_macro/alphabet">
-            <li class="active"
-                tal:define="content_itens python: constructor[item];
-                            has_content python: len(content_itens) == 0"
-                tal:attributes="class python:view_macro.is_first_active(has_content)" >
-
-                <h6 class="subheader" tal:attributes="class python: has_content and 'subheader' or '' ">
-                  <a href="#" tal:content="item" tal:condition="content_itens" ></a>
-                  <tal:cont  tal:content="item" tal:condition="not: content_itens"  />
-                </h6>
-                <ul tal:attributes="id item"
-                    tal:condition="content_itens" class="hide no-bullet">
-                    <tal:rep repeat="valor content_itens">
-                        <li tal:define="obj valor/getObject">
-                            <a tal:attributes="href string:${obj/absolute_url|nothing}${context/getPath_link}"
-                            tal:content="python:view_macro.getTitle(obj)">UNIDADE</a>
-                        </li>
-                    </tal:rep>
-                </ul>
-            </li>
-        </tal:rep>
-      </ul>
-    </div>
-</metal:macro-->

@@ -61,7 +61,7 @@
                                      
                                     <div class="clear">
                                         <h5>
-                                            <a tal:attributes="id typology;
+                                            <a tal:attributes="id id_typology;
                                                                class python: 'left accordion arrow arrow-%s' % (repeat['typology'].start and 'top' or 'left');"></a>
                                             <a class="accordion" tal:attributes="id id_typology" tal:content="typology"></a>
                                             <hr />
@@ -85,7 +85,7 @@
                                         <tal:rep repeat="content batch">
                                             <tal:repl condition="python: repeat['content'].start or (repeat['content'].index % 3 == 0)" 
                                                       replace="structure python: '<div class=\'columns large-12 small-12\'> <div class=\'row\'>'"></tal:repl>
-                                                <div class="columns large-4 small-4 content-container">
+                                                <div class="columns large-4 content-container">
                                                     <div tal:attributes="class python:'container-image left %s' % (content.portal_type in ['VindulaPhotoAlbum', 'VindulaVideo'] and (content.portal_type == 'VindulaVideo' and 'vindula-video' or 'vindula-album') or 'default-image');">
                                                         <a tal:attributes="href content/absolute_url;">
                                                             <img tal:attributes="src python: view_macro.getImageUrlByType(content);" />
