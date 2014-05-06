@@ -13,6 +13,7 @@
 
       <metal:macro define-macro="page"
                    tal:define="view nocall:context/@@layout-view;
+                               layout_smart layout_smart|python:False;
                                size_global size_global|python:False;
                                tiles python:view.getItensTiles(size_global);
                                scripts view/getScripts_js;
@@ -41,7 +42,7 @@
 
           <input type="hidden" name="context_UID" id="context_UID" tal:attributes="value context/UID|string: " />
 
-          <div tal:repeat="itens tiles" class="row linha_tiles">
+          <div tal:repeat="itens tiles" class="row linha_tiles" tal:condition="not: layout_smart">
 
               <tal:cond_12 condition="python: len(itens) == 1 ">
                   <div class="columns large-12" id="full"
@@ -120,6 +121,44 @@
               </tal:cond_4>
 
           </div>
+          <tal:rep repeat="itens tiles" tal:condition="layout_smart">
+             
+              <tal:cond condition="python: repeat['itens'].number()==1">
+                <div class="columns large-12" tal:define="item python: itens[0];
+                                                          portal_type item/portal_type|string: ">
+
+                  <div metal:use-macro="context/macro_layout_load/macros/page" />
+                    
+                </div>  
+              </tal:cond>
+              <tal:cond condition="python: repeat['itens'].number() in [2,3,4]">
+                <div class="columns large-4" tal:define="item python: itens[0];
+                                                          portal_type item/portal_type|string: ">
+
+                  <div metal:use-macro="context/macro_layout_load/macros/page" />
+                    
+                </div>  
+              </tal:cond>             
+              <tal:cond condition="python: repeat['itens'].number() == 5">
+                <div class="columns large-8" tal:define="item python: itens[0];
+                                                          portal_type item/portal_type|string: ">
+
+                  <div metal:use-macro="context/macro_layout_load/macros/page" />
+                    
+                </div>  
+              </tal:cond>
+
+              <tal:cond condition="python: repeat['itens'].number() == 6">
+                <div class="columns large-4" tal:define="item python: itens[0];
+                                                          portal_type item/portal_type|string: ">
+
+                  <div metal:use-macro="context/macro_layout_load/macros/page" />
+                    
+                </div>  
+              </tal:cond>
+
+          </tal:rep>
+          
         </div>
       </metal:macro>
     </metal:main>
