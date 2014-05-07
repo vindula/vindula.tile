@@ -6,6 +6,8 @@ from vindula.tile.browser.baseview import BaseView
 
 from five import grok
 
+from datetime import datetime
+
 grok.templatedir('templates')
 
 class ListagemHorizontalView(BaseView):
@@ -15,9 +17,32 @@ class ListagemHorizontalView(BaseView):
         context = self.context
         # layout = context.getListTemplates()
         # navigation = context.getTypeNavigation()
-        L = []
+        results = []
+        
+        items = context.getHighlights()
+        types = context.getListTypes()
+        path = context.getPath()
+        
+        if path:
+            ordination = getattr(context, 'getOrdination', '')
+            if ordination:
+                ordination = ordination()
+            
+            query = {'portal_type': types,
+                     'path':{'query':'/'.join(path.getPhysicalPath()),'depth':99},}
+            
+            if ordination == 'creation_date':
+                query['sort_on'] = 'created'
+                query['sort_order'] ='reverse'
+            elif ordination == 'title':
+                query['sort_on'] = 'sortable_title'
+            
+            results_pc = self.portal_catalog(query)
+            results_pc = [i.getObject() for i in results_pc if i]
+            if results_pc:
+                items += results_pc
 
-        for item in context.getHighlights():
+        for item in items:
             D={}
 
             D['title'] = self.limitTextSize(item.Title(),50)
@@ -51,6 +76,17 @@ class ListagemHorizontalView(BaseView):
                 D['author'] = ''
 
             D['obj'] = item
-            L.append(D)
-        return L
+            results.append(D)
+        
+#         if results:
+#             ordination = getattr(context, 'getOrdination', '')
+#             if ordination:
+#                 ordination = ordination()
+#             
+#             if ordination == 'creation_date':
+#                 results = sorted(results, key=lambda x: datetime.strptime(x['date']+x['hour'], '%d/%m/%Y%H:%M'), reverse=True)
+#             elif ordination == 'title':
+#                 pass
+            
+        return results
 
