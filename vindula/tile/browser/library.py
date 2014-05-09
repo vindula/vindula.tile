@@ -71,8 +71,12 @@ class ThemeContentsView(BaseView):
             photos = obj.contentValues()
             if photos:
                 url = photos[0].absolute_url() + '/image_preview'
-        elif type == 'VindulaVideo':
-            photo = obj.getImage_preview()
+        elif type in ['VindulaVideo', 'VindulaStreaming']:
+            if type == 'VindulaVideo':
+                photo = obj.getImage_preview()
+            else:
+                photo = obj.getImage()
+
             if photo:
                 url = photo.absolute_url()
         else:
