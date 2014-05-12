@@ -76,7 +76,7 @@ TileListagemHorizontal_schema = BaseTile.schema.copy() + Schema((
         relationship='path',
         widget=VindulaReferenceSelectionWidget(
             label=_(u"Pasta"),
-            description='Selecione a pasta de onde os contúdos deverão ser listados.'
+            description='Selecione a pasta de onde os conteúdos deverão ser listados.'
         ),
         review_state = ('published', 'internal','external')
     ),
@@ -127,7 +127,7 @@ TileListagemHorizontal_schema = BaseTile.schema.copy() + Schema((
         default=False,
         widget=BooleanWidget(
             label="Editoriais",
-            description='Caso selecionado, ativa o vição dos editorias das notícas ou pagínas.',
+            description='Caso selecionado, ativa a visão dos editoriais das notícias ou páginas.',
             label_msgid='vindula_tile_label_activeSubTitulo',
             description_msgid='vindula_tile_help_activeSubTitulo',
         ),
@@ -137,7 +137,7 @@ TileListagemHorizontal_schema = BaseTile.schema.copy() + Schema((
         name='ordination',
         widget=SelectionWidget(
             label=_(u"Ordenação"),
-            description=_(u"Selecione qual o tipo de ordenação dos itens listados."),
+            description=_(u"Selecione o tipo de ordenação dos itens listados."),
             label_msgid='vindula_tile_label_ordination',
             description_msgid='vindula_tile_help_ordination',
             i18n_domain='vindula_tile',
@@ -146,6 +146,33 @@ TileListagemHorizontal_schema = BaseTile.schema.copy() + Schema((
         vocabulary=[("creation_date", _(u"Data de cadastro")),
                     ("title", _(u"Título")),],
         default='creation_date',
+    ),
+                                                                 
+    StringField(
+        name='order',
+        widget=SelectionWidget(
+            label=_(u"Ordem"),
+            description=_(u"Selecione qual ordem os itens listados devem assumir."),
+            label_msgid='vindula_tile_label_order',
+            description_msgid='vindula_tile_help_order',
+            i18n_domain='vindula_tile',
+            format='select',
+        ),
+        vocabulary=[("desc", _(u"Decrescente")),
+                    ("asc", _(u"Crescente")),],
+        default='desc',
+    ),
+                                                                 
+    BooleanField(
+        name='hideSeparator',
+        schemata='settings',
+        default=False,
+        widget=BooleanWidget(
+            label="Ocultar separador",
+            description='Selecione para ocultar a linha pontilhada que separa as notícias na listagem múltipla.',
+            label_msgid='vindula_tile_label_hideSeparator',
+            description_msgid='vindula_tile_help_hideSeparator',
+        ),
     ),
                                                                  
     BooleanField(
@@ -197,6 +224,32 @@ TileListagemHorizontal_schema = BaseTile.schema.copy() + Schema((
         ),
         required=False,
     ),
+                                                                 
+    BooleanField(
+        name='hidePagination',
+        default=False,
+        schemata='settings',
+        widget=BooleanWidget(
+            label="Ocultar paginação",
+            description='Selecione para ocultar a paginação do bloco na listagem múltipla.',
+            label_msgid='vindula_tile_label_hidePagination',
+            description_msgid='vindula_tile_help_hidePagination',
+        ),
+    ),
+      
+    IntegerField(
+        name='qtyItemsPage',
+        schemata='settings',
+        widget=IntegerWidget(
+            label=_(u"Quantidade de itens por página"),
+            description=_(u"Insira a quantidade de itens por página na listagem múltipla."),
+            label_msgid='vindula_tile_label_qtyItemsPage',
+            description_msgid='vindula_tile_help_qtyItemsPage',
+            i18n_domain='vindula_tile',
+        ),
+        default = 7,
+        required=True,
+    ),                                                     
 ))
 
 finalizeATCTSchema(TileListagemHorizontal_schema, folderish=False)

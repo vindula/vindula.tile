@@ -104,7 +104,7 @@ i18n:domain="vindula.tile">
          tal:condition="batch"
          tal:define="itens view_macro/getItens;
                      Batch python:modules['Products.CMFPlone'].Batch;
-                     b_size request/b_size|string:7;
+                     b_size request/b_size|context/getQtyItemsPage|string:7;
                      b_start python:0;
                      b_start request/b_start | b_start;
                      batch python:Batch(itens, int(b_size), int(b_start), pagerange=len(itens));">
@@ -121,7 +121,8 @@ i18n:domain="vindula.tile">
                 </div>
             </tal:cond>
             
-            <div class="columns large-12">
+            <div class="columns large-12"
+                 tal:condition="not:context/getHidePagination|nothing">
                 <div class="ajax_pagination right" id="pag-nav">
                     <metal:block metal:use-macro="context/boll_batch/macros/navigation" />
                 </div>
@@ -135,7 +136,7 @@ i18n:domain="vindula.tile">
                 <div class="columns large-12" 
                      tal:repeat="item batch">
                      
-                    <div class="item-list clear lista-news-conteudo">
+                    <div tal:attributes="class python:'item-list clear lista-news-conteudo %s' % (context.getHideSeparator() and 'hide-separator' or '')">
                         <tal:cond condition="not:context/getHideImage|nothing">
                             <div class="left listagem_horizontal_image">
                                 <img src="" 

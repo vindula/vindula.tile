@@ -27,15 +27,21 @@ class ListagemHorizontalView(BaseView):
             ordination = getattr(context, 'getOrdination', '')
             if ordination:
                 ordination = ordination()
+                
+            order = getattr(context, 'getOrder', '')
+            if order:
+                order = order()
             
             query = {'portal_type': types,
                      'path':{'query':'/'.join(path.getPhysicalPath()),'depth':99},}
             
             if ordination == 'creation_date':
                 query['sort_on'] = 'created'
-                query['sort_order'] ='reverse'
             elif ordination == 'title':
                 query['sort_on'] = 'sortable_title'
+                
+            if order == 'desc':
+                query['sort_order'] ='reverse'
             
             results_pc = self.portal_catalog(query)
             results_pc = [i.getObject() for i in results_pc if i]
