@@ -23,7 +23,7 @@
                             <hr/>
                         </h5>
                     </div>
-                <tal:cond>
+                </tal:cond>
                 <div class="columns large-12">
                     <metal:macro define-macro="body"
                                  tal:condition="structure"
