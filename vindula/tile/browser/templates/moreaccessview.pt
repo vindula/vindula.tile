@@ -107,11 +107,11 @@
             </div>
         </tal:cond>
 
-        <div>
+        <!--div>
             <h6 class="subheader">
                 Mais Acessadas:
             </h6>
-        </div>
+        </div-->
 
         <div class="columns large-12">
           <tal:rep repeat="item view_macro/getItens">
