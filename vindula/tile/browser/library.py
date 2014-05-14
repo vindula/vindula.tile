@@ -44,7 +44,7 @@ class ThemeContentsView(BaseView):
         typologies = {}
         if theme:
             value = theme.value
-
+            
             brains = p_catalog(ThemeNews=value)
             for brain in brains:
                 if not brain.tipo or brain.portal_type == 'Image':
@@ -57,8 +57,27 @@ class ThemeContentsView(BaseView):
         
         od = OrderedDict(sorted(typologies.items(), key=lambda t: t[0]))
         typologies = od.items()
-        
+
         typologies = OrderedDict(typologies)
+        
+        for typology in typologies.keys():
+            data = TagContent().store.find(TagContent, 
+                                              TagContent.type==u'typology',
+                                              TagContent.value==typology.decode('utf-8'),
+                                              TagContent.deleted==False)
+            if data.count():
+                data = data[0]
+
+                if data.sort_on == 'sortable_title':
+                    typologies[typology] = sorted(typologies.get(typology), key=lambda x: x.title.lower())
+                elif data.sort_on == 'created':
+                    typologies[typology] = sorted(typologies.get(typology), key=lambda x: x.created())
+                    
+                if data.order ==  'desc':
+                    typologies.get(typology).reverse()
+                
+            else:
+                continue
         
         return typologies
     
