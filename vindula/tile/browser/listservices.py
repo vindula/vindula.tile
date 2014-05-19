@@ -39,19 +39,25 @@ class ListServicesView(BaseView, UtilMyvindula):
         path = category.getPhysicalPath()
         path = "/".join(path)
         
-        items = self.p_catalog(path={"query": path, "depth": 3},
-                               portal_type=['Servico'])
+        query = {'path': {"query": path, "depth": 3},
+                 'portal_type': ['Servico']}
+        
+        if category.getSort_position_in_parent():
+            query['sort_on'] = "getObjPositionInParent"
+        
+        items = self.p_catalog(query)
         
         result = []
         for item in items:
             item = item.getObject()
-            if self.p_workflow.getInfoFor(item, 'review_state') in ['published', 'internally_published', 'external']:
-                result.append(item)
-            else:
-                if self.hasPermission(current_user, item):
+            if not item.getHide_service():
+                if self.p_workflow.getInfoFor(item, 'review_state') in ['published', 'internally_published', 'external']:
                     result.append(item)
                 else:
-                    continue
+                    if self.hasPermission(current_user, item):
+                        result.append(item)
+                    else:
+                        continue
         return result
     
     # def hasPermission(self, user, obj):

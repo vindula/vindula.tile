@@ -69,7 +69,7 @@
                                 <div class="clear">
                                     <div class="right ajax_pagination" id="pag-nav">
                                         <metal:block metal:use-macro="context/boll_batch/macros/navigation" />
-                                    </div
+                                    </div>
                                 </div>
                             </div> 
                         </div>
