@@ -15,13 +15,17 @@ class ListagemHorizontalView(BaseView):
 
     def getItens(self):
         context = self.context
-        # layout = context.getListTemplates()
         # navigation = context.getTypeNavigation()
         results = []
         
         items = context.getHighlights()
         types = context.getListTypes()
         path = context.getPath()
+        layout = context.getListTemplates()
+        if layout == 'destaque_multipla':
+            img_size = '/image_thumb'
+        else:
+            img_size = '/image_mini'
         
         if path:
             ordination = getattr(context, 'getOrdination', '')
@@ -70,7 +74,8 @@ class ListagemHorizontalView(BaseView):
                 D['unidade'] = ''
 
             try:
-                D['image'] = item.getImageRelac().absolute_url() + '/image_mini'
+                
+                D['image'] = item.getImageRelac().absolute_url() + img_size
             except:
                 D['image'] = ''
 
