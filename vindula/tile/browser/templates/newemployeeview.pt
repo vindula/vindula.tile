@@ -73,11 +73,11 @@
                                                data-value item/username|nothing;"
                                              tal:content="item/name|string: ">Pedro Miranda Prado</a>
                             <span class="block"
-                                  tal:condition="python: structure != None"
-                                  tal:content="structure/getSiglaOrTitle">ASCON</span>
+                                  tal:content="item/admission_date|string: ">10/10/10</span> 
                             
                             <span class="block"
-                                  tal:content="item/admission_date|string: ">10/10/10</span>                                  
+                                  tal:condition="python: structure != None"
+                                  tal:content="structure/getSiglaOrTitle">ASCON</span>                                
                         </div>
 
                       </div>
