@@ -214,7 +214,20 @@ TileListagemVertical_schema = BaseTile.schema.copy() + Schema((
             label_msgid='vindula_tile_label_hideSharing',
             description_msgid='vindula_tile_help_hideSharing',
         ),
-     ),
+    ),
+                                                               
+    BooleanField(
+        name='hideEventInfo',
+        schemata='settings',
+        default=False,
+        widget=BooleanWidget(
+            label="Ocultar informações do evento",
+            description='Selecione para ocultar as informações do evento na visão de eventos.',
+            label_msgid='vindula_tile_label_hideEventInfo',
+            description_msgid='vindula_tile_help_hideEventInfo',
+        ),
+    ),
+                                                               
 ))
 
 finalizeATCTSchema(TileListagemVertical_schema, folderish=False)
