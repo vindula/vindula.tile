@@ -27,7 +27,11 @@ function executaAjaxTile(ctx, b_start){
           dataType: 'GET',
           success: function(data){
                 var dom = $j(data);
+                if (dom.find('.social-box').length){
+                    dom.find('.social-box').vindula(null, {user_token: window.token});    
+                }
                 var content = dom.find(ctx_id).contents();
+                
                 ctx.html(content);
             },
         });

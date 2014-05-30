@@ -20,7 +20,7 @@ i18n:domain="vindula.tile">
         <metal:main fill-slot="content-core">
             <metal:macro define-macro="page"
             tal:define="global view_macro nocall:context/@@listagemhorizontal-view;
-            path_macro string:context/@@listagemhorizontal-view/macros/${context/getListTemplates}">
+                        path_macro string:context/@@listagemhorizontal-view/macros/${context/getListTemplates}">
                 <div class="row">
                     <metal:block tal:condition="path_macro"
                            metal:use-macro="python:path(path_macro)"></metal:block>
@@ -49,39 +49,44 @@ i18n:domain="vindula.tile">
             </tal:cond>
             
             <div class="columns large-12 listagem_horizontal_main">
-                <ul data-orbit id="tile-news"
-                tal:attributes="data-options python: len(itens)==1 and bullets_false;">
+                <ul data-orbit id="tile-news" 
+                    tal:attributes="data-options python: len(itens)==1 and bullets_false;">
                     <li tal:repeat="item itens">
                         <div class="row">
-                            <div class="columns small-4 listagem_horizontal_image">
-                                <img tal:attributes="src item/image"
-                                src="++theme++vindula.themedefault/images/demos/demo2-th.gif" />
-                            </div>
+                            <tal:cond condition="not:context/getHideImage|nothing">
+                                <div class="columns small-4 listagem_horizontal_image">
+                                    <img tal:define="width python:context.getWidthImage() and context.getWidthImage() or '';
+                                                     height python:context.getHeightImage() and context.getHeightImage() or ''"
+                                         tal:attributes="src item/image;
+                                                         style python: 'width: %spx;; height: %spx;;' % (width, height)"/>
+                                </div>
+                            </tal:cond>
+                            
                             <div class="columns small-8 listagem_horizontal_text">
-
                                 <h4 tal:condition="context/getActiveSubTitulo|python:False"
                                 tal:content="item/subtitulo|string: "> Lorem ipsum dolor sit amet / Consectetur adipiscing elit.</h4>
 
                                 <small tal:content="string: ${item/unidade|nothing} / ${item/date|nothing} ${item/hour|nothing}">ASCOM / 27/03/2013 14:30</small>
 
-                                <h5><a tal:attributes="href item/url|nothing"
-                                tal:content="item/title|nothing"
-                                href="#">Nova diretoria da Opas visita Bio</a></h5>
+                                <h5>
+                                    <a href="#" tal:attributes="href item/url|nothing"
+                                       tal:content="item/title|nothing">Nova diretoria da Opas visita Bio</a>
+                                </h5>
 
-                                <p tal:content="item/description|nothing">
+                                <p tal:content="item/description|nothing"
+                                   tal:condition="not:context/getHideDescription|nothing">
                                     Lorem ipsum dolor sit amet,
                                     consectetur adipiscing elit. In ornare placerat leo,
                                     non scelerisque sem mollis ut.
                                 </p>
 
                                 <tal:cond condition="context/getActiveSocial">
-                                    <div class="vd-social-left"
+                                    <div class="vd-social-left social-box"
                                          tal:define="change_id context/id|nothing;
                                                      context nocall: item/obj;">
                                         <div metal:use-macro="context/macro-comboStandard-content/macros/view" />
                                     </div>
                                 </tal:cond>
-
                             </div>
                         </div>
                     </li>
@@ -94,9 +99,17 @@ i18n:domain="vindula.tile">
 
 <metal:macro define-macro="destaque_multipla"
              tal:condition="python:context.getListTemplates() == 'destaque_multipla'">
-    <div class="columns large-12"  tal:define="itens view_macro/getItens;">
-        <div class="row">
-            
+    
+    <div class="columns large-12" 
+         tal:condition="batch"
+         tal:define="itens view_macro/getItens;
+                     Batch python:modules['Products.CMFPlone'].Batch;
+                     b_size request/b_size|context/getQtyItemsPage|string:7;
+                     b_start python:0;
+                     b_start request/b_start | b_start;
+                     batch python:Batch(itens, int(b_size), int(b_start), pagerange=len(itens));">
+                     
+        <div class="row list_tile" id="tile-horizontal-multipla">
             <tal:cond condition="not:context/getHide_title">
                 <div class="columns large-12 listagem_horizontal_text box-title">
                     <h4>
@@ -108,29 +121,59 @@ i18n:domain="vindula.tile">
                 </div>
             </tal:cond>
             
-            <div class="columns large-12" tal:repeat="item itens">
-
-                <h4 tal:condition="context/getActiveSubTitulo|python:False"
-                    tal:content="item/subtitulo|string: "> Lorem ipsum dolor sit amet / Consectetur adipiscing elit.</h4>
-
-                <small tal:content="string: ${item/unidade|nothing} / ${item/date|nothing} ${item/hour|nothing}">ASCOM / 27/03/2013 14:30</small>
-                <h5>
-                    <a tal:attributes="href item/url|nothing"
-                       tal:content="item/title|nothing"
-                       href="#">Nova diretoria da Opas visita Bio</a>
-                </h5>
-                <p tal:content="item/description|nothing">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ornare placerat leo,
-                    non scelerisque sem mollis ut.
-                </p>
-
-                <tal:cond condition="context/getActiveSocial">
-                    <div class="left"
-                         tal:define="change_id context/id|nothing;
-                                     context nocall:item/obj;">
-                        <metal:use use-macro="context/macro-comboStandard-content/macros/view" />
+            <div class="columns large-12"
+                 tal:condition="not:context/getHidePagination|nothing">
+                <div class="ajax_pagination right" id="pag-nav">
+                    <metal:block metal:use-macro="context/boll_batch/macros/navigation" />
+                </div>
+            </div>
+            
+            <div class="lista-news">
+                <input type="hidden" id="b_size" tal:attributes="value b_size" />
+                <input type="hidden" id="b_start" tal:attributes="value b_start" />
+                <input type="hidden" id="absolute_url" tal:attributes="value string:${context/absolute_url}" />
+                
+                <div class="columns large-12" 
+                     tal:repeat="item batch">
+                     
+                    <div tal:attributes="class python:'item-list clear lista-news-conteudo %s' % (context.getHideSeparator() and 'hide-separator' or '')">
+                        <tal:cond condition="not:context/getHideImage|nothing">
+                            <div class="left listagem_horizontal_image">
+                                <img src="" 
+                                     tal:define="width python:context.getWidthImage() and context.getWidthImage() or 100;
+                                                 height python:context.getHeightImage() and context.getHeightImage() or 70"
+                                     tal:attributes="src item/image;
+                                                     style python: 'width: %spx;; height: %spx;;' % (width, height)"/>
+                            </div>
+                        </tal:cond>
+                        
+                        <h4 tal:condition="context/getActiveSubTitulo|python:False"
+                            tal:content="item/subtitulo|string: "> Lorem ipsum dolor sit amet / Consectetur adipiscing elit.</h4>
+        
+                        <small tal:define="item_unidade python:item['unidade'] and item['unidade'] + ' / ' or ''"
+                               tal:content="string: ${item_unidade}${item/date|nothing} ${item/hour|nothing}">ASCOM / 27/03/2013 14:30</small>
+                        
+                        <h5>
+                            <a tal:attributes="href item/url|nothing"
+                               tal:content="item/title|nothing"
+                               href="#">Nova diretoria da Opas visita Bio</a>
+                        </h5>
+                        
+                        <p tal:content="item/description|nothing"
+                           tal:condition="not:context/getHideDescription|nothing">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ornare placerat leo,
+                            non scelerisque sem mollis ut.
+                        </p>
+        
+                        <tal:cond condition="context/getActiveSocial">
+                            <div class="left"
+                                 tal:define="change_id context/id|nothing;
+                                             context nocall:item/obj;">
+                                <metal:use use-macro="context/macro-comboStandard-content/macros/view" />
+                            </div>
+                        </tal:cond>
                     </div>
-                </tal:cond>
+                </div>
             </div>
 
             <div class="columns large-12">
@@ -146,6 +189,7 @@ i18n:domain="vindula.tile">
             </div>
         </div>
     </div>
+    
 </metal:macro>
 
 <metal:macro define-macro="destaque_two_columns"
@@ -182,30 +226,41 @@ i18n:domain="vindula.tile">
 
                 <tal:rep tal:repeat="item batch">
                     <div class="columns large-6 lista-news-conteudo" >
-                        <div class="row">
+                        <tal:cond condition="not:context/getHideImage|nothing">
                             <div class="columns small-4 " id="image_tile">
-                                <img class="border-shadow" width="80" src=""
-                                     tal:attributes="src item/image"/>
+                                <img class="border-shadow"
+                                     tal:define="width python:context.getWidthImage() and context.getWidthImage() or 80;
+                                                 height python:context.getHeightImage() and context.getHeightImage() or 60"
+                                     tal:attributes="src item/image;
+                                                     style python: 'width: %spx;; height: %spx;;' % (width, height)"/>
                             </div>
-                            <div class="columns small-8">
+                        </tal:cond>
+                        <div class="columns small-8">
 
-                                <h4 tal:condition="context/getActiveSubTitulo|python:False"
-                                    tal:content="item/subtitulo|string: "> Lorem ipsum dolor sit amet / Consectetur adipiscing elit.</h4>
+                            <h4 tal:condition="context/getActiveSubTitulo|python:False"
+                                tal:content="item/subtitulo|string: "> 
+                                Lorem ipsum dolor sit amet / Consectetur adipiscing elit.
+                            </h4>
 
-                                <small tal:content="string: ${item/unidade|nothing} / ${item/date|nothing} ${item/hour|nothing}"> LORORO / 27/03/2013 14:30</small>
-                                <strong>
+                            <small tal:content="string: ${item/unidade|nothing} / ${item/date|nothing} ${item/hour|nothing}"> LORORO / 27/03/2013 14:30</small>
+                            <strong>
                                 <br />
-                                <a href="#" tal:attributes="href item/url|nothing" tal:content="item/title|nothing"> Nova diretoria da Opas visita Bio</a></strong>
-                            </div>
-                            <tal:cond condition="context/getActiveSocial">
-
-                                <div class="vd-social-left columns small-12"
-                                     tal:define="change_id context/id|nothing;
-                                                 context nocall: item/obj;">
-                                    <div metal:use-macro="context/macro-comboStandard-content/macros/view" />
-                                </div>
-                            </tal:cond>
+                                <a href="#" tal:attributes="href item/url|nothing" tal:content="item/title|nothing"> Nova diretoria da Opas visita Bio</a>
+                            </strong>
+                            
+                            <p tal:content="item/description|nothing"
+                               tal:condition="not:context/getHideDescription|nothing">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ornare placerat leo,
+                                non scelerisque sem mollis ut.
+                            </p>
                         </div>
+                        <tal:cond condition="context/getActiveSocial">
+                            <div class="vd-social-left columns small-12 social-box"
+                                 tal:define="change_id context/id|nothing;
+                                             context nocall: item/obj;">
+                                <div metal:use-macro="context/macro-comboStandard-content/macros/view" />
+                            </div>
+                        </tal:cond>
                     </div>
                 </tal:rep>
             </div>
@@ -241,10 +296,15 @@ i18n:domain="vindula.tile">
                 </tal:cond>
 
                 <div class="columns large-6 listagem_horizontal_duas_colunas">
-                    <div class="image-noticia-duas-colunas">
-                        <img tal:attributes="src item/image"
-                        src="++theme++vindula.themedefault/images/demos/demo2-th.gif" />
-                    </div>
+                    <tal:cond condition="not:context/getHideImage|nothing">
+                        <div class="image-noticia-duas-colunas">
+                            <img tal:define="width python:context.getWidthImage() and context.getWidthImage() or 200;
+                                             height python:context.getHeightImage() and context.getHeightImage() or ''"
+                                 tal:attributes="src item/image;
+                                                 style python: 'width: %spx;; height: %spx;;' % (width, height)"/>
+                        </div>
+                    </tal:cond>
+                    
                     <div class="conteudo-noticia-duas-colunas">
                         <h4 tal:condition="context/getActiveSubTitulo|python:False"
                         tal:content="item/subtitulo|string: "> Lorem ipsum dolor sit amet / Consectetur adipiscing elit.</h4>
@@ -254,7 +314,8 @@ i18n:domain="vindula.tile">
                         <h5><a href="#" tal:attributes="href item/url|nothing"
                                         tal:content="item/title|nothing">Nova diretoria da Opas visita Bio</a></h5>
 
-                        <p tal:content="item/description|nothing">
+                        <p tal:content="item/description|nothing"
+                           tal:condition="not:context/getHideDescription|nothing">>
                             Lorem ipsum dolor sit amet,
                             consectetur adipiscing elit. In ornare placerat leo,
                             non scelerisque sem mollis ut.
