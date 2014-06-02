@@ -1,0 +1,77 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="context/main_template/macros/master"
+      lang="en"
+      i18n:domain="vindula.tile">
+
+<head>
+    <metal:js fill-slot="javascript_head_slot">
+      <!--script type="text/javascript" src=""
+              tal:attributes="src string:${context/absolute_url|nothing}/++resource++vindula.tile/js/org-tree.js"></script-->
+    </metal:js>
+</head>
+
+<body>
+    <metal:main fill-slot="content-core">
+        <metal:macro define-macro="page">
+            <div class="row">
+                <tal:cond condition="not:context/getHide_title">
+                    <div class="columns large-12 box-title">
+                        <h4>
+                            <tal:cont content="context/Title|nothing">EQUIPE</tal:cont>
+                            <hr/>
+                        </h4>
+                    </div>
+                </tal:cond>
+                
+                <div class="columns large-12">
+                    <metal:macro define-macro="body"
+                                 tal:define="width context/getWidth_video|string:640;
+                                             height context/getHeight_video|string:390;">
+                                             
+                        <script type="text/javascript" src="flowplayer-3.1.2.min.js"></script>
+                        
+                        <div id="tile-multimedia">
+                            
+                            <tal:cond condition="python: context.getMultimedia().portal_type == 'VindulaStreaming'">
+                                <div class="video"
+                                    tal:define="context python:context.getMultimedia();
+                                                view_multimedia nocall:context/@@view;
+                                                uid context/UID">
+                                    <a href=""
+                                       tal:attributes="href string: ${view_multimedia/server_url}/${uid}_video.flv;
+                                                       style python: 'display: block;; width: %spx;; height: %spx;;' % (width, height);"
+                                       id="player"></a>
+
+                                    <script>
+                                        flowplayer("player", "flowplayer-3.1.2.swf", {
+                                            clip: {
+                                                autoPlay: false,
+                                                autoBuffering: false,
+                                                showMenu: false,
+                                                autoRewind: true,
+                                                loop: false
+                                            }
+                                        });
+                                    </script>
+                                </div>
+                            </tal:cond>
+                            
+                            <tal:cond condition="python: context.getMultimedia().portal_type == 'VindulaVideo'">
+                                <tal:video condition="nocall:video"
+                                           define="context_video context/getMultimedia;
+                                                   video context_video/file_video;">
+                                    <a tal:attributes="href string:${context_video/absolute_url}/@@download/file_video/${video/filename};
+                                                       style python: 'display: block;; width: %spx;; height: %spx;;' % (width, height);"></a>
+                                </tal:video>
+                            </tal:cond>
+                        </div>
+                    </metal:macro>
+                </div>
+            </div>
+        </metal:macro>
+    </metal:main>
+</body>
+</html>

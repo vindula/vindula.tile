@@ -1,29 +1,29 @@
 <?xml version="1.0"?>
-<object name="TileJobOffer"
+<object name="TileMultimedia"
         meta_type="Factory-based Type Information with dynamic views"
         xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 
     <!-- Basic metadata -->
-    <property name="title" i18n:translate="">Bloco de Vagas</property>
-    <property name="description" i18n:translate="">TileJobOffer</property>
-    <property name="content_icon">++resource++vindula.tile/images/joboffer.png</property>
-    <property name="content_meta_type">TileJobOffer</property>
+    <property name="title" i18n:translate="">Bloco de Vídeos</property>
+    <property name="description" i18n:translate="">TileMultimedia</property>
+    <property name="content_icon">++resource++vindula.tile/images/multimedia.png</property>
+    <property name="content_meta_type">TileMultimedia</property>
     <property name="product">vindula.tile</property>
-    <property name="factory">addTileJobOffer</property>
+    <property name="factory">addTileMultimedia</property>
     <property name="allow_discussion">False</property>
     <property name="global_allow">False</property>
     <property name="filter_content_types">False</property>
     <property name="allowed_content_types" />
 
-    <property name="immediate_view">joboffer-view</property>
-    <property name="default_view">joboffer-view</property>
-    <property name="default_view_fallback">joboffer-view</property>
+    <property name="immediate_view">tilemultimedia-view</property>
+    <property name="default_view">tilemultimedia-view</property>
+    <property name="default_view_fallback">tilemultimedia-view</property>
 
     <property name="view_methods">
-        <element value="joboffer-view"/>
+        <element value="tilemultimedia-view"/>
     </property>
 
-    <alias from="(Default)" to="joboffer-view"/>
+    <alias from="(Default)" to="tilemultimedia-view"/>
     <alias from="index.html" to="(dynamic view)"/>
     <alias from="view" to="(selected layout)"/>
     <alias from="edit" to="base_edit"/>

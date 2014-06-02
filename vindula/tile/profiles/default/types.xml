@@ -95,4 +95,7 @@
             
     <object name="TileLoadReference"
             meta_type="Factory-based Type Information with dynamic views"/>
+            
+    <object name="TileMultimedia"
+            meta_type="Factory-based Type Information with dynamic views"/>
 </object>
