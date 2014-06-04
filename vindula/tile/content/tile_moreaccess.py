@@ -59,7 +59,7 @@ TileMoreAccess_schema = BaseTile.schema.copy() + Schema((
 
     StringField(
         name='object_type_more',
-        widget=SelectionWidget(
+        widget=MultiSelectionWidget(
             label=_(u"Listagem de mais"),
             description=_(u"Selecione o tipo dos conteúdos que serão listados no link mais."),
             format = 'select',
@@ -101,8 +101,6 @@ TileMoreAccess_schema = BaseTile.schema.copy() + Schema((
             format='select',
         ),
         vocabulary=[("padrao",_(u"Tema padrão")),
-                    ("unidade", _(u"Unidades mais acessadas")),
-                    ("lista_ver", _(u"Listagem vertical")),
                     ("two_columns", _(u"Listagem de duas colunas"))
                    ],
         default='padrao',
@@ -134,6 +132,18 @@ TileMoreAccess_schema = BaseTile.schema.copy() + Schema((
             description='Caso selecionado, ativa o botão de mais items na visão do bloco.',
             label_msgid='vindula_tile_label_activeMoreButton',
             description_msgid='vindula_tile_help_activeMoreButton',
+        ),
+    ),
+                                                         
+    BooleanField(
+        name='hideSubheader',
+        schemata='settings',
+        default=False,
+        widget=BooleanWidget(
+            label="Ocultar subtítulo Mais Acessados",
+            description='Selecione para ocultar o subtítulo "Mais Acessados" que aparece acima dos itens listados.',
+            label_msgid='vindula_tile_label_hideSubheader',
+            description_msgid='vindula_tile_help_hideSubheader',
         ),
     ),
 
