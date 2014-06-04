@@ -37,7 +37,8 @@ BLACK_LIST_PLONETYPES = ['ATBooleanCriterion', 'ATCurrentAuthorCriterion', 'ATDa
                          'vindula.controlpanel.content.vindulaconfigall', 'vindula.food.restaurantes', 'vindula.liberiuncontents.content.featureprofile',
                          'vindula.liberiuncontents.content.features', 'vindula.liberiuncontents.content.featuresection', 
                          'vindula.liberiuncontents.content.featuretopic', 'vindula.myvindula.vindulalistdocumentuser',
-                         'vindula.reservacorporativa.content.reserve']
+                         'vindula.reservacorporativa.content.reserve', 'TileJobOffer', 'TileLibrary', 'TileListServices', 'TileLoadReference',
+                         'TileMultimedia', 'TilePoiTracker']
 
 TileListagemHorizontal_schema = BaseTile.schema.copy() + Schema((
 
