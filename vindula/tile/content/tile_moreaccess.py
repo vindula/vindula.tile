@@ -48,7 +48,7 @@ TileMoreAccess_schema = BaseTile.schema.copy() + Schema((
 
     StringField(
         name='object_type',
-        widget=SelectionWidget(
+        widget=MultiSelectionWidget(
             label=_(u"Tipo de conteúdo"),
             description=_(u"Selecione o tipo dos conteúdos que serão listados."),
             format = 'select',
@@ -86,6 +86,7 @@ TileMoreAccess_schema = BaseTile.schema.copy() + Schema((
             label = 'Quantidade',
             description='Quantidade maxima de items.',
         ),
+        required=True,
         default=5,
     ),
 
