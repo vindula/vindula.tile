@@ -28,7 +28,8 @@
                 
                 <div class="columns large-12">
                     <metal:macro define-macro="body"
-                                 tal:define="width context/getWidth_video|string:640;
+                                 tal:define="view_tile nocall:context/@@tilemultimedia-view;
+                                             width context/getWidth_video|string:640;
                                              height context/getHeight_video|string:390;">
                                              
                         <script type="text/javascript" src="flowplayer-3.1.2.min.js"></script>
@@ -40,20 +41,12 @@
                                     tal:define="context python:context.getMultimedia();
                                                 view_multimedia nocall:context/@@view;
                                                 uid context/UID">
-                                    <a href="" class='this-player' id="player"
+                                    <a class='this-player' id="player"
                                        tal:attributes="href string: ${view_multimedia/server_url}/${uid}_video.flv;
+                                                       id string:player-${uid};
                                                        style python: 'display: block;; width: %spx;; height: %spx;;' % (width, height);"></a>
 
-                                    <script>
-                                        flowplayer(".this-player", "flowplayer-3.1.2.swf", {
-                                            clip: {
-                                                autoPlay: false,
-                                                autoBuffering: false,
-                                                showMenu: false,
-                                                autoRewind: true,
-                                                loop: false
-                                            }
-                                        });
+                                    <script tal:content="python:view_tile.createScript('player-'+uid)">
                                     </script>
                                 </div>
                             </tal:cond>
@@ -64,18 +57,10 @@
                                                    video context_video/file_video;">
                                     <a id="player" class="this-player" 
                                        tal:attributes="href string:${context_video/absolute_url}/@@download/file_video/${video/filename};
+                                                       id string:player-${context_video/UID};
                                                        style python: 'display: block;; width: %spx;; height: %spx;;' % (width, height);"></a>
                                     
-                                    <script>
-                                        flowplayer(".this-player", "flowplayer-3.1.2.swf", {
-                                            clip: {
-                                                autoPlay: false,
-                                                autoBuffering: false,
-                                                showMenu: false,
-                                                autoRewind: true,
-                                                loop: false
-                                            }
-                                        });
+                                    <script tal:content="python:view_tile.createScript('player-'+context_video.UID())">
                                     </script>
                                 </tal:video>
                             </tal:cond>
