@@ -63,11 +63,19 @@
                                 <tal:video condition="nocall:video"
                                            define="context_video context/getMultimedia;
                                                    video context_video/file_video;">
-                                    <a tal:attributes="href string:${context_video/absolute_url}/@@download/file_video/${video/filename};
-                                                       style python: 'display: block;; width: %spx;; height: %spx;;' % (width, height);"></a>
+                                    <a id="player" tal:attributes="href string:${context_video/absolute_url}/@@download/file_video/${video/filename};
+                                                                   style python: 'display: block;; width: %spx;; height: %spx;;' % (width, height);"></a>
                                     
-                                    <script type="text/javascript" 
-                                            tal:attributes="src string:${context/portal_url}/++resource++vindula.content/js/vindula_video.js">
+                                    <script>
+                                        flowplayer("player", "flowplayer-3.1.2.swf", {
+                                            clip: {
+                                                autoPlay: false,
+                                                autoBuffering: false,
+                                                showMenu: false,
+                                                autoRewind: true,
+                                                loop: false
+                                            }
+                                        });
                                     </script>
                                 </tal:video>
                             </tal:cond>
