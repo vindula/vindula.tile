@@ -65,6 +65,10 @@
                                                    video context_video/file_video;">
                                     <a tal:attributes="href string:${context_video/absolute_url}/@@download/file_video/${video/filename};
                                                        style python: 'display: block;; width: %spx;; height: %spx;;' % (width, height);"></a>
+                                    
+                                    <script type="text/javascript" 
+                                            tal:attributes="src string:${context/portal_url}/++resource++vindula.content/js/vindula_video.js">
+                                    </script>
                                 </tal:video>
                             </tal:cond>
                         </div>
