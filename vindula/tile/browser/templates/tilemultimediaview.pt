@@ -40,13 +40,12 @@
                                     tal:define="context python:context.getMultimedia();
                                                 view_multimedia nocall:context/@@view;
                                                 uid context/UID">
-                                    <a href=""
+                                    <a href="" class='this-player' id="player"
                                        tal:attributes="href string: ${view_multimedia/server_url}/${uid}_video.flv;
-                                                       style python: 'display: block;; width: %spx;; height: %spx;;' % (width, height);"
-                                       id="player"></a>
+                                                       style python: 'display: block;; width: %spx;; height: %spx;;' % (width, height);"></a>
 
                                     <script>
-                                        flowplayer("player", "flowplayer-3.1.2.swf", {
+                                        flowplayer(".this-player", "flowplayer-3.1.2.swf", {
                                             clip: {
                                                 autoPlay: false,
                                                 autoBuffering: false,
@@ -63,11 +62,12 @@
                                 <tal:video condition="nocall:video"
                                            define="context_video context/getMultimedia;
                                                    video context_video/file_video;">
-                                    <a id="player" tal:attributes="href string:${context_video/absolute_url}/@@download/file_video/${video/filename};
-                                                                   style python: 'display: block;; width: %spx;; height: %spx;;' % (width, height);"></a>
+                                    <a id="player" class="this-player" 
+                                       tal:attributes="href string:${context_video/absolute_url}/@@download/file_video/${video/filename};
+                                                       style python: 'display: block;; width: %spx;; height: %spx;;' % (width, height);"></a>
                                     
                                     <script>
-                                        flowplayer("player", "flowplayer-3.1.2.swf", {
+                                        flowplayer(".this-player", "flowplayer-3.1.2.swf", {
                                             clip: {
                                                 autoPlay: false,
                                                 autoBuffering: false,
