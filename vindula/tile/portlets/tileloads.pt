@@ -14,7 +14,7 @@
     <input type="hidden" name="context_UID" id="context_UID" tal:attributes="value context_obj/UID|string: " />
     <div id="full">
 
-    <div tal:repeat="tile tiles" class="row linha_tiles" >
+    <div tal:repeat="tile tiles" class="linha_tiles" >
         <div id="full">
             <div id="macro-tile" class="portletWrapper" 
                  tal:define="path_macro python:view.getMacro(tile);
