@@ -39,8 +39,11 @@ class SortableView(BaseView):
 		context_global = uuidToObject(context_UID)
 	
 		if context_global:
+			# import pdb;pdb.set_trace()
 			for ordem, id_tile in enumerate(man_list):
 				title, uid, context_uid = self.split_tile(id_tile)
+
+				print context_uid, 'UID', context_UID
 
 				if context_uid == context_UID:
 					context_global.moveObjectToPosition(title,ordem)
