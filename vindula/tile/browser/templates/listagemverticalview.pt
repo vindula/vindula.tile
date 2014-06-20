@@ -326,7 +326,7 @@ tal:condition="python:view_macro.getKind() == 'listagem_evento'">
                         <strong><a href="#" tal:attributes="href obj/absolute_url"
                         tal:content="obj/Title">Nova diretoria da Opas visita Bio</a></strong>
                     </div>
-                    <div class="columns small-12 box-description">
+                    <div class="columns small-12 box-description" tal:condition="not:context/getHideEventInfo|nothing">
                         <p class="discrete">
                             <strong>Local: </strong><span tal:content="obj/getLocation">campus FioCruz Mata Atlantica</span>
                         </p>

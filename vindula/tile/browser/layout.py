@@ -78,6 +78,7 @@ class LayoutView(BaseView):
                                                   'TileLoadReference',
                                                   'TileMacroList',
                                                   'TileMoreAccess',
+                                                  'TileMultimedia',
                                                   'TileNewEmployee',
                                                   'TileOrganogram',
                                                   'TilePoll',

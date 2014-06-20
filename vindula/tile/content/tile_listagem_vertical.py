@@ -38,7 +38,8 @@ BLACK_LIST_PLONETYPES = ['ATBooleanCriterion', 'ATCurrentAuthorCriterion', 'ATDa
                          'vindula.controlpanel.content.vindulaconfigall', 'vindula.food.restaurantes', 'vindula.liberiuncontents.content.featureprofile',
                          'vindula.liberiuncontents.content.features', 'vindula.liberiuncontents.content.featuresection', 
                          'vindula.liberiuncontents.content.featuretopic', 'vindula.myvindula.vindulalistdocumentuser',
-                         'vindula.reservacorporativa.content.reserve']
+                         'vindula.reservacorporativa.content.reserve', 'TileJobOffer', 'TileLibrary', 'TileListServices', 'TileLoadReference',
+                         'TileMultimedia', 'TilePoiTracker']
 
 
 TileListagemVertical_schema = BaseTile.schema.copy() + Schema((
@@ -212,7 +213,20 @@ TileListagemVertical_schema = BaseTile.schema.copy() + Schema((
             label_msgid='vindula_tile_label_hideSharing',
             description_msgid='vindula_tile_help_hideSharing',
         ),
-     ),
+    ),
+                                                               
+    BooleanField(
+        name='hideEventInfo',
+        schemata='settings',
+        default=False,
+        widget=BooleanWidget(
+            label="Ocultar informações do evento",
+            description='Selecione para ocultar as informações do evento na visão de eventos.',
+            label_msgid='vindula_tile_label_hideEventInfo',
+            description_msgid='vindula_tile_help_hideEventInfo',
+        ),
+    ),
+                                                               
 ))
 
 finalizeATCTSchema(TileListagemVertical_schema, folderish=False)

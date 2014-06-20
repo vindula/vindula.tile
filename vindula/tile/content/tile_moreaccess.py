@@ -17,13 +17,40 @@ from vindula.tile.config import *
 from zope.schema.interfaces import IVocabularyFactory
 from zope.component import queryUtility
 
+BLACK_LIST_PLONETYPES = ['ATBooleanCriterion', 'ATCurrentAuthorCriterion', 'ATDateCriteria', 'ATDateRangeCriterion',
+                         'ATListCriterion', 'ATPathCriterion', 'ATPortalTypeCriterion', 'ATReferenceCriterion', 'ATRelativePathCriterion',
+                         'ATSelectionCriterion', 'ATSimpleIntCriterion', 'ATSimpleStringCriterion', 'ATSortCriterion', 'Banner', 'BannerFlash',
+                         'BlockReserve', 'Classified', 'Classifieds', 'ClassifiedsCategory', 'ContainerTopicsControlPanel', 'ContentRedirectUser', 
+                         'ContentReserve', 'Discussion Item', 'Download', 'DownloadContainer','FieldSetMyvindula', 'FieldsetEnd',
+                         'FieldsetFolder', 'FieldsetStart', 'FileAttachment', 'FooterTopic', 'FormBooleanField', 'FormCaptchaField',
+                         'FormCustomScriptAdapter', 'FormDateField', 'FormFileField', 'FormFixedPointField', 'FormFolder', 'FormIntegerField',
+                         'FormLabelField', 'FormLikertField', 'FormLinesField', 'FormMailerAdapter', 'FormMultiSelectionField', 'FormPasswordField',
+                         'FormRichLabelField', 'FormRichTextField', 'FormSaveDataAdapter', 'FormSelectionField', 'FormStringField', 'FormTextField',
+                         'FormThanksPage', 'ImageAttachment', 'Layout', 'LayoutLoad', 'Menu', 'ObjectsControlPanel', 'OrderedClassifieds',
+                         'OrderedClassifiedsCategory', 'PlanosPrecos', 'PlanosPrecosContainer', 'Plone Site', 'PlonePopoll', 'Ploneboard',
+                         'PloneboardComment', 'PloneboardConversation', 'PloneboardForum', 'PoiIssue', 'PoiPscTracker', 'PoiTracker', 
+                         'RedirectUser', 'ServicosFolder', 'SocialNetwork', 'SubtopicControlPanel', 'TempFolder', 
+                         'ThemeConfig', 'ThemeLoginConfig', 'TileAccordionContent', 'TileAccordionItem', 'TileBanner', 'TileBannerCompost', 
+                         'TileBirthdays', 'TileCalendar', 'TileFeatured', 'TileFood', 'TileHowDo', 'TileInfoStructure', 'TileLabel', 
+                         'TileListagemHorizontal', 'TileListagemVertical', 'TileMacroList', 'TileMoreAccess', 'TileNewEmployee', 'TileOrganogram', 
+                         'TilePoll', 'TileReferenceList', 'TileSimpleMacro', 'TileTabularList', 'TileTeam', 'Topic', 'TopicControlPanel', 'Unit', 
+                         'VindulaCategories', 'VindulaFile', 'VindulaPortlet', 'VindulaRevista', 'VindulaTeam',
+                         'vindula.content.content.vindulacontentapi', 'vindula.content.content.vindulacontentmacro', 'vindula.contentcore.conteudobasico', 
+                         'vindula.contentcore.formulariobasico', 'vindula.controlpanel.content.alertdisplay', 
+                         'vindula.controlpanel.content.aniversariantesconfig', 'vindula.controlpanel.content.categories',
+                         'vindula.controlpanel.content.vindulaconfigall', 'vindula.food.restaurantes', 'vindula.liberiuncontents.content.featureprofile',
+                         'vindula.liberiuncontents.content.features', 'vindula.liberiuncontents.content.featuresection', 
+                         'vindula.liberiuncontents.content.featuretopic', 'vindula.myvindula.vindulalistdocumentuser',
+                         'vindula.reservacorporativa.content.reserve', 'TileJobOffer', 'TileLibrary', 'TileListServices', 'TileLoadReference',
+                         'TileMultimedia', 'TilePoiTracker']
+
 TileMoreAccess_schema = BaseTile.schema.copy() + Schema((
 
     StringField(
         name='object_type',
-        widget=SelectionWidget(
-            label=_(u"Tipo de conteudo"),
-            description=_(u"Selecione o tipo de itens que sera apresentado no mais acessados."),
+        widget=MultiSelectionWidget(
+            label=_(u"Tipo de conteúdo"),
+            description=_(u"Selecione o tipo dos conteúdos que serão listados."),
             format = 'select',
         ),
         vocabulary=u'voc_ContentTypes',
@@ -32,26 +59,26 @@ TileMoreAccess_schema = BaseTile.schema.copy() + Schema((
 
     StringField(
         name='object_type_more',
-        widget=SelectionWidget(
+        widget=MultiSelectionWidget(
             label=_(u"Listagem de mais"),
-            description=_(u"Selecione o tipo do item que sera apresentado no link mais."),
+            description=_(u"Selecione o tipo dos conteúdos que serão listados no link mais."),
             format = 'select',
         ),
         vocabulary=u'voc_ContentTypes',
         required=True,
     ),
 
-    TextField(
-            name='path_link',
-            widget=StringWidget(
-                label=_(u"Caminho adicional"),
-                description=_(u"Adicione o caminho que sera adicionao ao objeto listada acima."),
-                label_msgid='vindula_tile_label_path_link',
-                description_msgid='vindula_tile_help_path_link',
-            ),
-            default = u'/',
-            required=True,
-    ),
+#     TextField(
+#         name='path_link',
+#         widget=StringWidget(
+#             label=_(u"Caminho adicional"),
+#             description=_(u"Adicione o caminho que será adicionado ao objeto listada acima."),
+#             label_msgid='vindula_tile_label_path_link',
+#             description_msgid='vindula_tile_help_path_link',
+#         ),
+#         default = u'/',
+#         required=True,
+#     ),
 
     IntegerField(
         name='numb_items',
@@ -59,6 +86,7 @@ TileMoreAccess_schema = BaseTile.schema.copy() + Schema((
             label = 'Quantidade',
             description='Quantidade maxima de items.',
         ),
+        required=True,
         default=5,
     ),
 
@@ -66,15 +94,13 @@ TileMoreAccess_schema = BaseTile.schema.copy() + Schema((
         name='kind',
         widget=SelectionWidget(
             label=_(u"Selecione o layout"),
-            description=_(u"Selecione o layout desejado para esta areas."),
+            description=_(u"Selecione o layout desejado para o bloco."),
             label_msgid='vindula_tile_label_layout',
             description_msgid='vindula_tile_help_layout',
             i18n_domain='vindula_tile',
             format='select',
         ),
-        vocabulary=[("padrao",_(u"Tema Padrão")),
-                    ("unidade", _(u"Unidade Mais Acessada")),
-                    ("lista_ver", _(u"Listagem vertical")),
+        vocabulary=[("padrao",_(u"Tema padrão")),
                     ("two_columns", _(u"Listagem de duas colunas"))
                    ],
         default='padrao',
@@ -89,6 +115,18 @@ TileMoreAccess_schema = BaseTile.schema.copy() + Schema((
             description='Caso selecionado, ativa o botão de mais items na visão do bloco.',
             label_msgid='vindula_tile_label_activeMoreButton',
             description_msgid='vindula_tile_help_activeMoreButton',
+        ),
+    ),
+                                                         
+    BooleanField(
+        name='hideSubheader',
+        schemata='settings',
+        default=False,
+        widget=BooleanWidget(
+            label="Ocultar subtítulo Mais Acessados",
+            description='Selecione para ocultar o subtítulo "Mais Acessados" que aparece acima dos itens listados.',
+            label_msgid='vindula_tile_label_hideSubheader',
+            description_msgid='vindula_tile_help_hideSubheader',
         ),
     ),
 
@@ -106,9 +144,11 @@ class TileMoreAccess(BaseTile):
     schema = TileMoreAccess_schema
 
     def voc_ContentTypes(self):
-        types = self.portal_types.listContentTypes()
+        types = []
+        for item in self.portal_types.listContentTypes():
+            if not item in BLACK_LIST_PLONETYPES:
+                types.append(item)
         return types
-
 
     #Scripts js
     scripts_js = ['button-more.js','ajax_boll_batch.js']

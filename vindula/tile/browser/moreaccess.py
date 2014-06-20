@@ -14,13 +14,13 @@ class MoreAccessView(BaseView):
 
     def getItens(self):
         portal_type = self.context.getObject_type()
-        cont = self.context.getNumb_items()
+        count = self.context.getNumb_items()
+        
+        result = self.list_files(portal_type, count)
 
-        result = self.list_files(portal_type)
+        return result[:count]
 
-        return result[:cont]
-
-    def list_files(self, portal_type):
+    def list_files(self, portal_type, limit=None):
         list_files = []
         rs = True
 
@@ -30,6 +30,7 @@ class MoreAccessView(BaseView):
 
         result = ModelsContent().search_catalog_by_access(context=self.context,
                                                           rs=rs,
+                                                          limit=limit,
                                                           **query)
         return result
 

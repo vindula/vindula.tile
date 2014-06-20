@@ -93,3 +93,7 @@ class ITileLibrary(Interface):
 
 class ITileLoadReference(Interface):
     """ Interface for TileLoadReference content type """
+
+class ITileMultimedia(Interface):
+    """ Interface for ITileMultimedia content type """  
+
