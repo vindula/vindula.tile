@@ -89,7 +89,7 @@ TileMoreAccess_schema = BaseTile.schema.copy() + Schema((
         required=True,
         default=5,
     ),
-
+                                                         
     StringField(
         name='kind',
         widget=SelectionWidget(
@@ -182,6 +182,17 @@ TileMoreAccess_schema = BaseTile.schema.copy() + Schema((
             label_msgid='vindula_tile_label_showPagination',
             description_msgid='vindula_tile_help_showPagination',
         ),
+    ),
+                                                         
+    IntegerField(
+        name='qtdMaxPages',
+        schemata='settings',
+        widget = IntegerWidget(
+            label = 'Quantidade maxima de páginas',
+            description='Insira a quantidade máxima de páginas a ser mostrada na listagem.',
+        ),
+        required=True,
+        default=5,
     ),
 ))
 
