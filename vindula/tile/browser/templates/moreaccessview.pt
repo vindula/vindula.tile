@@ -99,7 +99,8 @@
                                             title obj/Title;
                                             data-type string:Structure;
                                             data-value obj/UID;">Nova diretoria da Opas visita Bio</a> </strong>
-                                <div tal:condition="item/count|nothing">
+                                
+                                <div tal:condition="python: item.get('count', '') and context.getShowQtdAccess()">
                                     <span tal:content="python:str(item['count']) + ' acesso%s'%(item['count'] == 1 and 's' or '')"></span>
                                 </div>
                             </div>
