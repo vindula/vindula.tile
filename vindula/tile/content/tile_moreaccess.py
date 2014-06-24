@@ -118,6 +118,24 @@ TileMoreAccess_schema = BaseTile.schema.copy() + Schema((
         ),
     ),
                                                          
+    IntegerField(
+        name='widthImage',
+        widget = IntegerWidget(
+            label = 'Largura da imagem',
+            description='Largura da imagem do item listado no bloco.</br>Deixar o campo vazio para usar o valor padrão.',
+        ),
+        required=False,
+    ),
+                                                         
+    IntegerField(
+        name='heightImage',
+        widget = IntegerWidget(
+            label = 'Altura da imagem',
+            description='Altura da imagem do item listado no bloco.</br>Deixar o campo vazio para usar o valor padrão.',
+        ),
+        required=False,
+    ),
+                                                         
     BooleanField(
         name='hideSubheader',
         schemata='settings',
@@ -129,7 +147,42 @@ TileMoreAccess_schema = BaseTile.schema.copy() + Schema((
             description_msgid='vindula_tile_help_hideSubheader',
         ),
     ),
-
+                                                         
+    BooleanField(
+        name='hideDateTime',
+        schemata='settings',
+        default=False,
+        widget=BooleanWidget(
+            label="Ocultar data e hora",
+            description='Oculta a data em hora de cada item do bloco.',
+            label_msgid='vindula_tile_label_hideDateTime',
+            description_msgid='vindula_tile_help_hideDateTime',
+        ),
+    ),
+                                                         
+    BooleanField(
+        name='showQtdAccess',
+        schemata='settings',
+        default=False,
+        widget=BooleanWidget(
+            label="Mostrar quantidade de acessos",
+            description='Mostra a quantidade de acessos de cada item do bloco.',
+            label_msgid='vindula_tile_label_showQtdAccess',
+            description_msgid='vindula_tile_help_showQtdAccess',
+        ),
+    ),
+    
+    BooleanField(
+        name='showPagination',
+        schemata='settings',
+        default=False,
+        widget=BooleanWidget(
+            label="Mostrar paginação no bloco",
+            description='Ativar a paginação no bloco.',
+            label_msgid='vindula_tile_label_showPagination',
+            description_msgid='vindula_tile_help_showPagination',
+        ),
+    ),
 ))
 
 finalizeATCTSchema(TileMoreAccess_schema, folderish=False)
