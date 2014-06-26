@@ -21,9 +21,9 @@ class LayoutView(BaseView):
         path_js = []
 
         # #Adição do js de edição dos blocos via modal
-        scripts_js.append('tile-edit.js')
+        path_js.append('tile-edit.js')
         # #Adição do js de drag n drop dos blocos
-        scripts_js.append('tile-sortable.js')
+        path_js.append('tile-sortable.js')
 
 
         #Coleta dos Script js dos tiles
