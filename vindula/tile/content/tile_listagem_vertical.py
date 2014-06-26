@@ -262,7 +262,7 @@ class TileListagemVertical(BaseTile):
     def scripts_js(self):
         L = []
         if self.getActiveAutoReload():
-            L.append('ajax_auto_reload.js')
+            L.append('/++resource++vindula.tile/js/ajax_auto_reload.js')
 
         return L
 

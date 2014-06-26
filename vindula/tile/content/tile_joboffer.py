@@ -42,7 +42,7 @@ class TileJobOffer(BaseTile):
     columns = 12
 
     #Scripts js
-#    scripts_js = ['++resource++vindula.myvindula.views/js/follow-cycle.js']
+#    scripts_js = ['/++resource++vindula.myvindula.views/js/follow-cycle.js']
 
 
 registerType(TileJobOffer, PROJECTNAME)

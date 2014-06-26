@@ -275,6 +275,6 @@ class TileListagemHorizontal(BaseTile):
     columns = 12
 
     # Scripts js
-    scripts_js = ['ajax_boll_batch.js']
+    scripts_js = ['/++resource++vindula.tile/js/ajax_boll_batch.js']
 
 registerType(TileListagemHorizontal, PROJECTNAME)

@@ -13,7 +13,7 @@ class LayoutView(BaseView):
 
 
     def getScripts_js(self):
-        scripts_js = []
+        path_js = []
 
         #Coleta dos Script js dos tiles
         context = self.context
@@ -22,9 +22,24 @@ class LayoutView(BaseView):
         for tile in tiles:
             if hasattr(tile, 'scripts_js'):
                 for i in tile.scripts_js:
-                    if not i in scripts_js:
-                        scripts_js.append(i)
-
+                    if not i in path_js:
+                        path_js.append(i)
+        
+        scripts_js = []
+        for scr in path_js:
+            if scr:
+                D = {}
+                if scr.find('/') != -1:
+                    D['name'] = scr.split('/')[-1]
+                else:
+                    D['name'] = scr
+                
+                if D.get('name'):
+                    D['name'] = D['name'].replace('.js', '')
+                D['path'] = scr
+                
+                scripts_js.append(D)
+            
         return scripts_js
     
     def getStyleSheets_css(self):

@@ -71,6 +71,6 @@ class TileNewEmployee(BaseTile):
     schema = TileNewEmployee_schema
     
     #Scripts js
-    scripts_js = ['ajax_boll_batch.js']
+    scripts_js = ['/++resource++vindula.tile/js/ajax_boll_batch.js']
 
 registerType(TileNewEmployee, PROJECTNAME)

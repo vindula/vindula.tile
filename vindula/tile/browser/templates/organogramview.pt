@@ -73,12 +73,6 @@
     <link rel="stylesheet" type="text/css" href="" 
           tal:attributes="href string:${context/portal_url}/++resource++vindula.tile/css/org-tree.css" />
     
-    <tal:cond condition="python: not request.get('org-tree-horiz.js')">
-        <script type="text/javascript" src="" 
-                tal:attributes="src string:${context/portal_url}/++resource++vindula.tile/js/org-tree-horiz.js" />
-        <tal:dummy tal:define="use_js_list python:request.set('org-tree-horiz.js', 1);" />
-    </tal:cond>
-    
     <div class="columns large-12">
         <div class="organograma" id="tile-organograma-horizontal" class="container-tree">
             <ul class="no-bullet main-tree lightness" tal:condition="estrutura"

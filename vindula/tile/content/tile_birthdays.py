@@ -122,5 +122,7 @@ class TileBirthdays(BaseTile):
 
     #tamanho do tile
     columns = 6
+    
+    scripts_js = ['/++resource++vindula.content/js/ajax_list_file.js']
 
 registerType(TileBirthdays, PROJECTNAME)

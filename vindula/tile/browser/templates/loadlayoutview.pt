@@ -56,7 +56,6 @@
 
     </tal:cond>
   </metal:macro>
-
 </metal:main>
 </body>
 </html>

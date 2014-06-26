@@ -92,7 +92,7 @@ class BirthdaysView(BaseView, UtilMyvindula):
         elif type_filter == 'prox':
             date_start = today
             date_end = today + timedelta(days=365)
-
+        
         results = FuncDetails.get_FuncBirthdays(date_start,date_end)
 
         if filtro_OU:
