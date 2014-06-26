@@ -103,7 +103,7 @@
                                             data-value obj/UID;">Nova diretoria da Opas visita Bio</a> </strong>
                                 
                                 <div tal:condition="python: item.get('count', '') and context.getShowQtdAccess()">
-                                    <span tal:content="python:str(item['count']) + ' acesso%s'%(item['count'] == 1 and 's' or '')"></span>
+                                    <span tal:content="python:str(item['count']) + ' acesso%s'%(item['count'] == 1 and '' or 's')"></span>
                                 </div>
                             </div>
                         </div>
