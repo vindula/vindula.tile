@@ -215,6 +215,8 @@ class TileMoreAccess(BaseTile):
         return types
 
     #Scripts js
-    scripts_js = ['button-more.js','ajax_boll_batch.js']
+    scripts_js = ['/++resource++vindula.tile/js/button-more.js', 
+                  '/++resource++vindula.tile/js/ajax_boll_batch.js', 
+                  '/++resource++vindula.content/js/ajax_list_file.js']
 
 registerType(TileMoreAccess, PROJECTNAME)

@@ -110,13 +110,11 @@
 
     </tal:cond>
 
-
-
   </metal:macro>
-
-  <div id="viewlet-above-content-body" 
+  
+  <div id="viewlet-below-content-body" 
        tal:content="structure provider:plone.belowcontentbody" />
-
+       
 </metal:main>
 </body>
 </html>

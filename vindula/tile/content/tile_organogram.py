@@ -58,7 +58,7 @@ class TileOrganogram(BaseTile):
     columns = 12
 
     #Scripts js
-    scripts_js = ['org-tree.js', 'org-tree-horiz.js']
+    scripts_js = ['/++resource++vindula.tile/js/org-tree.js', '/++resource++vindula.tile/js/org-tree-horiz.js']
 
 
 registerType(TileOrganogram, PROJECTNAME)

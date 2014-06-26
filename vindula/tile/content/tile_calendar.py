@@ -31,7 +31,7 @@ class TileCalendar(BaseTile):
     columns = 6
     
     #Scripts js
-    scripts_js = ['ajax_calendar.js']
+    scripts_js = ['/++resource++vindula.tile/js/ajax_calendar.js']
 
 
 registerType(TileCalendar, PROJECTNAME)

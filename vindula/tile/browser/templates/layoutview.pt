@@ -23,22 +23,23 @@
                                class_defaut string: macro-tile item-tile">
 
         <div class="sortable-tiles">
-          <tal:rep_js repeat="name_script scripts">
-              <tal:cond condition="python: not request.get(name_script)">
+        
+          <tal:rep_js repeat="scr scripts">
+              <tal:def define="name_script scr/name;
+                                path_script scr/path">
                   <script type="text/javascript"
-                          tal:attributes="src string:${context/portal_url}/++resource++vindula.tile/js/${name_script}" />
+                          tal:attributes="src string:${context/portal_url}${path_script}" />
                   <tal:dummy tal:define="use_js_list python:request.set(name_script, 1);" />
-              </tal:cond>
+              </tal:def>
           </tal:rep_js>
 
           <tal:rep_css repeat="name_style stylesheets">
               <tal:cond condition="python: not request.get(name_style)">
                   <link rel="stylesheet" type="text/css" id="new-theme"
-                        tal:attributes="href string:${context/portal_url|nothing}/++resource++vindula.tile/css/${name_style}" />
+                        tal:attributes="href string:${context/portal_url|nothing}${name_style}" />
                   <tal:dummy tal:define="use_css_list python:request.set(name_style, 1);" />
               </tal:cond>
           </tal:rep_css>
-
 
           <input type="hidden" name="context_UID" id="context_UID" tal:attributes="value context/UID|string: " />
 
@@ -156,9 +157,7 @@
                     
                 </div>  
               </tal:cond>
-
           </tal:rep>
-          
         </div>
       </metal:macro>
     </metal:main>

@@ -5,7 +5,15 @@
       lang="en"
       metal:use-macro="context/main_template/macros/master"
       i18n:domain="vindula.tile">
-
+    
+    <head>
+        <metal:js fill-slot="javascript_head_slot">
+            <script type="text/javascript" src=""
+                    tal:attributes="src string:${context/absolute_url|nothing}/++resource++vindula.content/js/ajax_list_file.js"></script>
+        </metal:js>
+    </head>
+    
+    
     <body>
         <metal:main fill-slot="content-core">
             <metal:macro define-macro="page"
@@ -26,12 +34,6 @@
 <metal:macro define-macro="padrao"
              tal:condition="python:view_macro.getKind() == 'padrao'">
              
-    <tal:cond condition="not:request/list-file-js|nothing">
-        <script type="text/javascript" src=""
-            tal:attributes="src string:${context/absolute_url|nothing}/++resource++vindula.content/js/ajax_list_file.js"></script>
-        <tal:dummy tal:define="use_js_list python:request.set('list-file-js',1);" />
-    </tal:cond>
-    
     <div id="tile-more-access" class="clear">
         <tal:cond condition="not:context/getHide_title">
             <div class="columns large-12 colunas">
