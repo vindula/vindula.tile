@@ -76,6 +76,7 @@
                                             </tal:cond>
         
                                             <tal:rep repeat="detail python: view_birthdays.get_details_user(item)">
+                                                <br/>
                                                 <span tal:condition="python: detail['label'] and detail['content']"
                                                       tal:content="string: ${detail/label}: "> </span>
                                                 <span tal:condition="detail/content" 

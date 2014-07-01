@@ -147,7 +147,7 @@ TileListagemVertical_schema = BaseTile.schema.copy() + Schema((
 
     ReferenceField('path',
             multiValued=0,
-            allowed_types=('VindulaFolder','Folder', 'VindulaClipping'),
+            allowed_types=('VindulaFolder','Folder', 'VindulaClipping','OrganizationalStructure'),
             label=_(u"Pastas"),
             relationship='path',
             widget=VindulaReferenceSelectionWidget(
@@ -159,7 +159,7 @@ TileListagemVertical_schema = BaseTile.schema.copy() + Schema((
                                                                
     ReferenceField('path_othernews',
             multiValued=0,
-            allowed_types=('VindulaFolder','Folder', 'VindulaClipping'),
+            allowed_types=('VindulaFolder','Folder', 'VindulaClipping','OrganizationalStructure'),
             label=_(u"Pastas"),
             relationship='path_othernews',
             widget=VindulaReferenceSelectionWidget(
