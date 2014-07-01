@@ -51,8 +51,15 @@
                             <span class="left org-title" tal:content="python:estrutura().getSiglaOrTitle()"></span>
                             <a href='' tal:attributes="href python:estrutura().absolute_url() or None" 
                                        tal:define="username  estrutura/manager|nothing">
+                            
                                 <img src="" alt="" height="30" width="30" class="right" 
+                                     tal:condition="context/getImage_OU|python:True"
                                      tal:attributes="src string:/vindula-api/myvindula/user-picture/photograph/${username}/True" />
+
+                                <img src="" alt="" height="30" width="30" class="right" 
+                                     tal:condition="not: context/getImage_OU|python:False"
+                                     tal:attributes="src  python:estrutura().getImageIcone()" />
+                            
                             </a>
                         </div>
                         <ul class="tree-2">
@@ -85,8 +92,14 @@
                             <a href='' class="clear" 
                                tal:attributes="href python:estrutura().absolute_url() or None"
                                tal:define="username  estrutura/manager|nothing">
+                                
                                 <img src="" alt="" height="30" width="30" class="right" 
+                                     tal:condition="context/getImage_OU|python:True"
                                      tal:attributes="src string:/vindula-api/myvindula/user-picture/photograph/${username}/True" />
+
+                                <img src="" alt="" height="30" width="30" class="right" 
+                                     tal:condition="not: context/getImage_OU|python:False"
+                                     tal:attributes="src  python:estrutura().getImageIcone()" />
                             </a>
                         </div>
                         <ul class="tree-2">

@@ -41,6 +41,18 @@ TileOrganogram_schema = BaseTile.schema.copy() + Schema((
          default='organogram_vertical',
      ),
 
+    BooleanField(
+        name='image_OU',
+        default=True,
+        widget=BooleanWidget(
+            label="Ativar a Imagem da Estrutura Organizacional.",
+            description='Caso selecionado, ativa a visualização da imagem da OU no lugar da foto do gestor',
+            label_msgid='vindula_tile_label_image_OU',
+            description_msgid='vindula_tile_help_image_OU',
+        ),
+    ),
+
+
 ))
 
 finalizeATCTSchema(TileOrganogram_schema, folderish=False)
