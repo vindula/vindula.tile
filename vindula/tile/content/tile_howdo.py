@@ -89,6 +89,6 @@ class TileHowDo(BaseTile):
     columns = 12
 
     #Scripts js
-    scripts_js = ['button-more.js']
+    scripts_js = ['/++resource++vindula.tile/js/button-more.js']
 
 registerType(TileHowDo, PROJECTNAME)

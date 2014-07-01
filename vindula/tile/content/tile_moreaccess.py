@@ -89,7 +89,7 @@ TileMoreAccess_schema = BaseTile.schema.copy() + Schema((
         required=True,
         default=5,
     ),
-
+                                                         
     StringField(
         name='kind',
         widget=SelectionWidget(
@@ -118,6 +118,24 @@ TileMoreAccess_schema = BaseTile.schema.copy() + Schema((
         ),
     ),
                                                          
+    IntegerField(
+        name='widthImage',
+        widget = IntegerWidget(
+            label = 'Largura da imagem',
+            description='Largura da imagem do item listado no bloco.</br>Deixar o campo vazio para usar o valor padrão.',
+        ),
+        required=False,
+    ),
+                                                         
+    IntegerField(
+        name='heightImage',
+        widget = IntegerWidget(
+            label = 'Altura da imagem',
+            description='Altura da imagem do item listado no bloco.</br>Deixar o campo vazio para usar o valor padrão.',
+        ),
+        required=False,
+    ),
+                                                         
     BooleanField(
         name='hideSubheader',
         schemata='settings',
@@ -129,7 +147,53 @@ TileMoreAccess_schema = BaseTile.schema.copy() + Schema((
             description_msgid='vindula_tile_help_hideSubheader',
         ),
     ),
-
+                                                         
+    BooleanField(
+        name='hideDateTime',
+        schemata='settings',
+        default=False,
+        widget=BooleanWidget(
+            label="Ocultar data e hora",
+            description='Oculta a data em hora de cada item do bloco.',
+            label_msgid='vindula_tile_label_hideDateTime',
+            description_msgid='vindula_tile_help_hideDateTime',
+        ),
+    ),
+                                                         
+    BooleanField(
+        name='showQtdAccess',
+        schemata='settings',
+        default=False,
+        widget=BooleanWidget(
+            label="Mostrar quantidade de acessos",
+            description='Mostra a quantidade de acessos de cada item do bloco.',
+            label_msgid='vindula_tile_label_showQtdAccess',
+            description_msgid='vindula_tile_help_showQtdAccess',
+        ),
+    ),
+    
+    BooleanField(
+        name='showPagination',
+        schemata='settings',
+        default=False,
+        widget=BooleanWidget(
+            label="Mostrar paginação no bloco",
+            description='Ativar a paginação no bloco.',
+            label_msgid='vindula_tile_label_showPagination',
+            description_msgid='vindula_tile_help_showPagination',
+        ),
+    ),
+                                                         
+    IntegerField(
+        name='qtdMaxPages',
+        schemata='settings',
+        widget = IntegerWidget(
+            label = 'Quantidade maxima de páginas',
+            description='Insira a quantidade máxima de páginas a ser mostrada na listagem.',
+        ),
+        required=True,
+        default=5,
+    ),
 ))
 
 finalizeATCTSchema(TileMoreAccess_schema, folderish=False)
@@ -151,6 +215,8 @@ class TileMoreAccess(BaseTile):
         return types
 
     #Scripts js
-    scripts_js = ['button-more.js','ajax_boll_batch.js']
+    scripts_js = ['/++resource++vindula.tile/js/button-more.js', 
+                  '/++resource++vindula.tile/js/ajax_boll_batch.js', 
+                  '/++resource++vindula.content/js/ajax_list_file.js']
 
 registerType(TileMoreAccess, PROJECTNAME)

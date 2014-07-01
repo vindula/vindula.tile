@@ -81,9 +81,9 @@ class TileLibrary(BaseTile):
     columns = 12
 
     #Scripts js
-    scripts_js = ['ajax_boll_batch.js']
+    scripts_js = ['/++resource++vindula.tile/js/ajax_boll_batch.js']
     
     #Folhas de estilo css
-    style_sheets = ['library-tile.css']
+    style_sheets = ['/++resource++vindula.tile/css/library-tile.css']
 
 registerType(TileLibrary, PROJECTNAME)

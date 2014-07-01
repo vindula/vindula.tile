@@ -13,12 +13,17 @@ class MoreAccessView(BaseView):
     first_active = True
 
     def getItens(self):
-        portal_type = self.context.getObject_type()
-        count = self.context.getNumb_items()
+        context = self.context
+        portal_type = context.getObject_type()
+        
+        if not context.getShowPagination():
+            count = context.getNumb_items()
+        else:
+            count = context.getNumb_items() * context.getQtdMaxPages()
         
         result = self.list_files(portal_type, count)
-
-        return result[:count]
+        
+        return result
 
     def list_files(self, portal_type, limit=None):
         list_files = []

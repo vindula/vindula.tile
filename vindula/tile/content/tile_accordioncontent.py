@@ -64,6 +64,6 @@ class TileAccordionContent(ATFolder, BaseTile):
     columns = 6
 
     #Scripts js
-    scripts_js = ['tile-accordion.js']
+    scripts_js = ['/++resource++vindula.tile/js/tile-accordion.js']
 
 registerType(TileAccordionContent, PROJECTNAME)
