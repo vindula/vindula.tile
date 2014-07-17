@@ -57,28 +57,30 @@
                   <input type="hidden" id="absolute_url" tal:attributes="value string:${context/absolute_url}" />
 
                   <tal:rep repeat="item batch">
-                      <div class="large-6 columns item" tal:define="item python:view_macro.getItem(item);
-                                                                    username item/username|nothing">
-                        
-                        <div class="left image">
-                            <img width="60" tal:attributes="src python:view_macro.getURLFotoUser(username);
-                                                            alt item/name|string: ; 
-                                                            title item/name|string: " />
-                        </div>
-                        <div class="left content"
-                             tal:define="structure item/get_unidadeprincipal">
-                            <a class="block profile-link" href="#" 
-                               tal:attributes="href item/getUrlPerfil|nothing;
-                                               data-type string:UserObject;
-                                               data-value item/username|nothing;"
-                                             tal:content="item/name|string: ">Pedro Miranda Prado</a>
-                            <span class="block"
-                                  tal:content="item/admission_date|string: ">10/10/10</span> 
+                      <tal:rep condition="python:(repeat['item'].start or repeat['item'].index%2==0)" replace="structure string:<div class='columns small-12'><div class='row'>"></tal:rep>
+                          <div class="large-6 columns item" tal:define="item python:view_macro.getItem(item);
+                                                                        username item/username|nothing">
                             
-                            <span class="block"
-                                  tal:condition="python: structure != None"
-                                  tal:content="structure/getSiglaOrTitle">ASCON</span>                                
-                        </div>
+                            <div class="left image">
+                                <img width="60" tal:attributes="src python:view_macro.getURLFotoUser(username);
+                                                                alt item/name|string: ; 
+                                                                title item/name|string: " />
+                            </div>
+                            <div class="left content"
+                                 tal:define="structure item/get_unidadeprincipal">
+                                <a class="block profile-link" href="#" 
+                                   tal:attributes="href item/getUrlPerfil|nothing;
+                                                   data-type string:UserObject;
+                                                   data-value item/username|nothing;"
+                                                 tal:content="item/name|string: ">Pedro Miranda Prado</a>
+                                <span class="block"
+                                      tal:content="item/admission_date|string: ">10/10/10</span> 
+                                
+                                <span class="block"
+                                      tal:condition="python: structure != None"
+                                      tal:content="structure/getSiglaOrTitle">ASCON</span>                                
+                            </div>
+                        <tal:rep condition="python:(repeat['item'].end or ((repeat['item'].index+1)%2==0))" replace="structure string:</div></div>"></tal:rep>
 
                       </div>
                   </tal:rep>

@@ -153,7 +153,7 @@
                                             <tal:rep repeat="block blocks">
                                                 <li tal:attributes="class python:'cycle-block %s' % ((repeat['block'].start) and 'active' or '');
                                                                     style python:(repeat['block'].start) and 'display:block;;' or ''">
-                                                    <ul class="small-block-grid-9 large-block-grid-9 members-team">
+                                                    <ul class="small-block-grid-4 large-block-grid-9 members-team">
                                                          <tal:rep repeat="member block">
                                                             <li tal:define="dados_member python:view_macro.get_prefs_user(member)">
                                                                 <a href="#" class="profile-link"

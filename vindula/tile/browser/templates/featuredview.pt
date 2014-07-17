@@ -10,10 +10,11 @@
         <metal:main fill-slot="content-core">
             <metal:macro define-macro="page"
                          tal:define="global view_macro nocall:context/@@featured-view;
-                                     path_macro  string:context/@@featured-view/macros/${view_macro/getKind}">
+                                     kind python: (view_macro.getKind() == 'alerta_importante') and 'alerta_normal' or view_macro.getKind();
+                                     path_macro  string:context/@@featured-view/macros/${kind}">
 
                 <metal:block tal:condition="path_macro"
-                             metal:use-macro="python:path(path_macro)"/>
+                             metal:use-macro="python:path(path_macro)"></metal:block>
 
             </metal:macro>
         </metal:main>
@@ -21,7 +22,7 @@
 </html>
 
 <metal:macro define-macro="alerta_normal"
-             tal:condition="python:view_macro.getKind() == 'alerta_normal'">
+             tal:condition="python:view_macro.getKind() in ['alerta_normal', 'alerta_importante']">
     <tal:def define="items context/getItens;
                      bullets_false python:'bullets:false;;timer_speed:0;;navigation_arrows:false';">
         <tal:cond condition="not:context/getHide_title">
@@ -40,7 +41,6 @@
                   </p>
     
                   <a tal:attributes="href item/absolute_url"
-                     tal:condition="python: view_macro.cont_text(text)"
                      href="">Leia Mais</a>
     
                 </div>
@@ -52,34 +52,6 @@
     </tal:def>
 </metal:macro>
 
-<metal:macro define-macro="alerta_importante"
-             tal:condition="python:view_macro.getKind() == 'alerta_importante'">
-    <tal:def define="items context/getItens;
-                     bullets_false python:'bullets:false;;timer_speed:0;;navigation_arrows:false';">
-        <tal:cond condition="not:context/getHide_title">
-            <h4 tal:content="context/Title">ANUNCIO</h4>
-        </tal:cond>
-        
-        <ul data-orbit tal:attributes="data-options python: len(items)==1 and bullets_false"
-                       id="tile-featured">
-          <tal:rep tal:repeat="item items">
-            <li>
-              <div tal:define="text item/Description">
-                <p tal:content="python: view_macro.limitTextSize(text)" >
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta,
-                  inventore incidunt ullam eligendi laborum aliquid illum et non sunt praesentium!
-                </p>
-    
-                <a tal:attributes="href item/absolute_url"
-                   tal:condition="python: view_macro.cont_text(text)"
-                   href="">Leia Mais</a>
-    
-              </div>
-            </li>
-          </tal:rep>
-        </ul>
-    </tal:def>
-</metal:macro>
 
 <metal:macro define-macro="destaque"
              tal:condition="python:view_macro.getKind() == 'destaque'">
