@@ -119,6 +119,8 @@
     <tal:cond condition="estrutura"
               define="view_macro nocall:context/@@organogram-view;
                       estrutura estrutura_filho|nothing;">
+        
+        <tal:cond condition="estrutura/enable_organograma|python:True">
         <li class="tree-item" tal:define="estruturas_filho python:view_macro.get_estruturas_filho(estrutura.getSourceObject())"
                               tal:attributes="class python:view_macro.def_class(estrutura.getSourceObject(), estruturas_filho)">
             <div class="content clear">
@@ -137,5 +139,6 @@
                 </tal:rep>
             </ul>
         </li>
+        </tal:cond>
     </tal:cond>
 </metal:macro>
