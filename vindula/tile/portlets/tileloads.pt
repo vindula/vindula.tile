@@ -40,6 +40,11 @@
                       <a  alt="Editar o Bloco" title="Editar o Bloco"
                           class="manage-tile manage"
                           tal:attributes="href string:${context/absolute_url}/edit" ></a>  
+
+                      <a  alt="Compartilhamento do Bloco" title="Compartilhamento do Bloco"
+                          class="sharing-tile manage"
+                          tal:attributes="href string:${context/absolute_url}/sharing" ></a> 
+                          
                     </div>
                 </tal:error>
 

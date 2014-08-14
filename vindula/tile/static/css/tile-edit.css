@@ -37,7 +37,6 @@
 .manage-tile{
 	background:url('/++resource++vindula.tile/images/pencil-icon.png') 50% 50% no-repeat;
 }
-
 .manage-tile:hover{
 	background:url('/++resource++vindula.tile/images/pencil-icon-hover.png') 50% 50% no-repeat;
 }
@@ -45,9 +44,16 @@
 .exclude-tile{
 	background:url('/++resource++vindula.tile/images/remove-icon.png') 50% 50% no-repeat;
 }
-
 .exclude-tile:hover{
 	background:url('/++resource++vindula.tile/images/remove-icon-hover.png') 50% 50% no-repeat;
+}
+
+
+.sharing-tile{
+	background:url('/++resource++vindula.tile/images/sharing-icon.png') 50% 50% no-repeat;
+}
+.sharing-tile:hover{
+	background:url('/++resource++vindula.tile/images/sharing-icon-hover.png') 50% 50% no-repeat;
 }
 
 
