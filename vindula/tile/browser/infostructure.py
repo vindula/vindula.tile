@@ -55,7 +55,9 @@ class InfoStructureView(grok.View, UtilMyvindula):
     
     def getStructureFromDB(self, uid):
         return ModelsContent().getContent_by_uid(uid)
-        
+    
+    def sorted_alfabetc(self,lst):
+        return sorted(lst, key=str.lower)
         
         
         
