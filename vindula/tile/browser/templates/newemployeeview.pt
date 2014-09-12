@@ -58,8 +58,9 @@
 
                   <tal:rep repeat="item batch">
                       <tal:rep condition="python:(repeat['item'].start or repeat['item'].index%2==0)" replace="structure string:<div class='columns small-12'><div class='row'>"></tal:rep>
-                          <div class="large-6 columns item" tal:define="item python:view_macro.getItem(item);
-                                                                        username item/username|nothing">
+                          <div class="large-6 columns item" tal:attributes="class python:'large-%s columns item' % (context.get_columns() == 6 and '12' or '6') "
+                               tal:define="item python:view_macro.getItem(item);
+                                           username item/username|nothing">
                             
                             <div class="left image">
                                 <img width="60" tal:attributes="src python:view_macro.getURLFotoUser(username);
