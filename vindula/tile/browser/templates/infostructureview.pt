@@ -24,6 +24,7 @@
                 <tal:def define="gestor python:orgstruc().getManager() or ''; 
                                  sub_gestor python:orgstruc().getVice_manager() or '';
                                  members python:orgstruc().getEmployees() or [];
+                                 members python:view_macro.sorted_alfabetc(members);
                                  tipo_unidade python:orgstruc().getTipounidade()">
                                      
                      <div id="tile-org-info">

@@ -10,6 +10,9 @@ class ILayout(Interface):
 class ITileBanner(Interface):
     """ Interface for BannerTile content type """
 
+class ITileHtml(Interface):
+    """ Interface for TileHtml content type """
+
 class ITileListagemVertical(Interface):
     """ Interface for TileListagemVertical content type """
 
@@ -93,3 +96,4 @@ class ITileLoadReference(Interface):
 
 class ITileMultimedia(Interface):
     """ Interface for ITileMultimedia content type """  
+

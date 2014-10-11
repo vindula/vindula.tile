@@ -91,7 +91,7 @@
                             <span class="left org-title" tal:content="python:estrutura().getSiglaOrTitle()"></span>
                             <a href='' class="clear" 
                                tal:attributes="href python:estrutura().absolute_url() or None"
-                               tal:define="username  estrutura/manager|nothing">
+                               tal:define="username python:estrutura().getManager()">
                                 
                                 <img src="" alt="" height="30" width="30" class="right" 
                                      tal:condition="context/getImage_OU|python:True"

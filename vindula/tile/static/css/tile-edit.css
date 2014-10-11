@@ -1,0 +1,105 @@
+
+.manageTileLink{
+	float: right;
+}
+
+#content .manageTileLink{
+	top:-20px;
+	position: relative;
+}
+
+
+/*BLOCO DE BANNER*/
+#content .TileBanner .manageTileLink{
+	top:-12px;
+}
+
+/*BLOCO DE Listagem Vertical*/
+#content .TileListagemVertical .manageTileLink{
+	top:-45px;
+}
+
+/*BLOCO DE Destaque*/
+#content .TileFeatured .manageTileLink{
+	top:-45px;
+}
+
+.manage{
+	float: left;
+	/*margin-right: 20px;
+	margin-top: -39px;*/
+	height:24px;
+	width:24px;
+	z-index: 9999;
+}
+
+
+.manage-tile{
+	background:url('/++resource++vindula.tile/images/pencil-icon.png') 50% 50% no-repeat;
+}
+.manage-tile:hover{
+	background:url('/++resource++vindula.tile/images/pencil-icon-hover.png') 50% 50% no-repeat;
+}
+
+.exclude-tile{
+	background:url('/++resource++vindula.tile/images/remove-icon.png') 50% 50% no-repeat;
+}
+.exclude-tile:hover{
+	background:url('/++resource++vindula.tile/images/remove-icon-hover.png') 50% 50% no-repeat;
+}
+
+
+.sharing-tile{
+	background:url('/++resource++vindula.tile/images/sharing-icon.png') 50% 50% no-repeat;
+}
+.sharing-tile:hover{
+	background:url('/++resource++vindula.tile/images/sharing-icon-hover.png') 50% 50% no-repeat;
+}
+
+
+#addtilesviewlet button.hide{
+	display: none !important;	
+
+}
+
+#select_layout h4 {
+	border-bottom: 2px solid #c7c7c7;
+margin-bottom: 25px;
+padding-bottom: 5px;
+}
+
+
+#select_layout .item_lista img {
+	width:120px;
+	height:120px;
+	-webkit-box-shadow: 0 0 2px 1px #A3A3A3;
+box-shadow: 0 0 2px 1px #A3A3A3;
+}
+
+#select_layout .delete-modelo {
+	font-size:16px;
+	color:red;
+}
+
+#select_layout .item_lista label {
+	margin-left:15px;
+}
+
+#select_layout .item_lista h5 {
+	background: rgb(211, 211, 211);
+padding: 5px;
+}
+
+#select_layout .item_lista .large-6 h5 {
+	background:none;
+}
+#select_layout .row {
+	margin:15px 0;
+}
+
+#select_layout ul {
+	list-style:none;
+}
+#select_layout label{
+	display: inline;
+}

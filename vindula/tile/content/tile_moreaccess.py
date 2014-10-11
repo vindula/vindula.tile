@@ -107,23 +107,6 @@ TileMoreAccess_schema = BaseTile.schema.copy() + Schema((
         required=True,
     ),
 
-    StringField(
-        name='columns',
-        widget=SelectionWidget(
-            label=_(u"Tamanho do bloco"),
-            description=_(u"Selecione o tamanho do bloco."),
-            label_msgid='vindula_tile_label_columns',
-            description_msgid='vindula_tile_help_columns',
-            i18n_domain='vindula_tile',
-            format='select',
-        ),
-        vocabulary=[('6',_(u"6 Colunas")),
-                    ('12', _(u"12 Colunas")),
-                    ],
-        default='6',
-        required=True,
-    ),
-    
     BooleanField(
         name='activeMoreButton',
         default=True,

@@ -12,6 +12,13 @@
           <tal:dummy tal:define="disable_column_one python:request.set('disable_plone.leftcolumn',1);"/>
           <tal:dummy tal:define="disable_column_two python:request.set('disable_plone.rightcolumn',1);" />
       </tal:cond>
+      
+      <tal:cond tal:condition="python: context.getType_layouts() == 'smart'">
+          <tal:dummy tal:define="disable_column_one python:request.set('disable_plone.leftcolumn',1);"/>
+          <!--tal:dummy tal:define="disable_column_two python:request.set('disable_plone.rightcolumn',1);" /-->
+      </tal:cond>
+
+
   </metal:block>  
 </head>
 
@@ -20,6 +27,10 @@
 
 <metal:main fill-slot="main">
   <metal:macro define-macro="page-view">
+
+    <div id="viewlet-above-content-body"
+         tal:content="structure provider:plone.abovecontentbody" />
+
 
     <tal:cond tal:condition="python: context.getType_layouts() == 'padrao'">
         <div tal:define="context python:context.getObj_layout()">
@@ -55,7 +66,55 @@
         </div>
 
     </tal:cond>
+
+    <tal:cond tal:condition="python: context.getType_layouts() == 'smart'">
+
+        <div class="columns large-12" tal:define="context python:context.getObj_layout();
+                                                 size_global python:True;
+                                                 layout_smart python:True;"
+                                     tal:condition="context" >
+                
+            <tal:error tal:on-error="string: Erro ao carregar a capa ${context/Title}">
+                <metal:block metal:use-macro="context/@@layout-view/macros/page"/>
+            </tal:error>
+        </div>
+
+       
+        <tal:comment replace="nothing">
+
+          <!-- Removido temporariamente -->
+        <div class="columns large-12" tal:define="context python:context.getObj_layout_topo();
+                                                 size_global python:True"
+                                     tal:condition="context">
+            <tal:error tal:on-error="string: Erro ao carregar a capa ${context/Title}">
+                <metal:block metal:use-macro="context/@@layout-view/macros/page"/>
+            </tal:error>
+        </div>          
+       
+          <div class="columns large-4" tal:define="context python:context.getObj_layout_B();
+                                                   size_global python:True"
+                                       tal:condition="context">
+              <tal:error tal:on-error="string: Erro ao carregar a capa ${context/Title}">
+                  <metal:block metal:use-macro="context/@@layout-view/macros/page"/>
+              </tal:error>
+          </div>
+
+          <div class="columns large-4" tal:define="context python:context.getObj_layout_C();
+                                                   size_global python:True"
+                                       tal:condition="context">
+              <tal:error tal:on-error="string: Erro ao carregar a capa ${context/Title}">
+                  <metal:block metal:use-macro="context/@@layout-view/macros/page"/>
+              </tal:error>
+          </div>
+        </tal:comment>
+
+    </tal:cond>
+
   </metal:macro>
+  
+  <div id="viewlet-below-content-body" 
+       tal:content="structure provider:plone.belowcontentbody" />
+       
 </metal:main>
 </body>
 </html>

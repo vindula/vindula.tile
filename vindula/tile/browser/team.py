@@ -23,4 +23,8 @@ class TeamView(BaseView, UtilMyvindula):
         if not item:
             item = self.getSuperStructure(self.context)
             
-        return item
+        return item   
+
+    def sorted_alfabetc(self,lst):
+        return sorted(lst, key=str.lower)
+        

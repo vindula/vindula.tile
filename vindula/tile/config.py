@@ -4,6 +4,7 @@ try: # New CMF
 except ImportError: # Old CMF
     from Products.CMFCore.CMFCorePermissions import setDefaultRoles
 
+from vindula.tile import MessageFactory as _
 
 PROJECTNAME = "vindula.tile"
 
@@ -25,3 +26,11 @@ setDefaultRoles(DEFAULT_ADD_CONTENT_PERMISSION, ('Manager', 'Owner'))
 
 product_globals = globals()
 
+import os
+ROOT_PATH = os.path.dirname(os.path.abspath(__file__))
+
+
+VOCABULARY_COLUNAS=[('4',_(u"4 Colunas")),
+                    ('6', _(u"6 Colunas")),
+                    ('12', _(u"12 Colunas")),
+                    ]

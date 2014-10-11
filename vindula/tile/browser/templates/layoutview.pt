@@ -13,12 +13,16 @@
 
       <metal:macro define-macro="page"
                    tal:define="view nocall:context/@@layout-view;
+                               layout_smart layout_smart|python:False;
                                size_global size_global|python:False;
                                tiles python:view.getItensTiles(size_global);
                                scripts view/getScripts_js;
                                stylesheets view/getStyleSheets_css;
                                columns_accessory columns_accessory|python:False;
-                               size_large python: columns_accessory and '12' or '6'">
+                               size_large python: columns_accessory and '12' or '6';
+                               class_defaut string: macro-tile item-tile">
+
+        <div class="sortable-tiles">
         
           <tal:rep_js repeat="scr scripts">
               <tal:def define="name_script scr/name;
@@ -37,60 +41,123 @@
               </tal:cond>
           </tal:rep_css>
 
-        <div tal:repeat="itens tiles" class="row">
-            <tal:cond_12 condition="python: len(itens) == 1 ">
-                <div class="columns large-12 medium-12" tal:define="item python: itens[0]">
-                    <div id="macro-tile" tal:attributes="class python:item.getIs_accessory() and 'is_accessory' or ''"
-                                         tal:define="path_macro python:view.getMacro(item);
-                                                     context nocall:item">
+          <input type="hidden" name="context_UID" id="context_UID" tal:attributes="value context/UID|string: " />
 
-                        <tal:cod tal:condition="path_macro"
-                                 tal:on-error="string: Erro ao carregar o bloco ${context/Title}">
+          <div tal:repeat="itens tiles" class="row linha_tiles" tal:condition="not: layout_smart">
 
-                          <metal:block metal:use-macro="python:path(path_macro)"/>
+              <tal:cond_12 condition="python: len(itens) == 1 ">
+                  <div class="columns large-12" id="full"
+                                                tal:define="item python: itens[0];
+                                                            portal_type item/portal_type|string: ">
 
-                        </tal:cod>
+                    <div metal:use-macro="context/macro_layout_load/macros/page" />
+                      
+                  </div>
+              </tal:cond_12>
 
-                    </div>
-                </div>
-            </tal:cond_12>
+              <tal:cond_6 condition="python: len(itens) == 2 ">
+                  <div class="columns large-6" id="even"
+                      tal:attributes="class string: columns large-${size_large} cleft">
+                      
+                        <tal:rep_even tal:repeat="item python: itens[0]">
+                          
+                          <div metal:use-macro="context/macro_layout_load/macros/page" />
+                            
+                        </tal:rep_even>
+                      
+                      <div class="item-tile column-empty" ></div>
 
-            <tal:cond_6 condition="python: len(itens) == 2 ">
-                <div class="columns large-6" id="even"
-                    tal:attributes="class string: columns medium-${size_large} large-${size_large}">
-                    <tal:rep_even tal:repeat="item python: itens[0]">
-                        <div id="macro-tile" tal:attributes="class python:item.getIs_accessory() and 'is_accessory' or ''"
-                                             tal:define="path_macro python:view.getMacro(item);
-                                                         context nocall:item">
+                  </div>
+                  <div class="columns large-6" id="odd"
+                       tal:attributes="class string: columns large-${size_large} cright">
+                       
+                      <tal:rep_odd tal:repeat="item python: itens[1]">
 
-                          <tal:cod tal:condition="path_macro"
-                                   tal:on-error="string: Erro ao carregar o bloco ${context/Title}">
+                        <div metal:use-macro="context/macro_layout_load/macros/page" />
 
-                            <metal:block metal:use-macro="python:path(path_macro)"/>
+                      </tal:rep_odd>
+                    
+                      <div class="item-tile column-empty" ></div>
+                  </div>
+              </tal:cond_6>
 
-                          </tal:cod>
+              <tal:cond_4 condition="python: len(itens) == 3 "
+                          tal:define="size_large python:'4';">
 
-                        </div>
-                    </tal:rep_even>
-                </div>
-                <div class="columns large-6" id="odd"
-                     tal:attributes="class string: columns medium-${size_large} large-${size_large}">
-                    <tal:rep_odd tal:repeat="item python: itens[1]">
-                        <div id="macro-tile" tal:attributes="class python:item.getIs_accessory() and 'is_accessory' or ''"
-                                             tal:define="path_macro python:view.getMacro(item);
-                                                         context nocall:item">
+                  <div class="columns large-4" id="even"
+                      tal:attributes="class string: columns large-${size_large} cleft">
+                      
+                        <tal:rep_even tal:repeat="item python: itens[0]">
+                          
+                          <div metal:use-macro="context/macro_layout_load/macros/page" />
+                            
+                        </tal:rep_even>
+                      
+                      <div class="item-tile column-empty" ></div>
 
-                            <tal:cod tal:condition="path_macro"
-                                     tal:on-error="string: Erro ao carregar o bloco ${context/Title}">
+                  </div>
+                  <div class="columns large-4" id="middle"
+                       tal:attributes="class string: columns large-${size_large} cleft">
+                       
+                      <tal:rep_odd tal:repeat="item python: itens[1]">
 
-                              <metal:block metal:use-macro="python:path(path_macro)"/>
+                        <div metal:use-macro="context/macro_layout_load/macros/page" />
 
-                            </tal:cod>
+                      </tal:rep_odd>
+                    
+                      <div class="item-tile column-empty" ></div>
+                  </div>
+                  <div class="columns large-4" id="odd"
+                       tal:attributes="class string: columns large-${size_large} cright">
+                       
+                      <tal:rep_odd tal:repeat="item python: itens[2]">
 
-                        </div>
-                    </tal:rep_odd>
-                </div>
-            </tal:cond_6>
+                        <div metal:use-macro="context/macro_layout_load/macros/page" />
+
+                      </tal:rep_odd>
+                    
+                      <div class="item-tile column-empty" ></div>
+                  </div>
+
+              </tal:cond_4>
+
+          </div>
+          <tal:rep repeat="itens tiles" tal:condition="layout_smart">
+             
+              <tal:cond condition="python: repeat['itens'].number()==1">
+                <div class="columns large-12" tal:define="item python: itens[0];
+                                                          portal_type item/portal_type|string: ">
+
+                  <div metal:use-macro="context/macro_layout_load/macros/page" />
+                    
+                </div>  
+              </tal:cond>
+              <tal:cond condition="python: repeat['itens'].number() in [2,3,4]">
+                <div class="columns large-4" tal:define="item python: itens[0];
+                                                          portal_type item/portal_type|string: ">
+
+                  <div metal:use-macro="context/macro_layout_load/macros/page" />
+                    
+                </div>  
+              </tal:cond>             
+              <tal:cond condition="python: repeat['itens'].number() == 5">
+                <div class="columns large-8" tal:define="item python: itens[0];
+                                                          portal_type item/portal_type|string: ">
+
+                  <div metal:use-macro="context/macro_layout_load/macros/page" />
+                    
+                </div>  
+              </tal:cond>
+
+              <tal:cond condition="python: repeat['itens'].number() == 6">
+                <div class="columns large-4" tal:define="item python: itens[0];
+                                                          portal_type item/portal_type|string: ">
+
+                  <div metal:use-macro="context/macro_layout_load/macros/page" />
+                    
+                </div>  
+              </tal:cond>
+          </tal:rep>
         </div>
       </metal:macro>
     </metal:main>

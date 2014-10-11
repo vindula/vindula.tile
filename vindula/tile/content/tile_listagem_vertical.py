@@ -78,9 +78,7 @@ TileListagemVertical_schema = BaseTile.schema.copy() + Schema((
             i18n_domain='vindula_tile',
             format='select',
         ),
-        vocabulary=[('6',_(u"6 Colunas")),
-                    ('12', _(u"12 Colunas")),
-                    ],
+        vocabulary=VOCABULARY_COLUNAS,
         default='6',
         required=True,
     ),
@@ -149,7 +147,7 @@ TileListagemVertical_schema = BaseTile.schema.copy() + Schema((
 
     ReferenceField('path',
             multiValued=0,
-            allowed_types=('VindulaFolder','Folder', 'VindulaClipping'),
+            allowed_types=('VindulaFolder','Folder', 'VindulaClipping','OrganizationalStructure'),
             label=_(u"Pastas"),
             relationship='path',
             widget=VindulaReferenceSelectionWidget(
@@ -161,7 +159,7 @@ TileListagemVertical_schema = BaseTile.schema.copy() + Schema((
                                                                
     ReferenceField('path_othernews',
             multiValued=0,
-            allowed_types=('VindulaFolder','Folder', 'VindulaClipping'),
+            allowed_types=('VindulaFolder','Folder', 'VindulaClipping','OrganizationalStructure'),
             label=_(u"Pastas"),
             relationship='path_othernews',
             widget=VindulaReferenceSelectionWidget(

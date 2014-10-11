@@ -12,6 +12,12 @@ from vindula.tile.content.tile_schemaBase import BaseTile
 from vindula.tile import MessageFactory as _
 from vindula.tile.config import *
 
+
+from Products.CMFCore.permissions import setDefaultRoles
+EditGobalBanner = 'Edit Global Banner'
+setDefaultRoles(EditGobalBanner, ('Manager', 'Site Administrator'))
+
+
 TileBanner_schema = BaseTile.schema.copy() + Schema((
 
 	ReferenceField('imageBanner',
@@ -24,7 +30,22 @@ TileBanner_schema = BaseTile.schema.copy() + Schema((
 	            description='Selecione os banners.'),
                 review_state = ('published','internal','external'),
             required=True,
-                ),
+    ),
+
+    ReferenceField('imageBanner_admin',
+            multiValued=1,
+            allowed_types=('Banner'),
+            label=_(u"Banner"),
+            relationship='Banner_admin',
+            widget=VindulaReferenceSelectionWidget(
+                label=_(u"Banners - Global"),
+                description='Selecione os banners globais.'),
+                review_state = ('published','internal','external'),
+            required=False,
+            write_permission=EditGobalBanner,
+    ),
+
+
 
     IntegerField(
         name='timeTransitionBanner',
@@ -93,6 +114,12 @@ TileBanner_schema = BaseTile.schema.copy() + Schema((
 
 
 finalizeATCTSchema(TileBanner_schema, folderish=False)
+
+
+# invisivel = {'view':'visible','edit':'visible',}
+# TileBanner_schema['effectiveDate'].widget.visible = invisivel
+# TileBanner_schema['expirationDate'].widget.visible = invisivel
+
 
 class TileBanner(BaseTile):
     """ Reserve Content for TileBanner"""

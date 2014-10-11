@@ -2,7 +2,8 @@
             tal:define="view_macro nocall:context/@@orgstruc-info;
                         orgstruc view_macro/get_structure;
                         gestor orgstruc/getManager|python:'';
-                        members orgstruc/getEmployees|python:[];">
+                        members orgstruc/getEmployees|python:[];
+                        members python:view_macro.sorted_alfabetc(members);">
 
     <div id="tile-org-info">
         <div class="row">

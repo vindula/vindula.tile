@@ -3,6 +3,7 @@ from five import grok
 from vindula.tile.browser.baseview import BaseView
 
 from vindula.tile.content.interfaces import ILayout
+from zope.security import checkPermission
 
 
 grok.templatedir('templates')
@@ -12,8 +13,18 @@ class LayoutView(BaseView):
     grok.name('layout-view')
 
 
+    def can_manage_tile(self,obj_tile):
+        return checkPermission('cmf.ModifyPortalContent', obj_tile)
+
+
     def getScripts_js(self):
         path_js = []
+
+        # #Adição do js de edição dos blocos via modal
+        path_js.append('/++resource++vindula.tile/js/tile-edit.js')
+        # #Adição do js de drag n drop dos blocos
+        path_js.append('/++resource++vindula.tile/js/tile-sortable.js')
+
 
         #Coleta dos Script js dos tiles
         context = self.context
@@ -90,7 +101,9 @@ class LayoutView(BaseView):
                                                   'TileSimpleMacro',
                                                   'TileTabularList',
                                                   'TileTeam',
-                                                  'TilePoiTracker',],  
+                                                  'TileHtml',
+                                                  'TilePoiTracker'], 
+                                        
                                    # 'review_state':['published', 'internally_published', 'external'],
                                    'path':{'query':'/'.join(context.getPhysicalPath()), 'depth': 5}
                                 })
@@ -147,25 +160,55 @@ class LayoutView(BaseView):
                 posicionados += 1
                 posicao+=1
             else:
-                even = []
-                odd = []
-                contador_temp = 1
-                for tile_6 in tiles[posicao:]:
+                # TILES DE 6 COLUNAS
+                tile_6 = tiles[posicao]
 
-                    if posicao >= len(tiles):
-                        break
+                if tile_6.get_columns() == 6 :
 
-                    if tile_6.get_columns() == 6:
-                        if contador_temp%2 == 0:
-                            odd.append(tile_6)
+                    try: 
+                        next_tile = tiles[posicao+1]
+                        if next_tile.get_columns() == 6:
+                            tiles_posicionados.append([[tile_6],[next_tile]])
+                            posicao += 2
                         else:
-                            even.append(tile_6)
+                            tiles_posicionados.append([[tile_6],[]])
+                            posicao+=1
 
-                        contador_temp+=1
-                        posicionados+=1
+                    except:
+                        tiles_posicionados.append([[tile_6],[]])
                         posicao+=1
-                    else:break
-                tiles_posicionados.append([even,odd])
+
+                    posicionados+=1
+                    
+
+                else: 
+               
+                    # TILES DE 4 COLUNAS
+                    tile_4 = tiles[posicao]
+                    if tile_4.get_columns() == 4:
+                        
+                        try: 
+                            middle_tile = tiles[posicao+1]
+
+                            if middle_tile.get_columns() == 4:
+                                posicao += 2
+
+                                odd_tile = tiles[posicao]
+                                if odd_tile.get_columns() == 4:
+                                    tiles_posicionados.append([[tile_4],[middle_tile],[odd_tile]])
+                                    posicao += 1
+
+                                else:
+                                    tiles_posicionados.append([[tile_4],[middle_tile],[]])
+
+                            else:
+                                tiles_posicionados.append([[tile_4],[],[]])
+
+                        except:
+                            tiles_posicionados.append([[tile_4],[],[]])
+                            posicao+=1
+
+                        posicionados+=1
 
         return tiles_posicionados
 
@@ -173,10 +216,3 @@ class LayoutView(BaseView):
         macro = 'context/%s/macros/page' %(obj.getLayout())
 
         return macro
-
-
-class LoadLayoutView(BaseView):
-    grok.name('layout_load-view')
-
-
-

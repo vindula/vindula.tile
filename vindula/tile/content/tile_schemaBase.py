@@ -69,9 +69,34 @@ BaseTile_schema = ATContentTypeSchema + Schema((
         schemata = 'settings'
     ),
 
+    StringField(
+        name='columns',
+        widget=SelectionWidget(
+            label=_(u"Tamanho do tile"),
+            description=_(u"Selecione o tamanho do tile."),
+            label_msgid='vindula_tile_label_columns',
+            description_msgid='vindula_tile_help_columns',
+            i18n_domain='vindula_tile',
+            format='select',
+        ),
+        vocabulary=VOCABULARY_COLUNAS,
+        default='12',
+        required=True,
+    ),
+    
+
 ))
 
 schemata.finalizeATCTSchema(BaseTile_schema, folderish=False)
+invisivel = {'view':'invisible','edit':'invisible',}
+
+
+hiddem = ['allowDiscussion','creators','contributors','rights','effectiveDate',\
+          'expirationDate','subject','relatedItems','location','language',]
+
+for i in hiddem:
+    BaseTile_schema[i].widget.visible = invisivel
+
 
 class BaseTile(ATCTContent):
     """ Reserve Content for BaseTile"""

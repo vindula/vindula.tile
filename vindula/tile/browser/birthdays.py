@@ -54,10 +54,16 @@ class BirthdaysView(BaseView, UtilMyvindula):
                         if structure:
                             result = structure.getSiglaOrTitle()
                         D['content'] = result
+                    
                     elif line[1] == 'departamento':
                         texto = ''
-                        for item in dado_user.get_department():
-                            texto += ' %s /' % item.get('title')
+                        departamentos = dado_user.get_department()
+                        cont_dep = len(departamentos)
+
+                        for cont, item in enumerate(departamentos, start=1):
+                            texto += ' %s' % item.get('title')
+                            if cont_dep != cont:
+                                texto += ' /'
 
                         D['content'] = texto
                     else:

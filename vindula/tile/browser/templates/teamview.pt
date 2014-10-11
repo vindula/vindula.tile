@@ -30,7 +30,8 @@
                                  tal:define="view_team nocall:context/@@team-view;
                                              structure nocall:view_team/getStructure|nothing;">
                         <div id="tile-team"
-                             tal:define="members python:structure().getEmployees() or [];">
+                             tal:define="members python:structure().getEmployees() or [];
+                                         members python:view_team.sorted_alfabetc(members);">
                             
                             <ul class="small-block-grid-5 large-block-grid-5">
                                 <tal:rep repeat="member members">

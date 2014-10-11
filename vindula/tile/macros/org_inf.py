@@ -38,3 +38,6 @@ class OrgStrucInfView(grok.View, UtilMyvindula):
             lista.append(L)
 
         return lista
+
+    def sorted_alfabetc(self,lst):
+        return sorted(lst, key=str.lower)

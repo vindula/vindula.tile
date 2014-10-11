@@ -15,7 +15,9 @@ from plone.app.form.widgets.uberselectionwidget import UberSelectionWidget, Uber
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from vindula.tile import MessageFactory as _
 
+from zope.security import checkPermission
 from vindula.tile.browser.layout import LayoutView
+
 
 class ITileLoads(IPortletDataProvider):
 
@@ -61,7 +63,7 @@ class Renderer(base.Renderer):
     def available(self):
         return True
 
-    def getTiles(self):
+    def _getTiles_list(self):
         context = self.context
         portal = context.portal_url.getPortalObject()
         catalog = portal.portal_catalog
@@ -69,17 +71,22 @@ class Renderer(base.Renderer):
 
         data = self.data
         rid = catalog.getrid(portal_path + data.tiles_list)
-
         if rid:
             brain = catalog._catalog[rid]
             obj_layout = brain.getObject()
 
-            layout_view = LayoutView(obj_layout, self.request)
-            return layout_view._get_catalog_tiles()
+            return obj_layout
         
         else:
-            return []
+            return None
 
+    def getObjContext(self):
+        return self._getTiles_list()
+
+
+    def getTiles(self):
+        obj = self._getTiles_list()
+        return obj.values()
 
     def getScripts_js(self):
         scripts_js = []
@@ -100,6 +107,9 @@ class Renderer(base.Renderer):
         macro = 'context/%s/macros/page' %(obj.getLayout())
 
         return macro
+
+    def can_manage_tile(self,obj_tile):
+        return checkPermission('cmf.ModifyPortalContent', obj_tile)
 
 
 class AddForm(base.AddForm):

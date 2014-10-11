@@ -47,35 +47,6 @@ TileAccordionContent_schema = ATFolder.schema.copy() + BaseTile.schema.copy() + 
         required=False,
         schemata = 'settings'
     ),
-
-    StringField(
-        name='coluna',
-        default=u'direita',
-        widget=SelectionWidget(label=_(u"Coluna do Portlet"),
-                               description=_(u"Selecione em qual coluna o portlet será carregado."),
-                               ),
-        required=True,
-        vocabulary='voc_coluna',
-        schemata = 'settings'
-    ),
-    
-    StringField(
-        name='columns',
-        widget=SelectionWidget(
-            label=_(u"Tamanho do tile"),
-            description=_(u"Selecione o tamanho do tile."),
-            label_msgid='vindula_tile_label_columns',
-            description_msgid='vindula_tile_help_columns',
-            i18n_domain='vindula_tile',
-            format='select',
-        ),
-        vocabulary=[('6',_(u"6 Colunas")),
-                    ('12', _(u"12 Colunas")),
-                    ],
-        default='6',
-        required=True,
-    ),
-
 ))
 
 finalizeATCTSchema(TileAccordionContent_schema, folderish=True)

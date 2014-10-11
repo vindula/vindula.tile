@@ -20,6 +20,7 @@
       							 	         itens view_macro/getQuery;
       							           habilita_pesquisa python: False;
       								         habilita_descricao python: False">
+
       					<metal:block metal:use-macro="context/vindula_folder_summary_imgBig_view/macros/principal" />      
       				</tal:def>
             </metal:macro>

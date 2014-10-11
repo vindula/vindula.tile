@@ -1,7 +1,7 @@
 <tal:def define="view  view/data|nothing;
                  tiles view/getTiles|python:[];
-                 scripts view/getScripts_js;">
-
+                 scripts view/getScripts_js;
+                 context_obj view/getObjContext;">
 
     <tal:rep_js repeat="name_script scripts">
         <tal:cond condition="python: not request.get(name_script)">
@@ -11,18 +11,48 @@
         </tal:cond>
     </tal:rep_js>
 
+    <input type="hidden" name="context_UID" id="context_UID" tal:attributes="value context_obj/UID|string: " />
+    <div id="full">
 
-    <tal:rep repeat="tile tiles">
-        <div id="macro-tile" class="portletWrapper" 
-             tal:define="path_macro python:view.getMacro(tile);
-                         context nocall:tile" style="float:left"
-             tal:attributes="class string:portletWrapper ${tile/portal_type} ${tile/getKind|nothing}">
+    <div tal:repeat="tile tiles" class="linha_tiles" >
+        <div id="full">
+            <div id="macro-tile" class="portletWrapper" 
+                 tal:define="path_macro python:view.getMacro(tile);
+                             context nocall:tile" style="float:left"
+                 tal:attributes="class string:portletWrapper ${tile/portal_type} ${tile/getKind|nothing} item-tile;
+                                 data-name string:${tile/getId}|${tile/UID}|${context_obj/UID};">
 
-            <metal:block tal:condition="path_macro"
-                         metal:use-macro="python:path(path_macro)" />
+                <tal:error tal:on-error="string: Erro ao carregar a capa ${tile/Title}">
 
+                    <div class="moveTileLink adm-vision hide"tal:condition="python: view.can_manage_tile(context)">
+                      <a class="draggingHook" ><img src="++resource++vindula.tile/images/move_icon.png"/></a>
+                    </div>  
+
+
+                    <metal:block tal:condition="path_macro"
+                                 metal:use-macro="python:path(path_macro)" />
+                                
+                    <div class="excludeTileLink adm-vision hide  clear" tal:condition="python: view.can_manage_tile(context)">
+                      <a  alt="Excluir o Bloco" title="Excluir o Bloco"
+                          class="exclude-tile manage"
+                          tal:attributes="href string:${context/absolute_url}/delete_confirmation" ></a>  
+                    
+                      <a  alt="Editar o Bloco" title="Editar o Bloco"
+                          class="manage-tile manage"
+                          tal:attributes="href string:${context/absolute_url}/edit" ></a>  
+
+                      <a  alt="Compartilhamento do Bloco" title="Compartilhamento do Bloco"
+                          class="sharing-tile manage"
+                          tal:attributes="href string:${context/absolute_url}/sharing" ></a> 
+                          
+                    </div>
+                </tal:error>
+
+            </div>
+            <div class="visualClear"></div>
+
+            <div class="item-tile column-empty" ></div>
         </div>
-
-        <div class="visualClear"></div>
-    </tal:rep>
+    
+    </div>
 </tal:def>
