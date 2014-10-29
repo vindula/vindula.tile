@@ -20,6 +20,11 @@ class LayoutView(BaseView):
     def getScripts_js(self):
         path_js = []
 
+        sdm = self.context.session_data_manager
+        session = sdm.getSessionData(create=True)
+
+        scripts_js = session.get("use_js_list", [])
+
         # #Adição do js de edição dos blocos via modal
         path_js.append('/++resource++vindula.tile/js/tile-edit.js')
         # #Adição do js de drag n drop dos blocos
@@ -29,28 +34,21 @@ class LayoutView(BaseView):
         #Coleta dos Script js dos tiles
         context = self.context
         tiles = context.values()
-
+        
         for tile in tiles:
             if hasattr(tile, 'scripts_js'):
                 for i in tile.scripts_js:
                     if not i in path_js:
                         path_js.append(i)
         
-        scripts_js = []
         for scr in path_js:
             if scr:
-                D = {}
-                if scr.find('/') != -1:
-                    D['name'] = scr.split('/')[-1]
+                if scr in scripts_js:
+                    continue
                 else:
-                    D['name'] = scr
-                
-                if D.get('name'):
-                    D['name'] = D['name'].replace('.js', '')
-                D['path'] = scr
-                
-                scripts_js.append(D)
-            
+                    scripts_js.append(scr)
+
+        session.set("use_js_list", scripts_js)    
         return scripts_js
     
     def getStyleSheets_css(self):

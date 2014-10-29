@@ -89,17 +89,28 @@ class Renderer(base.Renderer):
         return obj.values()
 
     def getScripts_js(self):
-        scripts_js = []
+        path_js = []
+
+        sdm = self.context.session_data_manager
+        session = sdm.getSessionData(create=True)
+        scripts_js = session.get("use_js_list", [])
 
         #Coleta dos Script js dos tiles
         tiles = self.getTiles()
-
+        
         for tile in tiles:
             if hasattr(tile, 'scripts_js'):
                 for i in tile.scripts_js:
-                    if not i in scripts_js:
-                        scripts_js.append(i)
-
+                    if not i in path_js:
+                        path_js.append(i)
+        
+        for scr in path_js:
+            if scr:
+                if scr in scripts_js:
+                    continue
+                else:
+                    scripts_js.append(scr)
+        session.set("use_js_list", scripts_js)    
         return scripts_js
 
 

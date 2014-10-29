@@ -2,13 +2,10 @@
                  tiles view/getTiles|python:[];
                  scripts view/getScripts_js;
                  context_obj view/getObjContext;">
-
-    <tal:rep_js repeat="name_script scripts">
-        <tal:cond condition="python: not request.get(name_script)">
-            <script type="text/javascript"
-                    tal:attributes="src string:${context/portal_url}/++resource++vindula.tile/js/${name_script}" />
-            <tal:dummy tal:define="use_js_list python:request.set(name_script, 1);" />
-        </tal:cond>
+    
+    <tal:rep_js repeat="scr scripts">
+      <script type="text/javascript"
+              tal:attributes="src string:${context/portal_url}${scr}" />
     </tal:rep_js>
 
     <input type="hidden" name="context_UID" id="context_UID" tal:attributes="value context_obj/UID|string: " />
