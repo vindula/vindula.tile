@@ -27,6 +27,14 @@
 
 <metal:macro define-macro="padrao"
              tal:condition="python:view_macro.getKind() == 'padrao'">
+
+    <style type="text/css">
+      #tile-newemployeeview .box-data {
+      margin-left: 0.35714em;
+      width: 40%;
+      }
+    </style>
+
     <div class="row"
          tal:define="view_myvindula nocall:context/@@myvindula;
                      itens view_macro/getItens;
@@ -51,14 +59,14 @@
                       </tal:cond>
                 </div>
 
-                <div class="container lista-news">
+                <div class="container lista-news" id="tile-newemployeeview">
                   <input type="hidden" id="b_size" tal:attributes="value b_size" />
                   <input type="hidden" id="b_start" tal:attributes="value b_start" />
                   <input type="hidden" id="absolute_url" tal:attributes="value string:${context/absolute_url}" />
 
                   <tal:rep repeat="item batch">
                       <tal:rep condition="python:(repeat['item'].start or repeat['item'].index%2==0)" replace="structure string:<div class='columns small-12'><div class='row'>"></tal:rep>
-                          <div class="large-6 columns item" tal:attributes="class python:'large-%s columns item' % (context.get_columns() == 6 and '12' or '6') "
+                          <div class="large-12 columns item" tal:attributes="class python:'large-%s columns item' % (context.get_columns() == 6 and '12' or '6') "
                                tal:define="item python:view_macro.getItem(item);
                                            username item/username|nothing">
 
@@ -67,7 +75,7 @@
                                                                 alt item/name|string: ;
                                                                 title item/name|string: " />
                             </div>
-                            <div class="left box-image"
+                            <div class="left box-data"
                                  tal:define="structure item/get_unidadeprincipal">
                                 <a class="block profile-link" href="#"
                                    tal:attributes="href item/getUrlPerfil|nothing;
