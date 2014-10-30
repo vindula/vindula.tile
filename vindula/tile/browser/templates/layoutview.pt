@@ -25,12 +25,8 @@
         <div class="sortable-tiles">
         
           <tal:rep_js repeat="scr scripts">
-              <tal:def define="name_script scr/name;
-                                path_script scr/path">
                   <script type="text/javascript"
-                          tal:attributes="src string:${context/portal_url}${path_script}" />
-                  <tal:dummy tal:define="use_js_list python:request.set(name_script, 1);" />
-              </tal:def>
+                          tal:attributes="src string:${context/portal_url}${scr}" />
           </tal:rep_js>
 
           <tal:rep_css repeat="name_style stylesheets">
