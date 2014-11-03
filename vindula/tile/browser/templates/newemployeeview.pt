@@ -27,6 +27,14 @@
 
 <metal:macro define-macro="padrao"
              tal:condition="python:view_macro.getKind() == 'padrao'">
+
+    <style type="text/css">
+      #tile-newemployeeview .box-data {
+      margin-left: 0.35714em;
+      width: 70%;
+      }
+    </style>
+
     <div class="row"
          tal:define="view_myvindula nocall:context/@@myvindula;
                      itens view_macro/getItens;
@@ -38,7 +46,7 @@
          tal:condition="batch">
         <div class="columns large-12">
             <div id="tile-more-acess-unity" class="row list_tile">
-                
+
                 <div class="title columns large-12">
                       <div class="ajax_pagination right" id="pag-nav">
                         <metal:block metal:use-macro="context/boll_batch/macros/navigation" />
@@ -50,36 +58,36 @@
                           </h4>
                       </tal:cond>
                 </div>
-                
-                <div class="container lista-news">
+
+                <div class="container lista-news" id="tile-newemployeeview">
                   <input type="hidden" id="b_size" tal:attributes="value b_size" />
                   <input type="hidden" id="b_start" tal:attributes="value b_start" />
                   <input type="hidden" id="absolute_url" tal:attributes="value string:${context/absolute_url}" />
 
                   <tal:rep repeat="item batch">
                       <tal:rep condition="python:(repeat['item'].start or repeat['item'].index%2==0)" replace="structure string:<div class='columns small-12'><div class='row'>"></tal:rep>
-                          <div class="large-6 columns item" tal:attributes="class python:'large-%s columns item' % (context.get_columns() == 6 and '12' or '6') "
+                          <div class="large-12 columns item" tal:attributes="class python:'large-%s columns item' % (context.get_columns() == 6 and '12' or '6') "
                                tal:define="item python:view_macro.getItem(item);
                                            username item/username|nothing">
-                            
+
                             <div class="left image">
                                 <img width="60" tal:attributes="src python:view_macro.getURLFotoUser(username);
-                                                                alt item/name|string: ; 
+                                                                alt item/name|string: ;
                                                                 title item/name|string: " />
                             </div>
-                            <div class="left content"
+                            <div class="left box-data"
                                  tal:define="structure item/get_unidadeprincipal">
-                                <a class="block profile-link" href="#" 
+                                <a class="block profile-link" href="#"
                                    tal:attributes="href item/getUrlPerfil|nothing;
                                                    data-type string:UserObject;
                                                    data-value item/username|nothing;"
                                                  tal:content="item/name|string: ">Pedro Miranda Prado</a>
                                 <span class="block"
-                                      tal:content="item/admission_date|string: ">10/10/10</span> 
-                                
+                                      tal:content="item/admission_date|string: ">10/10/10</span>
+
                                 <span class="block"
                                       tal:condition="python: structure != None"
-                                      tal:content="structure/getSiglaOrTitle">ASCON</span>                                
+                                      tal:content="structure/getSiglaOrTitle">ASCON</span>
                             </div>
                         <tal:rep condition="python:(repeat['item'].end or ((repeat['item'].index+1)%2==0))" replace="structure string:</div></div>"></tal:rep>
 
