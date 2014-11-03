@@ -86,4 +86,7 @@ class TileLibrary(BaseTile):
     #Folhas de estilo css
     style_sheets = ['/++resource++vindula.tile/css/library-tile.css']
 
+    def get_columns(self):
+        return int(self.columns)
+
 registerType(TileLibrary, PROJECTNAME)
