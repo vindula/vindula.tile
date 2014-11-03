@@ -45,5 +45,7 @@ class TileListServices(BaseTile):
     #Scripts js
     scripts_js = ['/++resource++vindula.content/js/ajax_list_file.js']
 
+    def get_columns(self):
+        return int(self.columns)
 
 registerType(TileListServices, PROJECTNAME)
