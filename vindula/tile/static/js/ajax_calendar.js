@@ -9,7 +9,7 @@ $j(document).ready(function(){
             id_ele = ctx.attr('id');
 
         $j.get(url, function(data){
-            var string_element = '#content-core ' + id_ele + '.ajax_calendar';
+            var string_element = '#content-core #' + id_ele + '.ajax_calendar';
 
             var dom = $j(data),
                 contents = dom.find(string_element + ' .content-calendar').contents(),
