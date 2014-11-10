@@ -5,20 +5,22 @@ $j(document).ready(function(){
         ev.stopPropagation();
         
         var url = this.href,
-            ctx = $j(this).parents('.ajax_calendar');
-        
+            ctx = $j(this).parents('.ajax_calendar'),
+            id_ele = ctx.attr('id');
+
         $j.get(url, function(data){
+            var string_element = '#content-core ' + id_ele + '.ajax_calendar';
+
             var dom = $j(data),
-                contents = dom.find('#content-core .ajax_calendar .content-calendar').contents(),
-                title = dom.find('#content-core .ajax_calendar .top-title span').text(),
-                prev = dom.find('#content-core .ajax_calendar .calendarPrevious').attr('href'),
-                next = dom.find('#content-core .ajax_calendar .calendarNext').attr('href');
+                contents = dom.find(string_element + ' .content-calendar').contents(),
+                title = dom.find(string_element + ' .top-title span').text(),
+                prev = dom.find(string_element + ' .calendarPrevious').attr('href'),
+                next = dom.find(string_element + ' .calendarNext').attr('href');
             
             $j('.content-calendar', ctx).html(contents);
             $j('.top-title span', ctx).text(title);
             $j('.calendarPrevious', ctx).attr('href', prev);
             $j('.calendarNext', ctx).attr('href', next);
-            
         })
           
     })

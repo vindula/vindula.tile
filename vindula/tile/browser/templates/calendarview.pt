@@ -29,7 +29,8 @@
                 </div>
             </tal:cond>
             
-    		<div tal:attributes="class python:'row %s' % (ativa_ajax and 'ajax_calendar' or '')">
+    		<div tal:attributes="class python:'row %s' % (ativa_ajax and 'ajax_calendar' or '');
+                                 id context/UID;">
     	        <div class="columns large-12 main_calendar">
     	            <div class="columns large-12 top-title">
     	                <a href="#" rel="nofollow"
