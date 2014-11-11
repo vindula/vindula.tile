@@ -160,3 +160,7 @@ class CalendarView(BaseView):
         else:
             query_string = '%s&amp;' % query_string
         return query_string
+
+
+class CalendarAjaxView(CalendarView):
+    grok.name('calendar-ajax-view')

@@ -90,7 +90,6 @@ class Renderer(base.Renderer):
 
     def getScripts_js(self):
         path_js = []
-
         sdm = self.context.session_data_manager
         session = sdm.getSessionData(create=True)
         scripts_js = session.get("use_js_list", [])
