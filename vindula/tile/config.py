@@ -34,3 +34,10 @@ VOCABULARY_COLUNAS=[('4',_(u"4 Colunas")),
                     ('6', _(u"6 Colunas")),
                     ('12', _(u"12 Colunas")),
                     ]
+
+VOCABULARY_SORTED_ITENS=[
+    ('getObjPositionInParent','Posições dos objetos na pasta'),
+    ('created','Data de Criação'),
+    ('effective','Data de Publicação'),
+    ('modified','Data de Modificação')
+]

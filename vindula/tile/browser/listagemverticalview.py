@@ -14,21 +14,20 @@ class ListagemVerticalView(BaseView):
     def getItens(self, is_date=False):
         context = self.context
         numbers = context.getNumb_items()
-        
+
         types = context.getListTypes()
-        
+
         # states = context.getTypesWorkflow()
 
         path = context.getPath()
         if not path:
             path = context.portal_url.getPortalObject()
-            
+
         query = {'portal_type': types,
                 # review_state : states,
                 'path':{'query':'/'.join(path.getPhysicalPath()),'depth':99},
-                'sort_on':'getObjPositionInParent',
                 'sort_order':'descending',}
-        
+
         if is_date:
             activeSarchEvents = context.getActiveSarchEvents()
 
@@ -43,11 +42,15 @@ class ListagemVerticalView(BaseView):
 
             query['sort_on'] = 'start'
             query['sort_order'] ='ascending'
-            
-        if context.getKind() == 'listagem_mais_recentes':
-            query['sort_on'] = 'created'
-            query['sort_order'] ='reverse'
-        
+
+        else:
+
+            query['sort_on'] = context.getSorted_itens()
+
+            if context.getActive_reserve():
+                query['sort_order'] = 'ascending'
+
+
         itens = self.portal_catalog(query)
         L = []
         L_tmp = []
@@ -65,7 +68,7 @@ class ListagemVerticalView(BaseView):
                 if not chosen.UID in L_tmp:
                     L_tmp.append(chosen.UID)
                     L.append(chosen)
-           
+
         else:
             for item in itens:
                 if len(L) < numbers:
@@ -73,9 +76,9 @@ class ListagemVerticalView(BaseView):
                     L.append(item)
                 else:
                     break
-       
+
         return L
-    
+
     def get_convert_data(self, str_data):
         months = ['XX','Jan','Fev','Mar','Abr','Maio','Jun',\
                        'Jul','Ago','Set', 'Out', 'Nov','Dez']

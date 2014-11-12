@@ -17,7 +17,7 @@ from vindula.tile.config import *
 BLACK_LIST_PLONETYPES = ['ATBooleanCriterion', 'ATCurrentAuthorCriterion', 'ATDateCriteria', 'ATDateRangeCriterion',
                          'ATListCriterion', 'ATPathCriterion', 'ATPortalTypeCriterion', 'ATReferenceCriterion', 'ATRelativePathCriterion',
                          'ATSelectionCriterion', 'ATSimpleIntCriterion', 'ATSimpleStringCriterion', 'ATSortCriterion', 'Banner', 'BannerFlash',
-                         'BlockReserve', 'Classified', 'Classifieds', 'ClassifiedsCategory', 'ContainerTopicsControlPanel', 'ContentRedirectUser', 
+                         'BlockReserve', 'Classified', 'Classifieds', 'ClassifiedsCategory', 'ContainerTopicsControlPanel', 'ContentRedirectUser',
                          'ContentReserve', 'Discussion Item', 'Download', 'DownloadContainer','FieldSetMyvindula', 'FieldsetEnd',
                          'FieldsetFolder', 'FieldsetStart', 'FileAttachment', 'FooterTopic', 'FormBooleanField', 'FormCaptchaField',
                          'FormCustomScriptAdapter', 'FormDateField', 'FormFileField', 'FormFixedPointField', 'FormFolder', 'FormIntegerField',
@@ -25,18 +25,18 @@ BLACK_LIST_PLONETYPES = ['ATBooleanCriterion', 'ATCurrentAuthorCriterion', 'ATDa
                          'FormRichLabelField', 'FormRichTextField', 'FormSaveDataAdapter', 'FormSelectionField', 'FormStringField', 'FormTextField',
                          'FormThanksPage', 'ImageAttachment', 'Layout', 'LayoutLoad', 'Menu', 'ObjectsControlPanel', 'OrderedClassifieds',
                          'OrderedClassifiedsCategory', 'PlanosPrecos', 'PlanosPrecosContainer', 'Plone Site', 'PlonePopoll', 'Ploneboard',
-                         'PloneboardComment', 'PloneboardConversation', 'PloneboardForum', 'PoiIssue', 'PoiPscTracker', 'PoiTracker', 
-                         'RedirectUser', 'ServicosFolder', 'SocialNetwork', 'SubtopicControlPanel', 'TempFolder', 
-                         'ThemeConfig', 'ThemeLoginConfig', 'TileAccordionContent', 'TileAccordionItem', 'TileBanner', 'TileBannerCompost', 
-                         'TileBirthdays', 'TileCalendar', 'TileFeatured', 'TileFood', 'TileHowDo', 'TileInfoStructure', 'TileLabel', 
-                         'TileListagemHorizontal', 'TileListagemVertical', 'TileMacroList', 'TileMoreAccess', 'TileNewEmployee', 'TileOrganogram', 
-                         'TilePoll', 'TileReferenceList', 'TileSimpleMacro', 'TileTabularList', 'TileTeam', 'Topic', 'TopicControlPanel', 'Unit', 
+                         'PloneboardComment', 'PloneboardConversation', 'PloneboardForum', 'PoiIssue', 'PoiPscTracker', 'PoiTracker',
+                         'RedirectUser', 'ServicosFolder', 'SocialNetwork', 'SubtopicControlPanel', 'TempFolder',
+                         'ThemeConfig', 'ThemeLoginConfig', 'TileAccordionContent', 'TileAccordionItem', 'TileBanner', 'TileBannerCompost',
+                         'TileBirthdays', 'TileCalendar', 'TileFeatured', 'TileFood', 'TileHowDo', 'TileInfoStructure', 'TileLabel',
+                         'TileListagemHorizontal', 'TileListagemVertical', 'TileMacroList', 'TileMoreAccess', 'TileNewEmployee', 'TileOrganogram',
+                         'TilePoll', 'TileReferenceList', 'TileSimpleMacro', 'TileTabularList', 'TileTeam', 'Topic', 'TopicControlPanel', 'Unit',
                          'VindulaCategories', 'VindulaFile', 'VindulaPortlet', 'VindulaRevista', 'VindulaTeam',
-                         'vindula.content.content.vindulacontentapi', 'vindula.content.content.vindulacontentmacro', 'vindula.contentcore.conteudobasico', 
-                         'vindula.contentcore.formulariobasico', 'vindula.controlpanel.content.alertdisplay', 
+                         'vindula.content.content.vindulacontentapi', 'vindula.content.content.vindulacontentmacro', 'vindula.contentcore.conteudobasico',
+                         'vindula.contentcore.formulariobasico', 'vindula.controlpanel.content.alertdisplay',
                          'vindula.controlpanel.content.aniversariantesconfig', 'vindula.controlpanel.content.categories',
                          'vindula.controlpanel.content.vindulaconfigall', 'vindula.food.restaurantes', 'vindula.liberiuncontents.content.featureprofile',
-                         'vindula.liberiuncontents.content.features', 'vindula.liberiuncontents.content.featuresection', 
+                         'vindula.liberiuncontents.content.features', 'vindula.liberiuncontents.content.featuresection',
                          'vindula.liberiuncontents.content.featuretopic', 'vindula.myvindula.vindulalistdocumentuser',
                          'vindula.reservacorporativa.content.reserve', 'TileJobOffer', 'TileLibrary', 'TileListServices', 'TileLoadReference',
                          'TileMultimedia', 'TilePoiTracker']
@@ -93,6 +93,33 @@ TileListagemVertical_schema = BaseTile.schema.copy() + Schema((
         required=True,
     ),
 
+    StringField(
+        name='sorted_itens',
+        widget=SelectionWidget(
+            label=_(u"Criterio de Ordenação"),
+            description=_(u"selecione o mecanismo de ordenação dos conteúdos"),
+            label_msgid='vindula_tile_label_sorted_itens',
+            description_msgid='vindula_tile_help_sorted_itens',
+            i18n_domain='vindula_tile',
+            format='select',
+        ),
+        vocabulary=VOCABULARY_SORTED_ITENS,
+        default='getObjPositionInParent',
+        required=True,
+    ),
+
+    BooleanField(
+        name='active_reserve',
+        widget=BooleanWidget(
+            label=_(u"Ativa a ordenação reserva"),
+            description=_(u"Ativa a opção de reverter a order dos conteudos"),
+            label_msgid='vindula_tile_label_active_reserve',
+            description_msgid='vindula_tile_help_active_reserve',
+            i18n_domain='vindula_tile',
+        ),
+        default=True
+    ),
+
     BooleanField(
         name='activeSort',
         default=False,
@@ -127,8 +154,8 @@ TileListagemVertical_schema = BaseTile.schema.copy() + Schema((
                 description='Selecione os itens que ficaram em destaque na listagem do bloco'
             ),
             review_state = ('published', 'internal','external')
-    ),    
-                                                                                                                     
+    ),
+
 
     LinesField(
         name='listTypes',
@@ -156,7 +183,7 @@ TileListagemVertical_schema = BaseTile.schema.copy() + Schema((
             ),
             review_state = ('published', 'internal','external')
         ),
-                                                               
+
     ReferenceField('path_othernews',
             multiValued=0,
             allowed_types=('VindulaFolder','Folder', 'VindulaClipping','OrganizationalStructure'),
@@ -181,7 +208,7 @@ TileListagemVertical_schema = BaseTile.schema.copy() + Schema((
     #      vocabulary='voc_list_workflow',
     #      required=False,
     #  ),
-    
+
     BooleanField(
         name='activeMoreButton',
         default=True,
@@ -203,7 +230,7 @@ TileListagemVertical_schema = BaseTile.schema.copy() + Schema((
             description_msgid='vindula_tile_help_activeSarchEvents',
         ),
     ),
-                                                               
+
     BooleanField(
         name='hideSharing',
         default=False,
@@ -214,7 +241,7 @@ TileListagemVertical_schema = BaseTile.schema.copy() + Schema((
             description_msgid='vindula_tile_help_hideSharing',
         ),
     ),
-                                                               
+
     BooleanField(
         name='hideEventInfo',
         schemata='settings',
@@ -226,7 +253,7 @@ TileListagemVertical_schema = BaseTile.schema.copy() + Schema((
             description_msgid='vindula_tile_help_hideEventInfo',
         ),
     ),
-                                                               
+
 ))
 
 finalizeATCTSchema(TileListagemVertical_schema, folderish=False)
