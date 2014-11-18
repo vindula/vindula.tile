@@ -19,7 +19,6 @@
                     </h4>
                 </div>
             </tal:cond>
-            
             <metal:macro use-macro="context/calendar-ajax-view/macros/page-ajax"></metal:macro>
 	    </div>
     </metal:macro>

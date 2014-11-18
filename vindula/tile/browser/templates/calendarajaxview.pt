@@ -75,7 +75,7 @@
         												<a href="" tal:attributes="href string:${navigation_root_url}/search?${view/getReviewStateString}start.query:record:list:date=${day/date_string}+23%3A59%3A59&amp;start.range:record=max&amp;end.query:record:list:date=${day/date_string}+00%3A00%3A00&amp;end.range:record=min;
                                                                                    title day/eventstring;"
                                                        			   tal:content="daynumber">
-                                                       31
+                                                            31
                                                    		</a>
                                                  	</p>
         										</td>
@@ -90,8 +90,8 @@
                                             </tal:block>
                                         </tal:isday>
                                         <tal:notisday condition="not: daynumber">
-                                            <td></td
-                                        ></tal:notisday
+                                            <td></td>
+                                        </tal:notisday
                                     ></tal:day
                                 ></tal:block>
                             </tr>
