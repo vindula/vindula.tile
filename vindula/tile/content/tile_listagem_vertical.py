@@ -96,8 +96,8 @@ TileListagemVertical_schema = BaseTile.schema.copy() + Schema((
     StringField(
         name='sorted_itens',
         widget=SelectionWidget(
-            label=_(u"Criterio de Ordenação"),
-            description=_(u"selecione o mecanismo de ordenação dos conteúdos"),
+            label=_(u"Tipo de ordenação"),
+            description=_(u"Selecione qua será o tipo de ordenação dos conteúdos"),
             label_msgid='vindula_tile_label_sorted_itens',
             description_msgid='vindula_tile_help_sorted_itens',
             i18n_domain='vindula_tile',
@@ -111,8 +111,8 @@ TileListagemVertical_schema = BaseTile.schema.copy() + Schema((
     BooleanField(
         name='active_reserve',
         widget=BooleanWidget(
-            label=_(u"Ativa a ordenação reserva"),
-            description=_(u"Ativa a opção de reverter a order dos conteudos"),
+            label=_(u"Ordenação reversa"),
+            description=_(u"Reverte a ordem dos conteúdos listados."),
             label_msgid='vindula_tile_label_active_reserve',
             description_msgid='vindula_tile_help_active_reserve',
             i18n_domain='vindula_tile',
@@ -120,17 +120,17 @@ TileListagemVertical_schema = BaseTile.schema.copy() + Schema((
         default=True
     ),
 
-    BooleanField(
-        name='activeSort',
-        default=False,
-        widget=BooleanWidget(
-            label=_(u"Ativa o campo de ordenação"),
-            description=_(u"Ativa a opção de ordenar os conteúdos por data e mais acessados"),
-            label_msgid='vindula_tile_label_activeSort',
-            description_msgid='vindula_tile_help_activeSort',
-            i18n_domain='vindula_tile',
-          )
-    ),
+    # BooleanField(
+    #     name='activeSort',
+    #     default=False,
+    #     widget=BooleanWidget(
+    #         label=_(u"Ativa o campo de ordenação"),
+    #         description=_(u"Ativa a opção de ordenar os conteúdos por data e mais acessados"),
+    #         label_msgid='vindula_tile_label_activeSort',
+    #         description_msgid='vindula_tile_help_activeSort',
+    #         i18n_domain='vindula_tile',
+    #       )
+    # ),
 
     BooleanField(
         name='activeAutoReload',
@@ -145,15 +145,15 @@ TileListagemVertical_schema = BaseTile.schema.copy() + Schema((
     ),
 
     ReferenceField('fixed_featured',
-            multiValued=1,
-            # allowed_types=('VindulaFolder','Folder', 'VindulaClipping'),
+        multiValued=1,
+        # allowed_types=('VindulaFolder','Folder', 'VindulaClipping'),
+        label=_(u"Destaques Fixos"),
+        relationship='fixed_featured',
+        widget=VindulaReferenceSelectionWidget(
             label=_(u"Destaques Fixos"),
-            relationship='fixed_featured',
-            widget=VindulaReferenceSelectionWidget(
-                label=_(u"Destaques Fixos"),
-                description='Selecione os itens que ficaram em destaque na listagem do bloco'
-            ),
-            review_state = ('published', 'internal','external')
+            description='Selecione os itens que ficaram em destaque na listagem do bloco'
+        ),
+        review_state = ('published', 'internal','external')
     ),
 
 
@@ -179,7 +179,7 @@ TileListagemVertical_schema = BaseTile.schema.copy() + Schema((
             relationship='path',
             widget=VindulaReferenceSelectionWidget(
                 label=_(u"Pastas"),
-                description='Selecione a Pasta que deseja buscar os itens.'
+                description='Selecione a pasta que deseja buscar os itens.'
             ),
             review_state = ('published', 'internal','external')
         ),
@@ -191,7 +191,7 @@ TileListagemVertical_schema = BaseTile.schema.copy() + Schema((
             relationship='path_othernews',
             widget=VindulaReferenceSelectionWidget(
                 label=_(u"Listagem mais itens"),
-                description='Selecione a Pasta que deseja listar a visão dos "mais itens"'
+                description='Selecione a pasta que deseja listar a visão dos "mais itens"'
             ),
             review_state = ('published', 'internal','external')
         ),
