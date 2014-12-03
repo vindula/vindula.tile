@@ -102,7 +102,7 @@ LayoutLoad_schema = schemata.ATContentTypeSchema.copy() + Schema((
 
 ))
 
-LayoutLoad_schema.changeSchemataForField('obj_banner', 'Banner')
+# LayoutLoad_schema.changeSchemataForField('obj_banner', 'Banner')
 
 #Oculta o campo padrao 'description'
 invisivel = {'view':'invisible','edit':'invisible',}
