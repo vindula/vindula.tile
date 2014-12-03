@@ -20,8 +20,9 @@ class BannerCompostViewlet(grok.Viewlet):
 
 
 	def get_tile_banner(self):
-		context = self.context
-		obj_banner = context.getObj_banner()
+		return None
+		# context = self.context
+		# obj_banner = context.getObj_banner()
 
-		return obj_banner
+		# return obj_banner
 
