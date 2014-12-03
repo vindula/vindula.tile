@@ -75,7 +75,7 @@ class LayoutView(BaseView):
         itens = self.portal_catalog(**{'sort_on': 'getObjPositionInParent',
                                    'portal_type':['TileAccordionContent',
                                                   'TileBanner',
-                                                  'TileBannerCompost',
+                                                  # 'TileBannerCompost',
                                                   'TileBirthdays',
                                                   'TileCalendar',
                                                   'TileFeatured',

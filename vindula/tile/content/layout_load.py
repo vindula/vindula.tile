@@ -87,18 +87,18 @@ LayoutLoad_schema = schemata.ATContentTypeSchema.copy() + Schema((
              required=True,
          ),
 
-        ReferenceField('obj_banner',
-            multiValued=0,
-            allowed_types=('TileBannerCompost',),
-            label=_(u"Banner Superior"),
-            relationship='obj_banner',
-            widget=VindulaReferenceSelectionWidget(
-                label=_(u"Banner Superior"),
-                description='Selecione o bloco de Banner Composto, utilizado na área supeio do portal .'
-            ),
-            required=False,
-            # review_state = ('published', 'internal','external')
-        ),
+        # ReferenceField('obj_banner',
+        #     multiValued=0,
+        #     allowed_types=('TileBannerCompost',),
+        #     label=_(u"Banner Superior"),
+        #     relationship='obj_banner',
+        #     widget=VindulaReferenceSelectionWidget(
+        #         label=_(u"Banner Superior"),
+        #         description='Selecione o bloco de Banner Composto, utilizado na área supeio do portal .'
+        #     ),
+        #     required=False,
+        #     # review_state = ('published', 'internal','external')
+        # ),
 
 ))
 

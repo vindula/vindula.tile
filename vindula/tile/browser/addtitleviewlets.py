@@ -16,7 +16,7 @@ class AddTilesViewlet(grok.Viewlet):
 
 	list_tiles = ['TileAccordionContent',
                   'TileBanner',
-                  'TileBannerCompost',
+                  # 'TileBannerCompost',
                   'TileBirthdays',
                   'TileCalendar',
                   'TileFeatured',
