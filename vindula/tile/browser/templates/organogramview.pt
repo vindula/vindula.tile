@@ -5,9 +5,9 @@
       metal:use-macro="context/main_template/macros/master"
       lang="en"
       i18n:domain="vindula.tile">
-          
+
 <head>
-    
+
 </head>
 
 <body>
@@ -17,7 +17,7 @@
                 <div class="columns large-12 box-title">
                     <h5>
                         <tal:cont content="context/Title|nothing">
-                            ORGANOGRAMA 
+                            ORGANOGRAMA
                         </tal:cont>
                         <hr/>
                     </h5>
@@ -27,7 +27,7 @@
                          tal:define="global view_macro nocall:context/@@organogram-view;
                                      path_macro string:context/organogram-view/macros/${view_macro/getKind};">
                 <div class="row">
-    
+
                     <metal:block tal:condition="path_macro"
                                  metal:use-macro="python:path(path_macro)"/>
                 </div>
@@ -45,21 +45,21 @@
             <ul class="no-bullet main-tree lightness" tal:condition="estrutura"
                 tal:define="estrutura nocall:view_macro/estrutura_pai|nothing;">
                 <tal:def define="estruturas_filho python:view_macro.get_estruturas_filho(estrutura())">
-                    <li class="tree-item arrow" 
+                    <li class="tree-item arrow"
                         tal:attributes="class python:view_macro.def_class(estrutura(),estruturas_filho) +' open'">
                         <div class="content">
                             <span class="left org-title" tal:content="python:estrutura().getSiglaOrTitle()"></span>
-                            <a href='' tal:attributes="href python:estrutura().absolute_url() or None" 
+                            <a href='' tal:attributes="href python:estrutura().absolute_url() or None"
                                        tal:define="username  estrutura/manager|nothing">
-                            
-                                <img src="" alt="" height="30" width="30" class="right" 
-                                     tal:condition="context/getImage_OU|python:True"
-                                     tal:attributes="src string:/vindula-api/myvindula/user-picture/photograph/${username}/True" />
 
-                                <img src="" alt="" height="30" width="30" class="right" 
+                                <img src="" alt="" height="30" width="30" class="right"
+                                     tal:condition="context/getImage_OU|python:True"
+                                     tal:attributes="src string:/vindula-api/myvindula/user-picture/${session/user_token|nothing}/photograph/${username}/True" />
+
+                                <img src="" alt="" height="30" width="30" class="right"
                                      tal:condition="not: context/getImage_OU|python:False"
                                      tal:attributes="src  python:estrutura().getImageIcone()" />
-                            
+
                             </a>
                         </div>
                         <ul class="tree-2">
@@ -76,28 +76,28 @@
 
 <metal:macro define-macro="organogram_horizontal"
              tal:condition="python:view_macro.getKind() == 'organogram_horizontal'">
-    
-    <link rel="stylesheet" type="text/css" href="" 
+
+    <link rel="stylesheet" type="text/css" href=""
           tal:attributes="href string:${context/portal_url}/++resource++vindula.tile/css/org-tree.css" />
-    
+
     <div class="columns large-12">
         <div class="organograma" id="tile-organograma-horizontal" class="container-tree">
             <ul class="no-bullet main-tree lightness" tal:condition="estrutura"
                 tal:define="estrutura nocall:view_macro/estrutura_pai|nothing;">
                 <tal:def define="estruturas_filho python:view_macro.get_estruturas_filho(estrutura())">
-                    <li class="tree-item arrow" 
+                    <li class="tree-item arrow"
                         tal:attributes="class python:view_macro.def_class(estrutura(),estruturas_filho) +' open'">
                         <div class="content clear">
                             <span class="left org-title" tal:content="python:estrutura().getSiglaOrTitle()"></span>
-                            <a href='' class="clear" 
+                            <a href='' class="clear"
                                tal:attributes="href python:estrutura().absolute_url() or None"
                                tal:define="username python:estrutura().getManager()">
-                                
-                                <img src="" alt="" height="30" width="30" class="right" 
-                                     tal:condition="context/getImage_OU|python:True"
-                                     tal:attributes="src string:/vindula-api/myvindula/user-picture/photograph/${username}/True" />
 
-                                <img src="" alt="" height="30" width="30" class="right" 
+                                <img src="" alt="" height="30" width="30" class="right"
+                                     tal:condition="context/getImage_OU|python:True"
+                                     tal:attributes="src string:/vindula-api/myvindula/user-picture/${session/user_token|nothing}/photograph/${username}/True" />
+
+                                <img src="" alt="" height="30" width="30" class="right"
                                      tal:condition="not: context/getImage_OU|python:False"
                                      tal:attributes="src  python:estrutura().getImageIcone()" />
                             </a>
@@ -112,27 +112,27 @@
             </ul>
         </div>
     </div>
-    
+
 </metal:macro>
 
 <metal:macro define-macro="recursivo">
     <tal:cond condition="estrutura"
               define="view_macro nocall:context/@@organogram-view;
                       estrutura estrutura_filho|nothing;">
-        
+
         <tal:cond condition="estrutura/enable_organograma|python:True">
         <li class="tree-item" tal:define="estruturas_filho python:view_macro.get_estruturas_filho(estrutura.getSourceObject())"
                               tal:attributes="class python:view_macro.def_class(estrutura.getSourceObject(), estruturas_filho)">
             <div class="content clear">
                 <span class="left org-title" tal:content="estrutura/getSiglaOrTitle">Concelho de Assesoria Poilico Estratégico</span>
-                <a href='' class="clear" 
+                <a href='' class="clear"
                    tal:attributes="href python:estrutura.getSourceObject().absolute_url() or None"
                    tal:define="username  estrutura/manager|nothing">
                     <img src="" alt="" height="30" width="30" class="right"
-                         tal:attributes="src string:/vindula-api/myvindula/user-picture/photograph/${username}/True"  />
+                         tal:attributes="src string:/vindula-api/myvindula/user-picture/${session/user_token|nothing}/photograph/${username}/True"  />
                 </a>
             </div>
-            
+
             <ul class="tree-4" tal:attributes="class python: 'tree-'+ str(repeat['estrutura_filho'].number() + 2)">
                 <tal:rep repeat="estrutura_filho estruturas_filho">
                   <metal:block metal:use-macro="context/@@organogram-view/macros/recursivo" />
