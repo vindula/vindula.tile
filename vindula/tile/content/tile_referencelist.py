@@ -23,30 +23,6 @@ TileReferenceList_schema = BaseTile.schema.copy() + Schema((
             visible = {'edit' : 'visible', 'view' : 'visible'}
         )
     ),
-        
-#    ReferenceDataGridField('reference_list',
-#                searchable=True,
-#                columns=('title','page', 'macro'),
-#                allow_delete = True,
-#                allow_insert = True,
-#                allow_reorder = True,
-#                relationship="reference_list",
-#                widget = ReferenceDataGridWidget(
-#                    label = "Listagem de tiles",
-#                    label_msgid='vindula_tile_reference',
-#                    description="Relacione as listagem dos tiles referenciados com os título e das abas.",
-#                    description_msgid='vindula_tile_reference',
-#                    visible = {'edit' : 'visible', 'view' : 'visible'}
-#                ),
-#                widget = DataGridWidget(label="Listagem de macros",
-#                                        label_msgid='vindula_tile_label_macros',
-#                                        description="Relacione, as listagem das macros com os titulo e das abas.",
-#                                        description_msgid='vindula_controlpanel_help_macros',
-#                                        columns= {
-#                                            "title" : Column(_(u"Titulo")),
-#                                            "page" : Column(_(u"Página")),
-#                                            "macro" : Column(_(u"Macro"),default='page')
-#                                        }),
 
 ))
 
