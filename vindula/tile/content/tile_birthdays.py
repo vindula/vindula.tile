@@ -55,20 +55,20 @@ TileBirthdays_schema = BaseTile.schema.copy() + Schema((
         required=True,
     ),
 
-    StringField(
-        name='type_search_list',
-        widget=SelectionWidget(
-            label=_(u"Tipo de filtro para a listagem"),
-            description=_(u"Selecione o fitro que sera usado na lista de aniversariantes."),
-            label_msgid='vindula_tile_label_type_search_list',
-            description_msgid='vindula_tile_help_type_search_list',
-            i18n_domain='vindula_tile',
-            format='select',
-        ),
-        vocabulary=list_types_choice,
-        default="prox",
-        required=True,
-    ),
+    # StringField(
+    #     name='type_search_list',
+    #     widget=SelectionWidget(
+    #         label=_(u"Tipo de filtro para a listagem"),
+    #         description=_(u"Selecione o fitro que sera usado na lista de aniversariantes."),
+    #         label_msgid='vindula_tile_label_type_search_list',
+    #         description_msgid='vindula_tile_help_type_search_list',
+    #         i18n_domain='vindula_tile',
+    #         format='select',
+    #     ),
+    #     vocabulary=list_types_choice,
+    #     default="prox",
+    #     required=True,
+    # ),
 
     TextField(
             name='principal_user',
