@@ -6,8 +6,8 @@
 
     <portlet
         addview="vindula.tile.PortletTileLoads"
-        title="Vindula Carrega Tile"
-        description="Vindula Carrega Tile">
+        title="Vindula Carrega Bloco"
+        description="Vindula Carrega Bloco">
    </portlet>
 
 

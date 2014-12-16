@@ -43,7 +43,7 @@ class Assignment(base.Assignment):
     with columns.
     """
     implements(ITileLoads)
-    title = _(u'Vindula Carrega Tile')
+    title = _(u'Vindula Carrega Bloco')
 
     def __init__(self, tiles_list=[],):
 

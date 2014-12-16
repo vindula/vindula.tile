@@ -21,6 +21,4 @@
          addview=".tileloads.AddForm"
          editview=".tileloads.EditForm"
         />
-
-
 </configure>

@@ -5,7 +5,7 @@
 
     <!-- Basic metadata -->
     <property name="title" i18n:translate="">Carrega Capa</property>
-    <property name="description" i18n:translate="">Carrega Capa para o portal</property>
+    <property name="description" i18n:translate="">Carrega capa para o portal</property>
     <property name="content_icon">++resource++vindula.tile/images/carrega-capa.png</property>
     <property name="content_meta_type">LayoutLoad</property>
     <property name="product">vindula.tile</property>
