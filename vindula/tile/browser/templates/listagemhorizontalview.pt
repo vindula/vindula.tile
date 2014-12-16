@@ -63,8 +63,8 @@ i18n:domain="vindula.tile">
                             </tal:cond>
                             
                             <div class="columns small-8 listagem_horizontal_text">
-                                <h4 tal:condition="context/getActiveSubTitulo|python:False"
-                                tal:content="item/subtitulo|string: "> Lorem ipsum dolor sit amet / Consectetur adipiscing elit.</h4>
+                                <!--h4 tal:condition="context/getActiveSubTitulo|python:False"
+                                tal:content="item/subtitulo|string: "> Lorem ipsum dolor sit amet / Consectetur adipiscing elit.</h4-->
 
                                 <small tal:content="string: ${item/unidade|nothing} / ${item/date|nothing} ${item/hour|nothing}">ASCOM / 27/03/2013 14:30</small>
 
@@ -147,8 +147,8 @@ i18n:domain="vindula.tile">
                             </div>
                         </tal:cond>
                         
-                        <h4 tal:condition="context/getActiveSubTitulo|python:False"
-                            tal:content="item/subtitulo|string: "> Lorem ipsum dolor sit amet / Consectetur adipiscing elit.</h4>
+                        <!--h4 tal:condition="context/getActiveSubTitulo|python:False"
+                            tal:content="item/subtitulo|string: "> Lorem ipsum dolor sit amet / Consectetur adipiscing elit.</h4-->
         
                         <small tal:define="item_unidade python:item['unidade'] and item['unidade'] + ' / ' or ''"
                                tal:content="string: ${item_unidade}${item/date|nothing} ${item/hour|nothing}">ASCOM / 27/03/2013 14:30</small>
@@ -237,10 +237,10 @@ i18n:domain="vindula.tile">
                         </tal:cond>
                         <div class="columns small-8">
 
-                            <h4 tal:condition="context/getActiveSubTitulo|python:False"
+                            <!--h4 tal:condition="context/getActiveSubTitulo|python:False"
                                 tal:content="item/subtitulo|string: "> 
                                 Lorem ipsum dolor sit amet / Consectetur adipiscing elit.
-                            </h4>
+                            </h4-->
 
                             <small tal:content="string: ${item/unidade|nothing} / ${item/date|nothing} ${item/hour|nothing}"> LORORO / 27/03/2013 14:30</small>
                             <strong>
@@ -306,8 +306,8 @@ i18n:domain="vindula.tile">
                     </tal:cond>
                     
                     <div class="conteudo-noticia-duas-colunas">
-                        <h4 tal:condition="context/getActiveSubTitulo|python:False"
-                        tal:content="item/subtitulo|string: "> Lorem ipsum dolor sit amet / Consectetur adipiscing elit.</h4>
+                        <!--h4 tal:condition="context/getActiveSubTitulo|python:False"
+                        tal:content="item/subtitulo|string: "> Lorem ipsum dolor sit amet / Consectetur adipiscing elit.</h4-->
 
                         <small tal:content="string: ${item/date|nothing} ${item/hour|nothing}">27/03/2013 14:30</small>
 

@@ -123,16 +123,16 @@ TileListagemHorizontal_schema = BaseTile.schema.copy() + Schema((
         ),
     ),
     
-    BooleanField(
-        name='activeSubTitulo',
-        default=False,
-        widget=BooleanWidget(
-            label="Editoriais",
-            description='Caso selecionado, ativa a visão dos editoriais das notícias ou páginas.',
-            label_msgid='vindula_tile_label_activeSubTitulo',
-            description_msgid='vindula_tile_help_activeSubTitulo',
-        ),
-    ),
+    # BooleanField(
+    #     name='activeSubTitulo',
+    #     default=False,
+    #     widget=BooleanWidget(
+    #         label="Editoriais",
+    #         description='Caso selecionado, ativa a visão dos editoriais das notícias ou páginas.',
+    #         label_msgid='vindula_tile_label_activeSubTitulo',
+    #         description_msgid='vindula_tile_help_activeSubTitulo',
+    #     ),
+    # ),
                                                                  
     StringField(
         name='ordination',
