@@ -56,9 +56,17 @@
 	background:url('/++resource++vindula.tile/images/sharing-icon-hover.png') 50% 50% no-repeat;
 }
 
+.workflow-tile{
+	background:url('/++resource++vindula.tile/images/workflow-icon.png') 50% 50% no-repeat;
+}
+.workflow-tile:hover{
+	background:url('/++resource++vindula.tile/images/workflow-icon-hover.png') 50% 50% no-repeat;
+}
+
+
 
 #addtilesviewlet button.hide{
-	display: none !important;	
+	display: none !important;
 
 }
 
@@ -102,4 +110,10 @@ padding: 5px;
 }
 #select_layout label{
 	display: inline;
+}
+
+
+#edit_form select{
+
+	width: 10%;
 }

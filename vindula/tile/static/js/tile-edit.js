@@ -20,11 +20,11 @@ $j(document).ready(function(){
         config: common_jqt_config
     };
 
-
     // Modal Tile portlet
     $j('a.manage-tile').prepOverlay(config_modal);
     $j('a.add-tile').prepOverlay(config_modal);
     $j('a.exclude-tile').prepOverlay(config_modal);
     $j('a.sharing-tile').prepOverlay(config_modal);
+    $j('a.workflow-tile').prepOverlay(config_modal);
 
 });
