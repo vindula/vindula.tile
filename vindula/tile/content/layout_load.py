@@ -81,31 +81,22 @@ LayoutLoad_schema = schemata.ATContentTypeSchema.copy() + Schema((
                 format = 'select',
              ),
              vocabulary=[("padrao",_(u"Layout com uma coluna de capa")),
-                        ("classico", _(u"Layout com três colunas de capa")),
-                        ("smart", _(u"Layout com três colunas de capa e uma no topo")),],
+                         ("classico", _(u"Layout com três colunas de capa")),
+                         ("smart", _(u"Layout com três colunas de capa e uma no topo")),],
              default='padrao',
              required=True,
          ),
 
-        # ReferenceField('obj_banner',
-        #     multiValued=0,
-        #     allowed_types=('TileBannerCompost',),
-        #     label=_(u"Banner Superior"),
-        #     relationship='obj_banner',
-        #     widget=VindulaReferenceSelectionWidget(
-        #         label=_(u"Banner Superior"),
-        #         description='Selecione o bloco de Banner Composto, utilizado na área supeio do portal .'
-        #     ),
-        #     required=False,
-        #     # review_state = ('published', 'internal','external')
-        # ),
-
 ))
-
-# LayoutLoad_schema.changeSchemataForField('obj_banner', 'Banner')
 
 #Oculta o campo padrao 'description'
 invisivel = {'view':'invisible','edit':'invisible',}
+
+# Layout
+L = ['obj_layout_B', 'obj_layout_C', 'obj_layout_topo', 'type_layouts']
+
+for i in L:
+    LayoutLoad_schema[i].widget.visible = invisivel
 
 finalizeATCTSchema(LayoutLoad_schema, folderish=False)
 
