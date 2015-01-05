@@ -176,8 +176,17 @@ i18n:domain="vindula.tile">
             </div>
 
             <div class="columns large-12">
-                <div class="more-news"
+                <!-- <div class="more-news"
                      tal:condition="context/getActiveMoreButton">
+                    <a href="#" tal:attributes="href string:${context/absolute_url}/outras-noticias"> 
+                        <h1 class="subheader vindula-icon-plus-sign left"></h1>
+                        <p class="left">
+                            Notícias
+                        </p> 
+                    </a>
+                </div> -->
+                <div class="more-news"
+                     tal:condition="python: False">
                     <a href="#" tal:attributes="href string:${context/absolute_url}/outras-noticias"> 
                         <h1 class="subheader vindula-icon-plus-sign left"></h1>
                         <p class="left">

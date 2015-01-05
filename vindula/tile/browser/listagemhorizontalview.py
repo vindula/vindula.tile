@@ -1,12 +1,8 @@
 # -*- coding: utf-8 -*-
-from AccessControl import ClassSecurityInfo
-from Products.CMFCore.permissions import View
+from five import grok
 
 from vindula.tile.browser.baseview import BaseView
 
-from five import grok
-
-from datetime import datetime
 
 grok.templatedir('templates')
 
@@ -88,16 +84,6 @@ class ListagemHorizontalView(BaseView):
 
             D['obj'] = item
             results.append(D)
-        
-#         if results:
-#             ordination = getattr(context, 'getOrdination', '')
-#             if ordination:
-#                 ordination = ordination()
-#             
-#             if ordination == 'creation_date':
-#                 results = sorted(results, key=lambda x: datetime.strptime(x['date']+x['hour'], '%d/%m/%Y%H:%M'), reverse=True)
-#             elif ordination == 'title':
-#                 pass
             
         return results
 

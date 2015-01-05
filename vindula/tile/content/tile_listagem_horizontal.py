@@ -112,9 +112,10 @@ TileListagemHorizontal_schema = BaseTile.schema.copy() + Schema((
         ),
     ),
      
+    #TODO: Fazer esse botão funcionar, foi deixado como invisivel pois não está funcionando
     BooleanField(
         name='activeMoreButton',
-        default=True,
+        default=False,
         widget=BooleanWidget(
             label="Botão mais items.",
             description='Caso selecionado, ativa o botão de mais items na visão do bloco.',
@@ -252,6 +253,14 @@ TileListagemHorizontal_schema = BaseTile.schema.copy() + Schema((
         required=True,
     ),                                                     
 ))
+
+#Oculta o campo padrao 'description'
+invisivel = {'view':'invisible','edit':'invisible',}
+
+L = ['activeMoreButton',]
+
+for i in L:
+    TileListagemHorizontal_schema[i].widget.visible = invisivel
 
 finalizeATCTSchema(TileListagemHorizontal_schema, folderish=False)
 
