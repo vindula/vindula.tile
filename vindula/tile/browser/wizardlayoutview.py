@@ -18,8 +18,8 @@ class WizardLayout(BaseView):
         # black_list = ['capa-principal.zexp','capa-esquerda.zexp','capa-direita.zexp']
 
         L = [{'name':'Layout Padrão','id':'2','can_delete':False, 'path_img':'++resource++vindula.tile/images/miniatura-1.png'},
-             {'name':'Layout Classico','id':'1','can_delete':False, 'path_img':'++resource++vindula.tile/images/miniatura-2.png'},
-             {'name':'Layout Smart','id':'3','can_delete':False, 'path_img':'++resource++vindula.tile/images/miniatura-3.png'},
+             # {'name':'Layout Classico','id':'1','can_delete':False, 'path_img':'++resource++vindula.tile/images/miniatura-2.png'},
+             # {'name':'Layout Smart','id':'3','can_delete':False, 'path_img':'++resource++vindula.tile/images/miniatura-3.png'},
             ]   
         
         path_zexp = BUILDOUT_PATH + 'capas_customizadas/'

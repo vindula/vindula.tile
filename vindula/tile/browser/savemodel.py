@@ -1,5 +1,6 @@
 # coding: utf-8
 import os, json
+import shutil
 
 from Products.statusmessages.interfaces import IStatusMessage
 from five import grok
@@ -9,7 +10,7 @@ from zope.component import getUtility
 from zope.interface import Interface
 
 from vindula.tile.browser.baseview import BaseView
-from vindula.tile.config import ROOT_PATH, BUILDOUT_PATH
+from vindula.tile.config import BUILDOUT_PATH
 
 
 grok.templatedir('templates')
@@ -71,13 +72,13 @@ class RemoveModel(BaseView):
 
     def update(self):
         form = self.request.form
-        path_zexp = ROOT_PATH + '/../../docs/zexp'
+        path_zexp = BUILDOUT_PATH + 'capas_customizadas/'
 
         if 'id_model' in form.keys():
             id_model = form.get('id_model')
 
             f = os.path.join(path_zexp, id_model)
-            os.remove(f)
+            shutil.rmtree(f)
             self.retorno['status'] = True
         
         else:
