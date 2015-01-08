@@ -1,0 +1,46 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="context/main_template/macros/master"
+      lang="en"
+      i18n:domain="vindula.tile">
+<body>
+
+<metal:main fill-slot="content">
+    
+    <div metal:use-macro="context/global_statusmessage/macros/portal_message">
+      Status message
+    </div>
+
+    <div id="content">
+      <form action="" method="post" name="wizardlayout" 
+            tal:attributes="action string:${context/absolute_url}/savemodel-view" >
+        
+        <div id="select_layout" class="clear">
+
+          <h4>
+            Criar novo modelo
+          </h4>
+
+          <div>
+            <div>
+              <label>
+                Nome do modelo:
+              </label>
+            </div>
+            <div>
+              <input type="text" name="name_model">
+            </div>
+          </div>
+
+          <div class="right">
+            <input class="save button small radius" type="submit" name="save_model" value="Salvar modelo" /> 
+          </div>
+
+        </div>
+      </form>
+    </div>
+</metal:main>
+</body>
+</html> 

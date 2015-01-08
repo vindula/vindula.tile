@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import os
+
 try: # New CMF
     from Products.CMFCore.permissions import setDefaultRoles
 except ImportError: # Old CMF
@@ -26,14 +28,21 @@ setDefaultRoles(DEFAULT_ADD_CONTENT_PERMISSION, ('Manager', 'Owner'))
 
 product_globals = globals()
 
-import os
+def getVariableEnvironment(var):
+    '''
+        Método para 
+
+        @var = ZOPE_HOME, INSTANCE_HOME, ... é o valor da variável do sistema
+        @return = Retorna o valor da variavel do sistema
+    '''
+    environ = os.environ
+    return environ.get(var, None)
+
+BUILDOUT_PATH = getVariableEnvironment('INSTANCE_HOME') + '/../../'
 ROOT_PATH = os.path.dirname(os.path.abspath(__file__))
 
-
-VOCABULARY_COLUNAS=[('4',_(u"4 Colunas")),
-                    ('6', _(u"6 Colunas")),
-                    ('12', _(u"12 Colunas")),
-                    ]
+VOCABULARY_COLUNAS=[('6', _(u"50%")),
+                    ('12', _(u"100%")),]
 
 VOCABULARY_SORTED_ITENS=[
     ('getObjPositionInParent','Posições dos objetos na pasta'),

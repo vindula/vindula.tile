@@ -39,7 +39,7 @@
                                                    data-id_model item/id|string: ;"> </a>
                   <div class="columns large-6 small-6">
                       <h5>
-                        <label for="layout" tal:content="item/name|string: ">Layout Classico</label>
+                        <label for="layout" tal:content="item/name|string: ">Layout Clássico</label>
                           <input type="radio" value="1" name="layout" checked='checked'
                                  tal:attributes="value item/id|string: ;
                                                 checked python: repeat['item'].start and 'checked' or '';"/> 
@@ -59,7 +59,7 @@
     			<input type="hidden" name="layout" tal:attributes="value request/layout|nothing"/>
     			
     			<input type="checkbox" name="defaut_view" />
-    				<label for="defaut_view">Utilizar essa caba como visão padrão</label>
+    				<label for="defaut_view">Utilizar essa capa como visão padrão da pasta.</label>
 
           <div id="buttom">
               <input class="save button small radius" type="submit" name="submitted" value="Criar capa" />
