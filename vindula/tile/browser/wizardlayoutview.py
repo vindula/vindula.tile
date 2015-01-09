@@ -1,12 +1,12 @@
 # coding: utf-8
-from five import grok
-from vindula.tile.browser.baseview import BaseView
-from Products.CMFCore.utils import getToolByName
-
-from zope.interface import Interface
-from vindula.tile.config import ROOT_PATH
-
 import os
+
+from five import grok
+from zope.interface import Interface
+
+from vindula.tile.browser.baseview import BaseView
+from vindula.tile.config import ROOT_PATH, BUILDOUT_PATH
+
 
 grok.templatedir('templates')
 
@@ -15,23 +15,24 @@ class WizardLayout(BaseView):
     grok.name('wizard-view')
 
     def get_list_modelos(self):
-        black_list = ['capa-principal.zexp','capa-esquerda.zexp','capa-direita.zexp']
+        # black_list = ['capa-principal.zexp','capa-esquerda.zexp','capa-direita.zexp']
 
         L = [{'name':'Layout Padrão','id':'2','can_delete':False, 'path_img':'++resource++vindula.tile/images/miniatura-1.png'},
-             {'name':'Layout Classico','id':'1','can_delete':False, 'path_img':'++resource++vindula.tile/images/miniatura-2.png'},
-             {'name':'Layout Smart','id':'3','can_delete':False, 'path_img':'++resource++vindula.tile/images/miniatura-3.png'},
+             # {'name':'Layout Classico','id':'1','can_delete':False, 'path_img':'++resource++vindula.tile/images/miniatura-2.png'},
+             # {'name':'Layout Smart','id':'3','can_delete':False, 'path_img':'++resource++vindula.tile/images/miniatura-3.png'},
             ]   
         
-        path_zexp = ROOT_PATH + '/../../docs/zexp'
+        path_zexp = BUILDOUT_PATH + 'capas_customizadas/'
 
-        for iten in os.listdir(path_zexp):
-            if not iten in black_list:
-                name = iten.replace('.zexp','')
-                txt = ''
-                for t in name.replace('-','|').replace('_','|').split('|'):
-                    txt += '%s ' %(t.title())
+        for folder in os.listdir(path_zexp):
+            items = os.listdir(path_zexp + folder)
 
-                L.append({'name':txt,'id':iten,'can_delete':True, 'path_img':'++resource++vindula.tile/images/miniatura-4.png'})
+            if 'title_model' in items:
+                file_title = open(path_zexp + folder + '/title_model')
+                txt = file_title.read()
+                file_title.close()
+
+            L.append({'name':txt, 'id':folder,'can_delete':True, 'path_img':'++resource++vindula.tile/images/miniatura-4.png'})
 
         return L
 
@@ -41,6 +42,7 @@ class WizardLayout(BaseView):
 
         if 'submitted' in form.keys():
             layout = form.get('layout','')
+            # import pdb; pdb.set_trace()
 
             context = self.context
 
@@ -57,7 +59,13 @@ class WizardLayout(BaseView):
                     context._importObjectFromFile(filepath=path_zexp+'capa-principal.zexp')
 
                 else:
-                    context._importObjectFromFile(filepath=path_zexp+layout)
+                    #Caso for layout customizado
+                    path_zexp = BUILDOUT_PATH + 'capas_customizadas/' + layout
+                    items = os.listdir(path_zexp)
+
+                    for item in items:
+                        if '.zexp' in item:
+                            context._importObjectFromFile(filepath=path_zexp + '/' + item)
 
                 # portal_workflow = getToolByName(context, 'portal_workflow')
 
