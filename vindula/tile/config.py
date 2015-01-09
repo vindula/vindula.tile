@@ -30,7 +30,7 @@ product_globals = globals()
 
 def getVariableEnvironment(var):
     '''
-        Método para 
+        Método para
 
         @var = ZOPE_HOME, INSTANCE_HOME, ... é o valor da variável do sistema
         @return = Retorna o valor da variavel do sistema
@@ -52,4 +52,14 @@ VOCABULARY_SORTED_ITENS=[
 ]
 
 
-LIST_PLONETYPES= ['Event','File','Image','Link','OrganizationalStructure','Servico','VindulaNews','VindulaStreaming','VindulaVideo']
+LIST_PLONETYPES = ['Event','File','Image','Link','OrganizationalStructure','Servico','VindulaNews','VindulaStreaming','VindulaVideo']
+
+LIST_TYPES_TILES = ['TileAccordionContent','TileBanner',# 'TileBannerCompost',
+                    'TileBirthdays', 'TileCalendar', 'TileFeatured','TileFood',
+                    'TileHowDo','TileInfoStructure','TileJobOffer','TileLabel',
+                    'TileListServices','TileLibrary','TileListagemHorizontal',
+                    'TileListagemVertical','TileLoadReference',
+                    'TileMacroList','TileMoreAccess','TileMultimedia',
+                    'TileNewEmployee','TileOrganogram','TilePoll',
+                    'TileReferenceList','TileSimpleMacro','TileTabularList',
+                    'TileTeam','TileHtml','TilePoiTracker']

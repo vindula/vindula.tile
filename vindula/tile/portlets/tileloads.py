@@ -76,7 +76,7 @@ class Renderer(base.Renderer):
             obj_layout = brain.getObject()
 
             return obj_layout
-        
+
         else:
             return None
 
@@ -86,7 +86,10 @@ class Renderer(base.Renderer):
 
     def getTiles(self):
         obj = self._getTiles_list()
-        return obj.values()
+
+        view = obj.restrictedTraverse('@@layout-view')
+        return view._get_catalog_tiles()
+
 
     def getScripts_js(self):
         path_js = []
@@ -96,20 +99,20 @@ class Renderer(base.Renderer):
 
         #Coleta dos Script js dos tiles
         tiles = self.getTiles()
-        
+
         for tile in tiles:
             if hasattr(tile, 'scripts_js'):
                 for i in tile.scripts_js:
                     if not i in path_js:
                         path_js.append(i)
-        
+
         for scr in path_js:
             if scr:
                 if scr in scripts_js:
                     continue
                 else:
                     scripts_js.append(scr)
-        session.set("use_js_list", scripts_js)    
+        session.set("use_js_list", scripts_js)
         return scripts_js
 
 

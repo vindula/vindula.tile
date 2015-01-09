@@ -5,6 +5,7 @@ from vindula.tile.browser.baseview import BaseView
 from vindula.tile.content.interfaces import ILayout
 from zope.security import checkPermission
 
+from vindula.tile.config import LIST_TYPES_TILES
 
 grok.templatedir('templates')
 
@@ -34,13 +35,13 @@ class LayoutView(BaseView):
         #Coleta dos Script js dos tiles
         context = self.context
         tiles = context.values()
-        
+
         for tile in tiles:
             if hasattr(tile, 'scripts_js'):
                 for i in tile.scripts_js:
                     if not i in path_js:
                         path_js.append(i)
-        
+
         for scr in path_js:
             if scr:
                 if scr in scripts_js:
@@ -48,9 +49,9 @@ class LayoutView(BaseView):
                 else:
                     scripts_js.append(scr)
 
-        session.set("use_js_list", scripts_js)    
+        session.set("use_js_list", scripts_js)
         return scripts_js
-    
+
     def getStyleSheets_css(self):
         style_sheets = []
 
@@ -73,35 +74,7 @@ class LayoutView(BaseView):
         tiles = []
 
         itens = self.portal_catalog(**{'sort_on': 'getObjPositionInParent',
-                                   'portal_type':['TileAccordionContent',
-                                                  'TileBanner',
-                                                  # 'TileBannerCompost',
-                                                  'TileBirthdays',
-                                                  'TileCalendar',
-                                                  'TileFeatured',
-                                                  'TileFood',
-                                                  'TileHowDo',
-                                                  'TileInfoStructure',
-                                                  'TileJobOffer',
-                                                  'TileLabel',
-                                                  'TileListServices',
-                                                  'TileLibrary',
-                                                  'TileListagemHorizontal',
-                                                  'TileListagemVertical',
-                                                  'TileLoadReference',
-                                                  'TileMacroList',
-                                                  'TileMoreAccess',
-                                                  'TileMultimedia',
-                                                  'TileNewEmployee',
-                                                  'TileOrganogram',
-                                                  'TilePoll',
-                                                  'TileReferenceList',
-                                                  'TileSimpleMacro',
-                                                  'TileTabularList',
-                                                  'TileTeam',
-                                                  'TileHtml',
-                                                  'TilePoiTracker'], 
-                                        
+                                   'portal_type':LIST_TYPES_TILES,
                                    # 'review_state':['published', 'internally_published', 'external'],
                                    'path':{'query':'/'.join(context.getPhysicalPath()), 'depth': 5}
                                 })
@@ -141,7 +114,7 @@ class LayoutView(BaseView):
 
         posicionados = 0
         posicao = 0
-        
+
         tiles = self._get_catalog_tiles()
         # tiles = [ t for t in context.values() if t.portal_type != 'VindulaFolder' and not t.getExcludeFromNav()]
 
@@ -163,7 +136,7 @@ class LayoutView(BaseView):
 
                 if tile_6.get_columns() == 6 :
 
-                    try: 
+                    try:
                         next_tile = tiles[posicao+1]
                         if next_tile.get_columns() == 6:
                             tiles_posicionados.append([[tile_6],[next_tile]])
@@ -177,15 +150,15 @@ class LayoutView(BaseView):
                         posicao+=1
 
                     posicionados+=1
-                    
 
-                else: 
-               
+
+                else:
+
                     # TILES DE 4 COLUNAS
                     tile_4 = tiles[posicao]
                     if tile_4.get_columns() == 4:
-                        
-                        try: 
+
+                        try:
                             middle_tile = tiles[posicao+1]
 
                             if middle_tile.get_columns() == 4:
