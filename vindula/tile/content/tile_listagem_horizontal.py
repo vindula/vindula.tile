@@ -13,32 +13,6 @@ from vindula.tile.content.interfaces import ITileListagemHorizontal
 from vindula.tile import MessageFactory as _
 from vindula.tile.config import *
 
-BLACK_LIST_PLONETYPES = ['ATBooleanCriterion', 'ATCurrentAuthorCriterion', 'ATDateCriteria', 'ATDateRangeCriterion',
-                         'ATListCriterion', 'ATPathCriterion', 'ATPortalTypeCriterion', 'ATReferenceCriterion', 'ATRelativePathCriterion',
-                         'ATSelectionCriterion', 'ATSimpleIntCriterion', 'ATSimpleStringCriterion', 'ATSortCriterion', 'Banner', 'BannerFlash',
-                         'BlockReserve', 'Classified', 'Classifieds', 'ClassifiedsCategory', 'ContainerTopicsControlPanel', 'ContentRedirectUser', 
-                         'ContentReserve', 'Discussion Item', 'Download', 'DownloadContainer','FieldSetMyvindula', 'FieldsetEnd',
-                         'FieldsetFolder', 'FieldsetStart', 'FileAttachment', 'FooterTopic', 'FormBooleanField', 'FormCaptchaField',
-                         'FormCustomScriptAdapter', 'FormDateField', 'FormFileField', 'FormFixedPointField', 'FormFolder', 'FormIntegerField',
-                         'FormLabelField', 'FormLikertField', 'FormLinesField', 'FormMailerAdapter', 'FormMultiSelectionField', 'FormPasswordField',
-                         'FormRichLabelField', 'FormRichTextField', 'FormSaveDataAdapter', 'FormSelectionField', 'FormStringField', 'FormTextField',
-                         'FormThanksPage', 'ImageAttachment', 'Layout', 'LayoutLoad', 'Menu', 'ObjectsControlPanel', 'OrderedClassifieds',
-                         'OrderedClassifiedsCategory', 'PlanosPrecos', 'PlanosPrecosContainer', 'Plone Site', 'PlonePopoll', 'Ploneboard',
-                         'PloneboardComment', 'PloneboardConversation', 'PloneboardForum', 'PoiIssue', 'PoiPscTracker', 'PoiTracker', 
-                         'RedirectUser', 'ServicosFolder', 'SocialNetwork', 'SubtopicControlPanel', 'TempFolder', 
-                         'ThemeConfig', 'ThemeLoginConfig', 'TileAccordionContent', 'TileAccordionItem', 'TileBanner', 'TileBannerCompost', 
-                         'TileBirthdays', 'TileCalendar', 'TileFeatured', 'TileFood', 'TileHowDo', 'TileInfoStructure', 'TileLabel', 
-                         'TileListagemHorizontal', 'TileListagemVertical', 'TileMacroList', 'TileMoreAccess', 'TileNewEmployee', 'TileOrganogram', 
-                         'TilePoll', 'TileReferenceList', 'TileSimpleMacro', 'TileTabularList', 'TileTeam', 'Topic', 'TopicControlPanel', 'Unit', 
-                         'VindulaCategories', 'VindulaFile', 'VindulaPortlet', 'VindulaRevista', 'VindulaTeam',
-                         'vindula.content.content.vindulacontentapi', 'vindula.content.content.vindulacontentmacro', 'vindula.contentcore.conteudobasico', 
-                         'vindula.contentcore.formulariobasico', 'vindula.controlpanel.content.alertdisplay', 
-                         'vindula.controlpanel.content.aniversariantesconfig', 'vindula.controlpanel.content.categories',
-                         'vindula.controlpanel.content.vindulaconfigall', 'vindula.food.restaurantes', 'vindula.liberiuncontents.content.featureprofile',
-                         'vindula.liberiuncontents.content.features', 'vindula.liberiuncontents.content.featuresection', 
-                         'vindula.liberiuncontents.content.featuretopic', 'vindula.myvindula.vindulalistdocumentuser',
-                         'vindula.reservacorporativa.content.reserve', 'TileJobOffer', 'TileLibrary', 'TileListServices', 'TileLoadReference',
-                         'TileMultimedia', 'TilePoiTracker']
 
 TileListagemHorizontal_schema = BaseTile.schema.copy() + Schema((
 
@@ -54,7 +28,7 @@ TileListagemHorizontal_schema = BaseTile.schema.copy() + Schema((
             review_state=('published', 'internal', 'external'),
             required=False,
     ),
-                                                                 
+
     LinesField(
         name='listTypes',
         multiValued=1,
@@ -100,7 +74,7 @@ TileListagemHorizontal_schema = BaseTile.schema.copy() + Schema((
         default='destaque_unico',
         required=True,
     ),
-                                                                 
+
     BooleanField(
         name='activeSocial',
         default=True,
@@ -111,7 +85,7 @@ TileListagemHorizontal_schema = BaseTile.schema.copy() + Schema((
             description_msgid='vindula_tile_help_activeSocial',
         ),
     ),
-     
+
     #TODO: Fazer esse botão funcionar, foi deixado como invisivel pois não está funcionando
     BooleanField(
         name='activeMoreButton',
@@ -123,7 +97,7 @@ TileListagemHorizontal_schema = BaseTile.schema.copy() + Schema((
             description_msgid='vindula_tile_help_activeMoreButton',
         ),
     ),
-    
+
     # BooleanField(
     #     name='activeSubTitulo',
     #     default=False,
@@ -134,7 +108,7 @@ TileListagemHorizontal_schema = BaseTile.schema.copy() + Schema((
     #         description_msgid='vindula_tile_help_activeSubTitulo',
     #     ),
     # ),
-                                                                 
+
     StringField(
         name='ordination',
         widget=SelectionWidget(
@@ -149,7 +123,7 @@ TileListagemHorizontal_schema = BaseTile.schema.copy() + Schema((
                     ("title", _(u"Título")),],
         default='creation_date',
     ),
-                                                                 
+
     StringField(
         name='order',
         widget=SelectionWidget(
@@ -164,7 +138,7 @@ TileListagemHorizontal_schema = BaseTile.schema.copy() + Schema((
                     ("asc", _(u"Crescente")),],
         default='desc',
     ),
-                                                                 
+
     BooleanField(
         name='hideSeparator',
         schemata='settings',
@@ -176,7 +150,7 @@ TileListagemHorizontal_schema = BaseTile.schema.copy() + Schema((
             description_msgid='vindula_tile_help_hideSeparator',
         ),
     ),
-                                                                 
+
     BooleanField(
         name='hideImage',
         schemata='settings',
@@ -188,7 +162,7 @@ TileListagemHorizontal_schema = BaseTile.schema.copy() + Schema((
             description_msgid='vindula_tile_help_hideImage',
 		),
 	),
-                                                                 
+
 	BooleanField(
         name='hideDescription',
         default=False,
@@ -200,7 +174,7 @@ TileListagemHorizontal_schema = BaseTile.schema.copy() + Schema((
             description_msgid='vindula_tile_help_hideDescription',
         ),
 	),
-                                                                 
+
     IntegerField(
         name='heightImage',
         schemata='settings',
@@ -213,7 +187,7 @@ TileListagemHorizontal_schema = BaseTile.schema.copy() + Schema((
         ),
         required=False,
     ),
-																
+
     IntegerField(
         name='widthImage',
         schemata='settings',
@@ -226,7 +200,7 @@ TileListagemHorizontal_schema = BaseTile.schema.copy() + Schema((
         ),
         required=False,
     ),
-                                                                 
+
     BooleanField(
         name='hidePagination',
         default=False,
@@ -238,7 +212,7 @@ TileListagemHorizontal_schema = BaseTile.schema.copy() + Schema((
             description_msgid='vindula_tile_help_hidePagination',
         ),
     ),
-      
+
     IntegerField(
         name='qtyItemsPage',
         schemata='settings',
@@ -251,7 +225,7 @@ TileListagemHorizontal_schema = BaseTile.schema.copy() + Schema((
         ),
         default = 7,
         required=True,
-    ),                                                     
+    ),
 ))
 
 #Oculta o campo padrao 'description'
@@ -272,12 +246,13 @@ class TileListagemHorizontal(BaseTile):
     portal_type = 'TileListagemHorizontal'
     _at_rename_after_creation = True
     schema = TileListagemHorizontal_schema
-    
+
     def voc_list_types(self):
         types = []
-        for item in self.portal_types.listContentTypes():
-            if not item in BLACK_LIST_PLONETYPES:
-                types.append(item)
+        for item in LIST_PLONETYPES:
+            obj = self.portal_types[item]
+            types.append(obj.title)
+
         return types
 
     # tamanho do tile

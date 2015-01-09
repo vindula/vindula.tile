@@ -41,3 +41,6 @@ VOCABULARY_SORTED_ITENS=[
     ('effective','Data de Publicação'),
     ('modified','Data de Modificação')
 ]
+
+
+LIST_PLONETYPES= ['Event','File','Image','Link','OrganizationalStructure','Servico','VindulaNews','VindulaStreaming','VindulaVideo']

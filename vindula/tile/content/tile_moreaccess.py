@@ -17,32 +17,6 @@ from vindula.tile.config import *
 from zope.schema.interfaces import IVocabularyFactory
 from zope.component import queryUtility
 
-BLACK_LIST_PLONETYPES = ['ATBooleanCriterion', 'ATCurrentAuthorCriterion', 'ATDateCriteria', 'ATDateRangeCriterion',
-                         'ATListCriterion', 'ATPathCriterion', 'ATPortalTypeCriterion', 'ATReferenceCriterion', 'ATRelativePathCriterion',
-                         'ATSelectionCriterion', 'ATSimpleIntCriterion', 'ATSimpleStringCriterion', 'ATSortCriterion', 'Banner', 'BannerFlash',
-                         'BlockReserve', 'Classified', 'Classifieds', 'ClassifiedsCategory', 'ContainerTopicsControlPanel', 'ContentRedirectUser', 
-                         'ContentReserve', 'Discussion Item', 'Download', 'DownloadContainer','FieldSetMyvindula', 'FieldsetEnd',
-                         'FieldsetFolder', 'FieldsetStart', 'FileAttachment', 'FooterTopic', 'FormBooleanField', 'FormCaptchaField',
-                         'FormCustomScriptAdapter', 'FormDateField', 'FormFileField', 'FormFixedPointField', 'FormFolder', 'FormIntegerField',
-                         'FormLabelField', 'FormLikertField', 'FormLinesField', 'FormMailerAdapter', 'FormMultiSelectionField', 'FormPasswordField',
-                         'FormRichLabelField', 'FormRichTextField', 'FormSaveDataAdapter', 'FormSelectionField', 'FormStringField', 'FormTextField',
-                         'FormThanksPage', 'ImageAttachment', 'Layout', 'LayoutLoad', 'Menu', 'ObjectsControlPanel', 'OrderedClassifieds',
-                         'OrderedClassifiedsCategory', 'PlanosPrecos', 'PlanosPrecosContainer', 'Plone Site', 'PlonePopoll', 'Ploneboard',
-                         'PloneboardComment', 'PloneboardConversation', 'PloneboardForum', 'PoiIssue', 'PoiPscTracker', 'PoiTracker', 
-                         'RedirectUser', 'ServicosFolder', 'SocialNetwork', 'SubtopicControlPanel', 'TempFolder', 
-                         'ThemeConfig', 'ThemeLoginConfig', 'TileAccordionContent', 'TileAccordionItem', 'TileBanner', 'TileBannerCompost', 
-                         'TileBirthdays', 'TileCalendar', 'TileFeatured', 'TileFood', 'TileHowDo', 'TileInfoStructure', 'TileLabel', 
-                         'TileListagemHorizontal', 'TileListagemVertical', 'TileMacroList', 'TileMoreAccess', 'TileNewEmployee', 'TileOrganogram', 
-                         'TilePoll', 'TileReferenceList', 'TileSimpleMacro', 'TileTabularList', 'TileTeam', 'Topic', 'TopicControlPanel', 'Unit', 
-                         'VindulaCategories', 'VindulaFile', 'VindulaPortlet', 'VindulaRevista', 'VindulaTeam',
-                         'vindula.content.content.vindulacontentapi', 'vindula.content.content.vindulacontentmacro', 'vindula.contentcore.conteudobasico', 
-                         'vindula.contentcore.formulariobasico', 'vindula.controlpanel.content.alertdisplay', 
-                         'vindula.controlpanel.content.aniversariantesconfig', 'vindula.controlpanel.content.categories',
-                         'vindula.controlpanel.content.vindulaconfigall', 'vindula.food.restaurantes', 'vindula.liberiuncontents.content.featureprofile',
-                         'vindula.liberiuncontents.content.features', 'vindula.liberiuncontents.content.featuresection', 
-                         'vindula.liberiuncontents.content.featuretopic', 'vindula.myvindula.vindulalistdocumentuser',
-                         'vindula.reservacorporativa.content.reserve', 'TileJobOffer', 'TileLibrary', 'TileListServices', 'TileLoadReference',
-                         'TileMultimedia', 'TilePoiTracker']
 
 TileMoreAccess_schema = BaseTile.schema.copy() + Schema((
 
@@ -89,7 +63,7 @@ TileMoreAccess_schema = BaseTile.schema.copy() + Schema((
         required=True,
         default=5,
     ),
-                                                         
+
     StringField(
         name='kind',
         widget=SelectionWidget(
@@ -117,7 +91,7 @@ TileMoreAccess_schema = BaseTile.schema.copy() + Schema((
             description_msgid='vindula_tile_help_activeMoreButton',
         ),
     ),
-                                                         
+
     IntegerField(
         name='widthImage',
         widget = IntegerWidget(
@@ -126,7 +100,7 @@ TileMoreAccess_schema = BaseTile.schema.copy() + Schema((
         ),
         required=False,
     ),
-                                                         
+
     IntegerField(
         name='heightImage',
         widget = IntegerWidget(
@@ -135,7 +109,7 @@ TileMoreAccess_schema = BaseTile.schema.copy() + Schema((
         ),
         required=False,
     ),
-                                                         
+
     BooleanField(
         name='hideSubheader',
         schemata='settings',
@@ -147,7 +121,7 @@ TileMoreAccess_schema = BaseTile.schema.copy() + Schema((
             description_msgid='vindula_tile_help_hideSubheader',
         ),
     ),
-                                                         
+
     BooleanField(
         name='hideDateTime',
         schemata='settings',
@@ -159,7 +133,7 @@ TileMoreAccess_schema = BaseTile.schema.copy() + Schema((
             description_msgid='vindula_tile_help_hideDateTime',
         ),
     ),
-                                                         
+
     BooleanField(
         name='showQtdAccess',
         schemata='settings',
@@ -171,7 +145,7 @@ TileMoreAccess_schema = BaseTile.schema.copy() + Schema((
             description_msgid='vindula_tile_help_showQtdAccess',
         ),
     ),
-    
+
     BooleanField(
         name='showPagination',
         schemata='settings',
@@ -183,7 +157,7 @@ TileMoreAccess_schema = BaseTile.schema.copy() + Schema((
             description_msgid='vindula_tile_help_showPagination',
         ),
     ),
-                                                         
+
     IntegerField(
         name='qtdMaxPages',
         schemata='settings',
@@ -209,14 +183,21 @@ class TileMoreAccess(BaseTile):
 
     def voc_ContentTypes(self):
         types = []
-        for item in self.portal_types.listContentTypes():
-            if not item in BLACK_LIST_PLONETYPES:
-                types.append(item)
+        for item in LIST_PLONETYPES:
+            obj = self.portal_types[item]
+            types.append(obj.title)
+
         return types
 
     #Scripts js
-    scripts_js = ['/++resource++vindula.tile/js/button-more.js', 
-                  '/++resource++vindula.tile/js/ajax_boll_batch.js', 
+    scripts_js = ['/++resource++vindula.tile/js/button-more.js',
+                  '/++resource++vindula.tile/js/ajax_boll_batch.js',
                   '/++resource++vindula.content/js/ajax_list_file.js']
 
 registerType(TileMoreAccess, PROJECTNAME)
+
+
+
+
+
+
