@@ -251,7 +251,10 @@ class TileListagemHorizontal(BaseTile):
         types = []
         for item in LIST_PLONETYPES:
             obj = self.portal_types[item]
-            types.append(obj.title)
+
+            types.append(
+                (item,obj.title)
+            )
 
         return types
 
