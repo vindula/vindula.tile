@@ -41,7 +41,8 @@ def getVariableEnvironment(var):
 BUILDOUT_PATH = getVariableEnvironment('INSTANCE_HOME') + '/../../'
 ROOT_PATH = os.path.dirname(os.path.abspath(__file__))
 
-VOCABULARY_COLUNAS=[('6', _(u"50%")),
+VOCABULARY_COLUNAS=[('4', _(u"25%")),
+                    ('6', _(u"50%")),
                     ('12', _(u"100%")),]
 
 VOCABULARY_SORTED_ITENS=[
