@@ -53,7 +53,8 @@ TileListagemHorizontal_schema = BaseTile.schema.copy() + Schema((
             label=_(u"Pasta"),
             description='Selecione a pasta de onde os conteúdos deverão ser listados.'
         ),
-        review_state = ('published', 'internal','external')
+        review_state = ('published', 'internal','external'),
+        required=True,
     ),
 
     StringField(
