@@ -240,12 +240,12 @@ class TileListagemVertical(BaseTile):
     schema = TileListagemVertical_schema
 
     def voc_list_types(self):
-        types = ['Pessoas']
+        types = [('Pessoas','Pessoas')]
         for item in LIST_PLONETYPES:
             obj = self.portal_types[item]
 
             types.append(
-                (item,obj.title)
+                (item, obj.title)
             )
 
         return types
