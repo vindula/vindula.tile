@@ -38,6 +38,7 @@ class BannerView(BaseView):
             D['image'] = banner.absolute_url() + '/imagem_banner'
             D['target'] = banner.getTarget()
             D['url'] = banner.getLink()
+            D['timeTransitionBanner'] = obj.getTimeTransitionBanner()
             if obj.activeDate == True:
                 D['date'] = banner.creation_date.strftime('%d/%m/%Y')
             if obj.activeAuthor == True:

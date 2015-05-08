@@ -16,7 +16,10 @@
       <div class="row" tal:condition="banners">
           <div class="columns large-12">
               <div class="has-space">
-                  <ul data-orbit id="tile-banner" tal:attributes="data-options python: len(banners) == 1 and bullets_false">
+                  <!-- <ul data-orbit id="tile-banner" tal:attributes="data-options python: len(banners) == 1 and bullets_false"> -->
+                    <ul data-orbit id="tile-banner" data-options="" tal:define= "value python:context.getTimeTransitionBanner(); 
+                                                                                 atribute  python:'timer_speed:%s' % value";
+                                                                    tal:attributes="data-options atribute;">
                       <li tal:repeat="banner banners">
                           <a href="" tal:attributes="href    banner/url|nothing;
                                                      target  banner/target|nothing">
@@ -36,7 +39,6 @@
 
                               <span tal:condition="context/getActiveAuthor|nothing"
                                     tal:content="string: ${banner/author|nothing}"> ADMIN </span>
-
                           </div>
                       </li>
                   </ul>
