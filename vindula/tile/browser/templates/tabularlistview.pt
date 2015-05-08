@@ -52,9 +52,9 @@
                                  structures python:structures() and structures().UID() or None;">
                     <tal:def define="dummy python:request.set('macro', 'default');
                                      fields python:[{'label':  ''     , 'attribute': 'getImageIcone', 'is_image': 'True', 'width':  '65',},
-													{'label': 'Nome', 'attribute': 'Title'},
-                                                    {'label': 'Criação', 'attribute': 'getRawCreation_date'},
-  													{'label': 'Ações', 'attribute': '', 'is_action':  'True', 'width':  '40',},];">
+                                                    {'label': 'Nome', 'attribute': 'Title'},
+                                                    {'label': 'Criação', 'attribute': 'created'},
+                            {'label': 'Ações', 'attribute': '', 'is_action':  'True', 'width':  '40',},];">
                         <metal:block metal:use-macro="context/macro_tabular_file/macros/view" />
                     </tal:def>
                 </tal:def>

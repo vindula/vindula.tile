@@ -1,22 +1,16 @@
 # -*- coding: utf-8 -*-
 """ Liberiun Technologies Sistemas de Informação Ltda. """
-""" Produto:                 """
-
-from zope.interface import implements
-from zope.formlib import form
-from zope import schema
-
-from plone.portlets.interfaces import IPortletDataProvider
-from plone.app.portlets.portlets import base
-
-from plone.app.vocabularies.catalog import SearchableTextSourceBinder
-from plone.app.form.widgets.uberselectionwidget import UberSelectionWidget, UberMultiSelectionWidget
-
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from vindula.tile import MessageFactory as _
-
+from plone.app.form.widgets.uberselectionwidget import UberSelectionWidget
+from plone.app.portlets.portlets import base
+from plone.app.vocabularies.catalog import SearchableTextSourceBinder
+from plone.portlets.interfaces import IPortletDataProvider
+from zope import schema
+from zope.formlib import form
+from zope.interface import implements
 from zope.security import checkPermission
-from vindula.tile.browser.layout import LayoutView
+
+from vindula.tile import MessageFactory as _
 
 
 class ITileLoads(IPortletDataProvider):
