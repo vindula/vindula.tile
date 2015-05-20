@@ -25,7 +25,7 @@
                                                      target  banner/target|nothing">
                             <img  tal:attributes="src banner/image" src="++theme++vindula.themedefault/images/demos/demo1.jpg" />
                           </a>
-                          <div class="orbit-caption">
+                          <div class="orbit-caption" tal:condition="banner/text|nothing">
                               <span tal:content="banner/text|nothing">
                                 Lorem ipsum dolor sit amet
                               </span>
