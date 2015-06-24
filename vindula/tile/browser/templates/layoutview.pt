@@ -25,8 +25,11 @@
         <div class="sortable-tiles">
         
           <tal:rep_js repeat="scr scripts">
-                  <script type="text/javascript"
-                          tal:attributes="src string:${context/portal_url}${scr}" />
+            <tal:cond condition="python: not request.get(scr)">
+                <script type="text/javascript"
+                        tal:attributes="src string:${context/portal_url}${scr}" />
+                <tal:dummy tal:define="list_js_list python:request.set(scr, 1);" />
+            </tal:cond>
           </tal:rep_js>
 
           <tal:rep_css repeat="name_style stylesheets">
