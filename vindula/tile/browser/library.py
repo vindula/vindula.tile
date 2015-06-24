@@ -48,6 +48,8 @@ class ThemeContentsView(BaseView):
             brains = p_catalog(ThemeNews=value)
             for brain in brains:
                 if not brain.tipo or brain.portal_type == 'Image':
+                    if brain.portal_type == 'Image':
+                        typologies[brain.tipo] = [brain.getObject()]
                     continue
                 
                 if typologies.get(brain.tipo):
