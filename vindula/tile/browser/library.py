@@ -49,14 +49,16 @@ class ThemeContentsView(BaseView):
             for brain in brains:
                 if not brain.tipo or brain.portal_type == 'Image':
                     if brain.portal_type == 'Image':
-                        typologies[brain.tipo] = [brain.getObject()]
+                        if typologies.get(brain.tipo):
+                            typologies[brain.tipo].append(brain.getObject())
+                        else:
+                            typologies[brain.tipo] = [brain.getObject()]
                     continue
                 
                 if typologies.get(brain.tipo):
                     typologies[brain.tipo].append(brain.getObject())
                 else:
                     typologies[brain.tipo] = [brain.getObject()]
-        
         od = OrderedDict(sorted(typologies.items(), key=lambda t: t[0]))
         typologies = od.items()
 
