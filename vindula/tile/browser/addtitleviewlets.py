@@ -31,6 +31,7 @@ class AddTilesViewlet(grok.Viewlet):
                   'TileListagemVertical',
                   'TileMacroList',
                   'TileMoreAccess',
+                  'TileMultimedia',
                   'TileNewEmployee',
                   'TileOrganogram',
                   'TilePoll',
