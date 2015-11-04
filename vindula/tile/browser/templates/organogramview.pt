@@ -123,7 +123,7 @@
         <tal:cond condition="estrutura/enable_organograma|python:True">
         <li class="tree-item" tal:define="estruturas_filho python:view_macro.get_estruturas_filho(estrutura.getSourceObject())"
                               tal:attributes="class python:view_macro.def_class(estrutura.getSourceObject(), estruturas_filho)">
-            <a href='' tal:define="username  estrutura/manager|nothing" tal:attributes="href python:estrutura.getSourceObject().absolute_url() or None">
+            <a href='' tal:define="username  estrutura/manager|nothing" tal:attributes="href string:/myvindulalistuser?user=${username}">
               <img src="" alt="" height="30" width="30" style="margin-top: 6px; margin-right: 5px" class="right" tal:attributes="src string:/vindula-api/myvindula/user-picture/${session/user_token|nothing}/photograph/${username}/True"  />
             </a>
             <div class="content clear">
