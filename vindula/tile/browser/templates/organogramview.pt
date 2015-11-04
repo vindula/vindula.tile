@@ -104,7 +104,7 @@
                         </div>
                         <ul class="tree-2">
                             <tal:rep repeat="estrutura_filho python:view_macro.get_estruturas_filho(estrutura())">
-                                <metal:block metal:use-macro="context/@@organogram-view/macros/recursivo" />
+                                <metal:block metal:use-macro="context/@@organogram-view/macros/recursivo_2" />
                             </tal:rep>
                         </ul>
                     </li>
@@ -123,19 +123,42 @@
         <tal:cond condition="estrutura/enable_organograma|python:True">
         <li class="tree-item" tal:define="estruturas_filho python:view_macro.get_estruturas_filho(estrutura.getSourceObject())"
                               tal:attributes="class python:view_macro.def_class(estrutura.getSourceObject(), estruturas_filho)">
+            <a href='' tal:define="username  estrutura/manager|nothing" tal:attributes="href python:estrutura.getSourceObject().absolute_url() or None">
+              <img src="" alt="" height="30" width="30" style="margin-top: 6px; margin-right: 5px" class="right" tal:attributes="src string:/vindula-api/myvindula/user-picture/${session/user_token|nothing}/photograph/${username}/True"  />
+            </a>
             <div class="content clear">
                 <span class="left org-title" tal:content="estrutura/getSiglaOrTitle">Concelho de Assesoria Poilico Estratégico</span>
-                <a href='' class="clear"
+            </div>
+            <ul class="tree-4" tal:attributes="class python: 'tree-'+ str(repeat['estrutura_filho'].number() + 2)">
+                <tal:rep repeat="estrutura_filho estruturas_filho">
+                  <metal:block metal:use-macro="context/@@organogram-view/macros/recursivo" />
+                </tal:rep>
+            </ul>
+        </li>
+        </tal:cond>
+    </tal:cond>
+</metal:macro>
+
+<metal:macro define-macro="recursivo_2">
+    <tal:cond condition="estrutura"
+              define="view_macro nocall:context/@@organogram-view;
+                      estrutura estrutura_filho|nothing;">
+
+        <tal:cond condition="estrutura/enable_organograma|python:True">
+        <li class="tree-item" tal:define="estruturas_filho python:view_macro.get_estruturas_filho(estrutura.getSourceObject())"
+                              tal:attributes="class python:view_macro.def_class(estrutura.getSourceObject(), estruturas_filho)">
+            <div class="content clear">
+                <span class="left org-title" tal:content="estrutura/getSiglaOrTitle">Concelho de Assesoria Poilico Estratégico</span>
+                <a href='' class="clear" 
                    tal:attributes="href python:estrutura.getSourceObject().absolute_url() or None"
                    tal:define="username  estrutura/manager|nothing">
                     <img src="" alt="" height="30" width="30" class="right"
                          tal:attributes="src string:/vindula-api/myvindula/user-picture/${session/user_token|nothing}/photograph/${username}/True"  />
                 </a>
             </div>
-
             <ul class="tree-4" tal:attributes="class python: 'tree-'+ str(repeat['estrutura_filho'].number() + 2)">
                 <tal:rep repeat="estrutura_filho estruturas_filho">
-                  <metal:block metal:use-macro="context/@@organogram-view/macros/recursivo" />
+                  <metal:block metal:use-macro="context/@@organogram-view/macros/recursivo_2" />
                 </tal:rep>
             </ul>
         </li>
