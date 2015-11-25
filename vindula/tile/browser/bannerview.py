@@ -25,11 +25,23 @@ class BannerView(BaseView):
         return mergedlist
 
     def getTileBanner(self):
+        def getModificationDate(item):
+            #metodo que retorna a ultima data de modificação do banner para ordenação
+            modification_date = item.modification_date
+            return modification_date
+
         obj = self.context
         date_now = datetime.now(tzlocal())
         L = []
-        
         banners = self.get_list_banners()
+        
+        #organizar ordem dos banners na exibição por data de modificaçãos
+        try:
+            sorted_banners = sorted(banners, key=getModificationDate, reverse=True)
+            banners = sorted_banners
+        except:
+            pass
+
         for banner in banners:
             D = {}
             D['title'] = banner.Title()
